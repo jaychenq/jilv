@@ -1,0 +1,11 @@
+zh-CN:
+  activerecord:
+    models:
+      account/session: 登录
+    attributes:
+      account/session:
+        user_id: 用户
+        ip_address: IP地址
+        user_agent: 浏览器
+        referrer: 引用页
+        expired_at: 过期时间

@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title = @page_title.present? ? "#{@page_title} - " : ""
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    .header
+      = link_to '首页', :root
+      - if @current_user
+        = link_to @current_user.name, @current_user
+        = link_to '退出', account_session_path(0), method: 'delete', data: { confirm: '确定退出吗？' }
+      - else
+        = link_to '注册', new_account_user_path
+        = link_to '登录', new_account_session_path
+    .body
+      = yield
+    .footer
+      | @ 2014

@@ -1,0 +1,17 @@
+- @page_title = '游客登录'
+
+h1 游客登录
+
+= form_for @session, method: 'post', html: { multipart: true } do |f|
+  .form
+    .field
+      .label = f.label :email
+      .input
+        = f.text_field :email
+        = f.error_message_on :email
+    .field
+      .label = f.label :password
+      .input
+        = f.password_field :password
+        = f.error_message_on :password
+    = f.submit

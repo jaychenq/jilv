@@ -1,0 +1,21 @@
+zh-CN:
+  activerecord:
+    models:
+      account/user: 用户
+    attributes:
+      account/user:
+        name: 姓名
+        gender: 性别
+        avatar: 头像
+        email: 邮箱
+        password: 密码
+        password_digest: 密码摘要
+        terms_of_service: 服务条款
+        email_activation_code: 邮箱激活代码
+        email_activated_at: 邮箱激活时间
+        forbidden: 禁用？
+    enums:
+      account/user:
+        gender:
+          male: 先生
+          female: 女士

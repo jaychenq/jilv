@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
+gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -36,4 +36,47 @@ gem 'spring',        group: :development
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
+
+
+gem 'actionpack-action_caching'
+gem 'activerecord-session_store'
+gem 'debugger-pry', require: 'debugger/pry', group: :development
+gem 'compass-rails'
+gem 'compass-recipes'
+# gem 'constance'
+gem 'dynamic_form'
+# gem 'htmlentities'
+# gem 'httparty', group: :development
+# gem 'mechanize'
+# gem 'mini_magick', group: :development
+gem 'mysql2'
+gem 'newrelic_rpm', group: :production
+gem 'paperclip'
+gem 'pry-rails', group: :development
+# gem 'puma'
+gem 'quiet_assets', group: :development
+gem 'rb-readline', group: :development
+gem 'thin'
+gem 'rails_autolink'
+gem 'recursive-open-struct'
+gem 'slim'
+gem 'validates_existence'
+gem 'will_paginate'
+
+
+gem 'adsense_helper'
+gem 'datetime_tag_helper'
+# gem 'rails-cache_control'
+gem 'rails_compatable'
+gem 'tel_to_helper'
+
+
+gem 'rails-assets-bundler'
+require 'rails-assets-bundler'
+
+asset 'backbone'
+asset 'background.js'
+asset 'jquery'
+asset 'underscore'
+asset 'zepto'
