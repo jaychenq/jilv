@@ -5,7 +5,8 @@ class CreateAccountUsers < ActiveRecord::Migration
       t.integer :gender
       t.string :avatar
       t.string :email
-      t.string :encrypted_password
+      t.string :password
+      t.string :password_digest
       t.string :email_activation_code
       t.datetime :email_activated_at
       t.boolean :forbidden, null: false, default: false
