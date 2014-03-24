@@ -51,13 +51,14 @@ gem 'dynamic_form'
 # gem 'mechanize'
 # gem 'mini_magick', group: :development
 gem 'mysql2'
-gem 'newrelic_rpm', group: :production
+# gem 'newrelic_rpm', group: :production
 gem 'paperclip'
 gem 'pry-rails', group: :development
 # gem 'puma'
 gem 'quiet_assets', group: :development
 gem 'rb-readline', group: :development
 gem 'thin'
+gem 'rails-i18n'
 gem 'rails_autolink'
 gem 'recursive-open-struct'
 gem 'slim'

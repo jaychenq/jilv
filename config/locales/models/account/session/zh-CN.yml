@@ -9,3 +9,5 @@ zh-CN:
         user_agent: 浏览器
         referrer: 引用页
         expired_at: 过期时间
+        email: 邮箱
+        password: 密码

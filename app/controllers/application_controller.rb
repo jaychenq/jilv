@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 private
   def current_user
     return @current_user if @current_user
-    return if !session[:session_id]# || !defined?(Account::Session)
+    return if !session[:session_id]
     account_session = Account::Session.find_by(id: session[:session_id])
     return session[:session_id] = nil if !account_session || account_session.expired_at && account_session.expired_at < Time.now
     @current_user = account_session.user
