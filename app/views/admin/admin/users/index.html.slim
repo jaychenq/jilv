@@ -1,0 +1,32 @@
+- @page_title = model.model_name.human
+h2 #{model.model_name.human} #{t('list')} (#{@users.total_entries})
+= form_tag request.path, method: 'get', id: 'search_form' do
+  .tablenav
+    .alignleft
+      = link_to t('new'), action: 'new' if can?(:create, model)
+      | &nbsp;|&nbsp;
+      = render 'admin/shared/search/array', field: 'id'
+      = render 'admin/shared/search/basic', field: 'creator_id'
+      = render 'admin/shared/search/basic', field: 'updater_id'
+      = render 'admin/shared/search/range', field: 'created_at'
+      = render 'admin/shared/search/range', field: 'updated_at'
+      = render 'admin/shared/search/order'
+      = render 'admin/shared/search/page'
+      = submit_tag t('search'), name: nil, class: 'button-secondary'
+    br.clear
+br.clear
+table.widefat
+  thead
+    tr
+      - %w[id name created_at updated_at creator_id updater_id].each do |field|
+        th = model.human_attribute_name(field)
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.id
+        td = link_to_object user, module: Admin
+        td = datetime_tag user.created_at
+        td = datetime_tag user.updated_at
+        td = link_to_object user.creator, module: Admin
+        td = link_to_object user.updater, module: Admin
+= render 'admin/shared/pagination'

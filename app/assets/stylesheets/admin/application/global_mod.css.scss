@@ -1,0 +1,47 @@
+.widefat td, .widefat th {
+	font-size: 12px; /* 11px */
+	vertical-align: middle; /* text-top */
+	max-width: 200px;
+	overflow: hidden;
+/*	text-overflow: ellipsis;*/
+}
+
+.widefat td {
+	padding: 5px 4px; /* 7px 15px 9px 10px */
+}
+
+.widefat th {
+	padding: 10px 4px; /* 9px 15px 6px 10px */
+}
+
+.widefat th input {
+    margin: 0; /* 0 0 0 8px */
+}
+
+.widefat .check-column {
+	padding: 4px; /* 0 */
+	text-align: left; /* right */
+}
+
+.widefat th.check-column {
+	white-space: nowrap;
+}
+
+.widefat tbody th.check-column {
+	padding: 4px; /* 8px 0 22px */
+}
+
+.widefat p {
+	margin: 0;
+}
+
+#facebox h2 {
+    border-bottom-color: #DADADA;
+    color: #666666;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    clear: both;
+    font: 24px Georgia,"Times New Roman",Times,serif;
+    margin: 5px 0 0 -4px;
+    padding: 0 0 7px 0;
+}

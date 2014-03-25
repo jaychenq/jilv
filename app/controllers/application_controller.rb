@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
+  respond_to :html, :js, :json
+  
   before_action :current_user
   before_action :set_locale
   
@@ -17,7 +19,7 @@ private
 
   def set_locale
     locales = [params[:locale], cookies[:locale], session[:locale], request.env['HTTP_ACCEPT_LANGUAGE'].to_s.gsub(/-(\w+)/, &:upcase).split(';').first.to_s.split(',').reverse, I18n.default_locale].flatten.compact
-    I18n.locale = session[:locale] = (locales & I18n.available_locales.map(&:to_s)).first
-    I18n.locale = :'zh-CN'
+    # I18n.locale = session[:locale] = (locales & I18n.available_locales.map(&:to_s)).first
+    I18n.locale = 'zh-CN'
   end
 end

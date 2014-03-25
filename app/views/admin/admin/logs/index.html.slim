@@ -1,0 +1,33 @@
+- @page_title = model.model_name.human
+
+h2 #{model.model_name.human} #{t('list')} (#{@logs.total_entries})
+
+= form_tag request.path, method: 'get', id: 'search_form' do
+	.tablenav
+		.alignleft
+			= render 'admin/shared/search/array', field: 'id'
+			= render 'admin/shared/search/basic', field: 'user_id'
+			= render 'admin/shared/search/basic', field: 'controller'
+			= render 'admin/shared/search/basic', field: 'action'
+			= render 'admin/shared/search/basic', field: 'params_id'
+			= render 'admin/shared/search/range', field: 'created_at'
+			= render 'admin/shared/search/order'
+			= render 'admin/shared/search/page'
+			= submit_tag t('search'), name: nil, class: 'button-secondary'
+		br.clear
+br.clear
+table.widefat
+	thead
+		tr
+			- %w[id user_id controller action params_id created_at].each do |field|
+				th = model.human_attribute_name(field)
+	tbody
+		- @logs.each do |log|
+			tr
+				td = log.id
+				td = link_to_object log.user, module: Admin
+				td = log.controller
+				td = log.action
+				td = log.params_id
+				td = datetime_tag log.created_at
+= render 'admin/shared/pagination'

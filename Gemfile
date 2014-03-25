@@ -51,7 +51,7 @@ gem 'dynamic_form'
 # gem 'mechanize'
 # gem 'mini_magick', group: :development
 gem 'mysql2'
-# gem 'newrelic_rpm', group: :production
+gem 'newrelic_rpm', group: :production
 gem 'paperclip'
 gem 'pry-rails', group: :development
 # gem 'puma'
@@ -79,5 +79,6 @@ require 'rails-assets-bundler'
 asset 'backbone'
 asset 'background.js'
 asset 'jquery'
+asset 'jquery.cookie'
 asset 'underscore'
 asset 'zepto'

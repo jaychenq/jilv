@@ -1,6 +1,7 @@
 class Account::User < ActiveRecord::Base
   has_secure_password
   
+  belongs_to :admin_user, class_name: Admin::User, foreign_key: 'id'
   has_many :sessions
   
   attr_accessor :terms_of_service

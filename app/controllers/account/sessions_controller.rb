@@ -16,7 +16,7 @@ class Account::SessionsController < ApplicationController
       @session.save
       session[:session_id] = @session.id
       
-      redirect_to :root
+      redirect_to params[:redirect] || :root
     else
       render 'new'
     end

@@ -1,0 +1,114 @@
+.tablenav {
+	height: auto; /* 2em */
+}
+
+.tablenav input[type="text"] {
+	width: 75px;
+}
+
+.tablenav select {
+	width: 85px;
+}
+
+#wphead {
+	height: 4px;
+}
+
+#user_info {
+	font-size: 12px; /* 11px */
+}
+
+#dashmenu {
+	font-size: 12px; /* 11px */
+}
+
+#dashmenu a {
+	line-height: 150%; /* 220% */
+	font-size: 14px; /* 12px */
+	color: #ccc; /* 999 */
+}
+
+.form-table td {
+	font-size: 12px; /* 11px */
+}
+
+#facebox .form-table td {
+	border-bottom: 8px solid #fff;
+}
+
+.tablenav .tablenav-pages {
+	font-size: 12px; /* 11px */
+}
+
+.tablenav .tablenav-pages .disabled {
+	display: none;
+}
+
+a.button-secondary,
+.tablenav a.button-secondary {
+	display: inline-block;
+	margin-bottom: 1px;
+}
+
+.form-table {
+	min-width: 250px;
+}
+
+.form-table select { 
+	width: 225px;
+}
+
+.form-table textarea {
+	width: 400px;
+	height: 6.5em;
+}
+
+.form-table textarea.large {
+	width: 800px;
+	height: 400px;
+}
+
+.form-table th {
+	white-space: nowrap;
+}
+
+select[disabled],
+textarea[disabled],
+input[type=text][disabled] {
+	background-color: #eee;
+}
+
+.tablenav input[type=text],
+.tablenav select {
+	font-size: 12px;
+	border: 1px solid #DDDDDD;
+}
+
+.widefat tbody tr {
+	-moz-transition-duration: 0.5s;
+	-webkit-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+}
+
+.widefat tbody tr:nth-child(odd) {
+	background-color: #FFFFFF;
+}
+
+.widefat tbody tr:nth-child(even) {
+	background-color: #F9F9F9;
+}
+
+.widefat tbody tr:hover {
+	background-color: #EAF3FA;
+	-moz-transition-duration: 0s;
+	-webkit-transition-duration: 0s;
+	transition-duration: 0s;
+}
+
+.widefat tbody tr.highlight {
+	background-color: #FFFFE0;
+}
+
+.tablenav a, .widefat td a, h2 a, .form-table td a {
+	margin-right: 3px;
+}

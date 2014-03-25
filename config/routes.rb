@@ -3,6 +3,20 @@ Rails.application.routes.draw do
     resources :sessions
     resources :users
   end
+  
+  namespace :admin do
+    root 'application#index'
+    namespace :account do
+      root 'application#index'
+      resources :sessions
+      resources :users
+    end
+    namespace :admin do
+      root 'application#index'
+      resources :logs
+      resources :users
+    end
+  end
 
   root 'account/users#welcome'
 

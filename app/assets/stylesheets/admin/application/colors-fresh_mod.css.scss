@@ -1,0 +1,10 @@
+#footer {
+	background-image: none;
+}
+
+.button[disabled], .button:disabled, .button[disabled]:hover, .button:disabled:hover {
+	cursor: default;//not-allowed;
+	background-color: transparent;
+	border-color: silver;
+	color: gray;
+}

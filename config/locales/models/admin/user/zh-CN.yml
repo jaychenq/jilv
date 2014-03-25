@@ -1,0 +1,10 @@
+zh-CN:
+  activerecord:
+    models:
+      admin/user: 用户
+    attributes:
+      admin/user:
+        name: 姓名
+        creator: 创建人
+        updater: 更新人
+        account_user: 账号用户

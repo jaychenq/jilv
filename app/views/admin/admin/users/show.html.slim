@@ -1,0 +1,42 @@
+- user = @user
+- @page_title = "#{user.class.model_name.human} #{user.id} #{user.name}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && user.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if user.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : user.new_record? ? 'new' : 'edit')} #{t(user.class.model_name.human)}
+= form_for user, url: [:admin, user], method: user.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if !user.new_record?
+        tr
+          th = f.label :id
+          td = user.id
+      - else
+        tr
+          th = f.label :id
+          td = f.text_field :id
+      tr
+        th = f.label :name
+        td = user.name
+      - if user.id?
+        tr
+          th = f.label :created_at
+          td = user.created_at
+        tr
+          th = f.label :updated_at
+          td = user.updated_at
+        tr
+          th = f.label :creator_id
+          td = link_to_object user.creator, module: Admin
+        tr
+          th = f.label :updater_id
+          td = link_to_object user.updater, module: Admin
+  - unless show
+    .submit = f.submit

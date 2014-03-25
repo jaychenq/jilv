@@ -1,0 +1,9 @@
+zh-CN:
+  activerecord:
+    models:
+      develop/download/category: 分类
+    attributes:
+      develop/download/category:
+        parent_id: 父类
+        name: 名称
+        sequence: 顺序

@@ -1,0 +1,44 @@
+- account_session = @account_session
+- @page_title = "#{account_session.class.model_name.human} #{account_session.id}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && account_session.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if account_session.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : account_session.new_record? ? 'new' : 'edit')} #{t(account_session.class.model_name.human)}
+= form_for account_session, url: [:admin, account_session], method: account_session.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if account_session.id?
+        tr
+          th = f.label :id
+          td = account_session.id
+      tr
+        th = f.label :user_id
+        td = link_to_object account_session.user, module: Admin
+      tr
+        th = f.label :ip_address
+        td = account_session.ip_address
+      tr
+        th = f.label :user_agent
+        td = account_session.user_agent
+      tr
+        th = f.label :referrer
+        td = link_to account_session.referrer
+      tr
+        th = f.label :expired_at
+        td = account_session.expired_at
+      - if account_session.id?
+        tr
+          th = f.label :created_at
+          td = account_session.created_at
+        tr
+          th = f.label :updated_at
+          td = account_session.updated_at
+  - unless show
+    .submit = f.submit

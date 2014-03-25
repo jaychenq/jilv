@@ -1,0 +1,14 @@
+en:
+  activerecord:
+    models:
+      account/connection: Connection
+      account/friendship: Friendship
+      account/session: Session
+      account/user: User
+      admin/assignment: Assignment
+      admin/log: Log
+      admin/permission: Permission
+      admin/role: Role
+      admin/user: User
+  attributes:
+    id: ID
