@@ -1,0 +1,68 @@
+- city = @city
+- @page_title = "#{city.class.model_name.human} #{city.id} #{city.name}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && city.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if city.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : city.new_record? ? 'new' : 'edit')} #{t(city.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', city: city if show && city.active?
+= form_for city, url: [:admin, city], method: city.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if city.id?
+        tr
+          th = f.label :id
+          td = city.id
+      tr
+        th = f.label :name
+        td
+          - if show
+            = city.name
+          - else
+            = f.text_field :name
+            = f.error_message_on :name
+      tr
+        th = f.label :description
+        td
+          - if show
+            = text_format city.description
+          - else
+            = f.text_area :description
+            = f.error_message_on :description
+      tr
+        th = f.label :sequence
+        td
+          - if show
+            = city.sequence
+          - else
+            = f.text_field :sequence
+            = f.error_message_on :sequence
+      tr
+        th = f.label :country_id
+        td
+          - if show
+            = link_to_object city.country, module: Admin
+          - else
+            = f.collection_select :country_id, Travel::Country.active.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :country_id
+      - if city.id?
+        tr
+          th = f.label :created_at
+          td = city.created_at
+        tr
+          th = f.label :updated_at
+          td = city.updated_at
+        tr
+          th = f.label :creator_id
+          td = link_to_object city.creator, module: Admin
+        tr
+          th = f.label :updater_id
+          td = link_to_object city.updater, module: Admin
+  - unless show
+    .submit = f.submit

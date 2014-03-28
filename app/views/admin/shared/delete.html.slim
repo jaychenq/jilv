@@ -1,0 +1,7 @@
+- record ||= model.f(params[:id])
+- if !record.respond_to?(:deletable?) || record.deletable?
+  h2 style="margin-bottom: 0.5em;" = t('.are_you_sure?')
+  =' link_to t('delete'), [:admin, record], method: :delete, class: 'button-secondary'
+  =' link_to t('cancel'), '#', onclick: '$.facebox.close(); return false;'
+- else
+  h2 = t('.unable_to_delete')

@@ -1,0 +1,68 @@
+- location = @location
+- @page_title = "#{location.class.model_name.human} #{location.id} #{location.name}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && location.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if location.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : location.new_record? ? 'new' : 'edit')} #{t(location.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', location: location if show && location.active?
+= form_for location, url: [:admin, location], method: location.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if location.id?
+        tr
+          th = f.label :id
+          td = location.id
+      tr
+        th = f.label :name
+        td
+          - if show
+            = location.name
+          - else
+            = f.text_field :name
+            = f.error_message_on :name
+      tr
+        th = f.label :description
+        td
+          - if show
+            = text_format location.description
+          - else
+            = f.text_area :description
+            = f.error_message_on :description
+      tr
+        th = f.label :sequence
+        td
+          - if show
+            = location.sequence
+          - else
+            = f.text_field :sequence
+            = f.error_message_on :sequence
+      tr
+        th = f.label :city_id
+        td
+          - if show
+            = link_to_object location.city, module: Admin
+          - else
+            = f.collection_select :city_id, Travel::City.active.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :city_id
+      - if location.id?
+        tr
+          th = f.label :created_at
+          td = location.created_at
+        tr
+          th = f.label :updated_at
+          td = location.updated_at
+        tr
+          th = f.label :creator_id
+          td = link_to_object location.creator, module: Admin
+        tr
+          th = f.label :updater_id
+          td = link_to_object location.updater, module: Admin
+  - unless show
+    .submit = f.submit

@@ -1,4 +1,4 @@
 .tablenav
-	= raw will_paginate((pagination ||= nil), ({ class: "tablenav-pages" }).merge((options ||= {}))).to_s.gsub('current', 'current page-numbers').gsub(/<a ([^>]*)>/, '<a \1 class="page-numbers">') 
-	br.clear
+  = raw will_paginate((pagination ||= nil), ({ class: "tablenav-pages" }).merge((options ||= {}))).to_s.gsub('current', 'current page-numbers').gsub(/<a ([^>]*)>/, '<a \1 class="page-numbers">') 
+  br.clear
 br.clear

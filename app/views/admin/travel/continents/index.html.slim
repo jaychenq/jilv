@@ -1,0 +1,35 @@
+- @page_title = model.model_name.human
+h2
+  | #{model.model_name.human} #{t('list')} (#{@continents.total_entries}) &nbsp;
+  = link_to t('new'), action: 'new' if can?(:create, model)
+  = link_to t('visit'), model
+= form_tag request.path, method: 'get', id: 'search_form' do
+  .tablenav
+    .alignleft
+      = render 'admin/shared/search/array', field: 'id'
+      = render 'admin/shared/search/like', field: 'name'
+      = render 'admin/shared/search/basic', field: 'sequence'
+      = render 'admin/shared/search/range', field: 'created_at'
+      = render 'admin/shared/search/range', field: 'updated_at'
+      = render 'admin/shared/search/order', fields: %w[name sequence]
+      = render 'admin/shared/search/page'
+      = submit_tag t('search'), name: nil, class: 'button-secondary'
+    br.clear
+br.clear
+table.widefat
+  thead
+    tr
+      - %w[id name sequence countries created_at updated_at actions published].each do |field|
+        th = model.human_attribute_name(field)
+  tbody
+    - @continents.each do |continent|
+      tr
+        td = continent.id
+        td = link_to_object continent, module: Admin
+        td = continent.sequence
+        td = link_to_count continent.countries
+        td = datetime_tag continent.created_at
+        td = datetime_tag continent.updated_at
+        td = render 'actions', continent: continent
+        td = render 'admin/shared/publish', record: continent
+= render 'admin/shared/pagination'

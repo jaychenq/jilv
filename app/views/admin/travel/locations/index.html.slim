@@ -1,0 +1,36 @@
+- @page_title = model.model_name.human
+h2
+  | #{model.model_name.human} #{t('list')} (#{@locations.total_entries}) &nbsp;
+  = link_to t('new'), action: 'new' if can?(:create, model)
+  = link_to t('visit'), model
+= form_tag request.path, method: 'get', id: 'search_form' do
+  .tablenav
+    .alignleft
+      = render 'admin/shared/search/array', field: 'id'
+      = render 'admin/shared/search/like', field: 'name'
+      = render 'admin/shared/search/basic', field: 'sequence'
+      = render 'admin/shared/search/select', field: 'city_id', options: Travel::City.active.order('sequence ASC, name ASC')
+      = render 'admin/shared/search/range', field: 'created_at'
+      = render 'admin/shared/search/range', field: 'updated_at'
+      = render 'admin/shared/search/order', fields: %w[name sequence]
+      = render 'admin/shared/search/page'
+      = submit_tag t('search'), name: nil, class: 'button-secondary'
+    br.clear
+br.clear
+table.widefat
+  thead
+    tr
+      - %w[id name sequence city_id created_at updated_at actions published].each do |field|
+        th = model.human_attribute_name(field)
+  tbody
+    - @locations.each do |location|
+      tr
+        td = location.id
+        td = link_to_object location, module: Admin
+        td = location.sequence
+        td = link_to_object location.city, module: Admin
+        td = datetime_tag location.created_at
+        td = datetime_tag location.updated_at
+        td = render 'actions', location: location
+        td = render 'admin/shared/publish', record: location
+= render 'admin/shared/pagination'

@@ -1,0 +1,3 @@
+- record ||= publish
+- permission = can?(:publish, record) if permission === nil
+= link_to '', '#', :class => "publish_button #{'active' if record.published?} #{'enable' if permission}", "data-id" => record.id, "data-root" => "/admin/#{record.class.name.downcase.pluralize.gsub('::', '/')}"

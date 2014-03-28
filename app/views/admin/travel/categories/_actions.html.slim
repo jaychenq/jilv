@@ -1,0 +1,5 @@
+= link_to t('show'), [:admin, category] if can?(:show, category)
+= link_to t('edit'), [:edit, :admin, category] if can?(:update, category)
+= link_to t('delete'), [:delete, :admin, category], rel: 'facebox' if can?(:destroy, category)
+= link_to t('copy'), action: 'new', id: category.id if can?(:create, category) && can?(:show, category)
+= link_to t('visit'), category

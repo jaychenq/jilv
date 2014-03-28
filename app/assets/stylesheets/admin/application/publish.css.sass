@@ -1,0 +1,20 @@
+.publish_button
+  display: block
+  cursor: default
+  width: 20px
+  height: 20px
+  margin: 1px
+  opacity: 0.8
+  border-radius: 999px
+  transition-property: background-color
+  background-color: silver
+  &.active
+    background-color: green
+  &.enable
+    cursor: pointer
+    &.loading
+      transition-duration: 0s
+      cursor: wait
+      background-color: #606060 !important
+      &.active
+        background-color: #004000 !important

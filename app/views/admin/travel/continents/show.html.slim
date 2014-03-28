@@ -1,0 +1,60 @@
+- continent = @continent
+- @page_title = "#{continent.class.model_name.human} #{continent.id} #{continent.name}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && continent.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if continent.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : continent.new_record? ? 'new' : 'edit')} #{t(continent.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', continent: continent if show && continent.active?
+= form_for continent, url: [:admin, continent], method: continent.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if continent.id?
+        tr
+          th = f.label :id
+          td = continent.id
+      tr
+        th = f.label :name
+        td
+          - if show
+            = continent.name
+          - else
+            = f.text_field :name
+            = f.error_message_on :name
+      tr
+        th = f.label :description
+        td
+          - if show
+            = text_format continent.description
+          - else
+            = f.text_area :description
+            = f.error_message_on :description
+      tr
+        th = f.label :sequence
+        td
+          - if show
+            = continent.sequence
+          - else
+            = f.text_field :sequence
+            = f.error_message_on :sequence
+      - if continent.id?
+        tr
+          th = f.label :created_at
+          td = continent.created_at
+        tr
+          th = f.label :updated_at
+          td = continent.updated_at
+        tr
+          th = f.label :creator_id
+          td = link_to_object continent.creator, module: Admin
+        tr
+          th = f.label :updater_id
+          td = link_to_object continent.updater, module: Admin
+  - unless show
+    .submit = f.submit

@@ -1,0 +1,11 @@
+zh-CN:
+  activerecord:
+    models:
+      travel/country: 国家
+    attributes:
+      travel/country:
+        continent_id: 大洲
+        name: 名称
+        description: 描述
+        sequence: 顺序
+        cities: 城市

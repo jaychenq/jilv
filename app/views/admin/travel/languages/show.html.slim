@@ -1,0 +1,68 @@
+- language = @language
+- @page_title = "#{language.class.model_name.human} #{language.id} #{language.name}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && language.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if language.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : language.new_record? ? 'new' : 'edit')} #{t(language.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', language: language if show && language.active?
+= form_for language, url: [:admin, language], method: language.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if language.id?
+        tr
+          th = f.label :id
+          td = language.id
+      tr
+        th = f.label :name
+        td
+          - if show
+            = language.name
+          - else
+            = f.text_field :name
+            = f.error_message_on :name
+      tr
+        th = f.label :locale
+        td
+          - if show
+            = language.locale
+          - else
+            = f.text_field :locale
+            = f.error_message_on :locale
+      tr
+        th = f.label :description
+        td
+          - if show
+            = text_format language.description
+          - else
+            = f.text_area :description
+            = f.error_message_on :description
+      tr
+        th = f.label :sequence
+        td
+          - if show
+            = language.sequence
+          - else
+            = f.text_field :sequence
+            = f.error_message_on :sequence
+      - if language.id?
+        tr
+          th = f.label :created_at
+          td = language.created_at
+        tr
+          th = f.label :updated_at
+          td = language.updated_at
+        tr
+          th = f.label :creator_id
+          td = link_to_object language.creator, module: Admin
+        tr
+          th = f.label :updater_id
+          td = link_to_object language.updater, module: Admin
+  - unless show
+    .submit = f.submit

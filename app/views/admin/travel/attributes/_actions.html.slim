@@ -1,0 +1,5 @@
+= link_to t('show'), [:admin, attribute] if can?(:show, attribute)
+= link_to t('edit'), [:edit, :admin, attribute] if can?(:update, attribute)
+= link_to t('delete'), [:delete, :admin, attribute], rel: 'facebox' if can?(:destroy, attribute)
+= link_to t('copy'), action: 'new', id: attribute.id if can?(:create, attribute) && can?(:show, attribute)
+= link_to t('visit'), attribute

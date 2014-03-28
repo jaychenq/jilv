@@ -1,0 +1,39 @@
+- @page_title = model.model_name.human
+h2
+  | #{model.model_name.human} #{t('list')} (#{@categories.total_entries}) &nbsp;
+  = link_to t('new'), action: 'new' if can?(:create, model)
+  = link_to t('visit'), model
+= form_tag request.path, method: 'get', id: 'search_form' do
+  .tablenav
+    .alignleft
+      = render 'admin/shared/search/array', field: 'id'
+      = render 'admin/shared/search/like', field: 'name'
+      = render 'admin/shared/search/basic', field: 'sequence'
+      = render 'admin/shared/search/select', field: 'parent_id', options: model.active.order('sequence ASC, name ASC')
+      = render 'admin/shared/search/range', field: 'created_at'
+      = render 'admin/shared/search/range', field: 'updated_at'
+      = render 'admin/shared/search/order', fields: %w[name sequence]
+      = render 'admin/shared/search/page'
+      = submit_tag t('search'), name: nil, class: 'button-secondary'
+    br.clear
+br.clear
+table.widefat
+  thead
+    tr
+      - %w[id name sequence parent_id children created_at updated_at actions published].each do |field|
+        th = model.human_attribute_name(field)
+  tbody
+    - @categories.each do |category|
+      tr
+        td = category.id
+        td = link_to_object category, module: Admin
+        td = category.sequence
+        td = link_to_object category.parent, module: Admin
+        td
+          - category.children.order('sequence ASC, name ASC').each do |c|
+            = link_to_object c, module: Admin
+        td = datetime_tag category.created_at
+        td = datetime_tag category.updated_at
+        td = render 'actions', category: category
+        td = render 'admin/shared/publish', record: category
+= render 'admin/shared/pagination'

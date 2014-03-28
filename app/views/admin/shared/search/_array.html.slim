@@ -5,6 +5,6 @@
 = shared 'select', select if select ||= nil
 = link_to inputs.size > 1 ? inputs.size : '...', '#', class: 'search_array_select', data: { field: field, name: name }
 span
-	- inputs.size > 1 && inputs.each do |input|
-		= hidden_field_tag "where[#{field}][]", input
+  - inputs.size > 1 && inputs.each do |input|
+    = hidden_field_tag "where[#{field}][]", input
 | &nbsp;

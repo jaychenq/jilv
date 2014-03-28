@@ -1,0 +1,5 @@
+= link_to t('show'), [:admin, language] if can?(:show, language)
+= link_to t('edit'), [:edit, :admin, language] if can?(:update, language)
+= link_to t('delete'), [:delete, :admin, language], rel: 'facebox' if can?(:destroy, language)
+= link_to t('copy'), action: 'new', id: language.id if can?(:create, language) && can?(:show, language)
+= link_to t('visit'), language

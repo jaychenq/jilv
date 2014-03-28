@@ -1,0 +1,11 @@
+zh-CN:
+  activerecord:
+    models:
+      travel/category: 分类
+    attributes:
+      travel/category:
+        parent_id: 父类
+        name: 名称
+        description: 描述
+        sequence: 顺序
+        children: 子类

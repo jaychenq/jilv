@@ -1,0 +1,68 @@
+- country = @country
+- @page_title = "#{country.class.model_name.human} #{country.id} #{country.name}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && country.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if country.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : country.new_record? ? 'new' : 'edit')} #{t(country.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', country: country if show && country.active?
+= form_for country, url: [:admin, country], method: country.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if country.id?
+        tr
+          th = f.label :id
+          td = country.id
+      tr
+        th = f.label :name
+        td
+          - if show
+            = country.name
+          - else
+            = f.text_field :name
+            = f.error_message_on :name
+      tr
+        th = f.label :description
+        td
+          - if show
+            = text_format country.description
+          - else
+            = f.text_area :description
+            = f.error_message_on :description
+      tr
+        th = f.label :sequence
+        td
+          - if show
+            = country.sequence
+          - else
+            = f.text_field :sequence
+            = f.error_message_on :sequence
+      tr
+        th = f.label :continent_id
+        td
+          - if show
+            = link_to_object country.continent, module: Admin
+          - else
+            = f.collection_select :continent_id, Travel::Continent.active.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :continent_id
+      - if country.id?
+        tr
+          th = f.label :created_at
+          td = country.created_at
+        tr
+          th = f.label :updated_at
+          td = country.updated_at
+        tr
+          th = f.label :creator_id
+          td = link_to_object country.creator, module: Admin
+        tr
+          th = f.label :updater_id
+          td = link_to_object country.updater, module: Admin
+  - unless show
+    .submit = f.submit

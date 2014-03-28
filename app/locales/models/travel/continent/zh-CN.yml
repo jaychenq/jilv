@@ -1,0 +1,9 @@
+zh-CN:
+  activerecord:
+    models:
+      travel/continent: 大洲
+    attributes:
+      travel/continent:
+        name: 名称
+        description: 描述
+        sequence: 顺序

@@ -1,0 +1,70 @@
+- attribute = @attribute
+- @page_title = "#{attribute.class.model_name.human} #{attribute.id} #{attribute.name}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && attribute.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if attribute.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : attribute.new_record? ? 'new' : 'edit')} #{t(attribute.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', attribute: attribute if show && attribute.active?
+= form_for attribute, url: [:admin, attribute], method: attribute.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if attribute.id?
+        tr
+          th = f.label :id
+          td = attribute.id
+      tr
+        th = f.label :name
+        td
+          - if show
+            = attribute.name
+          - else
+            = f.text_field :name
+            = f.error_message_on :name
+      tr
+        th = f.label :description
+        td
+          - if show
+            = text_format attribute.description
+          - else
+            = f.text_area :description
+            = f.error_message_on :description
+      tr
+        th = f.label :sequence
+        td
+          - if show
+            = attribute.sequence
+          - else
+            = f.text_field :sequence
+            = f.error_message_on :sequence
+      tr
+        th = f.label :options
+        td
+          - if show
+            ul
+              - attribute.options.to_s.split("\n").each do |option|
+                li = option
+          - else
+            = f.text_area :options
+            = f.error_message_on :options
+      - if attribute.id?
+        tr
+          th = f.label :created_at
+          td = attribute.created_at
+        tr
+          th = f.label :updated_at
+          td = attribute.updated_at
+        tr
+          th = f.label :creator_id
+          td = link_to_object attribute.creator, module: Admin
+        tr
+          th = f.label :updater_id
+          td = link_to_object attribute.updater, module: Admin
+  - unless show
+    .submit = f.submit

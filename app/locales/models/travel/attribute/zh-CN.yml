@@ -1,0 +1,10 @@
+zh-CN:
+  activerecord:
+    models:
+      travel/attribute: 属性
+    attributes:
+      travel/attribute:
+        name: 名称
+        description: 描述
+        sequence: 顺序
+        options: 选项

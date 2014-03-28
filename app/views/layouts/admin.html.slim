@@ -1,69 +1,81 @@
 - if request.xhr?
   = yield
-  - return
-doctype transitional
-html
-  head
-    meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
-    title = @page_title || 'admin'
-    = stylesheet_link_tag 'admin/application'
-    /[if lte IE 8]
-      = stylesheet_link_tag 'wordpress/ie'
-    = javascript_include_tag 'admin/application'
-    = csrf_meta_tags
-  body
-    #wpwrap
-      #wpcontent
-        #wphead
-        #user_info
-          div
-            - if @current_user
-              =' t('.hello')
-              =' link_to_object @current_user, module: Admin
-              =' link_to t('.sign_out'), account_session_path(0), method: 'delete', data: { confirm: '确定退出吗？' }
-            - else
-              =' link_to t('.sign_up'), new_account_user_path
-              =' link_to t('.sign_in'), new_account_session_path
-        ruby:
-          modules = [
-            {
-              name: 'account',
-              submodules: [
-                { name: 'users' },
-                { name: 'sessions' },
-              ]
-            },
-            {
-              name: 'admin',
-              submodules: [
-                { name: 'users' },
-                { name: 'logs' },
-              ]
-            }
-          ]
-        ul#dashmenu
-          li = link_to t('.home'), admin_root_path, class: params[:controller] =~ /^admin\/application/ ? 'current' : ''
-          - m1s = modules.find_all { |m1| can?(:show, m1[:name].singularize) || m1[:submodules] && m1[:submodules].map { |m2| can?(:show, "#{m1[:name]}_#{m2[:name]}".singularize) || m2[:submodules] && m2[:submodules].map { |m3| can?(:show, "#{m1[:name]}_#{m2[:name]}_#{m3[:name]}".singularize) }.inject(&:|) }.inject(&:|) }
-          - m1s.each do |m1|
-            li = link_to t("activerecord.models.#{m1[:name].singularize}"), "/admin/#{m1[:name]}", class: params[:controller].match(/^admin\/#{m1[:name]}/) ? 'current' : ''
-        ul#adminmenu
-          - m1 = modules.find { |m1| m1[:name] == params[:controller].split('/').to_a.second }
-          - m2s = (m1 && m1[:submodules] || []).find_all { |m2| can?(:show, "#{m1[:name]}_#{m2[:name]}".singularize) || m2[:submodules] && m2[:submodules].map { |m3| can?(:show, "#{m1[:name]}_#{m2[:name]}_#{m3[:name]}".singularize) }.inject(&:|) }
-          - m2s.each do |m2|
-            li style="white-space: normal;" = link_to t("activerecord.models.#{m1[:name]}/#{m2[:name]}".singularize), "/admin/#{m1[:name]}/#{m2[:name]}", class: params[:controller].match(/^admin\/#{m1[:name]}\/#{m2[:name]}/) ? 'current' : ''
-        ul#submenu
-          - m1 = modules.find { |m1| m1[:name] == params[:controller].split('/').to_a.second }
-          - m2 = (m1 && m1[:submodules] || []).find { |m2| m2[:name] == (params[:controller].split('/')||[])[2] }
-          - m3s = (m2 && m2[:submodules] || []).find_all { |m3| (can?(:show, "#{m1[:name]}_#{m2[:name]}_#{m3[:name]}".singularize) rescue nil) }
-          - m3s.each do |m3|
-            li = link_to t("activerecord.models.#{m1[:name]}/#{m2[:name]}/#{m3[:name]}".singularize), "/admin/#{m1[:name]}/#{m2[:name]}/#{m3[:name]}", class: params[:controller].match(/^admin\/#{m1[:name]}\/#{m2[:name]}\/#{m3[:name]}/) ? 'current' : ''
-        #wpbody
-          .wrap
-            = yield
-    #footer
-      p
-        | &copy; 2014
-        - if true
-          - I18n.available_locales.each do |locale|
-            | &nbsp;|&nbsp;
-            = link_to_if locale.to_sym != I18n.locale, t(".locales.#{locale}"), '#', data: { locale: locale }, onclick: "$.cookie('locale', $(this).data('locale'), { path: '/' }); document.location.href = document.location.href; return false;"
+- else
+  doctype transitional
+  html
+    head
+      meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+      title = @page_title || 'admin'
+      = stylesheet_link_tag 'admin/application'
+      /[if lte IE 8]
+        = stylesheet_link_tag 'wordpress/ie'
+      = javascript_include_tag 'admin/application'
+      = csrf_meta_tags
+    body
+      #wpwrap
+        #wpcontent
+          #wphead
+          #user_info
+            div
+              - if @current_user
+                =' t('.hello')
+                =' link_to_object @current_user, module: Admin
+                =' link_to t('.sign_out'), account_session_path(0), method: 'delete', data: { confirm: '确定退出吗？' }
+              - else
+                =' link_to t('.sign_up'), new_account_user_path
+                =' link_to t('.sign_in'), new_account_session_path
+          ruby:
+            modules = [
+              {
+                name: 'travel',
+                submodules: [
+                  { name: 'continent' },
+                  { name: 'country' },
+                  { name: 'city' },
+                  { name: 'location' },
+                  { name: 'category' },
+                  { name: 'language' },
+                  { name: 'attribute' },
+                ]
+              },
+              {
+                name: 'account',
+                submodules: [
+                  { name: 'user' },
+                  { name: 'session' },
+                ]
+              },
+              {
+                name: 'admin',
+                submodules: [
+                  { name: 'user' },
+                  { name: 'log' },
+                ]
+              },
+            ]
+          ul#dashmenu
+            li = link_to t('.home'), admin_root_path, class: params[:controller] =~ /^admin\/application/ ? 'current' : ''
+            - m1s = modules.find_all { |m1| can?(:show, m1[:name]) || m1[:submodules] && m1[:submodules].map { |m2| can?(:show, "#{m1[:name]}_#{m2[:name]}") || m2[:submodules] && m2[:submodules].map { |m3| can?(:show, "#{m1[:name]}_#{m2[:name]}_#{m3[:name]}") }.inject(&:|) }.inject(&:|) }
+            - m1s.each do |m1|
+              li = link_to t("activerecord.models.#{m1[:name]}"), "/admin/#{m1[:submodules] ? m1[:name] : m1[:name].pluralize}", class: params[:controller].match(/^admin\/(#{m1[:name]}|#{m1[:name].pluralize})/) ? 'current' : ''
+          ul#adminmenu
+            - m1 = modules.find { |m1| m1[:name] == params[:controller].split('/').to_a.second }
+            - m2s = (m1 && m1[:submodules] || []).find_all { |m2| can?(:show, "#{m1[:name]}_#{m2[:name]}") || m2[:submodules] && m2[:submodules].map { |m3| can?(:show, "#{m1[:name]}_#{m2[:name]}_#{m3[:name]}") }.inject(&:|) }
+            - m2s.each do |m2|
+              li style="white-space: normal;" = link_to t("activerecord.models.#{m1[:name]}/#{m2[:name]}"), "/admin/#{m1[:name]}/#{m2[:submodules] ? m2[:name] : m2[:name].pluralize}", class: params[:controller].match(/^admin\/#{m1[:name]}\/(#{m2[:name]}|#{m2[:name].pluralize})/) ? 'current' : ''
+          ul#submenu
+            - m1 = modules.find { |m1| m1[:name] == params[:controller].split('/').to_a.second }
+            - m2 = (m1 && m1[:submodules] || []).find { |m2| m2[:name] == (params[:controller].split('/')||[])[2] }
+            - m3s = (m2 && m2[:submodules] || []).find_all { |m3| (can?(:show, "#{m1[:name]}_#{m2[:name]}_#{m3[:name]}") rescue nil) }
+            - m3s.each do |m3|
+              li = link_to t("activerecord.models.#{m1[:name]}/#{m2[:name]}/#{m3[:name]}"), "/admin/#{m1[:name]}/#{m2[:name]}/#{m3[:submodules] ? m3[:name] : m3[:name].pluralize}", class: params[:controller].match(/^admin\/#{m1[:name]}\/#{m2[:name]}\/(#{m3[:name]}|#{m3[:name].pluralize})/) ? 'current' : ''
+          #wpbody
+            .wrap
+              = yield
+      #footer
+        p
+          | &copy; 2014
+          - if true
+            - I18n.available_locales.each do |locale|
+              | &nbsp;|&nbsp;
+              = link_to_if locale.to_sym != I18n.locale, t(".locales.#{locale}"), '#', data: { locale: locale }, onclick: "$.cookie('locale', $(this).data('locale'), { path: '/' }); document.location.href = document.location.href; return false;"

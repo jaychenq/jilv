@@ -1,0 +1,10 @@
+zh-CN:
+  activerecord:
+    models:
+      travel/location: 地点
+    attributes:
+      travel/location:
+        city_id: 城市
+        name: 名称
+        description: 描述
+        sequence: 顺序

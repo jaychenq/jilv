@@ -1,0 +1,5 @@
+= link_to t('show'), [:admin, city] if can?(:show, city)
+= link_to t('edit'), [:edit, :admin, city] if can?(:update, city)
+= link_to t('delete'), [:delete, :admin, city], rel: 'facebox' if can?(:destroy, city)
+= link_to t('copy'), action: 'new', id: city.id if can?(:create, city) && can?(:show, city)
+= link_to t('visit'), city
