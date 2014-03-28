@@ -9,14 +9,41 @@ class Admin::ApplicationController < ApplicationController
     return redirect_to params[:redirect] if params[:redirect].present?
     render text: '', layout: true
   end
+  
+  def delete
+    render template: 'admin/shared/delete'
+  end
+  
+  def destroy
+    record = model.f(params[:id])
+    record.attributes = { active: false, updater_id: @current_user.id }
+    record.save
+    instance_variable_set "@#{controller_name.singularize}", record
+    render :show
+  end
+
+  def publish
+    record = model.f(params[:id])
+    record.attributes = { published: true, updater_id: @current_user.id }
+    record.save
+    instance_variable_set "@#{controller_name.singularize}", record
+    head record.valid? ? :accepted : :bad_request
+  end
+
+  def cancel
+    record = model.f(params[:id])
+    record.attributes = { published: false, updater_id: @current_user.id }
+    record.save
+    instance_variable_set "@#{controller_name.singularize}", record
+    head record.valid? ? :accepted : :bad_request
+  end
 
 private
 
   def authorize
-    @enable_lazyload = !request.xhr?
+    # @enable_lazyload = !request.xhr?
     
-    return true if params[:controller] == 'admin/application' || (@current_user && params[:controller] =~ /\/application\W*/)
-    return redirect_to controller: admin_root_path, redirect: request.fullpath if !@current_user.try(:admin_user)
+    return redirect_to new_account_session_path(redirect: request.fullpath) if !@current_user.try(:admin_user)
   end
 
   def log

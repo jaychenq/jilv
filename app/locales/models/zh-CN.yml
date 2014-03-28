@@ -3,6 +3,7 @@ zh-CN:
     models:
       account: 账号
       admin: 管理
+      travel: 旅游
   attributes:
     id: ID
     creator_id: 创建人

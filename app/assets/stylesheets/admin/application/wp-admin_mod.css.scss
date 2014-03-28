@@ -54,18 +54,17 @@ a.button-secondary,
 	min-width: 250px;
 }
 
+.form-table input[type=text] { 
+	width: 18em;
+}
+
 .form-table select { 
-	width: 225px;
+	width: 20em;
 }
 
 .form-table textarea {
-	width: 400px;
-	height: 6.5em;
-}
-
-.form-table textarea.large {
-	width: 800px;
-	height: 400px;
+	width: 30em;
+	height: 5em;
 }
 
 .form-table th {

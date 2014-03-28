@@ -1,19 +1,28 @@
 module ApplicationHelper
   def link_to_object(object, options = {})
-    return unless object
+    return if object.blank?
     _module = options.delete(:module)
-    property = %w[name_for_link_to name id].find { |property| object.respond_to?(property) && object.send(property).present? }
+    property = %w[name_for_link_to name id to_s].find { |property| object.respond_to?(property) && object.send(property).present? }
     link_to(object.send(property), [_module].flatten.compact.map(&:to_s).map(&:downcase) + [object], options)
   end
-  
+
+  def link_to_count(records, options = {})
+    return if records.empty?
+    link_to_if(can?(:show, records), records.count, controller: 'admin/' + records.klass.name.downcase.pluralize.gsub('::', '/'), where: { records.proxy_association.reflection.foreign_key => records.proxy_association.owner.id })
+  end
+
   def can?(action, object)
     @current_user.try(:admin_user)
   end
-  
+
   def model
-    @model
+    @model ||= self.controller.send(:model)
   end
-  
+
+  def text_format(text)
+    simple_format(auto_link(h(text)))
+  end
+
   def t(key, options = {})
     # If the user has specified rescue_format then pass it all through, otherwise use
     # raise and do the work ourselves
