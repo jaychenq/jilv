@@ -1,6 +1,7 @@
 class Travel::Category < ActiveRecord::Base
   belongs_to :parent, class_name: self
   has_many :children, class_name: self, foreign_key: 'parent_id'
+  has_many :_attributes
   belongs_to :creator, class_name: Admin::User
   belongs_to :updater, class_name: Admin::User
 
@@ -17,6 +18,6 @@ class Travel::Category < ActiveRecord::Base
   self.admin_fields = %w[parent_id name description sequence]
 
   def deletable?
-    children.empty?
+    children.empty? && _attributes.empty?
   end
 end

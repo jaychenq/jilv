@@ -4,6 +4,7 @@ zh-CN:
       travel/attribute: 属性
     attributes:
       travel/attribute:
+        category_id: 分类
         name: 名称
         description: 描述
         sequence: 顺序

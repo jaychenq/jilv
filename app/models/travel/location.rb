@@ -16,6 +16,6 @@ class Travel::Location < ActiveRecord::Base
   self.admin_fields = %w[city_id name description sequence]
 
   def deletable?
-    false
+    
   end
 end

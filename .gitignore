@@ -16,5 +16,8 @@
 /tmp
 
 
+.DS_Store
 /db/schema.rb
 /Gemfile.lock
+/public/assets
+/test

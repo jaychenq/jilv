@@ -70,7 +70,7 @@ gem 'adsense_helper'
 gem 'datetime_tag_helper'
 gem 'modular_migration'
 # gem 'rails-cache_control'
-gem 'rails_compatable'
+# gem 'rails_compatable'
 gem 'tel_to_helper'
 
 

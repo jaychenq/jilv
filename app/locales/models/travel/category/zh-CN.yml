@@ -9,3 +9,4 @@ zh-CN:
         description: 描述
         sequence: 顺序
         children: 子类
+        _attributes: 属性

@@ -15,6 +15,6 @@ class Travel::Language < ActiveRecord::Base
   self.admin_fields = %w[locale name description sequence]
 
   def deletable?
-    false
+    
   end
 end

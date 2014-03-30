@@ -44,6 +44,14 @@ h2
             = f.text_field :sequence
             = f.error_message_on :sequence
       tr
+        th = f.label :category_id
+        td
+          - if show
+            = link_to_object attribute.category, module: Admin
+          - else
+            = f.collection_select :category_id, Travel::Category.active.order('sequence ASC, name DESC'), :id, :name, include_blank: true
+            = f.error_message_on :category_id
+      tr
         th = f.label :options
         td
           - if show
