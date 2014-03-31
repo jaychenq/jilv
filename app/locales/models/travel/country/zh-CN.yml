@@ -8,4 +8,5 @@ zh-CN:
         name: 名称
         description: 描述
         sequence: 顺序
+        phone_code: 电话区号
         cities: 城市

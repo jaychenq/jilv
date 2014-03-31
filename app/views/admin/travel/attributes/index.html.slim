@@ -19,7 +19,7 @@ br.clear
 table.widefat
   thead
     tr
-      - %w[id name sequence category_id options created_at updated_at actions published].each do |field|
+      - %w[id name sequence category_id options created_at actions published].each do |field|
         th = model.human_attribute_name(field)
   tbody
     - @attributes.each do |attribute|
@@ -28,12 +28,8 @@ table.widefat
         td = link_to_object attribute, module: Admin
         td = attribute.sequence
         td = link_to_object attribute.category, module: Admin
-        td
-          ul
-            - attribute.options.to_s.split("\n").each do |option|
-              li = option
+        td = attribute.options.to_s.split(/\s+/).join(', ')
         td = datetime_tag attribute.created_at
-        td = datetime_tag attribute.updated_at
         td = render 'actions', attribute: attribute
         td = render 'admin/shared/publish', record: attribute
 = render 'admin/shared/pagination'
