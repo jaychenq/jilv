@@ -1,8 +1,8 @@
 en:
   activerecord:
     models:
+      about/page: Page
       account/connection: Connection
-      account/friendship: Friendship
       account/session: Session
       account/user: User
       admin/assignment: Assignment
@@ -10,5 +10,33 @@ en:
       admin/permission: Permission
       admin/role: Role
       admin/user: User
+      analytic/google: Google
+      analytic/statistic: Statistic
+      message/email: Email
+      message/notification: Notification
+      payment/currency: Currency
+      payment/platform: Platform
+      payment/transaction: Transaction
+      travel/answer: Answer
+      travel/attribute: Attribute
+      travel/category: Category
+      travel/city: City
+      travel/comment: Comment
+      travel/complaint: Complaint
+      travel/continent: Continent
+      travel/country: Country
+      travel/favorite: Favorite
+      travel/journey: Journey
+      travel/language: Language
+      travel/location: Location
+      travel/merchant: Merchant
+      travel/product: Product
+      travel/parameter: Parameter
+      travel/productsphoto: ProductsPhoto
+      travel/question: Question
+      travel/refund: Refund
+      travel/service: Service
+      travel/speaking: Speaking
+      travel/tourist: Tourist
   attributes:
     id: ID

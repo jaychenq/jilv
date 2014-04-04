@@ -1,8 +1,8 @@
 $ ->
-  $.facebox.settings.loadingImage = '/assets/facebox/loading.gif'
-  $.facebox.settings.closeImage = '/assets/facebox/closelabel.gif'
+  $.facebox.settings.loadingImage = '/favicon.ico'
+  $.facebox.settings.closeImage = '/favicon.ico'
   $.facebox.settings.opacity = 0.1
-  $.facebox.settings.faceboxHtml__ = """
+  $.facebox.settings.faceboxHtml = """
     <div id="facebox" style="display:none;">
       <div class="popup">
         <table>

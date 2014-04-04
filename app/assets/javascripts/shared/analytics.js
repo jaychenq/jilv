@@ -8,7 +8,6 @@ ga('require', 'linkid', 'linkid.js');
 
 $(function(){
   $(document).on('page:change', function(){
-    console.info(location.href.split('#')[0])
     ga('set', 'location', location.href.split('#')[0])
     ga('send', 'pageview')
   })

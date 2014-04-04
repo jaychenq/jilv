@@ -1,9 +1,43 @@
 zh-CN:
   activerecord:
     models:
+      about: 关于
       account: 账号
       admin: 管理
+      analytic: 分析
+      message: 消息
+      payment: 支付
       travel: 旅游
+      about/page: 页面
+      account/connection: 连接
+      account/session: 登录
+      account/user: 用户
+      admin/assignment: 授权
+      admin/log: 日志
+      admin/permission: 权限
+      admin/role: 角色
+      admin/user: 用户
+      analytic/google: 谷歌
+      analytic/statistic: 统计
+      message/email: 邮件
+      message/notification: 通知
+      payment/currency: 货币
+      payment/platform: 平台
+      payment/transaction: 交易
+      travel/answer: 回答
+      travel/comment: 评论
+      travel/complaint: 投诉
+      travel/favorite: 喜欢
+      travel/journey: 行程
+      travel/language: 语言
+      travel/merchant: 商户
+      travel/product: 产品
+      travel/parameter: 参数
+      travel/question: 回答
+      travel/refund: 退款
+      travel/service: 服务
+      travel/speaking: 说话
+      travel/tourist: 游客
   attributes:
     id: ID
     creator_id: 创建人

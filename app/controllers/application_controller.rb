@@ -19,7 +19,7 @@ private
 
   def set_locale
     locales = [params[:locale], cookies[:locale], session[:locale], request.env['HTTP_ACCEPT_LANGUAGE'].to_s.gsub(/-(\w+)/, &:upcase).split(';').first.to_s.split(',').reverse, I18n.default_locale].flatten.compact
-    # I18n.locale = session[:locale] = (locales & I18n.available_locales.map(&:to_s)).first
-    I18n.locale = 'zh-CN'
+    I18n.locale = session[:locale] = (locales & I18n.available_locales.map(&:to_s)).first
+    I18n.locale = 'zh-CN' if params[:controller] !~ /\Aadmin\//
   end
 end

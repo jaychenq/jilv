@@ -8,6 +8,14 @@
 - Account::Session 登录
 - Account::Connection 连接
 
+### Admin 管理
+
+- Admin::User 用户
+- Admin::Log 日志
+- Admin::Assignment 委派
+- Admin::Role 角色
+- Admin::Permission 权限
+
 ### Travel 旅游
 
 #### 管理
@@ -24,13 +32,14 @@
 
 - Travel::Merchant 商户
 - Travel::Product 产品
-- Travel::Trip 行程
+- Travel::ProductsPhoto 产品照片
+- Travel::Journey 行程
 - Travel::Speaking 说话
 - Travel::Parameter 参数
 
 #### 游客
 
-- Travel::Traveler 游客
+- Travel::Tourist 游客
 - Travel::Favorite 喜欢
 - Travel::Question 问题
 - Travel::Answer 回答
@@ -48,11 +57,13 @@
 ### Message 消息
 
 - Message::Notification 通知
+- Message::Email 邮件
 
-### Admin 管理
+### About 关于
 
-- Admin::User 用户
-- Admin::Log 日志
-- Admin::Assignment 委派
-- Admin::Role 角色
-- Admin::Permission 权限
+- About::Page 页面
+
+### Analytic 分析
+
+- Analytic::Statistic 统计
+- Analytic::Google 谷歌

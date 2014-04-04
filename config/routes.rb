@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  concern :deletable do
+    member do
+      get :delete
+      put :publish
+      put :withdraw
+    end
+  end
+
   namespace :account do
     resources :sessions
     resources :users
@@ -6,67 +14,67 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'application#index'
+    namespace :about do
+      root 'application#index'
+      resources :pages
+    end
     namespace :account do
       root 'application#index'
+      resources :connections
       resources :sessions
       resources :users
     end
     namespace :admin do
       root 'application#index'
+      resources :assignments
       resources :logs
+      resources :permissions
+      resources :roles
       resources :users
+    end
+    namespace :analytic do
+      root 'application#index'
+      resources :googles
+      resources :statistics
+    end
+    namespace :message do
+      root 'application#index'
+      resources :emails
+      resources :notifications
+    end
+    namespace :payment do
+      root 'application#index'
+      resources :currencies
+      resources :platforms
+      resources :transactions
     end
     namespace :travel do
       root 'application#index'
-      resources :attributes do
-        member do
-          get :delete
-          put :publish
-          put :cancel
-        end
-      end
-      resources :categories do
-        member do
-          get :delete
-          put :publish
-          put :cancel
-        end
-      end
-      resources :cities do
-        member do
-          get :delete
-          put :publish
-          put :cancel
-        end
-      end
-      resources :continents do
-        member do
-          get :delete
-          put :publish
-          put :cancel
-        end
-      end
-      resources :countries do
-        member do
-          get :delete
-          put :publish
-          put :cancel
-        end
-      end
-      resources :languages do
-        member do
-          get :delete
-          put :publish
-          put :cancel
-        end
-      end
-      resources :locations do
-        member do
-          get :delete
-          put :publish
-          put :cancel
-        end
-      end
+      resources :attributes, concerns: :deletable
+      resources :categories, concerns: :deletable
+      resources :cities, concerns: :deletable
+      resources :comments
+      resources :complaints
+      resources :continents, concerns: :deletable
+      resources :countries, concerns: :deletable
+      resources :favorites
+      resources :journeys
+      resources :languages, concerns: :deletable
+      resources :locations, concerns: :deletable
+      resources :merchants
+      resources :products
+      resources :questions
+      resources :refunds
+      resources :services
+      resources :tourists
+    end
+  end
+
+  namespace :business do
+    namespace :travel do
+      resources :journeys
+      resources :merchants
+      resources :products
     end
   end
 
@@ -78,6 +86,8 @@ Rails.application.routes.draw do
     resources :countries
     resources :languages
     resources :locations
+    resources :merchants
+    resources :products
   end
 
   root 'account/users#welcome'

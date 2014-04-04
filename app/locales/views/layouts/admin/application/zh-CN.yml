@@ -1,6 +1,7 @@
 zh-CN:
   layouts:
     admin:
+      admin: 管理系统
       hello: 你好
       home: 首页
       sign_im: 登录

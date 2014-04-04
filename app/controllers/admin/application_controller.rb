@@ -15,6 +15,7 @@ class Admin::ApplicationController < ApplicationController
   end
   
   def destroy
+    raise if !record.respond_to?(:deletable?) || !record.deletable?
     record = model.f(params[:id])
     record.attributes = { active: false, updater_id: @current_user.id }
     record.save
@@ -30,7 +31,7 @@ class Admin::ApplicationController < ApplicationController
     head record.valid? ? :accepted : :bad_request
   end
 
-  def cancel
+  def withdraw
     record = model.f(params[:id])
     record.attributes = { published: false, updater_id: @current_user.id }
     record.save

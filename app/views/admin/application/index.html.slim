@@ -1,0 +1,25 @@
+- @page_title = t(%{activerecord.models.#{params[:controller].sub('admin/','').singularize}})
+- @model = Admin::User
+
+h2
+  | #{@page_title} #{t('list')} (#{0}) &nbsp;
+  = link_to t('new'), ''
+  = link_to t('visit'), ''
+= form_tag request.path, method: 'get', id: 'search_form' do
+  .tablenav
+    .alignleft
+      = render 'admin/shared/search/array', field: 'id'
+      = render 'admin/shared/search/range', field: 'created_at'
+      = render 'admin/shared/search/range', field: 'updated_at'
+      = render 'admin/shared/search/order'
+      = render 'admin/shared/search/page'
+      = submit_tag t('search'), name: nil, class: 'button-secondary'
+    br.clear
+br.clear
+table.widefat
+  thead
+    tr
+      - %w[id created_at updated_at actions].each do |field|
+        th = Account::User.human_attribute_name(field)
+  tbody
+= render 'admin/shared/pagination', pagination: model.none.paginate(page: 1)

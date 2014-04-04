@@ -5,7 +5,7 @@
   html
     head
       meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
-      title = @page_title || 'admin'
+      title = @page_title || t('.admin')
       = stylesheet_link_tag 'admin/application'
       /[if lte IE 8]
         = stylesheet_link_tag 'wordpress/ie'
@@ -36,6 +36,16 @@
                   { name: 'category' },
                   { name: 'attribute' },
                   { name: 'language' },
+                  { name: 'merchant' },
+                  { name: 'product' },
+                  { name: 'journey' },
+                  { name: 'tourist' },
+                  { name: 'favorite' },
+                  { name: 'question' },
+                  { name: 'service' },
+                  { name: 'refund' },
+                  { name: 'comment' },
+                  { name: 'complaint' },
                 ]
               },
               {
@@ -43,6 +53,35 @@
                 submodules: [
                   { name: 'user' },
                   { name: 'session' },
+                  { name: 'connection' },
+                ]
+              },
+              {
+                name: 'payment',
+                submodules: [
+                  { name: 'transaction' },
+                  { name: 'platform' },
+                  { name: 'currency' },
+                ]
+              },
+              {
+                name: 'message',
+                submodules: [
+                  { name: 'notification' },
+                  { name: 'email' },
+                ]
+              },
+              {
+                name: 'about',
+                submodules: [
+                  { name: 'page' },
+                ]
+              },
+              {
+                name: 'analytic',
+                submodules: [
+                  { name: 'statistic' },
+                  { name: 'google' },
                 ]
               },
               {
@@ -50,6 +89,9 @@
                 submodules: [
                   { name: 'user' },
                   { name: 'log' },
+                  { name: 'assignment' },
+                  { name: 'role' },
+                  { name: 'permission' },
                 ]
               },
             ]
