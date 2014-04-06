@@ -62,6 +62,9 @@
 ### About 关于
 
 - About::Page 页面
+- About::Image 图片
+- About::Audio 音频
+- About::Video 视频
 
 ### Analytic 分析
 

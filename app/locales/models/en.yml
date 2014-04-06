@@ -1,7 +1,10 @@
 en:
   activerecord:
     models:
+      about/audio: Audio
+      about/image: Image
       about/page: Page
+      about/video: Video
       account/connection: Connection
       account/session: Session
       account/user: User

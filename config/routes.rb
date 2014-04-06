@@ -16,7 +16,10 @@ Rails.application.routes.draw do
     root 'application#index'
     namespace :about do
       root 'application#index'
+      resources :audios
+      resources :images
       resources :pages
+      resources :videos
     end
     namespace :account do
       root 'application#index'

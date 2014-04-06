@@ -8,7 +8,10 @@ zh-CN:
       message: 消息
       payment: 支付
       travel: 旅游
+      about/audio: 音频
+      about/image: 图片
       about/page: 页面
+      about/video: 视频
       account/connection: 连接
       account/session: 登录
       account/user: 用户
