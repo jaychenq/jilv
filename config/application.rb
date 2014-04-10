@@ -22,5 +22,9 @@ module Jilv
     config.i18n.available_locales = %w[en zh-CN zh-TW ja ko fr de es it]
     config.i18n.default_locale = :'zh-CN'
     config.i18n.fallbacks = [:en]
+
+    config.sass.preferred_syntax = :sass
+
+    config.assets.precompile += %w[ wordpress/ie ]
   end
 end

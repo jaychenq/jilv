@@ -1,0 +1,100 @@
+- page = @page
+- @page_title = "#{page.class.model_name.human} #{page.id} #{page.name}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && page.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if page.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : page.new_record? ? 'new' : 'edit')} #{t(page.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', page: page if show && page.active?
+= form_for page, url: [:admin, page], method: page.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if page.id?
+        tr
+          th = f.label :id
+          td = page.id
+      tr
+        th = f.label :name
+        td
+          - if show
+            = page.name
+          - else
+            = f.text_field :name
+            = f.error_message_on :name
+      tr
+        th = f.label :position
+        td
+          - if show
+            = page.class.positions.keys.map { |position| [position, t("activerecord.enums.#{model.name.underscore}.position.#{position}")] }.to_h[page.position]
+          - else
+            = render 'shared/enum_radio', form: f, field: 'position'
+            = f.error_message_on :position
+      tr
+        th = f.label :title
+        td
+          - if show
+            = page.title
+          - else
+            = f.text_field :title
+            = f.error_message_on :title
+      tr
+        th = f.label :keywords
+        td
+          - if show
+            = page.keywords
+          - else
+            = f.text_field :keywords
+            = f.error_message_on :keywords
+      tr
+        th = f.label :description
+        td
+          - if show
+            = text_format page.description
+          - else
+            = f.text_area :description
+            = f.error_message_on :description
+      tr
+        th = f.label :body
+        td
+          - if show
+            = text_format page.body
+          - else
+            = f.text_area :body
+            = f.error_message_on :body
+      tr
+        th = f.label :template
+        td
+          - if show
+            = page.class.templates.keys.map { |template| [template, t("activerecord.enums.#{model.name.underscore}.template.#{template}")] }.to_h[page.template]
+          - else
+            = render 'shared/enum_radio', form: f, field: 'template'
+            = f.error_message_on :template
+      tr
+        th = f.label :data
+        td
+          - if show
+            = text_format page.data
+          - else
+            = f.text_area :data
+            = f.error_message_on :data
+      - if page.id?
+        tr
+          th = f.label :created_at
+          td = page.created_at
+        tr
+          th = f.label :updated_at
+          td = page.updated_at
+        tr
+          th = f.label :creator_id
+          td = link_to_admin page.creator
+        tr
+          th = f.label :updater_id
+          td = link_to_admin page.updater
+  - unless show
+    .submit = f.submit

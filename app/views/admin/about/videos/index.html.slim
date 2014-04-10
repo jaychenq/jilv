@@ -1,0 +1,31 @@
+- @page_title = model.model_name.human
+h2
+  | #{model.model_name.human} #{t('list')} (#{@videos.total_entries}) &nbsp;
+  = link_to t('new'), action: 'new' if can?(:create, model)
+= form_tag request.path, method: 'get', id: 'search_form' do
+  .tablenav
+    .alignleft
+      = render 'admin/shared/search/array', field: 'id'
+      = render 'admin/shared/search/like', field: 'name'
+      = render 'admin/shared/search/range', field: 'created_at'
+      = render 'admin/shared/search/range', field: 'updated_at'
+      = render 'admin/shared/search/order'
+      = render 'admin/shared/search/page'
+      = submit_tag t('search'), name: nil, class: 'button-secondary'
+    br.clear
+br.clear
+table.widefat
+  thead
+    tr
+      - %w[id name file created_at updated_at actions].each do |field|
+        th = model.human_attribute_name(field)
+  tbody
+    - @videos.each do |video|
+      tr
+        td = video.id
+        td = link_to_admin video
+        td = link_to url_for(video), video, target: '_blank'
+        td = datetime_tag video.created_at
+        td = datetime_tag video.updated_at
+        td = render 'actions', video: video
+= render 'admin/shared/pagination'

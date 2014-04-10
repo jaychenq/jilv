@@ -1,0 +1,40 @@
+- @page_title = model.model_name.human
+h2
+  | #{model.model_name.human} #{t('list')} (#{@pages.total_entries}) &nbsp;
+  = link_to t('new'), action: 'new' if can?(:create, model)
+  = link_to t('visit'), model
+= form_tag request.path, method: 'get', id: 'search_form' do
+  .tablenav
+    .alignleft
+      = render 'admin/shared/search/array', field: 'id'
+      = render 'admin/shared/search/like', field: 'name'
+      = render 'admin/shared/search/select', field: 'position', options: model.positions.map { |position, value| [value, t("activerecord.enums.#{model.name.underscore}.position.#{position}")] }
+      = render 'admin/shared/search/range', field: 'created_at'
+      = render 'admin/shared/search/range', field: 'updated_at'
+      = render 'admin/shared/search/order', fields: %w[name sequence]
+      = render 'admin/shared/search/page'
+      = submit_tag t('search'), name: nil, class: 'button-secondary'
+    br.clear
+br.clear
+table.widefat
+  thead
+    tr
+      - %w[id name position title keywords description body template data created_at updated_at actions published].each do |field|
+        th = model.human_attribute_name(field)
+  tbody
+    - @pages.each do |page|
+      tr
+        td = page.id
+        td = link_to_admin page
+        td = model.positions.keys.map { |position| [position, t("activerecord.enums.#{model.name.underscore}.position.#{position}")] }.to_h[page.position]
+        td = page.title
+        td = number_to_human_size page.keywords.to_s.size if page.keywords.present?
+        td = number_to_human_size page.description.to_s.size if page.description.present?
+        td = number_to_human_size page.body.to_s.size if page.body.present?
+        td = model.templates.keys.map { |template| [template, t("activerecord.enums.#{model.name.underscore}.template.#{template}")] }.to_h[page.template]
+        td = number_to_human_size page.data.to_s.size if page.data.present?
+        td = datetime_tag page.created_at
+        td = datetime_tag page.updated_at
+        td = render 'actions', page: page
+        td = render 'admin/shared/publish', record: page
+= render 'admin/shared/pagination'

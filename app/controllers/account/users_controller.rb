@@ -28,7 +28,7 @@ class Account::UsersController < ApplicationController
       account_session = Account::Session.create(user_id: @user.id, ip_address: request.remote_ip, user_agent: request.env['HTTP_USER_AGENT'], referrer: request.referrer)
       session[:session_id] = account_session.id
       
-      redirect_to :root
+      redirect_to params[:redirect] || :root
     else
       render :new
     end

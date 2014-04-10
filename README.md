@@ -15,10 +15,11 @@
 - Admin::Assignment 委派
 - Admin::Role 角色
 - Admin::Permission 权限
+- Admin::Notification 通知
 
 ### Travel 旅游
 
-#### 管理
+#### 地点
 
 - Travel::Continent 大洲
 - Travel::Country 国家
@@ -58,6 +59,8 @@
 
 - Message::Notification 通知
 - Message::Email 邮件
+- Message::Feedback 反馈
+- Message::Chat 聊天
 
 ### About 关于
 
@@ -70,3 +73,9 @@
 
 - Analytic::Statistic 统计
 - Analytic::Google 谷歌
+
+### Office 办公
+
+- Office::Finance 财务
+- Office::Human 人事
+- Office::Application 申请

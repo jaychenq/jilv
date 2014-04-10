@@ -7,3 +7,13 @@ zh-CN:
       sign_im: 登录
       sign_up: 注册
       sign_out: 注销
+      locales:
+        en: English
+        zh-CN: 简体中文
+        zh-TW: 正體中文
+        ja: 日本語
+        ko: 한국어
+        fr: Français
+        de: Deutsch
+        es: Español
+        it: Italiano

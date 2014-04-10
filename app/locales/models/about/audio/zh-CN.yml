@@ -1,0 +1,9 @@
+zh-CN:
+  activerecord:
+    models:
+      about/audio: 音频
+    attributes:
+      about/audio:
+        page_id: 页面
+        name: 名称
+        file: 文件

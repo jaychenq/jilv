@@ -7,6 +7,13 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :about do
+    resources :audios
+    resources :images
+    resources :pages
+    resources :videos
+  end
+
   namespace :account do
     resources :sessions
     resources :users
@@ -16,10 +23,10 @@ Rails.application.routes.draw do
     root 'application#index'
     namespace :about do
       root 'application#index'
-      resources :audios
-      resources :images
-      resources :pages
-      resources :videos
+      resources :audios, concerns: :deletable
+      resources :images, concerns: :deletable
+      resources :pages, concerns: :deletable
+      resources :videos, concerns: :deletable
     end
     namespace :account do
       root 'application#index'

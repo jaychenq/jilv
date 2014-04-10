@@ -15,8 +15,8 @@ class Admin::ApplicationController < ApplicationController
   end
   
   def destroy
+    record = model.f(id)
     raise if !record.respond_to?(:deletable?) || !record.deletable?
-    record = model.f(params[:id])
     record.attributes = { active: false, updater_id: @current_user.id }
     record.save
     instance_variable_set "@#{controller_name.singularize}", record
@@ -24,7 +24,7 @@ class Admin::ApplicationController < ApplicationController
   end
 
   def publish
-    record = model.f(params[:id])
+    record = model.f(id)
     record.attributes = { published: true, updater_id: @current_user.id }
     record.save
     instance_variable_set "@#{controller_name.singularize}", record
@@ -32,7 +32,7 @@ class Admin::ApplicationController < ApplicationController
   end
 
   def withdraw
-    record = model.f(params[:id])
+    record = model.f(id)
     record.attributes = { published: false, updater_id: @current_user.id }
     record.save
     instance_variable_set "@#{controller_name.singularize}", record
@@ -44,7 +44,8 @@ private
   def authorize
     # @enable_lazyload = !request.xhr?
     
-    return redirect_to new_account_session_path(redirect: request.fullpath) if !@current_user.try(:admin_user)
+    return redirect_to new_account_session_path(redirect: request.fullpath) if !@current_user
+    return redirect_to root_path if !@current_user.admin_user
   end
 
   def log
@@ -54,10 +55,6 @@ private
       action: self.action_name,
       params_id: params[:id],
     })
-  end
-
-  def model
-    @model ||= self.class.name.gsub(/^Admin|Controller$/, '').singularize.constantize
   end
 
   def can?(*argv)

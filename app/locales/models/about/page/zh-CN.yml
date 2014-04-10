@@ -1,0 +1,20 @@
+zh-CN:
+  activerecord:
+    models:
+      about/page: 页面
+    attributes:
+      about/page:
+        name: 名称
+        position: 位置
+        title: 标题
+        keywords: 关键字
+        description: 描述
+        body: 正文
+        template: 模板
+        data: 数据
+    enums:
+      about/page:
+        position:
+          home: 首页
+        template:
+          home_1: 首页第1版

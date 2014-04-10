@@ -1,0 +1,9 @@
+zh-CN:
+  activerecord:
+    models:
+      about/video: 视频
+    attributes:
+      about/video:
+        page_id: 页面
+        name: 名称
+        file: 文件

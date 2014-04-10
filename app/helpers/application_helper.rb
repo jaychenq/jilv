@@ -6,6 +6,10 @@ module ApplicationHelper
     link_to(object.send(property), [_module].flatten.compact.map(&:to_s).map(&:downcase) + [object], options)
   end
 
+  def link_to_admin(object)
+    link_to_object(object, module: Admin)
+  end
+
   def link_to_count(records, options = {})
     return if records.empty?
     link_to_if(can?(:show, records), records.count, controller: 'admin/' + records.klass.name.downcase.pluralize.gsub('::', '/'), where: { records.proxy_association.reflection.foreign_key => records.proxy_association.owner.id })
@@ -20,7 +24,7 @@ module ApplicationHelper
   end
 
   def text_format(text)
-    simple_format(auto_link(h(text)))
+    simple_format(auto_link(h(text).gsub(' ', '&nbsp;')))
   end
 
   def t(key, options = {})

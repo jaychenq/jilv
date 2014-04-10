@@ -1,0 +1,8 @@
+ruby:
+  page ||= @page || About::Page.search(position ||= params[:id]) || About::Page.new
+  @page_title ||= page.title if page.title.present?
+  @page_keywords ||= page.keywords if page.keywords.present?
+  @page_description ||= page.description if page.description.present?
+  body = Haml::Engine.new(page.body.to_s, Haml::Template.options.to_h.merge(suppress_eval: true)).render
+  body = render "about/pages/templates/#{page.template}", page: page, data: RecursiveOpenStruct.new((JSON.parse(page.data) rescue {}).to_h, recurse_over_arrays: true) if body.blank?
+.about_page id="about_page_#{page.id}" = raw body

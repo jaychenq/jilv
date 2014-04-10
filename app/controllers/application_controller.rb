@@ -22,4 +22,13 @@ private
     I18n.locale = session[:locale] = (locales & I18n.available_locales.map(&:to_s)).first
     I18n.locale = 'zh-CN' if params[:controller] !~ /\Aadmin\//
   end
+
+  def model
+    @model ||= self.class.name.gsub(/^Admin|^Business|Controller$/, '').singularize.constantize
+  end
+
+  def id
+    id = params[:id].to_i
+    id > 0 ? id : nil
+  end
 end

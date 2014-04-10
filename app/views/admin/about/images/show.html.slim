@@ -1,0 +1,60 @@
+- image = @image
+- @page_title = "#{image.class.model_name.human} #{image.id} #{image.name}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && image.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if image.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : image.new_record? ? 'new' : 'edit')} #{t(image.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', image: image if show && image.active?
+= form_for image, url: [:admin, image], method: image.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if image.id?
+        tr
+          th = f.label :id
+          td = image.id
+      tr
+        th = f.label :page_id
+        td
+          - if show
+            = link_to_admin image.page
+          - else
+            = f.collection_select :page_id, About::Page.order('id DESC'), :id, :name, allow_nil: true
+            = f.error_message_on :page_id
+      tr
+        th = f.label :name
+        td
+          - if show
+            = image.name
+          - else
+            = f.text_field :name
+            = f.error_message_on :name
+      tr
+        th = f.label :file
+        td
+          - if show
+            = image.file
+          - else
+            = f.file_field :file
+            = f.error_message_on :file
+      - if image.id?
+        tr
+          th = f.label :created_at
+          td = image.created_at
+        tr
+          th = f.label :updated_at
+          td = image.updated_at
+        tr
+          th = f.label :creator_id
+          td = link_to_admin image.creator
+        tr
+          th = f.label :updater_id
+          td = link_to_admin image.updater
+  - unless show
+    .submit = f.submit

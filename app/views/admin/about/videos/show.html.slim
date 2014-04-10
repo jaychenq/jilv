@@ -1,0 +1,60 @@
+- video = @video
+- @page_title = "#{video.class.model_name.human} #{video.id} #{video.name}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && video.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if video.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : video.new_record? ? 'new' : 'edit')} #{t(video.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', video: video if show && video.active?
+= form_for video, url: [:admin, video], method: video.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if video.id?
+        tr
+          th = f.label :id
+          td = video.id
+      tr
+        th = f.label :page_id
+        td
+          - if show
+            = link_to_admin video.page
+          - else
+            = f.collection_select :page_id, About::Page.order('id DESC'), :id, :name, allow_nil: true
+            = f.error_message_on :page_id
+      tr
+        th = f.label :name
+        td
+          - if show
+            = video.name
+          - else
+            = f.text_field :name
+            = f.error_message_on :name
+      tr
+        th = f.label :file
+        td
+          - if show
+            = video.file
+          - else
+            = f.file_field :file
+            = f.error_message_on :file
+      - if video.id?
+        tr
+          th = f.label :created_at
+          td = video.created_at
+        tr
+          th = f.label :updated_at
+          td = video.updated_at
+        tr
+          th = f.label :creator_id
+          td = link_to_admin video.creator
+        tr
+          th = f.label :updater_id
+          td = link_to_admin video.updater
+  - unless show
+    .submit = f.submit
