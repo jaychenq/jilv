@@ -7,18 +7,4 @@ class About::PagesController < About::ApplicationController
       format.xml { render json: @page.data }
     end
   end
-
-  #   {
-  #     "continents": [
-  #       {
-  #         "id": "",
-  #         "countries": [
-  #           {
-  #             "id": "",
-  #           }
-  #         ] 
-  #       }
-  #     ]
-  #   }
-  def _home_1; end
 end
