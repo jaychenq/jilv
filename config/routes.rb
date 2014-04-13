@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'about/pages#show', id: 'home'
+
   concern :deletable do
     member do
       get :delete
@@ -99,8 +101,6 @@ Rails.application.routes.draw do
     resources :merchants
     resources :products
   end
-
-  root 'account/users#welcome'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

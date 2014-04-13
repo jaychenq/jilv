@@ -1,6 +1,7 @@
 class Admin::ApplicationController < ApplicationController
   layout 'admin'
-  
+
+  before_action :find_record
   before_action :authorize
   before_action :log, if: -> { @current_user }
 
@@ -19,15 +20,13 @@ class Admin::ApplicationController < ApplicationController
     raise if !record.respond_to?(:deletable?) || !record.deletable?
     record.attributes = { active: false, updater_id: @current_user.id }
     record.save
-    instance_variable_set "@#{controller_name.singularize}", record
-    render :show
+    render :show, status: record.valid? ? :accepted : :bad_request
   end
 
   def publish
     record = model.f(id)
     record.attributes = { published: true, updater_id: @current_user.id }
     record.save
-    instance_variable_set "@#{controller_name.singularize}", record
     head record.valid? ? :accepted : :bad_request
   end
 
@@ -35,8 +34,12 @@ class Admin::ApplicationController < ApplicationController
     record = model.f(id)
     record.attributes = { published: false, updater_id: @current_user.id }
     record.save
-    instance_variable_set "@#{controller_name.singularize}", record
     head record.valid? ? :accepted : :bad_request
+  end
+  
+  def find_record
+    record = id ? model.f(id) : model.new
+    instance_variable_set "@#{controller_name.singularize}", record
   end
 
 private
@@ -51,7 +54,7 @@ private
   def log
     Admin::Log.create({
       user_id: @current_user.id,
-      controller: self.class.name.gsub(/^Admin::|Controller$/, ''),
+      controller: self.class.name.remove(/^Admin::|Controller$/),
       action: self.action_name,
       params_id: params[:id],
     })

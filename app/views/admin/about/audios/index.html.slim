@@ -7,6 +7,7 @@ h2
     .alignleft
       = render 'admin/shared/search/array', field: 'id'
       = render 'admin/shared/search/like', field: 'name'
+      = render 'admin/shared/search/select', field: 'page_id', options: About::Page.order('id DESC')
       = render 'admin/shared/search/range', field: 'created_at'
       = render 'admin/shared/search/range', field: 'updated_at'
       = render 'admin/shared/search/order'
@@ -24,7 +25,7 @@ table.widefat
       tr
         td = audio.id
         td = link_to_admin audio
-        td = link_to url_for(audio), audio, target: '_blank'
+        td = link_to url_for(audio), audio, target: '_blank' if audio.file
         td = datetime_tag audio.created_at
         td = datetime_tag audio.updated_at
         td = render 'actions', audio: audio

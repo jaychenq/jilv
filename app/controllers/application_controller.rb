@@ -24,7 +24,7 @@ private
   end
 
   def model
-    @model ||= self.class.name.gsub(/^Admin|^Business|Controller$/, '').singularize.constantize
+    @model ||= self.class.name.remove(/^Admin|^Business|Controller$/).singularize.constantize
   end
 
   def id

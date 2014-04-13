@@ -1,5 +1,6 @@
 class About::AudiosController < About::ApplicationController
   def show
-    redirect_to model.f(id).file
+    @audio = model.f(id)
+    send_file %{public#{@audio.file}}, type: @audio.file_content_type, disposition: 'inline'
   end
 end

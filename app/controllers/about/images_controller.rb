@@ -1,5 +1,6 @@
 class About::ImagesController < About::ApplicationController
   def show
-    redirect_to model.f(id).file
+    @image = model.f(id)
+    send_file %{public#{@image.file}}, type: @image.file_content_type, disposition: 'inline'
   end
 end

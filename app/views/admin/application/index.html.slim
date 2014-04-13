@@ -1,4 +1,4 @@
-- @page_title = t(%{activerecord.models.#{params[:controller].sub('admin/','').singularize}})
+- @page_title = t(%{activerecord.models.#{params[:controller].remove('admin/').singularize}})
 - @model = Admin::User
 
 h2

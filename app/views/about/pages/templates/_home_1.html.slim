@@ -1,3 +1,5 @@
 h1 home_1
 div = data
+div = data['continents'][0]['id']
+div = data.try(:[], 'continents').try(:[], 0).try(:[], 'id')
 div = data.continents[0].id rescue nil

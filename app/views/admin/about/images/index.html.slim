@@ -7,6 +7,7 @@ h2
     .alignleft
       = render 'admin/shared/search/array', field: 'id'
       = render 'admin/shared/search/like', field: 'name'
+      = render 'admin/shared/search/select', field: 'page_id', options: About::Page.order('id DESC')
       = render 'admin/shared/search/range', field: 'created_at'
       = render 'admin/shared/search/range', field: 'updated_at'
       = render 'admin/shared/search/order'
@@ -25,8 +26,8 @@ table.widefat
         td = image.id
         td = link_to_admin image
         td = link_to_admin image.page
-        td = link_to image_tag(image.file.to_s, style: 'max-height: 40px;'), image.file.to_s, rel: 'facebox'
-        td = link_to url_for(image), image, target: '_blank'
+        td = link_to image_tag(image.file.to_s, style: 'max-height: 40px;'), image.file.to_s, rel: 'facebox' if image.file
+        td = link_to url_for(image), image, target: '_blank' if image.file
         td = datetime_tag image.created_at
         td = datetime_tag image.updated_at
         td = render 'actions', image: image
