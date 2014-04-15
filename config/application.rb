@@ -24,7 +24,5 @@ module Jilv
     config.i18n.fallbacks = [:en]
 
     config.sass.preferred_syntax = :sass
-
-    config.assets.precompile += %w[ wordpress/ie ]
   end
 end

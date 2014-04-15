@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+  body
+    / a href="/about/statics/a/b/c" a/b/c
+    ul
+      - Dir.glob('app/views/about/statics/**/*.*').each do |file|
+        - path = file.remove(/^app\/views\/about\/statics\/|(\.\w+)+$/)
+        - next if path == 'index'
+        li
+          = link_to path, "/about/statics/#{path}"

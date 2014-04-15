@@ -6,11 +6,11 @@ gem 'rails', '4.1.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
+gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails'
+gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 

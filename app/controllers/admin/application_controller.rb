@@ -38,6 +38,7 @@ class Admin::ApplicationController < ApplicationController
   end
   
   def find_record
+    return if !model
     record = id ? model.f(id) : model.new
     instance_variable_set "@#{controller_name.singularize}", record
   end

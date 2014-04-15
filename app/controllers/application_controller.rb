@@ -24,7 +24,8 @@ private
   end
 
   def model
-    @model ||= self.class.name.remove(/^Admin|^Business|Controller$/).singularize.constantize
+    return if self.class.name =~ /ApplicationController$/
+    @model ||= self.class.name.remove(/^Admin|^Business|Controller$/).singularize.constantize rescue nil
   end
 
   def id
