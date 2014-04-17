@@ -9,7 +9,7 @@ h2
       = render 'admin/shared/search/array', field: 'id'
       = render 'admin/shared/search/like', field: 'name'
       = render 'admin/shared/search/basic', field: 'sequence'
-      = render 'admin/shared/search/select', field: 'continent_id', options: Travel::Continent.active.order('sequence ASC, name ASC')
+      = render 'admin/shared/search/select', field: 'continent_id', options: Travel::Continent.order('sequence ASC, name ASC')
       = render 'admin/shared/search/range', field: 'created_at'
       = render 'admin/shared/search/range', field: 'updated_at'
       = render 'admin/shared/search/order', fields: %w[name sequence]

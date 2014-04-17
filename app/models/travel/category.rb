@@ -2,6 +2,7 @@ class Travel::Category < ActiveRecord::Base
   belongs_to :parent, class_name: self
   has_many :children, class_name: self, foreign_key: 'parent_id'
   has_many :_attributes
+  has_many :products
   belongs_to :creator, class_name: Admin::User
   belongs_to :updater, class_name: Admin::User
 
@@ -11,13 +12,12 @@ class Travel::Category < ActiveRecord::Base
   validates :creator, existence: true, allow_nil: true
   validates :updater, existence: true, allow_nil: true
 
-  scope :active, -> { where active: true }
-  scope :published, -> { where published: true }
+  default_scope { where(active: true) }
 
   cattr_accessor :admin_fields
-  self.admin_fields = %w[parent_id name description sequence]
+  self.admin_fields = %w[ parent_id name description sequence ]
 
   def deletable?
-    children.empty? && _attributes.empty?
+    [children, _attributes, products].all(&:empty?)
   end
 end

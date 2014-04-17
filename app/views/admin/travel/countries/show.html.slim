@@ -57,7 +57,7 @@ h2
           - if show
             = link_to_object country.continent, module: Admin
           - else
-            = f.collection_select :continent_id, Travel::Continent.active.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.collection_select :continent_id, Travel::Continent.order('sequence ASC, name ASC'), :id, :name, include_blank: true
             = f.error_message_on :continent_id
       - if country.id?
         tr

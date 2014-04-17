@@ -49,7 +49,7 @@ h2
           - if show
             = link_to_object location.city, module: Admin
           - else
-            = f.collection_select :city_id, Travel::City.active.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.collection_select :city_id, Travel::City.order('sequence ASC, name ASC'), :id, :name, include_blank: true
             = f.error_message_on :city_id
       - if location.id?
         tr

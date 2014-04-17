@@ -87,6 +87,7 @@ Rails.application.routes.draw do
       resources :journeys
       resources :merchants
       resources :products
+      resources :products_photos
     end
   end
 
@@ -95,6 +96,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :cities
     resources :continents
+    resources :costumers
     resources :countries
     resources :languages
     resources :locations

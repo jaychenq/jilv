@@ -1,0 +1,156 @@
+- @page_title = ''
+
+h1 商家入驻
+
+- if @current_user
+  div
+    h2 已登录
+    div = @current_user.email
+    div = link_to_object @current_user
+- else
+  h2 未登录
+  h2 登录
+  = form_for Account::Session.new, method: 'post' do |f|
+    = hidden_field_tag :redirect, params[:redirect] || request.fullpath
+    .form
+      .field
+        .label = f.label :email
+        .input
+          = f.text_field :email
+          = f.error_message_on :email
+      .field
+        .label = f.label :password
+        .input
+          = f.password_field :password
+          = f.error_message_on :password
+      = f.submit
+  h2 注册
+  = form_for Account::User.new, method: 'post' do |f|
+    = hidden_field_tag :redirect, params[:redirect] || request.fullpath
+    .form
+      .field
+        .label = f.label :name
+        .input
+          = f.text_field :name
+          = f.error_message_on :name
+      .field
+        .label = f.label :gender
+        .input
+          = render 'shared/enum_radio', form: f, field: 'gender'
+          = f.error_message_on :gender
+      .field
+        .label = f.label :email
+        .input
+          = f.text_field :email
+          = f.error_message_on :email
+      .field
+        .label = f.label :password
+        .input
+          = f.password_field :password
+          = f.error_message_on :password
+      .field
+        .label = f.label :terms_of_service
+        .input
+          = f.check_box :terms_of_service
+      = f.submit
+h2 入驻
+= form_for @merchant, url: [:business, @merchant], method: 'post', html: { multipart: true } do |f|
+  / = hidden_field_tag :redirect, params[:redirect] || request.fullpath
+  .form
+    .field
+      .label = f.label :entity
+      .input
+        = render 'shared/enum_radio', form: f, field: 'entity'
+        = f.error_message_on :entity
+    .field
+      .label = f.label :registration
+      .input
+        = f.file_field :registration
+        = f.error_message_on :registration
+    .field
+      .label = f.label :authorization
+      .input
+        = f.file_field :authorization
+        = f.error_message_on :authorization
+    .field
+      .label = f.label :name
+      .input
+        = f.text_field :name
+        = f.error_message_on :name
+    .field
+      .label = f.label :website
+      .input
+        = f.text_field :website
+        = f.error_message_on :website
+    .field
+      .label = f.label :principal_name
+      .input
+        = f.text_field :principal_name
+        = f.error_message_on :principal_name
+    .field
+      .label = f.label :principal_identifier
+      .input
+        = f.text_field :principal_identifier
+        = f.error_message_on :principal_identifier
+    .field
+      .label = f.label :principal_photo
+      .input
+        = f.file_field :principal_photo
+        = f.error_message_on :principal_photo
+    .field
+      .label = f.label :city_id
+      .input
+        = f.collection_select :continent_id, Travel::Continent.where(published: true).order('sequence ASC, name ASC'), :id, :name, allow_nil: true
+        = f.collection_select :country_id, Travel::Country.where(published: true).order('sequence ASC, name ASC'), :id, :name, allow_nil: true
+        = f.collection_select :city_id, Travel::City.where(published: true).order('sequence ASC, name ASC'), :id, :name, allow_nil: true
+        = f.error_message_on :continent_id
+        = f.error_message_on :country_id
+        = f.error_message_on :city_id
+    .field
+      .label = f.label :address
+      .input
+        = f.text_field :address
+        = f.error_message_on :address
+    .field
+      .label = f.label :latitude
+      .input
+        = f.text_field :latitude
+        = f.error_message_on :latitude
+    .field
+      .label = f.label :longitude
+      .input
+        = f.text_field :longitude
+        = f.error_message_on :longitude
+    .field
+      .label = f.label :phone_number
+      .input
+        = f.collection_select :phone_country_id, Travel::Country.where(published: true).where('phone_code IS NOT NULL AND phone_code != ""').order('sequence ASC, name ASC'), :id, :name_with_phone_code, allow_nil: true
+        = f.text_field :phone_number
+        = f.error_message_on :phone_country_id
+        = f.error_message_on :phone_number
+    .field
+      .label = f.label :qq
+      .input
+        = f.text_field :qq
+        = f.error_message_on :qq
+    .field
+      .label = f.label :wechat
+      .input
+        = f.text_field :wechat
+        = f.error_message_on :wechat
+    .field
+      .label = f.label :skype
+      .input
+        = f.text_field :skype
+        = f.error_message_on :skype
+    .field
+      .label = f.label :logo
+      .input
+        = f.file_field :logo
+        = f.error_message_on :logo
+    .field
+      .label = f.label :description
+      .input
+        = f.text_area :description
+        = f.error_message_on :description
+    = f.submit

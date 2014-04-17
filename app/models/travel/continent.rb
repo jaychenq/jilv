@@ -1,5 +1,7 @@
 class Travel::Continent < ActiveRecord::Base
   has_many :countries
+  has_many :merchants
+  has_many :products
   belongs_to :creator, class_name: Admin::User
   belongs_to :updater, class_name: Admin::User
 
@@ -8,13 +10,12 @@ class Travel::Continent < ActiveRecord::Base
   validates :updater, existence: true, allow_nil: true
   validates :creator, existence: true, allow_nil: true
 
-  scope :active, -> { where active: true }
-  scope :published, -> { where published: true }
+  default_scope { where(active: true) }
 
   cattr_accessor :admin_fields
-  self.admin_fields = %w[name description sequence]
+  self.admin_fields = %w[ name description sequence ]
 
   def deletable?
-    countries.empty?
+    [countries, merchants, products].all?(&:empty?)
   end
 end

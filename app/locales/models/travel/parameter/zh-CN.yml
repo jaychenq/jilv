@@ -1,0 +1,9 @@
+zh-CN:
+  activerecord:
+    models:
+      travel/parameter: 参数
+    attributes:
+      travel/parameter:
+        product_id: 产品
+        attribute_id: 属性
+        option: 选项

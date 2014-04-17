@@ -27,6 +27,10 @@ module ApplicationHelper
     simple_format(auto_link(h(text).gsub(' ', '&nbsp;')))
   end
 
+  def sanitize_format(text)
+    sanitize(text, tags: %w[ h1 h2 h3 h4 h5 h6 p div blockquote ol ul li span img a], attributes: %w[ style src alt href target height width ])
+  end
+
   def t(key, options = {})
     # If the user has specified rescue_format then pass it all through, otherwise use
     # raise and do the work ourselves

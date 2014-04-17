@@ -1,5 +1,7 @@
 class Travel::Attribute < ActiveRecord::Base
   belongs_to :category
+  has_many :parameters
+  has_many :products, through: :parameters
   belongs_to :creator, class_name: Admin::User
   belongs_to :updater, class_name: Admin::User
 
@@ -9,13 +11,12 @@ class Travel::Attribute < ActiveRecord::Base
   validates :creator, existence: true, allow_nil: true
   validates :updater, existence: true, allow_nil: true
 
-  scope :active, -> { where active: true }
-  scope :published, -> { where published: true }
+  default_scope { where(active: true) }
 
   cattr_accessor :admin_fields
-  self.admin_fields = %w[category_id name description sequence options]
+  self.admin_fields = %w[ category_id name description sequence options ]
 
   def deletable?
-    
+    parameters.empty?
   end
 end

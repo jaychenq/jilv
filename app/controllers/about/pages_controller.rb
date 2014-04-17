@@ -1,6 +1,6 @@
 class About::PagesController < About::ApplicationController
   def show
-    @page = model.search(id)
+    @page = model.search(params[:id])
 
     respond_to do |format|
       format.html

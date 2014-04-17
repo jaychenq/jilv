@@ -1,0 +1,155 @@
+- journey = @journey
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && journey.valid?
+
+- @page_title = ''
+
+= render 'business/travel/merchants/nav'
+
+h2 行程
+
+= form_for journey, url: [:business, journey], method: journey.new_record? ? 'post' : 'put', html: { multipart: true } do |f|
+  = f.hidden_field :product_id
+  / = hidden_field_tag :redirect, params[:redirect] || request.fullpath
+  .form
+    .field
+      .label = f.label :name
+      .input
+        - if show
+          = journey.name
+        - else
+          = f.text_field :name
+          = f.error_message_on :name
+    .field
+      .label = f.label :sequence
+      .input
+        - if show
+          = journey.sequence
+        - else
+          = f.text_field :sequence
+          = f.error_message_on :sequence
+    .field
+      .label = f.label :market_price
+      .input
+        - if show
+          = journey.market_price
+        - else
+          = f.text_field :market_price
+          = f.error_message_on :market_price
+    .field
+      .label = f.label :adult_price
+      .input
+        - if show
+          = journey.adult_price
+        - else
+          = f.text_field :adult_price
+          = f.error_message_on :adult_price
+    .field
+      .label = f.label :people_quota
+      .input
+        - if show
+          = journey.people_quota
+        - else
+          = f.text_field :people_quota
+          = f.error_message_on :people_quota
+    .field
+      .label = f.label :started_on
+      .input
+        - if show
+          = journey.started_on
+        - else
+          = f.text_field :started_on
+          = f.error_message_on :started_on
+    .field
+      .label = f.label :ended_on
+      .input
+        - if show
+          = journey.ended_on
+        - else
+          = f.text_field :ended_on
+          = f.error_message_on :ended_on
+    .field
+      .label = f.label :start_hour
+      .input
+        - if show
+          = journey.start_hour
+        - else
+          = f.text_field :start_hour
+          = f.error_message_on :start_hour
+    .field
+      .label = f.label :early_booking
+      .input
+        - if show
+          = journey.early_booking
+        - else
+          = f.text_field :early_booking
+          = f.error_message_on :early_booking
+    .field
+      .label = f.label :pick_up
+      .input
+        - if show
+          = journey.pick_up? ? '✔' : '✘'
+        - else
+          = f.check_box :pick_up
+          = f.error_message_on :pick_up
+    .field
+      .label = f.label :with_food
+      .input
+        - if show
+          = journey.with_food? ? '✔' : '✘'
+        - else
+          = f.check_box :with_food
+          = f.error_message_on :with_food
+    .field
+      .label = f.label :introduction
+      .input
+        - if show
+          = sanitize_format journey.introduction
+        - else
+          = f.text_area :introduction
+          = f.error_message_on :introduction
+    .field
+      .label = f.label :fee_description
+      .input
+        - if show
+          = sanitize_format journey.fee_description
+        - else
+          = f.text_area :fee_description
+          = f.error_message_on :fee_description
+    .field
+      .label = f.label :refund_policy
+      .input
+        - if show
+          = sanitize_format journey.refund_policy
+        - else
+          = f.text_area :refund_policy
+          = f.error_message_on :refund_policy
+    .field
+      .label = f.label :route
+      .input
+        - if show
+          = sanitize_format journey.route
+        - else
+          = f.text_area :route
+          = f.error_message_on :route
+    .field
+      .label = f.label :tips
+      .input
+        - if show
+          = sanitize_format journey.tips
+        - else
+          = f.text_area :tips
+          = f.error_message_on :tips
+    .field
+      .label = f.label :published
+      .input
+        - if show
+          = journey.published ? '✔' : '✘'
+        - else
+          = f.check_box :published
+          = f.error_message_on :published
+  - if !show
+    = f.submit
+
+- if !journey.new_record?
+  div = link_to '编辑', [:edit, :business, journey]
+  div = link_to '继续添加', new_business_travel_journey_path('travel_journey[product_id]' => journey.product.id)

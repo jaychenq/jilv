@@ -1,0 +1,8 @@
+zh-CN:
+  activerecord:
+    models:
+      travel/speaking: 说话
+    attributes:
+      travel/speaking:
+        product_id: 产品
+        language_id: 语言

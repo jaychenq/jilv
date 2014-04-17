@@ -2,18 +2,18 @@
 
 h1 注册
 
-= form_for @user, method: 'post', html: { multipart: true } do |f|
+= form_for @user, method: 'post' do |f|
   .form
     .field
       .label = f.label :name
       .input
         = f.text_field :name
         = f.error_message_on :name
-    .field
-      .label = f.label :gender
-      .input
-        = render 'shared/enum_radio', form: f, field: 'gender'
-        = f.error_message_on :gender
+    / .field
+    /   .label = f.label :gender
+    /   .input
+    /     = render 'shared/enum_radio', form: f, field: 'gender'
+    /     = f.error_message_on :gender
     / .field
     /   .label = f.label :avatar
     /   .input
@@ -29,6 +29,7 @@ h1 注册
         = f.password_field :password
         = f.error_message_on :password
     .field
+      - @user.terms_of_service = true
       .label = f.label :terms_of_service
       .input
         = f.check_box :terms_of_service

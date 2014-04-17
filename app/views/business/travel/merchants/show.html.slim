@@ -1,0 +1,14 @@
+- @page_title = '商家首页'
+
+= render 'business/travel/merchants/nav'
+
+div
+  div
+    div ID
+    div = @merchant.id
+  div
+    div 名称
+    div = @merchant.name
+  div
+    div 网址
+    div = link_to @merchant.website, @merchant.website

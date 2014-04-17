@@ -1,0 +1,20 @@
+zh-CN:
+  activerecord:
+    models:
+      travel/product: 产品
+    attributes:
+      travel/product:
+        name: 名称
+        description: 描述
+        merchant_id: 商户
+        category_id: 分类
+        continent_id: 大洲
+        country_id: 国家
+        city_id: 城市
+        location_id: 地点
+        latitude: 经度
+        longitude: 维度
+        started_on: 开始日期
+        ended_on: 结束日期
+        cover_id: 封面
+        published: 发布

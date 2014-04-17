@@ -1,0 +1,26 @@
+zh-CN:
+  activerecord:
+    models:
+      travel/journey: 行程
+    attributes:
+      travel/journey:
+        product_id: 产品
+        name: 名称
+        sequence: 顺序
+        market_price: 市场价
+        adult_price: 成人价
+        kid_price: 儿童价
+        people_quota: 人数限制
+        started_on: 开始日期
+        ended_on: 结束日期
+        duration: 持续天数
+        start_hour: 开始小时
+        early_booking: 提前预订天数
+        pick_up: 接送服务
+        with_food: 配备餐食
+        introduction: 活动说明
+        fee_description: 费用说明
+        refund_policy: 退改规则
+        route: 如何抵达
+        tips: 温馨提示
+        published: 发布

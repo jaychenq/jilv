@@ -49,7 +49,7 @@ h2
           - if show
             = link_to_object category.parent, module: Admin
           - else
-            = f.collection_select :parent_id, category.class.active.where('id != ?', category.id).order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.collection_select :parent_id, category.class .where('id != ?', category.id).order('sequence ASC, name ASC'), :id, :name, include_blank: true
             = f.error_message_on :parent_id
       - if category.id?
         tr
