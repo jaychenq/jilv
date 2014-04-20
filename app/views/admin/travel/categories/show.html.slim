@@ -44,10 +44,34 @@ h2
             = f.text_field :sequence
             = f.error_message_on :sequence
       tr
+        th = f.label :icon
+        td
+          - if show
+            = image_tag category.icon.to_s, alt: '' if category.icon
+          - else
+            = f.file_field :icon
+            = f.error_message_on :icon
+      tr
+        th = f.label :landscape
+        td
+          - if show
+            = image_tag category.landscape.to_s, alt: '' if category.landscape
+          - else
+            = f.file_field :landscape
+            = f.error_message_on :landscape
+      tr
+        th = f.label :background
+        td
+          - if show
+            = image_tag category.background.to_s, alt: '' if category.background
+          - else
+            = f.file_field :background
+            = f.error_message_on :background
+      tr
         th = f.label :parent_id
         td
           - if show
-            = link_to_object category.parent, module: Admin
+            = link_to_admin category.parent
           - else
             = f.collection_select :parent_id, category.class .where('id != ?', category.id).order('sequence ASC, name ASC'), :id, :name, include_blank: true
             = f.error_message_on :parent_id
@@ -60,9 +84,9 @@ h2
           td = category.updated_at
         tr
           th = f.label :creator_id
-          td = link_to_object category.creator, module: Admin
+          td = link_to_admin category.creator
         tr
           th = f.label :updater_id
-          td = link_to_object category.updater, module: Admin
+          td = link_to_admin category.updater
   - unless show
     .submit = f.submit

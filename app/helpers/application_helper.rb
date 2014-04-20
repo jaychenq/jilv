@@ -2,8 +2,10 @@ module ApplicationHelper
   def link_to_object(object, options = {})
     return if object.blank?
     _module = options.delete(:module)
-    property = %w[name_for_link_to name id to_s].find { |property| object.respond_to?(property) && object.send(property).present? }
-    link_to(object.send(property), [_module].flatten.compact.map(&:to_s).map(&:downcase) + [object], options)
+    name_method = %w[name_for_link_to name id to_s].find { |property| object.respond_to?(property) && object.send(property).present? }
+    return link_to(object.send(name_method), [_module].flatten.compact.map(&:to_s).map(&:downcase) + [object], options) if object.is_a?(ActiveRecord::Base)
+    path_method = %w[url_for_link_to path_for_link_to url path to_s].find { |property| object.respond_to?(property) && object.send(property).present? }
+    link_to(object.send(name_method), object.send(path_method))
   end
 
   def link_to_admin(object)

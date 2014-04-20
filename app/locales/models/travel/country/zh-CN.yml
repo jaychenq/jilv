@@ -8,5 +8,8 @@ zh-CN:
         name: 名称
         description: 描述
         sequence: 顺序
+        icon: 图标
+        landscape: 风景
+        background: 背景
         phone_code: 电话区号
         cities: 城市

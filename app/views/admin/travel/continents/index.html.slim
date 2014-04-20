@@ -19,13 +19,14 @@ br.clear
 table.widefat
   thead
     tr
-      - %w[id name sequence countries created_at updated_at actions published].each do |field|
+      - %w[id name icon sequence countries created_at updated_at actions published].each do |field|
         th = model.human_attribute_name(field)
   tbody
     - @continents.each do |continent|
       tr
         td = continent.id
-        td = link_to_object continent, module: Admin
+        td = link_to_admin continent
+        td = image_tag continent.icon.to_s, alt: '' if continent.icon
         td = continent.sequence
         td = link_to_count continent.countries
         td = datetime_tag continent.created_at
