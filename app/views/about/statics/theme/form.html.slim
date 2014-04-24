@@ -1,0 +1,228 @@
+doctype html
+html
+	head
+		= render :partial => "about/statics/theme/meta"
+	body
+		= render :partial => "about/statics/theme/header"
+		.body
+			.container
+				= render :partial => "about/statics/theme/breadcrumb"
+				.formbody
+					form
+						fieldset.fms_block
+							label.title_block 组标题
+							ul
+								li.item
+									.itm_media
+										label.title_label 资料
+									.itm_body
+										.update_data
+											.pic
+												img src="/jilv/320x240_4x3.jpg"
+											a.update_btn href="#" 上传企业登记资料表
+											a.down_link href="#" 下载企业登记资料表
+								li.item
+									.itm_media
+										label.title_label 资料
+									.itm_body
+										.update_data
+											.pic
+												img src="/jilv/320x240_4x3.jpg"
+											a.update_btn href="#" 上传授权书
+											a.down_link href="#" 下载授权书
+											p.explanation 按照要求填写后，上传加公章的扫描件或数码照。支持.jpg,.jpeg,.bmp,.gif,.png格式图片，大小不超过5M
+								li.item
+									.itm_media
+										label.title_label 标题
+									.itm_body
+										.update_avatar
+											.pic
+												img src="/jilv/320x240_4x3.jpg"
+											a.update_btn href="#" 上传图片
+								li.item
+									.itm_media
+										label.title_label 标题
+									.itm_body
+										.textfield
+											input type="text"
+										a.assist-link href="#" 取消地图坐标信息
+								li.item
+									.itm_media
+										label.title_label 标题
+									.itm_body
+										.selectfield.lfloat
+											select
+												option 请选择
+												option 
+												option 
+										.selectfield.lfloat
+											select
+												option 请选择
+												option 
+												option
+										.selectfield.lfloat
+											select
+												option 请选择
+												option 
+												option
+								li.item
+									.itm_media
+										label.title_label 标题
+									.itm_body
+										.textfield.date_input.lfloat
+											input type="text"
+											a.form_minus href="#" -
+											a.form_plus href="#" +
+										.selectfield.lfloat
+											select
+												option 请选择
+												option 
+												option
+								li.item
+									.itm_media
+										label.title_label
+											| 标题
+											em.important *
+									.itm_body
+										.textfield.search_input.lfloat
+											input type="text"
+											a.search_location href="#"
+												i.icons-tag-16
+											a.input_btn href="#" 搜索一下
+										.selectfield.lfloat
+											select
+												option 请选择
+												option 
+												option
+								li.item
+									.itm_media
+										label.title_label 标题
+									.itm_body
+										.selectfield.lfloat
+											select
+												option 请选择
+												option 
+												option 
+										.textfield.lfloat
+											input type="text"
+								li.item
+									.itm_media
+										label.title_label 资料
+									.itm_body
+										.update_image
+											input type="file"
+								li.item
+									.itm_media
+										label.title_label 标题
+									.itm_body
+										.language_block
+											ul.list
+												- 5.times do
+													li
+														label
+															input type="checkbox"
+															i.flag-icon.flag-xx
+															span.name 英语
+								li.item
+									.itm_media
+										label.title_label 标题
+									.itm_body
+										.product-type
+											.type-item
+												h3.title 度假观光
+												ul.list
+													- 2.times do
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水
+														li
+															label
+																input type="checkbox"
+																span.name 深海
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水潜水
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水潜
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水
+											.type-item
+												h3.title 度假观光
+												ul.list
+													- 1.times do
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水
+											.type-item
+												h3.title 度假观光
+												ul.list
+													- 5.times do
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水
+														li
+															label
+																input type="checkbox"
+																span.name 深海潜水
+						fieldset.fms_block
+							label.title_block 组标题
+							ul
+								li.item
+									.itm_media
+										label.title_label 标题
+									.itm_body
+										.textfield
+											input type="text"
+								li.item
+									.itm_media
+										label.title_label 标题
+									.itm_body
+										.selectfield
+											select
+												option 请选择
+												option 男
+												option 女
+								li.item
+									.itm_media
+										label.title_label 标题
+									.itm_body
+										.textareafield
+											textarea
+		= render :partial => "about/statics/theme/footer"
+		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"

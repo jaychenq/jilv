@@ -1,0 +1,42 @@
+doctype html
+html
+	head
+		= render :partial => "about/statics/theme/meta"
+	body
+		= render :partial => "about/statics/theme/header"
+		.body
+			.container
+				= render :partial => "about/statics/theme/breadcrumb"
+				.new-user
+					.user-content
+						h2 Sign up
+						p Sign up to GetYourGuide for quicker checkout, access to your tickets, and to add activities to your wishlist!
+						form.user-form
+							.field
+								label.lgoin-label 名字
+								input.text type="text"
+							.field
+								label.lgoin-label 邮箱
+								input.text type="text"
+							.field
+								label.lgoin-label 密码
+								input.text type="password"
+							.field
+								label.lgoin-label 确认密码
+								input.text type="password"
+								.prompt-text style="display: block;"
+									| Password strength: 
+									span Hey, you need at least 6 characters to proceed. Dream up a few more.
+							.field.field-checkbox
+								label
+									input.checkbox type="checkbox" name="" value="1" checked="checked"
+									| Send me GetYourGuide's latest promotions and travel tips.
+							.field-button
+								input type="submit" value=" 注 册 "
+						.back-login
+							.back-link
+								a href="#" Already a GetYourGuide member?
+							.state-text
+								p We care about your privacy and won't share your email address with anyone. By proceeding, you confirm that you accept our Terms of Service and Privacy Statement.
+		= render :partial => "about/statics/theme/footer"
+		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"

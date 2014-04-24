@@ -1,0 +1,32 @@
+doctype html
+html
+	head
+		= render :partial => "about/statics/theme/meta"
+	body
+		= render :partial => "about/statics/theme/header"
+		.body
+			.container
+				= render :partial => "about/statics/theme/breadcrumb"
+				.new-user
+					.user-content.login-box
+						h2 Log in
+						p Log in to GetYourGuide for quicker checkout, access to your tickets, and to add activities to your wish list!
+						form.user-form
+							.field
+								label.lgoin-label 邮箱
+								input.text type="text"
+							.field
+								label.lgoin-label 密码
+								input.text type="password"
+							.field.field-checkbox
+								label
+									input.checkbox type="checkbox" name="" value="1" checked="checked"
+									| Remember me
+								a.forgot-password href="#" Forgot your password?
+							.field-button
+								input type="submit" value=" 登 陆 "
+						.back-login
+							.back-link
+								a href="#" Not a member yet? Sign up here!
+		= render :partial => "about/statics/theme/footer"
+		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"

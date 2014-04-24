@@ -1,0 +1,21 @@
+@import "compass/utilities/sprites"
+[class^="icons-"]
+	background: no-repeat 0 0
+	display: inline-block
+	width: 20px
+	height: 20px
+
+@import "jilv/icons/*.png"
+@include all-icons-sprites
+@import "jilv/media/*.png"
+@include all-media-sprites
+
+
+[class^="flag-"],
+.flag-icon
+	background: asset-url("jilv/sprites/flag.png") no-repeat -99px 0
+	display: inline-block
+	width: 24px
+	height: 16px
+.flag-xx
+	background-position: 0 0

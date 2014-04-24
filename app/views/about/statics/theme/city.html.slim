@@ -1,0 +1,32 @@
+doctype html
+html
+	head
+		= render :partial => "about/statics/theme/meta"
+	body
+		= render :partial => "about/statics/theme/header"
+		.body
+			.home
+				.top_images style="background-image: url('/jilv/location_img.jpg');"
+					.container
+						p 四大世界级城市之一
+						h2 伦敦
+				.services_banner
+					.container
+						h3 GetYourGuide gives you:
+						ul
+							li
+								h5 THE BEST SELECTION
+								p More than 24400 things to do
+							li
+								h5 THE LOWEST PRICES
+								p We guarantee it!
+							li
+								h5 FAST & EASY BOOKING
+								p Book online to lock in your tickets
+				.container
+					.activities
+						h2 Top Tours & Activities in Paris
+						.list
+						
+		= render :partial => "about/statics/theme/footer"
+		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"

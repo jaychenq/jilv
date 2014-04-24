@@ -1,0 +1,60 @@
+doctype html
+html
+	head
+		= render :partial => "about/statics/theme/meta"
+	body
+		= render :partial => "about/statics/theme/header"
+		.body
+			.home
+				.home-pic style="background-image: url('/jilv/intro_paris.jpg');"
+					.container
+						.home-search-box
+							h2
+								| Things to do,
+								br
+								| all over the world
+							form.search-place-date
+								.search-box
+									input type="text" placeholder="Where are you going?"
+									button style="color: white; width: 120px;" type="submit" class="search-form-submit"
+										span.icon Search
+				.services_banner
+					.container
+						h3 GetYourGuide gives you:
+						ul
+							li
+								h5 THE BEST SELECTION
+								p More than 24400 things to do
+							li
+								h5 THE LOWEST PRICES
+								p We guarantee it!
+							li
+								h5 FAST & EASY BOOKING
+								p Book online to lock in your tickets
+				.image_list.image_list_3
+					.container
+						.title
+							h3 热门城市
+						.list
+							ul
+								- 9.times do
+									li
+										a.link href="#"
+											img.pic src="/jilv/348x261.jpg"
+											.description
+												h5 热气球
+												p 冲绳 济州岛 巴厘岛 马尔代夫马尔代夫马尔代夫
+				.image_list.image_list_4
+					.container
+						.title
+							h3 热门城市
+						.list
+							ul
+								- 9.times do
+									li
+										a.link href="#"
+											img.pic src="/jilv/348x261.jpg"
+											.pic_name 巴黎
+				.
+		= render :partial => "about/statics/theme/footer"
+		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"

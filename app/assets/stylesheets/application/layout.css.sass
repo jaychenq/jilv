@@ -1,0 +1,340 @@
+$main-color: #029ff0
+
+a
+	color: $main-color
+	text-decoration: none
+	&:hover
+		text-decoration: underline
+.lfloat
+	float: left
+.rfloat
+	float: right
+.main
+	width: 640px
+.side
+	width: 320px
+.box
+	padding: 25px
+.page_show
+	overflow: hidden
+	@include border-radius(5px)
+	@include box-shadow(0 0 1px rgba(0,0,0,0.2))
+	// background: #F0EFF4
+	background: #fff
+	margin-bottom: 30px
+	.main
+		// background: #fff
+		min-height: 500px
+.page_show_side
+	background: #fff asset-url("jilv/sprites/main_bg.png") repeat-y 320px 0
+.page_show_side_r
+	background: #fff asset-url("jilv/sprites/main_bg.png") repeat-y 640px 0
+.page_size
+	width: 960px
+	margin: 0 auto
+	position: relative
+	// background-color: rgba(0,0,0,0.2)
+	// overflow: hidden
+.fixed_header
+	display: block
+	// background-color: rgba(0, 0, 0, 0.9)
+	// @include box-shadow(rgba(#000, 0.4) 0 0 10px)
+	width: 100%
+	height: 60px
+	z-index: 90
+	// position: fixed
+	position: relative
+.fixed-border
+	border-bottom: 1px solid #ECEDE8
+	// background: #fff
+.header
+	display: block
+	width: 100%
+	height: 60px
+	.logo-gyg
+		position: absolute
+		top: 0
+		left: 0px
+		display: block
+		width: 75px
+		height: 111px
+		overflow: hidden
+		background: asset-url("jilv/gyg_logo.png") no-repeat 0 0
+		h1
+			display: none
+	.logo
+		position: absolute
+		top: 0
+		left: 0px
+		display: none
+		width: 140px
+		height: 118px
+		text-indent: -99px
+		overflow: hidden
+		background: $main-color
+		@include box-shadow(rgba(#000, 0.3) 0 0 7px)
+		@include transition-duration(0.5s)
+		h1
+			display: block
+			width: 113px
+			height: 60px
+			position: absolute
+			bottom: 20px
+			left: 15px
+			text-indent: -99px
+			overflow: hidden
+			background: asset-url("jilv/logo.png") no-repeat 0 0
+		&:hover
+			height: 140px
+			@include transition-duration(0.5s)
+	.top_bar
+		float: right
+		li
+			display: inline-block
+			height: 60px
+			vertical-align: top
+			position: relative
+			// background: asset-url("jilv/layouts/header_line.png") no-repeat right center
+			&:last-child
+				background: none
+			a
+				display: inline-block
+				padding: 16px 15px
+				// @include transition-duration(0.5s)
+				&:hover
+					// background: rgba(0,0,0,0.1)
+					color: #fff
+					background: $main-color
+					// @include transition-duration(0.5s)
+				.down-arrow
+					display: block
+					width: 8px
+					height: 8px
+					float: right
+					margin-top: 11px
+					background: asset-url("jilv/other/down-arrow.png") no-repeat 0 0
+				i
+					float: left
+					margin-top: 4px
+					&.icons-cart
+						margin-right: 5px
+				span
+					float: left
+					padding: 7px
+				.cart-count
+					width: 18px
+					height: 18px
+					display: block
+					position: absolute
+					top: 10px
+					left: 24px
+					color: #fff
+					background: #B0B1A8
+					border-radius: 99px
+					border: 2px solid #fff
+					text-align: center
+					padding: 0
+					font-size: 12px
+					line-height: 16px
+			.submenu
+				position: absolute
+				background: #3A3A32
+				width: 200px
+				right: 0
+				top: 60px
+				font-size: 0
+				display: none
+				li
+					border-top: 1px solid #606159
+					display: block
+					padding: 0
+					margin: 0
+					height: 52px
+					overflow: hidden
+					&:first-child
+						border-top: 0 none
+					a
+						display: block
+						padding: 13px 10px
+						height: 26px
+						margin: 0
+						&:hover
+							background: #4e4e46
+					i
+						float: left
+						margin-right: 10px
+					span
+						font-size: 14px
+						color: #fff
+						padding: 0
+						line-height: 28px
+			&.help:hover
+				color: #fff
+				background: $main-color
+				a span
+					color: #fff
+				.submenu
+					display: block
+	.mheader
+		display: block
+		float: left
+		margin-left: 140px
+
+.layout_footersss
+	display: block
+	clear: both
+	width: 100%
+	background: #fff
+	border-top: 1px solid #cacaca
+	padding: 32px 0
+	height: 155px
+	position: relative
+	.info
+		width: 238px
+		display: inline-block
+		vertical-align: top
+		font-size: 0
+		position: relative
+		h3
+			color: #707070
+			font-size: 14px
+			width: 68px
+			display: inline-block
+		ul
+			position: absolute
+			width: 112px
+			left: 87px
+			top: 0
+		li
+			padding-left: 10px
+			display: block
+		[class^="icons-"]
+			width: 35px
+			height: 35px
+		// &:first-child
+		// 	margin-left: 38px
+	.info1
+		li
+			margin-bottom: 16px
+		a
+			color: $main-color
+			font-size: 14px
+			display: inline-block
+			// padding: 8px 0
+	.info2
+		li
+			padding: 0
+			width: 35px
+			height: 35px
+			margin-right: 10px
+			margin-bottom: 10px
+			float: left
+			a
+				padding: 0
+				opacity: 0.7
+				@include transition-duration(0.3s)
+				&:hover
+					opacity: 1
+					@include transition-duration(0.5s)
+			i
+				width: 35px
+				height: 35px
+	.copyright
+		color: #707070
+		font-size: 14px
+		// padding: 43px 0 0 60px
+		line-height: 28px
+		position: absolute
+		top: 0
+		left: 531px
+		span
+			padding-right: 32px
+
+
+.layout_footer
+	display: block
+	clear: both
+	width: 100%
+	padding: 30px 0
+	position: relative
+	.media-and-language
+		padding: 30px 0
+		position: relative
+		border-top: 1px solid #D9DAD0
+		border-bottom: 1px solid #D9DAD0
+		.media-info
+			ul
+				font-size: 0
+			li
+				width: 24px
+				height: 24px
+				display: inline-block
+				margin-right: 10px
+			a
+				opacity: 0.7
+				@include transition-duration(0.3s)
+				&:hover
+					opacity: 1
+					@include transition-duration(0.5s)
+				i
+					width: 100%
+					height: 100%
+					display: inline-block
+	.site-info
+		display: block
+		clear: both
+		width: 100%
+		padding: 32px 0
+		height: 155px
+		position: relative
+		.info
+			width: 238px
+			display: inline-block
+			vertical-align: top
+			font-size: 14px
+			position: relative
+			h3
+				color: #707070
+				font-size: 14px
+				width: 68px
+				display: inline-block
+				padding: 5px 0
+			li
+				padding-left: 0
+				display: block
+				a
+					padding: 5px 0
+					display: inline-block
+.copyright
+	clear: both
+	display: block
+	text-align: center
+	color: #707070
+	font-size: 14px
+	line-height: 28px
+	padding-top: 30px
+	span
+		padding-right: 32px
+
+.breadcrumb
+	color: #D9DAD0
+	font-size: 12px
+	margin: 0 0 30px 110px
+	overflow: hidden
+	padding-top: 10px
+	position: relative
+	text-overflow: ellipsis
+	white-space: nowrap
+	width: 780px
+	a
+		color: #B0B1A8
+		
+	span
+		padding: 0 5px
+	h1
+		color: #B0B1A8
+		display: inline
+
+
+
+
