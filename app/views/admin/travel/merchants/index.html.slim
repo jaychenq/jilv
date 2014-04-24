@@ -1,0 +1,36 @@
+- @page_title = model.model_name.human
+h2
+  | #{model.model_name.human} #{t('list')} (#{@merchants.total_entries}) &nbsp;
+  = link_to t('new'), action: 'new' if can?(:create, model)
+  = link_to t('visit'), model
+= form_tag request.path, method: 'get', id: 'search_form' do
+  .tablenav
+    .alignleft
+      = render 'admin/shared/search/array', field: 'id'
+      = render 'admin/shared/search/like', field: 'name'
+      = render 'admin/shared/search/range', field: 'created_at'
+      = render 'admin/shared/search/range', field: 'updated_at'
+      = render 'admin/shared/search/order'
+      = render 'admin/shared/search/page'
+      = submit_tag t('search'), name: nil, class: 'button-secondary'
+    br.clear
+br.clear
+table.widefat
+  thead
+    tr
+      - %w[id name entity principal_name products created_at updated_at actions].each do |field|
+        th = model.human_attribute_name(field)
+  tbody
+    - @merchants.each do |merchant|
+      tr
+        td = merchant.id
+        td = link_to_admin merchant
+        td = merchant.class.entities.keys.map { |entity| [entity, t("activerecord.enums.#{merchant.class.name.underscore}.entity.#{entity}")] }.to_h[merchant.entity]
+        td = merchant.principal_name
+        td
+          = link_to_admin_count merchant.products
+          = link_to_if can?(:create, merchant.products), '+', new_admin_travel_product_path('travel_product[merchant_id]' => merchant.id)
+        td = datetime_tag merchant.created_at
+        td = datetime_tag merchant.updated_at
+        td = render 'actions', merchant: merchant
+= render 'admin/shared/pagination'

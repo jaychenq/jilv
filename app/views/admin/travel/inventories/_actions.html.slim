@@ -1,0 +1,5 @@
+= link_to t('show'), [:admin, inventory] if can?(:show, inventory)
+= link_to t('edit'), [:edit, :admin, inventory] if can?(:update, inventory)
+= link_to t('delete'), [:delete, :admin, inventory], class: 'facebox' if can?(:destroy, inventory)
+= link_to t('copy'), action: 'new', id: inventory.id if can?(:copy, inventory)
+= link_to t('visit'), inventory.journey.product, target: '_blank'

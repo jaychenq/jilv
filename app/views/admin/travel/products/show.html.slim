@@ -1,0 +1,134 @@
+- product = @product
+- @page_title = "#{product.class.model_name.human} #{product.id} #{product.name}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && product.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if product.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : product.new_record? ? 'new' : 'edit')} #{t(product.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', product: product if show && product.active?
+= form_for product, url: [:admin, product], method: product.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if product.id?
+        tr
+          th = f.label :id
+          td = product.id
+      tr
+        th = f.label :merchant_id
+        td
+          - if show || product.id? || product.merchant
+            = link_to_admin product.merchant
+          - else
+            = f.collection_select :merchant_id, Travel::Merchant.all.sort_by(&:name), :id, :name, include_blank: true
+            = f.error_message_on :merchant_id
+      tr
+        th = f.label :name
+        td
+          - if show
+            = product.name
+          - else
+            = f.text_field :name
+            = f.error_message_on :name
+      tr
+        th = f.label :description
+        td
+          - if show
+            = sanitize_format product.description
+          - else
+            = f.text_area :description
+            = f.error_message_on :description
+      tr
+        th = f.label :category_id
+        td
+          - if show
+            = link_to_admin product.category
+          - else
+            = f.collection_select :category_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :category_id
+      tr
+        th = f.label :continent_id
+        td
+          - if show
+            = link_to_admin product.continent
+          - else
+            = f.collection_select :continent_id, Travel::Continent.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :continent_id
+      tr
+        th = f.label :country_id
+        td
+          - if show
+            = link_to_admin product.country
+          - else
+            = f.collection_select :country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :country_id
+      tr
+        th = f.label :city_id
+        td
+          - if show
+            = link_to_admin product.city
+          - else
+            = f.collection_select :city_id, Travel::City.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :city_id
+      tr
+        th = f.label :lowest_price
+        td
+          - if show
+            = product.lowest_price
+          - else
+            = f.text_field :lowest_price
+            = f.error_message_on :lowest_price
+      tr
+        th = f.label :latitude
+        td
+          - if show
+            = product.latitude
+          - else
+            = f.text_field :latitude
+            = f.error_message_on :latitude
+      tr
+        th = f.label :longitude
+        td
+          - if show
+            = product.longitude
+          - else
+            = f.text_field :longitude
+            = f.error_message_on :longitude
+      tr
+        th = f.label :started_on
+        td
+          - if show
+            = product.started_on
+          - else
+            = f.text_field :started_on
+            = f.error_message_on :started_on
+      tr
+        th = f.label :ended_on
+        td
+          - if show
+            = product.ended_on
+          - else
+            = f.text_field :ended_on
+            = f.error_message_on :ended_on
+      tr
+        th = f.label :published
+        td
+          - if show
+            = datetime_tag product.published
+          - else
+            = f.check_box :published
+            = f.error_message_on :published
+      - if product.id?
+        tr
+          th = f.label :created_at
+          td = product.created_at
+        tr
+          th = f.label :updated_at
+          td = product.updated_at
+  - unless show
+    .submit = f.submit

@@ -1,0 +1,5 @@
+= link_to t('show'), [:admin, journey] if can?(:show, journey)
+= link_to t('edit'), [:edit, :admin, journey] if can?(:update, journey)
+= link_to t('delete'), [:delete, :admin, journey], class: 'facebox' if can?(:destroy, journey)
+= link_to t('copy'), action: 'new', id: journey.id if can?(:copy, journey)
+= link_to t('visit'), journey.product, target: '_blank'

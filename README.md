@@ -29,9 +29,9 @@
 - Travel::Attribute 属性
 - Travel::Language 语言
 
-#### 商户
+#### 商家
 
-- Travel::Merchant 商户
+- Travel::Merchant 商家
 - Travel::Product 产品
 - Travel::ProductsPhoto 产品照片
 - Travel::Journey 行程

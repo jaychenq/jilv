@@ -29,13 +29,13 @@ en:
       travel/continent: Continent
       travel/country: Country
       travel/favorite: Favorite
+      travel/inventory: Inventory
       travel/journey: Journey
       travel/language: Language
       travel/location: Location
       travel/merchant: Merchant
       travel/product: Product
       travel/parameter: Parameter
-      travel/productsphoto: ProductsPhoto
       travel/question: Question
       travel/refund: Refund
       travel/service: Service
