@@ -29,7 +29,7 @@ table.widefat
         td = merchant.principal_name
         td
           = link_to_admin_count merchant.products
-          = link_to_if can?(:create, merchant.products), '+', new_admin_travel_product_path('travel_product[merchant_id]' => merchant.id)
+          = link_to '+', new_admin_travel_product_path('travel_product[merchant_id]' => merchant.id) if can?(:create, merchant.products)
         td = datetime_tag merchant.created_at
         td = datetime_tag merchant.updated_at
         td = render 'actions', merchant: merchant

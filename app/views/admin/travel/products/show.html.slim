@@ -24,6 +24,8 @@ h2
         td
           - if show || product.id? || product.merchant
             = link_to_admin product.merchant
+            = f.hidden_field :merchant_id
+            = f.error_message_on :merchant_id
           - else
             = f.collection_select :merchant_id, Travel::Merchant.all.sort_by(&:name), :id, :name, include_blank: true
             = f.error_message_on :merchant_id

@@ -2,3 +2,4 @@
 = link_to t('edit'), [:edit, :admin, merchant] if can?(:update, merchant)
 = link_to t('copy'), action: 'new', id: merchant.id if can?(:copy, merchant)
 = link_to t('visit'), merchant, target: '_blank'
+= link_to '新增产品', new_admin_travel_product_path('travel_product[merchant_id]' => merchant.id) if can?(:create, merchant.products)

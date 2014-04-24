@@ -31,13 +31,14 @@ class Admin::Travel::InventoriesController < Admin::Travel::ApplicationControlle
   end
   
   def batch
-    return render if request.get?
+    @inventory.attributes = params[model.table_name.singularize].to_h.slice(*model.admin_fields)
+    return if request.get?
     from = Date.parse(params[:started_on_from])
     to = Date.parse(params[:started_on_to])
     (from..to).each do |started_on|
-      inventory = model.new
+      inventory = model.find_or_initialize_by(journey_id: params[model.table_name.singularize][:journey_id], started_on: started_on)
       inventory.attributes = params[model.table_name.singularize].to_h.slice(*model.admin_fields).merge(started_on: started_on)
-      inventory.save
+      inventory.save!
     end
   end
 end

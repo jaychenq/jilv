@@ -1,10 +1,10 @@
 - if !request.get?
   .updated
-    p 批量新增 #{t('successful')}
+    p 批量 #{t('successful')}
 - else
-  h2 批量新增
+  h2 批量 库存
   - show = false
-  - inventory = Travel::Inventory.new
+  - inventory = @inventory
   = form_for inventory, url: [:batch, :admin, inventory], method: inventory.new_record? ? :post : :put, html: { multipart: true } do |f|
     table.form-table
       tbody
@@ -13,6 +13,8 @@
           td
             - if show || inventory.id? || inventory.journey
               = link_to_admin inventory.journey
+              = f.hidden_field :journey_id
+              = f.error_message_on :journey_id
             - else
               = f.collection_select :journey_id, Travel::Journey.order('id DESC'), :id, :name, include_blank: true
               = f.error_message_on :journey_id

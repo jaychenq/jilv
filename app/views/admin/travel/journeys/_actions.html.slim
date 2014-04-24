@@ -3,3 +3,5 @@
 = link_to t('delete'), [:delete, :admin, journey], class: 'facebox' if can?(:destroy, journey)
 = link_to t('copy'), action: 'new', id: journey.id if can?(:copy, journey)
 = link_to t('visit'), journey.product, target: '_blank'
+= link_to '新增库存', new_admin_travel_inventory_path('travel_inventory[journey_id]' => journey.id) if can?(:create, journey.inventories)
+= link_to '批量库存', batch_admin_travel_inventories_path('travel_inventory[journey_id]' => journey.id) if can?(:create, journey.inventories)

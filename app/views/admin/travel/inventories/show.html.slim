@@ -24,6 +24,8 @@ h2
         td
           - if show || inventory.id? || inventory.journey
             = link_to_admin inventory.journey
+            = f.hidden_field :journey_id
+            = f.error_message_on :journey_id
           - else
             = f.collection_select :journey_id, Travel::Journey.order('id DESC'), :id, :name, include_blank: true
             = f.error_message_on :journey_id

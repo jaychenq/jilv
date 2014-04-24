@@ -35,6 +35,6 @@ table.widefat
         td = boolean_tag product.published
         td
           = link_to_admin_count product.journeys
-          = link_to_if can?(:create, product.journeys), '+', new_admin_travel_journey_path('travel_journey[product_id]' => product.id)
+          = link_to '+', new_admin_travel_journey_path('travel_journey[product_id]' => product.id) if can?(:create, product.journeys)
         td = render 'actions', product: product
 = render 'admin/shared/pagination'

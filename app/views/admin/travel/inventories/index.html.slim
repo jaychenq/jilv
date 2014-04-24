@@ -2,7 +2,7 @@
 h2
   | #{model.model_name.human} #{t('list')} (#{@inventories.total_entries}) &nbsp;
   = link_to t('new'), action: 'new' if can?(:create, model)
-  = link_to '批量新增', action: 'batch' if can?(:create, model)
+  = link_to '批量', action: 'batch' if can?(:create, model)
 = form_tag request.path, method: 'get', id: 'search_form' do
   .tablenav
     .alignleft

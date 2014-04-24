@@ -34,7 +34,8 @@ table.widefat
         td = boolean_tag journey.published?
         td
           = link_to_admin_count journey.inventories
-          = link_to_if can?(:create, journey.inventories), '+', new_admin_travel_inventory_path('travel_inventory[journey_id]' => journey.id)
+          = link_to '+', new_admin_travel_inventory_path('travel_inventory[journey_id]' => journey.id) if can?(:create, journey.inventories)
+          = link_to '*', batch_admin_travel_inventories_path('travel_inventory[journey_id]' => journey.id) if can?(:create, journey.inventories)
         td = datetime_tag journey.created_at
         td = datetime_tag journey.updated_at
         td = render 'actions', journey: journey
