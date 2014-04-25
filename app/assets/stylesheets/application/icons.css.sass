@@ -10,6 +10,12 @@
 @import "jilv/media/*.png"
 @include all-media-sprites
 
+.icon-ok
+	width: 26px
+	height: 20px
+	display: inline-block
+	background: asset-url("jilv/other/ok.png") no-repeat 0 0
+	vertical-align: middle
 
 [class^="flag-"],
 .flag-icon
@@ -19,3 +25,33 @@
 	height: 16px
 .flag-xx
 	background-position: 0 0
+.rating-stars
+	display: inline-block
+	width: 92px
+	height: 18px
+	background: asset-url("jilv/sprites/starsprite.png") -1000px no-repeat
+	text-indent: -9000px
+	vertical-align: middle
+	margin-right: 5px
+.rating-stars.s50
+	background-position: 0 0
+.rating-stars.s45
+	background-position: 0 -20px
+.rating-stars.s40
+	background-position: 0 -40px
+.rating-stars.s35
+	background-position: 0 -60px
+.rating-stars.s30
+	background-position: 0 -80px
+.rating-stars.s25
+	background-position: 0 -100px
+.rating-stars.s20
+	background-position: 0 -120px
+.rating-stars.s15
+	background-position: 0 -140px
+.rating-stars.s10
+	background-position: 0 -160px
+
+
+
+

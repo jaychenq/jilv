@@ -1,5 +1,8 @@
 $main-color: #029ff0
-
+.row-600
+	width: 600px
+.row-290
+	width: 290px
 a
 	color: $main-color
 	text-decoration: none
@@ -103,8 +106,8 @@ a
 				// @include transition-duration(0.5s)
 				&:hover
 					// background: rgba(0,0,0,0.1)
-					color: #fff
-					background: $main-color
+					// color: #fff
+					// background: $main-color
 					// @include transition-duration(0.5s)
 				.down-arrow
 					display: block
@@ -168,11 +171,19 @@ a
 						color: #fff
 						padding: 0
 						line-height: 28px
-			&.help:hover
+			&.help:hover,
+			&.user:hover
 				color: #fff
 				background: $main-color
-				a span
-					color: #fff
+				a 
+					span
+						color: #fff
+					.icons-help
+						background-position: 0 -640px
+					.icons-user
+						background-position: 0 -760px
+					.down-arrow
+						background-position: -15px 0
 				.submenu
 					display: block
 	.mheader
@@ -334,7 +345,54 @@ a
 	h1
 		color: #B0B1A8
 		display: inline
-
-
+.warn-green
+	background-color: #c5e9a3
+	.linkbtn
+		background-color: #00b384
+		color: #fff
+.warn-blue
+	background-color: #BFEBFB
+	.linkbtn
+		background-color: #00AEEF
+		color: #fff
+.page-warn
+	height: 30px
+	margin: 0
+	position: relative
+	width: auto
+	display: block
+	text-align: center
+	padding: 10px 0 0
+	.icon-ok
+		margin-right: 10px
+		margin-top: -3px
+	.closebtn
+		float: right
+		margin-right: 10px
+	p
+		display: inline-block
+		font-weight: 600
+		line-height: 160%
+		margin: 0
+		font-size: 12px
+		.icons-x-blue
+			float: left
+			margin-right: 5px
+		.linkbtn
+			-webkit-font-smoothing: grayscale
+			-moz-osx-font-smoothing: grayscale
+			text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.15)
+			font-weight: 600
+			line-height: 1.2em
+			margin: 0
+			outline: medium none
+			overflow: visible
+			padding: 4px 10px
+			position: relative
+			text-align: center
+			text-decoration: none
+			white-space: nowrap
+			border-radius: 4px
+			margin-left: 5px
 
 

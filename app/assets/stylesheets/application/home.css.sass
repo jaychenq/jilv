@@ -1,25 +1,64 @@
 .home-pic
 	min-height: 400px
-	height: 506px
+	height: 530px
 	background-position: center top
 	background-repeat: no-repeat
 	background-size: cover
 	margin-top: -60px
 	position: relative
 	width: 100%
+	.intro-box
+		position: absolute
+		top: 130px
+		left: 30px
+		width: 420px
 	.home-search-box
 		display: block
-		width: 300px
 		height: 134px
-		position: absolute
-		background: rgba(0,0,0,0.4)
-		top: 200px
-		left: 30px
-		padding: 30px
+		background: rgba(0,0,0,0.5)
+		padding: 25px
+		border-radius: 6px
 		h2
-			font-size: 24px
+			font-size: 32px
 			color: #fff
+			font-weight: bold
+			line-height: 120%
 		.search-place-date
+			
+	.review-box
+		clear: both
+		margin: 0
+		padding: 10px 30px
+		margin-top: 10px
+		position: relative
+		border-radius: 6px
+		background: rgba(255,255,255,0.9)
+		&:before
+			background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjBweCIgaGVpZ2h0PSIzNHB4IiB2aWV3Qm94PSIwIDAgMjAgMzQiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDM0IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIG9wYWNpdHk9IjAuOSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNGRkZGRkYiIGQ9Ik0yMCwxN0wwLDB2MzRMMjAsMTd6Ii8+DQo8L3N2Zz4NCg==")
+			content: " "
+			display: block
+			height: 34px
+			margin-top: -17px
+			position: absolute
+			right: -20px
+			top: 50%
+			width: 20px
+		.review-cont
+			.rating-stars
+				margin-right: 10px
+			font-size: 18px
+			line-height: 22px
+			padding-bottom: 10px
+			vertical-align: middle
+			color: #606159
+		.r-author
+			color: #606159
+			font-size: 14px
+			line-height: 140%
+		.r-tour
+			color: #00AEEF
+			font-size: 14px
+			line-height: 140%
 .top-pic
 	.intro-box:after
 		background-repeat: repeat
@@ -116,11 +155,12 @@
 					width: 220px
 					height: 52px
 					position: absolute
-					top: 140px
-					left: 0
-					background: rgba(#000,0.65)
+					// top: 140px
+					left: 5px
+					// background: rgba(#000,0.65)
 					color: #fff
 					text-align: left
+					bottom: 10px
 					h5
 						font-size: 18px
 						margin-left: 12px
@@ -145,6 +185,28 @@
 			.link
 				width: 300px
 				height: 225px
+				&:hover:before
+					border: 4px solid #00AEEF
+					border-radius: 6px
+					bottom: 0
+					content: " "
+					left: 0
+					position: absolute
+					right: 0
+					top: 0
+					z-index: 20
+				&:after
+					background: asset-url("jilv/other/black-gradual.png") left bottom repeat-x
+					bottom: 0
+					content: " "
+					display: block
+					left: 0
+					position: absolute
+					right: 0
+					top: 0
+					z-index: 10
+				.description
+					z-index: 12
 .image_list_4
 	padding: 30px 0
 	.title
