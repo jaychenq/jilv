@@ -2,17 +2,36 @@ module ApplicationHelper
   def link_to_object(object, options = {})
     return if object.blank?
     _module = options.delete(:module)
-    property = %w[name_for_link_to name id to_s].find { |property| object.respond_to?(property) && object.send(property).present? }
-    link_to(object.send(property), [_module].flatten.compact.map(&:to_s).map(&:downcase) + [object], options)
+    name_method = %w[name_for_link_to name id to_s].find { |property| object.respond_to?(property) && object.send(property).present? }
+    return link_to(object.send(name_method), [_module].flatten.compact.map(&:to_s).map(&:downcase) + [object], options) if object.is_a?(ActiveRecord::Base)
+    path_method = %w[url_for_link_to path_for_link_to url path to_s].find { |property| object.respond_to?(property) && object.send(property).present? }
+    link_to(object.send(name_method), object.send(path_method))
   end
 
   def link_to_admin(object)
-    link_to_object(object, module: Admin)
+    link_to_object(object, module: Admin) if defined? Admin
+  end
+
+  def link_to_business(object)
+    link_to_object(object, module: Business)
+  end
+
+  def link_to_admin_count(records, options = {})
+    return if records.empty?
+    link_to_if(can?(:show, records), records.count, controller: 'admin/' + records.klass.name.downcase.pluralize.gsub('::', '/'), where: { records.proxy_association.reflection.foreign_key => records.proxy_association.owner.id })
   end
 
   def link_to_count(records, options = {})
+    link_to_admin_count(records, options)
+  end
+
+  def link_to_business_count(records, options = {})
     return if records.empty?
-    link_to_if(can?(:show, records), records.count, controller: 'admin/' + records.klass.name.downcase.pluralize.gsub('::', '/'), where: { records.proxy_association.reflection.foreign_key => records.proxy_association.owner.id })
+    link_to records.count, controller: 'business/' + records.klass.name.downcase.pluralize.gsub('::', '/'), where: { records.proxy_association.reflection.foreign_key => records.proxy_association.owner.id }
+  end
+
+  def boolean_tag(value)
+    content_tag(:span, value ? '✔' : '✘')
   end
 
   def can?(action, object)

@@ -29,12 +29,13 @@
 - Travel::Attribute 属性
 - Travel::Language 语言
 
-#### 商户
+#### 商家
 
-- Travel::Merchant 商户
+- Travel::Merchant 商家
 - Travel::Product 产品
-- Travel::ProductsPhoto 产品照片
 - Travel::Journey 行程
+- Travel::Inventory 库存
+- Travel::Photo 照片
 - Travel::Speaking 说话
 - Travel::Parameter 参数
 

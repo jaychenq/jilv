@@ -1,0 +1,38 @@
+- @page_title = model.model_name.human
+h2
+  | #{model.model_name.human} #{t('list')} (#{@inventories.total_entries}) &nbsp;
+  = link_to t('new'), action: 'new' if can?(:create, model)
+  = link_to '批量', action: 'batch' if can?(:create, model)
+= form_tag request.path, method: 'get', id: 'search_form' do
+  .tablenav
+    .alignleft
+      = render 'admin/shared/search/array', field: 'id'
+      = render 'admin/shared/search/basic', field: 'merchant_id'
+      = render 'admin/shared/search/basic', field: 'product_id'
+      = render 'admin/shared/search/basic', field: 'journey_id'
+      = render 'admin/shared/search/range', field: 'started_on'
+      = render 'admin/shared/search/order'
+      = render 'admin/shared/search/page'
+      = submit_tag t('search'), name: nil, class: 'button-secondary'
+    br.clear
+br.clear
+table.widefat
+  thead
+    tr
+      - %w[id merchant_id product_id journey_id started_on adult_price child_price total_number preserved_number remained_number actions].each do |field|
+        th = model.human_attribute_name(field)
+  tbody
+    - @inventories.each do |inventory|
+      tr
+        td = inventory.id
+        td = link_to_admin inventory.merchant
+        td = link_to_admin inventory.product
+        td = link_to_admin inventory.journey
+        td = link_to inventory.started_on, [:admin, inventory]
+        td = inventory.adult_price
+        td = inventory.child_price
+        td = inventory.total_number
+        td = inventory.preserved_number
+        td = inventory.remained_number
+        td = render 'actions', inventory: inventory
+= render 'admin/shared/pagination'

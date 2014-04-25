@@ -20,7 +20,7 @@
               - if @current_user
                 =' t('.hello')
                 =' link_to_object @current_user, module: Admin
-                =' link_to t('.sign_out'), account_session_path(0), method: 'delete', data: { _confirm: '确定退出吗？' }
+                =' link_to t('.sign_out'), account_session_path(0), method: 'delete'
               - else
                 =' link_to t('.sign_up'), new_account_user_path
                 =' link_to t('.sign_in'), new_account_session_path
@@ -34,11 +34,12 @@
                   { name: 'city' },
                   { name: 'location' },
                   { name: 'category' },
-                  { name: 'attribute' },
                   { name: 'language' },
+                  { name: 'attribute' },
                   { name: 'merchant' },
                   { name: 'product' },
                   { name: 'journey' },
+                  { name: 'inventory' },
                   { name: 'tourist' },
                   { name: 'favorite' },
                   { name: 'question' },

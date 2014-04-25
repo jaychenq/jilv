@@ -44,10 +44,18 @@ h2
             = f.text_field :sequence
             = f.error_message_on :sequence
       tr
+        th = f.label :icon
+        td
+          - if show
+            = image_tag attribute.icon.to_s, alt: '' if attribute.icon
+          - else
+            = f.file_field :icon
+            = f.error_message_on :icon
+      tr
         th = f.label :category_id
         td
           - if show
-            = link_to_object attribute.category, module: Admin
+            = link_to_admin attribute.category
           - else
             = f.collection_select :category_id, Travel::Category.order('sequence ASC, name DESC'), :id, :name, include_blank: true
             = f.error_message_on :category_id
@@ -70,9 +78,9 @@ h2
           td = attribute.updated_at
         tr
           th = f.label :creator_id
-          td = link_to_object attribute.creator, module: Admin
+          td = link_to_admin attribute.creator
         tr
           th = f.label :updater_id
-          td = link_to_object attribute.updater, module: Admin
+          td = link_to_admin attribute.updater
   - unless show
     .submit = f.submit

@@ -19,15 +19,16 @@ br.clear
 table.widefat
   thead
     tr
-      - %w[id name sequence category_id options created_at actions published].each do |field|
+      - %w[id name icon sequence category_id options created_at actions published].each do |field|
         th = model.human_attribute_name(field)
   tbody
     - @attributes.each do |attribute|
       tr
         td = attribute.id
-        td = link_to_object attribute, module: Admin
+        td = link_to_admin attribute
+        td = image_tag attribute.icon.to_s, alt: '' if attribute.icon
         td = attribute.sequence
-        td = link_to_object attribute.category, module: Admin
+        td = link_to_admin attribute.category
         td = attribute.options.to_s.split(/\s+/).join(', ')
         td = datetime_tag attribute.created_at
         td = render 'actions', attribute: attribute

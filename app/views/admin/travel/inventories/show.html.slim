@@ -1,0 +1,78 @@
+- inventory = @inventory
+- @page_title = "#{inventory.class.model_name.human} #{inventory.id}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && inventory.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if inventory.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : inventory.new_record? ? 'new' : 'edit')} #{t(inventory.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', inventory: inventory if show && inventory.active?
+= form_for inventory, url: [:admin, inventory], method: inventory.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if inventory.id?
+        tr
+          th = f.label :id
+          td = inventory.id
+      tr
+        th = f.label :journey_id
+        td
+          - if show || inventory.id? || inventory.journey
+            = link_to_admin inventory.journey
+            = f.hidden_field :journey_id
+            = f.error_message_on :journey_id
+          - else
+            = f.collection_select :journey_id, Travel::Journey.order('id DESC'), :id, :name, include_blank: true
+            = f.error_message_on :journey_id
+      tr
+        th = f.label :started_on
+        td
+          - if show
+            = inventory.started_on
+          - else
+            = f.text_field :started_on
+            = f.error_message_on :started_on
+      tr
+        th = f.label :adult_price
+        td
+          - if show
+            = inventory.adult_price
+          - else
+            = f.text_field :adult_price
+            = f.error_message_on :adult_price
+      tr
+        th = f.label :child_price
+        td
+          - if show
+            = inventory.child_price
+          - else
+            = f.text_field :child_price
+            = f.error_message_on :child_price
+      tr
+        th = f.label :total_number
+        td
+          - if show
+            = inventory.total_number
+          - else
+            = f.text_field :total_number
+            = f.error_message_on :total_number
+      tr
+        th = f.label :preserved_number
+        td = inventory.preserved_number
+      tr
+        th = f.label :remained_number
+        td = inventory.remained_number
+      - if inventory.id?
+        tr
+          th = f.label :created_at
+          td = inventory.created_at
+        tr
+          th = f.label :updated_at
+          td = inventory.updated_at
+  - unless show
+    .submit = f.submit

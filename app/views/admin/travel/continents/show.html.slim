@@ -43,6 +43,30 @@ h2
           - else
             = f.text_field :sequence
             = f.error_message_on :sequence
+      tr
+        th = f.label :icon
+        td
+          - if show
+            = image_tag continent.icon.to_s, alt: '' if continent.icon
+          - else
+            = f.file_field :icon
+            = f.error_message_on :icon
+      tr
+        th = f.label :landscape
+        td
+          - if show
+            = image_tag continent.landscape.to_s, alt: '' if continent.landscape
+          - else
+            = f.file_field :landscape
+            = f.error_message_on :landscape
+      tr
+        th = f.label :background
+        td
+          - if show
+            = image_tag continent.background.to_s, alt: '' if continent.background
+          - else
+            = f.file_field :background
+            = f.error_message_on :background
       - if continent.id?
         tr
           th = f.label :created_at
@@ -52,9 +76,9 @@ h2
           td = continent.updated_at
         tr
           th = f.label :creator_id
-          td = link_to_object continent.creator, module: Admin
+          td = link_to_admin continent.creator
         tr
           th = f.label :updater_id
-          td = link_to_object continent.updater, module: Admin
+          td = link_to_admin continent.updater
   - unless show
     .submit = f.submit

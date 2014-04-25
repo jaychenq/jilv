@@ -8,6 +8,13 @@ Rails.application.routes.draw do
       put :withdraw
     end
   end
+  
+  concern :batch do
+    collection do
+      get :batch
+      post :batch
+    end
+  end
 
   namespace :about do
     resources :audios
@@ -70,11 +77,12 @@ Rails.application.routes.draw do
       resources :continents, concerns: :deletable
       resources :countries, concerns: :deletable
       resources :favorites
-      resources :journeys
+      resources :inventories, concerns: [:deletable, :batch]
+      resources :journeys, concerns: :deletable
       resources :languages, concerns: :deletable
       resources :locations, concerns: :deletable
       resources :merchants
-      resources :products
+      resources :products, concerns: :deletable
       resources :questions
       resources :refunds
       resources :services
@@ -84,6 +92,7 @@ Rails.application.routes.draw do
 
   namespace :business do
     namespace :travel do
+      resources :inventories
       resources :journeys
       resources :merchants
       resources :products

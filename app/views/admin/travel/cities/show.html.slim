@@ -44,10 +44,34 @@ h2
             = f.text_field :sequence
             = f.error_message_on :sequence
       tr
+        th = f.label :icon
+        td
+          - if show
+            = image_tag city.icon.to_s, alt: '' if city.icon
+          - else
+            = f.file_field :icon
+            = f.error_message_on :icon
+      tr
+        th = f.label :landscape
+        td
+          - if show
+            = image_tag city.landscape.to_s, alt: '' if city.landscape
+          - else
+            = f.file_field :landscape
+            = f.error_message_on :landscape
+      tr
+        th = f.label :background
+        td
+          - if show
+            = image_tag city.background.to_s, alt: '' if city.background
+          - else
+            = f.file_field :background
+            = f.error_message_on :background
+      tr
         th = f.label :country_id
         td
           - if show
-            = link_to_object city.country, module: Admin
+            = link_to_admin city.country
           - else
             = f.collection_select :country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name, include_blank: true
             = f.error_message_on :country_id
@@ -60,9 +84,9 @@ h2
           td = city.updated_at
         tr
           th = f.label :creator_id
-          td = link_to_object city.creator, module: Admin
+          td = link_to_admin city.creator
         tr
           th = f.label :updater_id
-          td = link_to_object city.updater, module: Admin
+          td = link_to_admin city.updater
   - unless show
     .submit = f.submit

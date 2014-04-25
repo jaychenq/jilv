@@ -51,6 +51,14 @@ h2
           - else
             = f.text_field :sequence
             = f.error_message_on :sequence
+      tr
+        th = f.label :icon
+        td
+          - if show
+            = image_tag language.icon.to_s, alt: '' if language.icon
+          - else
+            = f.file_field :icon
+            = f.error_message_on :icon
       - if language.id?
         tr
           th = f.label :created_at
@@ -60,9 +68,9 @@ h2
           td = language.updated_at
         tr
           th = f.label :creator_id
-          td = link_to_object language.creator, module: Admin
+          td = link_to_admin language.creator
         tr
           th = f.label :updater_id
-          td = link_to_object language.updater, module: Admin
+          td = link_to_admin language.updater
   - unless show
     .submit = f.submit

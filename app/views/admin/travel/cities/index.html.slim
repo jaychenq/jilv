@@ -20,15 +20,16 @@ br.clear
 table.widefat
   thead
     tr
-      - %w[id name sequence country_id locations created_at updated_at actions published].each do |field|
+      - %w[id name icon sequence country_id locations created_at updated_at actions published].each do |field|
         th = model.human_attribute_name(field)
   tbody
     - @cities.each do |city|
       tr
         td = city.id
-        td = link_to_object city, module: Admin
+        td = link_to_admin city
+        td = image_tag city.icon.to_s, alt: '' if city.icon
         td = city.sequence
-        td = link_to_object city.country, module: Admin
+        td = link_to_admin city.country
         td = link_to_count city.locations
         td = datetime_tag city.created_at
         td = datetime_tag city.updated_at

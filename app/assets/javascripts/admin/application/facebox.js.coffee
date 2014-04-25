@@ -1,4 +1,5 @@
 $ ->
+  return
   $.facebox.settings.loadingImage = '/favicon.ico'
   $.facebox.settings.closeImage = '/favicon.ico'
   $.facebox.settings.opacity = 0.1

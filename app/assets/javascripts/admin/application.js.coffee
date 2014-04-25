@@ -3,5 +3,7 @@
 #= require turbolinks
 #= require jquery.cookie
 #= require facebox/facebox
+#= require dyndatetime/dynDateTime
+#= require dyndatetime/calendar-zh
 #= require shared/analytics
 #= require_tree ./application

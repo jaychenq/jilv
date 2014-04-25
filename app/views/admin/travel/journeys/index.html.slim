@@ -1,0 +1,42 @@
+- @page_title = model.model_name.human
+h2
+  | #{model.model_name.human} #{t('list')} (#{@journeys.total_entries}) &nbsp;
+  = link_to t('new'), action: 'new' if can?(:create, model)
+= form_tag request.path, method: 'get', id: 'search_form' do
+  .tablenav
+    .alignleft
+      = render 'admin/shared/search/array', field: 'id'
+      = render 'admin/shared/search/basic', field: 'product_id'
+      = render 'admin/shared/search/like', field: 'name'
+      = render 'admin/shared/search/range', field: 'created_at'
+      = render 'admin/shared/search/range', field: 'updated_at'
+      = render 'admin/shared/search/order'
+      = render 'admin/shared/search/page'
+      = submit_tag t('search'), name: nil, class: 'button-secondary'
+    br.clear
+br.clear
+table.widefat
+  thead
+    tr
+      - %w[id merchant_id product_id name sequence market_price lowest_price people_quota published inventories created_at updated_at actions].each do |field|
+        th = model.human_attribute_name(field)
+  tbody
+    - @journeys.each do |journey|
+      tr
+        td = journey.id
+        td = link_to_admin journey.merchant
+        td = link_to_admin journey.product
+        td = link_to_admin journey
+        td = journey.sequence
+        td = journey.market_price
+        td = journey.lowest_price
+        td = journey.people_quota
+        td = boolean_tag journey.published?
+        td
+          = link_to_admin_count journey.inventories
+          = link_to '+', new_admin_travel_inventory_path('travel_inventory[journey_id]' => journey.id) if can?(:create, journey.inventories)
+          = link_to '*', batch_admin_travel_inventories_path('travel_inventory[journey_id]' => journey.id) if can?(:create, journey.inventories)
+        td = datetime_tag journey.created_at
+        td = datetime_tag journey.updated_at
+        td = render 'actions', journey: journey
+= render 'admin/shared/pagination'

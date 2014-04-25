@@ -1,0 +1,207 @@
+- merchant = @merchant
+- @page_title = "#{merchant.class.model_name.human} #{merchant.id} #{merchant.name}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && merchant.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if merchant.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : merchant.new_record? ? 'new' : 'edit')} #{t(merchant.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', merchant: merchant if show
+= form_for merchant, url: [:admin, merchant], method: merchant.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if merchant.id?
+        tr
+          th = f.label :id
+          td = merchant.id
+      tr
+        th = f.label :entity
+        td
+          - if show
+            = merchant.class.entities.keys.map { |entity| [entity, t("activerecord.enums.#{merchant.class.name.underscore}.entity.#{entity}")] }.to_h[merchant.entity]
+          - else
+            = render 'shared/enum_radio', form: f, field: 'entity'
+            = f.error_message_on :entity
+      tr
+        th = f.label :registration
+        td
+          - if show
+            = merchant.registration
+          - else
+            = f.file_field :registration
+            = f.error_message_on :registration
+      tr
+        th = f.label :authorization
+        td
+          - if show
+            = merchant.authorization
+          - else
+            = f.file_field :authorization
+            = f.error_message_on :authorization
+      tr
+        th = f.label :name
+        td
+          - if show
+            = merchant.name
+          - else
+            = f.text_field :name
+            = f.error_message_on :name
+      tr
+        th = f.label :website
+        td
+          - if show
+            = link_to_object merchant.website
+          - else
+            = f.text_field :website
+            = f.error_message_on :website
+      tr
+        th = f.label :principal_name
+        td
+          - if show
+            = merchant.principal_name
+          - else
+            = f.text_field :principal_name
+            = f.error_message_on :principal_name
+      tr
+        th = f.label :principal_identifier
+        td
+          - if show
+            = merchant.principal_identifier
+          - else
+            = f.text_field :principal_identifier
+            = f.error_message_on :principal_identifier
+      tr
+        th = f.label :principal_photo
+        td
+          - if show
+            = merchant.principal_photo
+          - else
+            = f.file_field :principal_photo
+            = f.error_message_on :principal_photo
+            
+      tr
+        th = f.label :continent_id
+        td
+          - if show
+            = link_to_admin merchant.continent
+          - else
+            = f.collection_select :continent_id, Travel::Continent.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :continent_id
+      tr
+        th = f.label :country_id
+        td
+          - if show
+            = link_to_admin merchant.country
+          - else
+            = f.collection_select :country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :country_id
+      tr
+        th = f.label :city_id
+        td
+          - if show
+            = link_to_admin merchant.city
+          - else
+            = f.collection_select :city_id, Travel::City.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :city_id
+      tr
+        th = f.label :address
+        td
+          - if show
+            = merchant.address
+          - else
+            = f.text_field :address
+            = f.error_message_on :address
+      tr
+        th = f.label :latitude
+        td
+          - if show
+            = merchant.latitude
+          - else
+            = f.text_field :latitude
+            = f.error_message_on :latitude
+      tr
+        th = f.label :longitude
+        td
+          - if show
+            = merchant.longitude
+          - else
+            = f.text_field :longitude
+            = f.error_message_on :longitude
+      tr
+        th = f.label :phone_country_id
+        td
+          - if show
+            = link_to_admin merchant.city
+          - else
+            = f.collection_select :phone_country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :phone_country_id
+      tr
+        th = f.label :phone_number
+        td
+          - if show
+            = merchant.phone_number
+          - else
+            = f.text_field :phone_number
+            = f.error_message_on :phone_number
+      tr
+        th = f.label :email
+        td
+          - if show
+            = merchant.email
+          - else
+            = f.text_field :email
+            = f.error_message_on :email
+      tr
+        th = f.label :qq
+        td
+          - if show
+            = merchant.qq
+          - else
+            = f.text_field :qq
+            = f.error_message_on :qq
+      tr
+        th = f.label :wechat
+        td
+          - if show
+            = merchant.wechat
+          - else
+            = f.text_field :wechat
+            = f.error_message_on :wechat
+      tr
+        th = f.label :skype
+        td
+          - if show
+            = merchant.skype
+          - else
+            = f.text_field :skype
+            = f.error_message_on :skype
+      tr
+        th = f.label :logo
+        td
+          - if show
+            = merchant.logo
+          - else
+            = f.file_field :logo
+            = f.error_message_on :logo
+      tr
+        th = f.label :description
+        td
+          - if show
+            = sanitize_format merchant.description
+          - else
+            = f.text_area :description
+            = f.error_message_on :description
+      - if merchant.id?
+        tr
+          th = f.label :created_at
+          td = merchant.created_at
+        tr
+          th = f.label :updated_at
+          td = merchant.updated_at
+  - unless show
+    .submit = f.submit
