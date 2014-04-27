@@ -1,18 +1,28 @@
 - @page_title = '登录'
+- @breadcrumb = { 登录: nil }
 
-h1 登录
-
-= form_for @session, method: 'post' do |f|
-  = hidden_field_tag :redirect, params[:redirect]
-  .form
-    .field
-      .label = f.label :email
-      .input
-        = f.text_field :email
-        = f.error_message_on :email
-    .field
-      .label = f.label :password
-      .input
-        = f.password_field :password
-        = f.error_message_on :password
-    = f.submit
+.container
+  = render 'layouts/application/breadcrumb'
+  .new-user
+    .user-content.login-box
+      h2 登录
+      p Log in to jilv for quicker checkout, access to your tickets, and to add activities to your wish list!
+      = form_for @session, method: 'post', html: { class: 'user-form' } do |f|
+        .field
+          = f.label :email, '邮箱', class: 'lgoin-label'
+          = f.text_field :email, class: 'text'
+          = f.error_message_on :email
+        .field
+          = f.label :password, '密码', class: 'lgoin-label'
+          = f.password_field :password, class: 'text'
+          = f.error_message_on :password
+        .field.field-checkbox
+          label
+            input.checkbox type="checkbox" name="" value="1" checked="checked"
+            | 记住账号
+          a.forgot-password href="#" 忘记密码？
+        .field-button
+          input type="submit" value=" 登 录 "
+      .back-login
+        .back-link
+          a href="/account/users/new" 还不是极旅用户？立刻注册！

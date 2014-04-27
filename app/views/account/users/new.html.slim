@@ -1,36 +1,34 @@
 - @page_title = '注册'
+- @breadcrumb = { 注册: nil }
 
-h1 注册
-
-= form_for @user, method: 'post' do |f|
-  .form
-    .field
-      .label = f.label :name
-      .input
-        = f.text_field :name
-        = f.error_message_on :name
-    / .field
-    /   .label = f.label :gender
-    /   .input
-    /     = render 'shared/enum_radio', form: f, field: 'gender'
-    /     = f.error_message_on :gender
-    / .field
-    /   .label = f.label :avatar
-    /   .input
-    /     = f.file_field :avatar
-    .field
-      .label = f.label :email
-      .input
-        = f.text_field :email
-        = f.error_message_on :email
-    .field
-      .label = f.label :password
-      .input
-        = f.password_field :password
-        = f.error_message_on :password
-    .field
-      - @user.terms_of_service = true
-      .label = f.label :terms_of_service
-      .input
-        = f.check_box :terms_of_service
-    = f.submit
+.container
+  = render 'layouts/application/breadcrumb'
+  .new-user
+    .user-content
+      h2 注册
+      p Sign up to jilv for quicker checkout, access to your tickets, and to add activities to your wishlist!
+      = form_for @user, method: 'post', html: { class: 'user-form' } do |f|
+        .field
+          = f.label :name, '名字', class: 'lgoin-label'
+          = f.text_field :name, class: 'text'
+          = f.error_message_on :name
+        .field
+          = f.label :email, '邮箱', class: 'lgoin-label'
+          = f.text_field :email, class: 'text'
+          = f.error_message_on :email
+        .field
+          = f.label :password, '密码', class: 'lgoin-label'
+          = f.password_field :password, class: 'text'
+          = f.error_message_on :password
+        .field.field-checkbox
+          label
+            - @user.terms_of_service = true
+            = f.check_box :terms_of_service, class: 'checkbox'
+            | 同意极旅用户使用条款和隐私政策
+        .field-button
+          input type="submit" value=" 注 册 "
+      .back-login
+        .back-link
+          a href=new_account_session_path 已经是极旅用户？
+        .state-text
+          p We care about your privacy and won't share your email address with anyone. By proceeding, you confirm that you accept our Terms of Service and Privacy Statement.

@@ -26,8 +26,8 @@
 - Travel::City 城市
 - Travel::Location 地点
 - Travel::Category 分类
-- Travel::Attribute 属性
 - Travel::Language 语言
+- Travel::Attribute 属性
 
 #### 商家
 
@@ -42,12 +42,11 @@
 #### 游客
 
 - Travel::Tourist 游客
-- Travel::Favorite 喜欢
-- Travel::Question 问题
-- Travel::Answer 回答
-- Travel::Service 服务
+- Travel::Review 评价
+- Travel::Favorite 收藏
+- Travel::Question 问答
+- Travel::Order 订单
 - Travel::Refund 退款
-- Travel::Comment 评价
 - Travel::Complaint 投诉
 
 ### Payment 支付
@@ -69,6 +68,7 @@
 - About::Image 图片
 - About::Audio 音频
 - About::Video 视频
+- About::Static 静态
 
 ### Analytic 分析
 

@@ -1,8 +1,75 @@
 .header
-  = link_to '首页', :root
-  - if @current_user
-    = link_to_object @current_user
-    = link_to '退出', account_session_path(0), method: 'delete', data: { _confirm: '确定退出吗？' }
-  - else
-    = link_to '注册', new_account_user_path
-    = link_to '登录', new_account_session_path
+  .fixed_header.fixed-border
+    .container
+      ul.top_bar
+        li.cart
+          a href=new_business_travel_merchant_path
+            /i.icons-cart
+            /span.cart-count 0
+            span 商家入驻
+        li.help
+          a href=""
+            i.icons-help
+            span 帮助
+            em.down-arrow
+          ul.submenu
+            li
+              a href="#"
+                i.icons-user-white
+                span 联系我们
+            li
+              a href="#"
+                i.icons-faq-white
+                span 常见问答
+            li
+              a href="tel:020-53664444" target="_blank"
+                i.icons-tel-gray
+                span 客服：020-53664444
+        li.user
+          - if @current_user
+            a.login-link href=url_for(@current_user)
+              i.icons-user
+              span = @current_user.name
+              em.down-arrow
+            ul.submenu
+              li
+                a href="#"
+                  i.icons-user-white
+                  span 主页
+              li
+                a href="#"
+                  i.icons-tag-white
+                  span 订单
+              li
+                a href="#"
+                  i.icons-lock-white
+                  span 设置
+              li
+                = link_to account_session_path(0), method: 'delete' do
+                  i.icons-lock-white
+                  span 退出
+          - else
+            a.login-link href=new_account_session_path
+              i.icons-user
+              span 登录
+              em.down-arrow
+            ul.submenu
+              li
+                a href=new_account_session_path
+                  i.icons-lock-white
+                  span 登录
+              li
+                a href=new_account_user_path
+                  i.icons-user-white
+                  span 注册
+              li
+                a href="#"
+                  i.icons-tag-white
+                  span 订单
+              li
+                a href="#"
+                  i.icons-love-white
+                  span 收藏
+      .mheader
+        a.logo-gyg href="/"
+          h1 极旅°
