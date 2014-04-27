@@ -1,0 +1,56 @@
+doctype html
+html
+	head
+		= render :partial => "about/statics/theme/meta"
+	body
+		= render :partial => "about/statics/theme/warn_green"
+		= render :partial => "about/statics/theme/warn_blue"
+		= render :partial => "about/statics/theme/header"
+		.body
+			= render :partial => "about/statics/theme/tab_nav"
+			.container
+				.side.lfloat
+					.row-290
+						= render :partial => "about/statics/theme/sub_nav"
+				.main.rfloat
+					.row-600.preferences-form
+						h4.page-h4 修改密码
+						.formbody
+							form
+								fieldset.fms_block
+									ul
+										li.item
+											.itm_media
+												label.title_label Company Name
+											.itm_body
+												.selectfield
+													select
+														option 请选择
+														option 
+														option
+								hr
+								fieldset.fms_block
+									ul
+										li.item
+											.itm_media
+												label.title_label Company Name
+											.itm_body
+												.selectfield
+													select
+														option 请选择
+														option 
+														option
+								hr
+								fieldset.fms_block
+									ul
+										li.item
+											.itm_media
+												label.title_label Company Name
+											.itm_body
+												.newsletter-confirm
+													input type="checkbox"
+													span.name Yes! Send me the GetYourGuide newsletter so I can stay on top of travel deals and tips. 
+										li.item.item-btn
+											button.button.btn-blue name="save_profile" Change password
+		= render :partial => "about/statics/theme/footer"
+		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"
