@@ -5,12 +5,12 @@ class Travel::Product < ActiveRecord::Base
   belongs_to :country
   belongs_to :city
   belongs_to :location
-  belongs_to :cover, class_name: Travel::ProductsPhoto
+  belongs_to :cover, class_name: Travel::Photo
   has_many :journeys
   has_many :inventories
   has_many :parameters
   has_many :speakings
-  has_many :photos, class_name: Travel::ProductsPhoto
+  has_many :photos
 
   default_scope { where(active: true) }
 

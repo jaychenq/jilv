@@ -1,9 +1,9 @@
 zh-CN:
   activerecord:
     models:
-      travel/products_photo: 产品照片
+      travel/photo: 照片
     attributes:
-      travel/products_photo:
+      travel/photo:
         product_id: 产品
         image: 图片
         sequence: 顺序
