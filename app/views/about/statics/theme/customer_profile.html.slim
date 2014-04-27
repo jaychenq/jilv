@@ -14,11 +14,10 @@ html
 						= render :partial => "about/statics/theme/sub_nav"
 				.main.rfloat
 					.row-600.profile-form
-						h4 Profile Details
+						h4.page-h4 个人设置
 						.formbody
 							form
 								fieldset.fms_block
-									label.title_block 组标题
 									ul
 										li.item
 											.itm_media
@@ -27,42 +26,20 @@ html
 												.update_avatar
 													.pic
 														img src="/jilv/avatar-180.png"
-													a.update_btn href="#" 上传图片
+													span.utext Upload profile picture
+													.update_btn
+														input.filebtn type="file" name="picture"
+														a href="#" 上传图片
+								hr
+								fieldset.fms_block
+									ul
 										li.item
 											.itm_media
-												label.title_label 标题
+												label.title_label
+													| Company Name
+													span.important *
 											.itm_body
-												.textfield
-													input type="text"
-												a.assist-link href="#" 取消地图坐标信息
-										li.item
-											.itm_media
-												label.title_label 标题
-											.itm_body
-												.selectfield.lfloat
-													select
-														option 请选择
-														option 
-														option 
-												.selectfield.lfloat
-													select
-														option 请选择
-														option 
-														option
-												.selectfield.lfloat
-													select
-														option 请选择
-														option 
-														option
-										li.item
-											.itm_media
-												label.title_label 标题
-											.itm_body
-												.textfield.date_input.lfloat
-													input type="text"
-													a.form_minus href="#" -
-													a.form_plus href="#" +
-												.selectfield.lfloat
+												.selectfield
 													select
 														option 请选择
 														option 
@@ -70,148 +47,113 @@ html
 										li.item
 											.itm_media
 												label.title_label
-													| 标题
-													em.important *
-											.itm_body
-												.textfield.search_input.lfloat
-													input type="text"
-													a.search_location href="#"
-														i.icons-tag-16
-													a.input_btn href="#" 搜索一下
-												.selectfield.lfloat
-													select
-														option 请选择
-														option 
-														option
-										li.item
-											.itm_media
-												label.title_label 标题
-											.itm_body
-												.selectfield.lfloat
-													select
-														option 请选择
-														option 
-														option 
-												.textfield.lfloat
-													input type="text"
-										li.item
-											.itm_media
-												label.title_label 资料
-											.itm_body
-												.update_image
-													input type="file"
-										li.item
-											.itm_media
-												label.title_label 标题
-											.itm_body
-												.language_block
-													ul.list
-														- 5.times do
-															li
-																label
-																	input type="checkbox"
-																	i.flag-icon.flag-xx
-																	span.name 英语
-										li.item
-											.itm_media
-												label.title_label 标题
-											.itm_body
-												.product-type
-													.type-item
-														h3.title 度假观光
-														ul.list
-															- 2.times do
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水潜水
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水潜
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水
-													.type-item
-														h3.title 度假观光
-														ul.list
-															- 1.times do
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水
-													.type-item
-														h3.title 度假观光
-														ul.list
-															- 5.times do
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水
-																li
-																	label
-																		input type="checkbox"
-																		span.name 深海潜水
-								fieldset.fms_block
-									label.title_block 组标题
-									ul
-										li.item
-											.itm_media
-												label.title_label 标题
+													| Company Name
+													span.important *
 											.itm_body
 												.textfield
 													input type="text"
 										li.item
 											.itm_media
-												label.title_label 标题
+												label.title_label
+													| Company Name
+													span.important *
+											.itm_body
+												.textfield
+													input type="text"
+										li.item
+											.itm_media
+												label.title_label
+													| Company Name
+													span.important *
+											.itm_body
+												.textfield
+													input type="text"
+								hr
+								fieldset.fms_block
+									ul
+										li.item
+											.itm_media
+												label.title_label Company Name
+											.itm_body
+												.textfield
+													input type="text"
+										li.item
+											.itm_media
+												label.title_label Company Name
+											.itm_body
+												.textfield
+													input type="text"
+										li.item
+											.itm_media
+												label.title_label Company Name
+											.itm_body
+												.textfield
+													input type="text"
+										li.item
+											.itm_media
+												label.title_label Company Name
+											.itm_body
+												.textfield
+													input type="text"
+										li.item
+											.itm_media
+												label.title_label Company Name
+											.itm_body
+												.textfield
+													input type="text"
+										li.item
+											.itm_media
+												label.title_label Company Name
+											.itm_body
+												.textfield
+													input type="text"
+										li.item
+											.itm_media
+												label.title_label Company Name
+											.itm_body
+												.textfield
+													input type="text"
+										li.item
+											.itm_media
+												label.title_label Company Name
 											.itm_body
 												.selectfield
 													select
 														option 请选择
-														option 男
-														option 女
+														option 
+														option 
 										li.item
 											.itm_media
-												label.title_label 标题
+												label.title_label Company Name
 											.itm_body
-												.textareafield
-													textarea
+												.textfield
+													input type="text"
+												.explanation
+													span.important *
+													| Fields required for booking 
+								hr
+								fieldset.fms_block
+									ul
+										li.item
+											.itm_media
+												label.title_label Date of birth 
+											.itm_body
+												.selectfield.small.lfloat
+													select
+														option 请选择
+														option 
+														option 
+												.selectfield.small.lfloat
+													select
+														option 请选择
+														option 
+														option
+												.selectfield.small.lfloat
+													select
+														option 请选择
+														option 
+														option
+										li.item.item-btn
+											button.button.btn-blue name="save_profile" Save Changes
 		= render :partial => "about/statics/theme/footer"
 		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"
