@@ -1,0 +1,14 @@
+table.form-table
+  tbody
+    - if speaking.id?
+      tr
+        th = f.label :id
+        td = speaking.id
+    tr
+      th = f.label :language_id
+      td
+        - if show
+          = link_to_object speaking.language
+        - else
+          = f.collection_select :language_id, Travel::Language.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+          = f.error_message_on :language_id

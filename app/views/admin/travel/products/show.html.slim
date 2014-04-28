@@ -118,10 +118,37 @@ h2
             = f.text_field :ended_on
             = f.error_message_on :ended_on
       tr
+        th = f.label :speakings
+        td
+          - (product.speakings.find_all(&:active?).sort_by { |speaking| speaking.id || 99999999 } + (show ? [] : 1..10).map { product.speakings.new(active: false) }).each do |speaking|
+            = f.fields_for :speakings, speaking do |sf|
+              - unless show
+                = sf.check_box :active, onclick: "$(this).next().slideToggle('fast').find('input, textarea').prop('disabled', !$(this).prop('checked'))"
+              div style=('display:none;' unless speaking.active?)
+                = render 'show_speaking', show: show, f: sf, speaking: speaking
+      tr
+        th = f.label :parameters
+        td
+          - (product.parameters.find_all(&:active?).sort_by { |parameter| parameter.id || 99999999 } + (show ? [] : 1..10).map { product.parameters.new(active: false) }).each do |parameter|
+            = f.fields_for :parameters, parameter do |sf|
+              - unless show
+                = sf.check_box :active, onclick: "$(this).next().slideToggle('fast').find('input, textarea').prop('disabled', !$(this).prop('checked'))"
+              div style=('display:none;' unless parameter.active?)
+                = render 'show_parameter', show: show, f: sf, parameter: parameter
+      tr
+        th = f.label :photos
+        td
+          - (product.photos.find_all(&:active?).sort_by { |photo| photo.sequence || 99999999 } + (show ? [] : 1..10).map { product.photos.new(active: false) }).each do |photo|
+            = f.fields_for :photos, photo do |sf|
+              - unless show
+                = sf.check_box :active, onclick: "$(this).next().slideToggle('fast').find('input, textarea').prop('disabled', !$(this).prop('checked'))"
+              div style=('display:none;' unless photo.active?)
+                = render 'show_photo', show: show, f: sf, photo: photo
+      tr
         th = f.label :published
         td
           - if show
-            = datetime_tag product.published
+            = boolean_tag product.published
           - else
             = f.check_box :published
             = f.error_message_on :published

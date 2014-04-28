@@ -1,0 +1,22 @@
+table.form-table
+  tbody
+    - if parameter.id?
+      tr
+        th = f.label :id
+        td = parameter.id
+    tr
+      th = f.label :attribute_id
+      td
+        - if show
+          = link_to_admin parameter._attribute
+        - else
+          = f.collection_select :attribute_id, Travel::Attribute.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+          = f.error_message_on :attribute_id
+    tr
+      th = f.label :option
+      td
+        - if show
+          = parameter.option
+        - else
+          = f.text_field :option
+          = f.error_message_on :option

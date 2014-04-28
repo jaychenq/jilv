@@ -1,0 +1,22 @@
+table.form-table
+  tbody
+    - if photo.id?
+      tr
+        th = f.label :id
+        td = photo.id
+    tr
+      th = f.label :file
+      td
+        - if show
+          = image_tag photo.file, alt: ''
+        - else
+          = f.file_field :file
+          = f.error_message_on :file
+    tr
+      th = f.label :sequence
+      td
+        - if show
+          = photo.sequence
+        - else
+          = f.text_field :sequence
+          = f.error_message_on :sequence
