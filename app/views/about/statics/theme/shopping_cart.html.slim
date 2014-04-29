@@ -1,0 +1,21 @@
+doctype html
+html
+	head
+		= render "about/statics/theme/meta"
+	body
+		= render "about/statics/theme/header"
+		.body
+			.container
+				= render "about/statics/theme/breadcrumb"
+				.cart
+					
+					.empyt
+						h5
+							| Your cart is 
+							span empty
+							| .
+						.etext
+							strong By the way: 
+							| Once you add an activity to your cart, we save your spot for 60 minutes. So go ahead and keep exploring – just don't forget to come back and check out!
+		= render "about/statics/theme/footer"
+		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"

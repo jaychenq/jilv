@@ -1,0 +1,27 @@
+doctype html
+html
+	head
+		= render "about/statics/theme/meta"
+	body
+		= render "about/statics/theme/header"
+		.body
+			= render "about/statics/theme/tab_nav"
+			.container
+				.wishlists
+					.toptips There's nothing on your Wishlist right now. Add something by finding an activity you like and selecting Add to Wishlist. 
+					h2.wish-title Top Destinations
+					.list
+						.wishblock
+							- 9.times do
+								a href="#"
+									img.pic src="/jilv/348x261.jpg"
+									.title 伦敦
+									.country
+										i.flag-icon.flag-xx
+										| 英国
+									.tours
+										span 444
+										|  tours &amp; activities 
+									.arrow »
+					a.more-link href="#" More destinations »
+		= render "about/statics/theme/footer"

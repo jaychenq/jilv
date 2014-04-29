@@ -1,0 +1,38 @@
+doctype html
+html
+	head
+		= render "about/statics/theme/meta"
+	body
+		= render "about/statics/theme/header"
+		.body
+			= render "about/statics/theme/tab_nav"
+			.container
+				.dashboard
+					.side.lfloat
+						.row-290
+							.dashboard-info
+								.pic
+									img src="/jilv/avatar-180.png"
+								.name hi,LALA
+								a.edit href="#" 更新信息
+					.main.rfloat
+						.row-600
+							.messages
+								h2.title Messages
+								.messages-list
+									a.link href="#"
+										i.icons-user-blue
+										strong Complete your profile
+										span Please complete your profile
+									a.link href="#"
+										i.icons-facebook-blue
+										strong Connect with your Facebook account
+										span Log in with your Facebook account
+								h2.title Upcoming activities
+								.activities-list
+									.toptips There's nothing on your Wishlist right now. Add something by finding an activity you like and selecting Add to Wishlist.
+									.bule.toptips
+										| There's nothing on your Wishlist right now. Add something by finding an activity you like and selecting Add to Wishlist.
+										.btnblock
+											a.button.btn-blue name="save_profile" Save Changes
+		= render "about/statics/theme/footer"
