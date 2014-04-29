@@ -5,5 +5,5 @@ zh-CN:
     attributes:
       travel/photo:
         product_id: 产品
-        image: 图片
+        file: 文件
         sequence: 顺序

@@ -10,7 +10,7 @@ zh-CN:
         name: 名称
         website: 网址
         principal_name: 负责人姓名
-        principal_identifier: 负责人护照
+        principal_identifier: 负责人证件
         principal_photo: 负责人照片
         continent_id: 大洲
         country_id: 国家

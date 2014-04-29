@@ -1,7 +1,7 @@
-- if @breadcrumb
-  - @breadcrumb = { 首页: '/' }.merge(@breadcrumb.to_h)
+- if breadcrumb ||= @page_breadcrumb
+  - breadcrumb = { 首页: '/' }.merge(breadcrumb.to_h)
   .breadcrumb
-    - @breadcrumb.to_a[0..-2].each do |name, path|
+    - breadcrumb.to_a[0..-2].each do |name, path|
       a href=path = name
       span »
-    h1 = @breadcrumb.to_a[-1][0]
+    h1 = breadcrumb.to_a[-1][0]

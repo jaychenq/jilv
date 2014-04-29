@@ -19,4 +19,7 @@ zh-CN:
         ended_on: 结束日期
         cover_id: 封面
         published: 发布
+        photos: 照片
+        speakings: 说话
+        parameters: 参数
         journeys: 行程
