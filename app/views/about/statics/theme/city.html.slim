@@ -10,32 +10,124 @@ html
 					.container
 						p 四大世界级城市之一
 						h2 伦敦
-				.services_banner
-					.container
-						h3 GetYourGuide gives you:
-						ul
-							li
-								h5 THE BEST SELECTION
-								p More than 24400 things to do
-							li
-								h5 THE LOWEST PRICES
-								p We guarantee it!
-							li
-								h5 FAST & EASY BOOKING
-								p Book online to lock in your tickets
+				/ .services_banner
+				/ 	.container
+				/ 		h3 GetYourGuide gives you:
+				/ 		ul
+				/ 			li
+				/ 				h5 THE BEST SELECTION
+				/ 				p More than 24400 things to do
+				/ 			li
+				/ 				h5 THE LOWEST PRICES
+				/ 				p We guarantee it!
+				/ 			li
+				/ 				h5 FAST & EASY BOOKING
+				/ 				p Book online to lock in your tickets
 				.container
 					.activities
-						h2 Top Tours & Activities in Paris
+						form.search-place-date
+							.search-box.search-btn-icon
+								input.text type="text" placeholder="Where are you going?"
+								button.search-send type="submit"
+									span Search
+						h2.list-title Top Tours & Activities in Paris
 						.list
 							li
 								a href="#"
-									.price-tag
-										em From
-										span RMB￥34567
 									.image
 										img src="/jilv/348x261.jpg"
+									.bestseller
+										span.bestseller-text.bestseller-red BESTSELLER
+									.price-tag.price-tag-red
+										em From
+										span rmb￥34567
 									.info
 										h2 新西兰遛马团要来一发吗？
-										
+										.rating
+											span.rating-stars.s45
+											span.rating-total 44 Reviews
+										.excerpts
+											| "Fab experience"
+											br
+											| "great service I recommend everyone book this!"
+									.bfooter sightseeing attraction tickets
+							- 3.times do
+								li
+									a href="#"
+										.image
+											img src="/jilv/348x261.jpg"
+										.price-tag
+											em From
+											span RMB￥34567
+										.info
+											h2 新西兰遛马团要来一发吗？
+											.rating
+												span.rating-stars.s45
+												span.rating-total 44 Reviews
+											.excerpts
+												| "Fab experience"
+												br
+												| "great service I recommend everyone book this!"
+										.bfooter sightseeing attraction tickets
+					.image_list.image_list_4
+						hr
+						.rt-more
+							a.button.btn-green href="#" See all tours & things to do in Paris
+						.title
+							h3 热门城市
+						.list
+							ul
+								- 8.times do
+									li
+										a.link href="#"
+											img.pic src="/jilv/348x261.jpg"
+											.pic_name 巴黎
+					.tag-block
+						.list
+							- 6.times do
+								.tag-itm
+									a.t-label href="#"
+										span.tag-icon
+											em icon
+										span.name Cooking
+								.tag-itm
+									a.t-label href="#"
+										span.tag-icon
+											em icon
+										span.name Discounts & Bundles
+								.tag-itm
+									a.t-label href="#"
+										span.tag-icon
+											em icon
+										span.name Active
+					.image_list.image_list_4
+						hr
+						.rt-more
+							a.button.btn-green href="#" See all tours & things to do in Paris
+						.title
+							h3 热门城市
+						.list
+							ul
+								- 4.times do
+									li
+										a.link href="#"
+											img.pic src="/jilv/348x261.jpg"
+											.pic_name 巴黎
+						.bc-more
+							a.button.btn-green href="#" See all tours & things to do in Paris
+							
+					hr
+					.about-block
+						h2 About
+						.image
+							img src="/jilv/640x480.png"
+						.description
+							p Ahh, Paris! The City of Light. No other city has such a reputation for romance. You can embrace it with a candlelit dinner cruise on the Seine, the city’s riverine artery, or maybe with a quaint horse-drawn carriage ride up to that iconic spire, the Eiffel Tower.
+							p Paris’ grand boulevards are instantly recognizable (in fact, the term was invented here). Stroll down the grandest of them all when you walk the Champs-Élysées, a broad, tree-lined thoroughfare banked by pâtisseries, cinemas, and of course, plenty of picturesque Parisian cafes. Following this extravagant promenade takes you to one of the world’s foremost art collections, the Louvre.
+							p If that’s not enough culture, the nearby Palace of Versailles hosts diplomatic functions as well as a permanent museum to complement its extensively manicured gardens.
+					= render :partial => "about/statics/theme/linkbox"
+
+
+
 		= render :partial => "about/statics/theme/footer"
 		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"
