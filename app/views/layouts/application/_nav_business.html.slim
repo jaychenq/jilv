@@ -1,0 +1,11 @@
+.sub_nav
+  ul.tablist
+    li class=('selected' if current == 'merchant')
+      a href=new_business_travel_merchant_path
+        i.icons-user-gray
+        span 商家入驻
+    - if 1 # @current_user.try(:merchant)
+      li
+        a href=business_travel_products_path
+          i.icons-lock-gray
+          span 产品管理

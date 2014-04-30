@@ -16,7 +16,7 @@ class Travel::Merchant < ActiveRecord::Base
   # validates :phone_number, format: { with: /\A[\d-]+\Z/ }
   # validates :email, format: { with: /\A.+@.+\Z/ }
   # validates :qq, format: { with: /\A\d+\Z/ }
-  validates :entity, :registration, :authorization, :name, :website, :principal_name, :principal_identifier, :principal_photo, :address, :latitude, :longitude, :phone_number, :email, :qq, :wechat, :skype, :logo, :description, presence: true
+  validates :entity, :registration, :authorization, :name, :website, :principal_name, :principal_identifier, :principal_photo, :address, :phone_number, :email, :qq, :wechat, :skype, :logo, :description, presence: true # , :latitude, :longitude
   validates :continent, :country, :city, :phone_country, existence: true
 
   cattr_accessor :admin_fields, :business_fields

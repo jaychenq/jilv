@@ -8,6 +8,7 @@
       h2 注册
       p Sign up to jilv for quicker checkout, access to your tickets, and to add activities to your wishlist!
       = form_for @user, method: 'post', html: { class: 'user-form' } do |f|
+        = hidden_field_tag :redirect, params[:redirect] || request.referrer
         .field
           = f.label :name, '名字', class: 'lgoin-label'
           = f.text_field :name, class: 'text'

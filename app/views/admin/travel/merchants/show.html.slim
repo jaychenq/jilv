@@ -30,7 +30,7 @@ h2
       tr
         th = f.label :registration
         td
-          div = link_to merchant.registration, merchant.registration
+          div = link_to_object merchant.registration
           - if show
           - else
             = f.file_field :registration
@@ -38,7 +38,7 @@ h2
       tr
         th = f.label :authorization
         td
-          div = link_to merchant.authorization, merchant.authorization
+          div = link_to_object merchant.authorization
           - if show
           - else
             = f.file_field :authorization
