@@ -11,7 +11,7 @@
       p #{t(params[:action])} #{t('failed')}
 h2
   | #{t(show ? 'show' : journey.new_record? ? 'new' : 'edit')} #{t(journey.class.model_name.human)}
-  span style='font-size:12px;' = render 'actions', journey: journey if show && journey.active?
+  span style='font-size:12px;' = render 'actions', journey: journey if journey.active?
 = form_for journey, url: [:admin, journey], method: journey.new_record? ? :post : :put, html: { multipart: true } do |f|
   table.form-table
     tbody

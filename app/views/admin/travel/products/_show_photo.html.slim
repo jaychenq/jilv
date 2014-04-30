@@ -7,8 +7,8 @@ table.form-table
     tr
       th = f.label :file
       td
+        div = image_tag photo.file, alt: '' if photo.file
         - if show
-          = image_tag photo.file, alt: ''
         - else
           = f.file_field :file
           = f.error_message_on :file

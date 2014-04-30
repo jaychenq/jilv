@@ -17,6 +17,14 @@
 - Admin::Permission 权限
 - Admin::Notification 通知
 
+### About 关于
+
+- About::Page 页面
+- About::Image 图片
+- About::Audio 音频
+- About::Video 视频
+- About::Static 静态
+
 ### Travel 旅游
 
 #### 地点
@@ -61,14 +69,6 @@
 - Message::Email 邮件
 - Message::Feedback 反馈
 - Message::Chat 聊天
-
-### About 关于
-
-- About::Page 页面
-- About::Image 图片
-- About::Audio 音频
-- About::Video 视频
-- About::Static 静态
 
 ### Analytic 分析
 

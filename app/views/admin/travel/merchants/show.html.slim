@@ -11,7 +11,7 @@
       p #{t(params[:action])} #{t('failed')}
 h2
   | #{t(show ? 'show' : merchant.new_record? ? 'new' : 'edit')} #{t(merchant.class.model_name.human)}
-  span style='font-size:12px;' = render 'actions', merchant: merchant if show
+  span style='font-size:12px;' = render 'actions', merchant: merchant
 = form_for merchant, url: [:admin, merchant], method: merchant.new_record? ? :post : :put, html: { multipart: true } do |f|
   table.form-table
     tbody
@@ -30,16 +30,16 @@ h2
       tr
         th = f.label :registration
         td
+          div = link_to merchant.registration, merchant.registration
           - if show
-            = merchant.registration
           - else
             = f.file_field :registration
             = f.error_message_on :registration
       tr
         th = f.label :authorization
         td
+          div = link_to merchant.authorization, merchant.authorization
           - if show
-            = merchant.authorization
           - else
             = f.file_field :authorization
             = f.error_message_on :authorization
@@ -78,12 +78,11 @@ h2
       tr
         th = f.label :principal_photo
         td
+          div = image_tag merchant.principal_photo, alt: '' if merchant.principal_photo
           - if show
-            = merchant.principal_photo
           - else
             = f.file_field :principal_photo
             = f.error_message_on :principal_photo
-            
       tr
         th = f.label :continent_id
         td
@@ -183,8 +182,8 @@ h2
       tr
         th = f.label :logo
         td
+          div = image_tag merchant.logo, alt: '' if merchant.logo
           - if show
-            = merchant.logo
           - else
             = f.file_field :logo
             = f.error_message_on :logo
