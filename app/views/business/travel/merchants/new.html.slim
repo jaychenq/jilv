@@ -113,9 +113,9 @@
                     | 电话
                     span.important *
                 .itm_body
-                  .selectfield
-                    = f.collection_select :phone_country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-                    = f.error_message_on :phone_country_id
+                  /.selectfield
+                  /  = f.collection_select :phone_country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                  /  = f.error_message_on :phone_country_id
                   .textfield
                     = f.text_field :phone_number
                     = f.error_message_on :phone_number
