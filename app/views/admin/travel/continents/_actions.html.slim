@@ -1,5 +1,5 @@
 = link_to t('show'), [:admin, continent] if can?(:show, continent)
 = link_to t('edit'), [:edit, :admin, continent] if can?(:update, continent)
-= link_to t('delete'), [:delete, :admin, continent], rel: 'facebox' if can?(:destroy, continent)
+= link_to t('delete'), [:delete, :admin, continent], class: 'facebox' if can?(:destroy, continent)
 = link_to t('copy'), action: 'new', id: continent.id if can?(:create, continent) && can?(:show, continent)
 = link_to t('visit'), continent

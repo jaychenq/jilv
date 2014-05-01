@@ -26,7 +26,7 @@ table.widefat
         td = image.id
         td = link_to_admin image
         td = link_to_admin image.page
-        td = link_to image_tag(image.file.to_s, style: 'max-height: 40px;'), image.file.to_s, rel: 'facebox' if image.file
+        td = link_to image_tag(image.file.to_s, style: 'max-height: 40px;'), image.file.to_s, class: 'facebox' if image.file
         td = link_to url_for(image), image, target: '_blank' if image.file
         td = datetime_tag image.created_at
         td = datetime_tag image.updated_at

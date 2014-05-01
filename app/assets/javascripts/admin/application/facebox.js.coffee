@@ -1,5 +1,5 @@
 $ ->
-  return
+  # return
   $.facebox.settings.loadingImage = '/favicon.ico'
   $.facebox.settings.closeImage = '/favicon.ico'
   $.facebox.settings.opacity = 0.1
@@ -32,5 +32,7 @@ $ ->
   """
   
   # $(document).on 'reveal.facebox', -> $('#facebox a[rel=facebox]').facebox()
-  $(document).on 'page:change', -> $('a[rel=facebox]').facebox()
+  $(document).on 'page:change', ->
+    $.facebox.settings.inited = false
+    $('.facebox').facebox()
   # $(document).on 'mousedown', 'a[rel=facebox]', -> $(this).facebox()

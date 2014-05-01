@@ -1,5 +1,5 @@
 = link_to t('show'), [:admin, video] if can?(:show, video)
 = link_to t('edit'), [:edit, :admin, video] if can?(:update, video)
-= link_to t('delete'), [:delete, :admin, video], rel: 'facebox' if can?(:destroy, video)
+= link_to t('delete'), [:delete, :admin, video], class: 'facebox' if can?(:destroy, video)
 = link_to t('copy'), action: 'new', id: video.id if can?(:create, video) && can?(:show, video)
 = link_to t('visit'), video, target: '_blank'

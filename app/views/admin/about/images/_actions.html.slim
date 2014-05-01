@@ -1,5 +1,5 @@
 = link_to t('show'), [:admin, image] if can?(:show, image)
 = link_to t('edit'), [:edit, :admin, image] if can?(:update, image)
-= link_to t('delete'), [:delete, :admin, image], rel: 'facebox' if can?(:destroy, image)
+= link_to t('delete'), [:delete, :admin, image], class: 'facebox' if can?(:destroy, image)
 = link_to t('copy'), action: 'new', id: image.id if can?(:create, image) && can?(:show, image)
 = link_to t('visit'), image, target: '_blank'
