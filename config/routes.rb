@@ -81,7 +81,7 @@ Rails.application.routes.draw do
       resources :journeys, concerns: :deletable
       resources :languages, concerns: :deletable
       resources :locations, concerns: :deletable
-      resources :merchants
+      resources :merchants, concerns: :deletable
       resources :products, concerns: :deletable
       resources :questions
       resources :refunds

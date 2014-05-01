@@ -11,7 +11,7 @@
       p #{t(params[:action])} #{t('failed')}
 h2
   | #{t(show ? 'show' : product.new_record? ? 'new' : 'edit')} #{t(product.class.model_name.human)}
-  span style='font-size:12px;' = render 'actions', product: product if product.active?
+  span style='font-size:12px;' = render 'actions', product: product if product.id && product.active?
 = form_for product, url: [:admin, product], method: product.new_record? ? :post : :put, html: { multipart: true } do |f|
   table.form-table
     tbody

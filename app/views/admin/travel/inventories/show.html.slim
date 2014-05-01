@@ -11,7 +11,7 @@
       p #{t(params[:action])} #{t('failed')}
 h2
   | #{t(show ? 'show' : inventory.new_record? ? 'new' : 'edit')} #{t(inventory.class.model_name.human)}
-  span style='font-size:12px;' = render 'actions', inventory: inventory if inventory.active?
+  span style='font-size:12px;' = render 'actions', inventory: inventory if inventory.id && inventory.active?
 = form_for inventory, url: [:admin, inventory], method: inventory.new_record? ? :post : :put, html: { multipart: true } do |f|
   table.form-table
     tbody

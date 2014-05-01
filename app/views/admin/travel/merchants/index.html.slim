@@ -18,7 +18,7 @@ br.clear
 table.widefat
   thead
     tr
-      - %w[id name entity principal_name products created_at updated_at actions].each do |field|
+      - %w[id name entity principal_name products created_at updated_at actions published].each do |field|
         th = model.human_attribute_name(field)
   tbody
     - @merchants.each do |merchant|
@@ -33,4 +33,5 @@ table.widefat
         td = datetime_tag merchant.created_at
         td = datetime_tag merchant.updated_at
         td = render 'actions', merchant: merchant
+        td = render 'admin/shared/publish', record: merchant
 = render 'admin/shared/pagination'

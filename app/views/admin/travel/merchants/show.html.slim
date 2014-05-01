@@ -11,7 +11,7 @@
       p #{t(params[:action])} #{t('failed')}
 h2
   | #{t(show ? 'show' : merchant.new_record? ? 'new' : 'edit')} #{t(merchant.class.model_name.human)}
-  span style='font-size:12px;' = render 'actions', merchant: merchant
+  span style='font-size:12px;' = render 'actions', merchant: merchant if merchant.id
 = form_for merchant, url: [:admin, merchant], method: merchant.new_record? ? :post : :put, html: { multipart: true } do |f|
   table.form-table
     tbody
@@ -195,6 +195,14 @@ h2
           - else
             = f.text_area :description
             = f.error_message_on :description
+      tr
+        th = f.label :published
+        td
+          - if show
+            = boolean_tag merchant.published
+          - else
+            = f.check_box :published
+            = f.error_message_on :published
       - if merchant.id?
         tr
           th = f.label :created_at

@@ -18,6 +18,7 @@ class Travel::Product < ActiveRecord::Base
 
   default_scope { where(active: true) }
 
+  validates_associated :photos, :speakings, :parameters
   validates :name, :lowest_price, :latitude, :longitude, :started_on, :ended_on, presence: true
   validates :merchant, :category, :continent, :country, :city, existence: true
 

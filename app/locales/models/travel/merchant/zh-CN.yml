@@ -34,6 +34,7 @@ zh-CN:
         vetoed_at: 否决时间
         forbidden_by_id: 禁止人员
         forbidden_at: 禁止时间
+        published: 发布
         products: 产品
     enums:
       travel/merchant:

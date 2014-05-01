@@ -1,11 +1,8 @@
 - product = @product
 - show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && product.valid?
+- @page_title = "产品 #{product.name}"
 
-- @page_title = ''
-
-= render 'business/travel/merchants/nav'
-
-h2 产品
+= render 'layouts/application/nav', current: 'merchant'
 
 = form_for product, url: [:business, product], method: product.new_record? ? 'post' : 'put', html: { multipart: true } do |f|
   / = hidden_field_tag :redirect, params[:redirect] || request.fullpath
