@@ -92,11 +92,14 @@ Rails.application.routes.draw do
 
   namespace :business do
     namespace :travel do
+      resources :bookings
+      resources :complaints
       resources :inventories
       resources :journeys
       resources :merchants
+      resources :photos
       resources :products
-      resources :products_photos
+      resources :questions
     end
   end
 

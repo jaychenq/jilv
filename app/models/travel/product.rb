@@ -19,14 +19,14 @@ class Travel::Product < ActiveRecord::Base
   default_scope { where(active: true) }
 
   validates_associated :photos, :speakings, :parameters
-  validates :name, :lowest_price, :latitude, :longitude, :started_on, :ended_on, presence: true
+  validates :name, :lowest_price, :started_on, :ended_on, presence: true # , :latitude, :longitude
   validates :merchant, :category, :continent, :country, :city, existence: true
 
   cattr_accessor :admin_fields, :business_fields
-  self.business_fields = %w[ name description category_id continent_id country_id city_id location_id lowest_price latitude longitude started_on ended_on cover_id published photos_attributes speakings_attributes parameters_attributes ]
-  self.admin_fields = self.business_fields + %w[ merchant_id ]
+  self.business_fields = %w[ name description category_id continent_id country_id city_id location_id lowest_price latitude longitude started_on ended_on cover_id photos_attributes speakings_attributes parameters_attributes ]
+  self.admin_fields = self.business_fields + %w[ merchant_id published ]
   
   before_save do
-    self.cover_id = self.photos.sort_by { |photo| photo.sequence || 99999999 }.first.try(:id)
+    self.cover_id = self.photos.sort_by { |photo| photo.sequence.presence || photo.id }.first.try(:id)
   end
 end

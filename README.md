@@ -50,10 +50,11 @@
 #### 游客
 
 - Travel::Tourist 游客
-- Travel::Review 评价
 - Travel::Favorite 收藏
 - Travel::Question 问答
-- Travel::Order 订单
+- Travel::Booking 订单
+- Travel::Contact 联系
+- Travel::Review 评价
 - Travel::Refund 退款
 - Travel::Complaint 投诉
 
@@ -67,6 +68,7 @@
 
 - Message::Notification 通知
 - Message::Email 邮件
+- Message::Sms 短信
 - Message::Feedback 反馈
 - Message::Chat 聊天
 

@@ -1,9 +1,14 @@
 - journey = @journey
 - show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && journey.valid?
+- @page_title = "行程 #{journey.name}"
 
-- @page_title = ''
-
-= render 'business/travel/merchants/nav'
+= render 'layouts/application/nav', current: 'merchant'
+.container
+  .side.lfloat
+    .row-290
+      = render 'layouts/application/nav_business', current: 'product'
+  .main.rfloat
+    
 
 h2 行程
 
