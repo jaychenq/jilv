@@ -7,6 +7,7 @@
 - Account::User 用户
 - Account::Session 登录
 - Account::Connection 连接
+- Account::Mailer 邮件
 
 ### Admin 管理
 
