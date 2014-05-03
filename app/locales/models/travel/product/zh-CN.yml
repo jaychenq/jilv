@@ -14,6 +14,7 @@ zh-CN:
         country_id: 国家
         city_id: 城市
         location_id: 地点
+        address: 地址
         lowest_price: 最低价
         latitude: 经度
         longitude: 维度

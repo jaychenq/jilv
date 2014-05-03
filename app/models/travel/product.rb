@@ -24,7 +24,7 @@ class Travel::Product < ActiveRecord::Base
   validates :merchant, :category1, :category2, :continent, :country, :city, existence: true
 
   cattr_accessor :admin_fields, :business_fields
-  self.business_fields = %w[ name description category1_id category2_id continent_id country_id city_id location_id lowest_price latitude longitude started_on ended_on cover_id photos_attributes speakings_attributes parameters_attributes ]
+  self.business_fields = %w[ name description category1_id category2_id continent_id country_id city_id location_id address lowest_price latitude longitude started_on ended_on cover_id photos_attributes speakings_attributes parameters_attributes ]
   self.admin_fields = self.business_fields + %w[ merchant_id published ]
   
   before_save do

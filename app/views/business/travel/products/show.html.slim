@@ -50,11 +50,14 @@
                       span.important *
                 .itm_body
                   - if show
-                    = product.category.try(:name)
+                    = product.category2.try(:name)
                   - else
                     .selectfield
-                      = f.collection_select :category_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-                      = f.error_message_on :category_id
+                      = f.collection_select :category1_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                      = f.error_message_on :category1_id
+                    .selectfield
+                      = f.collection_select :category2_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                      = f.error_message_on :category2_id
               li.item
                 .itm_media
                   label.title_label
@@ -74,6 +77,19 @@
                     .selectfield
                       = f.collection_select :city_id, Travel::City.order('sequence ASC, name ASC'), :id, :name, include_blank: true
                       = f.error_message_on :city_id
+              li.item
+                .itm_media
+                  label.title_label
+                    | 地址
+                    - if !show
+                      span.important *
+                .itm_body
+                  - if show
+                    = product.address
+                  - else
+                    .textfield
+                      = f.text_field :address
+                      = f.error_message_on :address
               li.item
                 .itm_media
                   label.title_label

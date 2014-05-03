@@ -86,6 +86,14 @@ h2
             = f.collection_select :city_id, Travel::City.order('sequence ASC, name ASC'), :id, :name, include_blank: true
             = f.error_message_on :city_id
       tr
+        th = f.label :address
+        td
+          - if show
+            = product.address
+          - else
+            = f.text_field :address
+            = f.error_message_on :address
+      tr
         th = f.label :lowest_price
         td
           - if show
