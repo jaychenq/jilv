@@ -52,6 +52,7 @@
 - Travel::Tourist 游客
 - Travel::Favorite 收藏
 - Travel::Question 问答
+- Travel::View 访问
 - Travel::Booking 订单
 - Travel::Contact 联系
 - Travel::Review 评价
@@ -61,7 +62,6 @@
 ### Payment 支付
 
 - Payment::Platform 平台
-- Payment::Currency 货币
 - Payment::Transaction 交易
 
 ### Message 消息
@@ -76,9 +76,3 @@
 
 - Analytic::Statistic 统计
 - Analytic::Google 谷歌
-
-### Office 办公
-
-- Office::Finance 财务
-- Office::Human 人事
-- Office::Application 申请

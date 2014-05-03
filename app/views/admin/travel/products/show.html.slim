@@ -46,13 +46,21 @@ h2
             = f.text_area :description
             = f.error_message_on :description
       tr
-        th = f.label :category_id
+        th = f.label :category1_id
         td
           - if show
-            = link_to_admin product.category
+            = link_to_admin product.category1
           - else
-            = f.collection_select :category_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-            = f.error_message_on :category_id
+            = f.collection_select :category1_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :category1_id
+      tr
+        th = f.label :category2_id
+        td
+          - if show
+            = link_to_admin product.category2
+          - else
+            = f.collection_select :category2_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :category2_id
       tr
         th = f.label :continent_id
         td

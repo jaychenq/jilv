@@ -1,6 +1,7 @@
 class Travel::Product < ActiveRecord::Base
   belongs_to :merchant
-  belongs_to :category
+  belongs_to :category1, class_name: Travel::Category
+  belongs_to :category2, class_name: Travel::Category
   belongs_to :continent
   belongs_to :country
   belongs_to :city
@@ -20,13 +21,13 @@ class Travel::Product < ActiveRecord::Base
 
   validates_associated :photos, :speakings, :parameters
   validates :name, :lowest_price, :started_on, :ended_on, presence: true # , :latitude, :longitude
-  validates :merchant, :category, :continent, :country, :city, existence: true
+  validates :merchant, :category1, :category2, :continent, :country, :city, existence: true
 
   cattr_accessor :admin_fields, :business_fields
-  self.business_fields = %w[ name description category_id continent_id country_id city_id location_id lowest_price latitude longitude started_on ended_on cover_id photos_attributes speakings_attributes parameters_attributes ]
+  self.business_fields = %w[ name description category1_id category2_id continent_id country_id city_id location_id lowest_price latitude longitude started_on ended_on cover_id photos_attributes speakings_attributes parameters_attributes ]
   self.admin_fields = self.business_fields + %w[ merchant_id published ]
   
   before_save do
-    self.cover_id = self.photos.sort_by { |photo| photo.sequence.presence || photo.id }.first.try(:id)
+    self.cover_id = self.photos.sort_by { |photo| photo.sequence.presence || photo.id || 99999999 }.first.try(:id)
   end
 end
