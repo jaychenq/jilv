@@ -94,14 +94,6 @@ h2
             = f.text_field :address
             = f.error_message_on :address
       tr
-        th = f.label :lowest_price
-        td
-          - if show
-            = product.lowest_price
-          - else
-            = f.text_field :lowest_price
-            = f.error_message_on :lowest_price
-      tr
         th = f.label :latitude
         td
           - if show
@@ -133,6 +125,14 @@ h2
           - else
             = f.text_field :ended_on
             = f.error_message_on :ended_on
+      tr
+        th = f.label :lowest_price
+        td
+          - if show
+            = product.lowest_price
+          - else
+            = f.text_field :lowest_price
+            = f.error_message_on :lowest_price
       tr
         th = f.label :speakings
         td
