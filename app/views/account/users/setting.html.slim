@@ -1,0 +1,41 @@
+= render 'layouts/application/nav', current: 'setting'
+.container
+  .side.lfloat
+    .row-290
+      = render 'layouts/application/nav_setting', current: 'setting'
+  .main.rfloat
+    .row-600.preferences-form
+      h4.page-h4 使用设置
+      .formbody
+        form
+          fieldset.fms_block
+            ul
+              li.item
+                .itm_media
+                  label.title_label 界面语言
+                .itm_body
+                  .selectfield
+                    select
+                      option 简体中文
+          hr
+          fieldset.fms_block
+            ul
+              li.item
+                .itm_media
+                  label.title_label 支付方式
+                .itm_body
+                  .selectfield
+                    select
+                      option 支付宝
+          hr
+          fieldset.fms_block
+            ul
+              li.item
+                .itm_media
+                  label.title_label 旅游新闻
+                .itm_body
+                  .newsletter-confirm
+                    input type="checkbox" checked="checked"
+                    span.name 没问题！请给我发送旅游新闻，可以让我及时了解最好的旅游产品信息。
+              li.item.item-btn
+                button.button.btn-blue name="" 保存设置

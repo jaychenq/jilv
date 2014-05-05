@@ -1,11 +1,14 @@
 .tab_nav
   .container
     ul.tablist
-      li class=('selected' if current == 'merchant')
-        a href=new_business_travel_merchant_path 商家
-      li class=('selected' if current == 'tourist')
-        a href="#" 游客
-      li class=('selected' if current == 'message')
-        a href="#" 消息
+      - if @current_user.try(:merchant)
+        li class=('selected' if current == 'merchant')
+          a href=new_business_travel_merchant_path 商家
+      li class=('selected' if current == 'index')
+        a href="/account/users/#{@current_user.try(:id)||0}" 主页
+      li class=('selected' if current == 'book')
+        a href=travel_books_path 订单
+      li class=('selected' if current == 'favorite')
+        a href=travel_favorites_path 收藏
       li class=('selected' if current == 'setting')
-        a href="#" 设置
+        a href="/account/users/#{@current_user.try(:id)||0}/edit" 设置

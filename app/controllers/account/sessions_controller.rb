@@ -2,7 +2,11 @@ class Account::SessionsController < ApplicationController
   def index
     redirect_to :root
   end
-  
+
+  def show
+    redirect_to :root
+  end
+
   def new
     @session = Account::Session.new
   end

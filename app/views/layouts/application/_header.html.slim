@@ -36,15 +36,15 @@
               em.down-arrow
             ul.submenu
               li
-                a href="#"
+                a href=url_for(@current_user)
                   i.icons-user-white
                   span 主页
               li
-                a href="#"
+                a href=travel_books_path
                   i.icons-tag-white
                   span 订单
               li
-                a href="#"
+                a href=url_for([:edit, @current_user])
                   i.icons-lock-white
                   span 设置
               li
@@ -66,11 +66,11 @@
                   i.icons-user-white
                   span 注册
               li
-                a href="#"
+                a href=travel_books_path
                   i.icons-tag-white
                   span 订单
               li
-                a href="#"
+                a href=travel_favorites_path
                   i.icons-love-white
                   span 收藏
       .mheader

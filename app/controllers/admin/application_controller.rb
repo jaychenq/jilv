@@ -18,7 +18,7 @@ class Admin::ApplicationController < ApplicationController
   def destroy
     record = model.f(id)
     raise if !record.respond_to?(:deletable?) || !record.deletable?
-    record.attributes = { published: true }
+    record.attributes = { active: false }
     record.updater_id = @current_user.id if record.respond_to?(:updater_id)
     record.save
     render :show, status: record.valid? ? :accepted : :bad_request

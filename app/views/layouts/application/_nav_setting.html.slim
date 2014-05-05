@@ -1,0 +1,14 @@
+.sub_nav
+  ul.tablist
+    li class=('selected' if current == 'edit')
+      a href=url_for([:edit, @current_user])
+        i.icons-user-gray
+        span 个人资料
+    li class=('selected' if current == 'password')
+      a href=url_for([:password, @current_user])
+        i.icons-lock-gray
+        span 修改密码
+    li class=('selected' if current == 'setting')
+      a href=url_for([:setting, @current_user])
+        i.icons-edit-gray
+        span 使用设置

@@ -25,7 +25,14 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :sessions
-    resources :users
+    resources :users do
+      member do
+        get :password
+        put :password
+        get :setting
+        put :setting
+      end
+    end
   end
 
   namespace :admin do
@@ -105,11 +112,13 @@ Rails.application.routes.draw do
 
   namespace :travel do
     resources :attributes
+    resources :books
     resources :categories
     resources :cities
     resources :continents
     resources :costumers
     resources :countries
+    resources :favorites
     resources :languages
     resources :locations
     resources :merchants

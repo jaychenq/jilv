@@ -1,1 +1,19 @@
-h1 = @user.name
+= render 'layouts/application/nav', current: 'index'
+.container
+  .dashboard
+    .side.lfloat
+      .row-290
+        .dashboard-info
+          .pic
+            = image_tag @current_user.avatar? ? "#{@current_user.avatar}.180.jpg" : '/jilv/avatar-180.png', alt: ''
+          .name 你好，#{@current_user.try(:name)}
+          a.edit href=url_for([:edit, @current_user]) 更新信息
+    .main.rfloat
+      .row-600
+        .messages
+          h2.title 消息
+          .messages-list
+            a.link href=url_for([:edit, @current_user])
+              i.icons-user-blue
+              strong 完善个人资料
+              span 请完善个人资料和设置

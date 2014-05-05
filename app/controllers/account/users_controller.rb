@@ -1,4 +1,6 @@
 class Account::UsersController < ApplicationController
+  before_action :user_required, only: [ :show, :edit, :update, :password, :setting ]
+
   def show
     @user = Account::User.find(params[:id])
   end
@@ -21,5 +23,29 @@ class Account::UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    @user.attributes = params[:account_user].permit(*%w[name gender avatar])
+    @user.save
+    render action: 'edit'
+  end
+
+  def password
+    return render if request.get?
+    @user.update(password: params[:new_password]) if params[:new_password] == params[:confirm_new_password] && @user.authenticate(params[:old_password])
+  end
+
+  def setting
+  end
+
+private
+
+  def user_required
+    @user = @current_user
+    return redirect_to new_account_session_path if !@user
   end
 end
