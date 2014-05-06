@@ -44,8 +44,12 @@
                   i.icons-tag-white
                   span 订单
               li
+                a href=travel_favorites_path
+                  i.icons-love-white
+                  span 收藏
+              li
                 a href=url_for([:edit, @current_user])
-                  i.icons-lock-white
+                  i.icons-settings-white
                   span 设置
               li
                 = link_to account_session_path(0), method: 'delete' do

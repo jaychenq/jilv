@@ -91,13 +91,26 @@
                 .itm_body
                   .selectfield
                     = f.collection_select :continent_id, Travel::Continent.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-                    = f.error_message_on :continent_id
                   .selectfield
-                    = f.collection_select :country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-                    = f.error_message_on :country_id
+                    = f.collection_select :country_id, @merchant.country ? @merchant.country.continent.countries.order('sequence ASC, name ASC') : [], :id, :name, include_blank: true
                   .selectfield
-                    = f.collection_select :city_id, Travel::City.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                    = f.collection_select :city_id, @merchant.city ? @merchant.city.country.cities.order('sequence ASC, name ASC') : [], :id, :name, include_blank: true
                     = f.error_message_on :city_id
+                  #continents data-continents=Travel::Continent.all.to_json(only: [:id, :name], include: { countries: { only: [:id, :name], include: { cities: { only: [:id, :name] } } } })
+                  coffee:
+                    $ ->
+                      $('#travel_merchant_continent_id').on 'change', ->
+                        continents = $('#continents').data('continents')
+                        countries = (_.find(continents, ((continent) -> continent.id == parseInt($('#travel_merchant_continent_id').val()))) || {}).countries || []
+                        options = _.map(countries, ((country) -> '<option value="' + country.id + '">' + country.name + '</option>')).join('')
+                        $('#travel_merchant_country_id').html('<option></option>' + options)
+                        $('#travel_merchant_city_id').html('<option></option>')
+                      $('#travel_merchant_country_id').on 'change', ->
+                        continents = $('#continents').data('continents')
+                        countries = (_.find(continents, ((continent) -> continent.id == parseInt($('#travel_merchant_continent_id').val()))) || {}).countries || []
+                        cities = (_.find(countries, ((country) -> country.id == parseInt($('#travel_merchant_country_id').val()))) || {}).cities || []
+                        options = _.map(cities, ((city) -> '<option value="' + city.id + '">' + city.name + '</option>')).join('')
+                        $('#travel_merchant_city_id').html('<option></option>' + options)
               li.item
                 .itm_media
                   label.title_label
