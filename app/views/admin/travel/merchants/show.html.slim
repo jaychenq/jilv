@@ -28,22 +28,6 @@ h2
             = render 'shared/enum_radio', form: f, field: 'entity'
             = f.error_message_on :entity
       tr
-        th = f.label :registration
-        td
-          div = link_to_object merchant.registration
-          - if show
-          - else
-            = f.file_field :registration
-            = f.error_message_on :registration
-      tr
-        th = f.label :authorization
-        td
-          div = link_to_object merchant.authorization
-          - if show
-          - else
-            = f.file_field :authorization
-            = f.error_message_on :authorization
-      tr
         th = f.label :name
         td
           - if show
@@ -52,37 +36,45 @@ h2
             = f.text_field :name
             = f.error_message_on :name
       tr
-        th = f.label :website
+        th = f.label :first_name
         td
           - if show
-            = link_to_object merchant.website
+            = merchant.first_name
           - else
-            = f.text_field :website
-            = f.error_message_on :website
+            = f.text_field :first_name
+            = f.error_message_on :first_name
       tr
-        th = f.label :principal_name
+        th = f.label :last_name
         td
           - if show
-            = merchant.principal_name
+            = merchant.last_name
           - else
-            = f.text_field :principal_name
-            = f.error_message_on :principal_name
+            = f.text_field :last_name
+            = f.error_message_on :last_name
       tr
-        th = f.label :principal_identifier
+        th = f.label :gender
         td
           - if show
-            = merchant.principal_identifier
+            = merchant.class.genders.keys.map { |gender| [gender, t("activerecord.enums.#{merchant.class.name.underscore}.gender.#{gender}")] }.to_h[merchant.gender]
           - else
-            = f.text_field :principal_identifier
-            = f.error_message_on :principal_identifier
+            = render 'shared/enum_radio', form: f, field: 'gender'
+            = f.error_message_on :gender
       tr
-        th = f.label :principal_photo
+        th = f.label :identification
         td
-          div = image_tag merchant.principal_photo, alt: '' if merchant.principal_photo
+          div = image_tag merchant.identification, alt: '' if merchant.identification
           - if show
           - else
-            = f.file_field :principal_photo
-            = f.error_message_on :principal_photo
+            = f.file_field :identification
+            = f.error_message_on :identification
+      tr
+        th = f.label :company
+        td
+          - if show
+            = merchant.company
+          - else
+            = f.text_field :company
+            = f.error_message_on :company
       tr
         th = f.label :continent_id
         td
@@ -132,13 +124,21 @@ h2
             = f.text_field :longitude
             = f.error_message_on :longitude
       tr
-        th = f.label :phone_country_id
+        th = f.label :website
         td
           - if show
-            = link_to_admin merchant.city
+            = link_to_object merchant.website
           - else
-            = f.collection_select :phone_country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-            = f.error_message_on :phone_country_id
+            = f.text_field :website
+            = f.error_message_on :website
+      tr
+        th = f.label :lisense
+        td
+          div = image_tag merchant.lisense, alt: '' if merchant.lisense
+          - if show
+          - else
+            = f.file_field :lisense
+            = f.error_message_on :lisense
       tr
         th = f.label :phone_number
         td
@@ -147,14 +147,6 @@ h2
           - else
             = f.text_field :phone_number
             = f.error_message_on :phone_number
-      tr
-        th = f.label :email
-        td
-          - if show
-            = merchant.email
-          - else
-            = f.text_field :email
-            = f.error_message_on :email
       tr
         th = f.label :qq
         td

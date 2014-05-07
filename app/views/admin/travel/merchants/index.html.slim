@@ -18,7 +18,7 @@ br.clear
 table.widefat
   thead
     tr
-      - %w[id name entity principal_name products created_at updated_at actions published].each do |field|
+      - %w[id name entity products created_at updated_at actions published].each do |field|
         th = model.human_attribute_name(field)
   tbody
     - @merchants.each do |merchant|
@@ -26,7 +26,6 @@ table.widefat
         td = merchant.id
         td = link_to_admin merchant
         td = merchant.class.entities.keys.map { |entity| [entity, t("activerecord.enums.#{merchant.class.name.underscore}.entity.#{entity}")] }.to_h[merchant.entity]
-        td = merchant.principal_name
         td
           = link_to_admin_count merchant.products
           = link_to '+', new_admin_travel_product_path('travel_product[merchant_id]' => merchant.id) if can?(:create, merchant.products)

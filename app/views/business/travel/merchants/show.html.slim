@@ -22,21 +22,39 @@
               li.item
                 .itm_media
                   label.title_label
-                    | 登记表
-                  .itm_body
-                  div = link_to_object merchant.registration, target: '_blank'
-              li.item
-                .itm_media
-                  label.title_label
-                    | 授权书
-                  .itm_body
-                  div = link_to_object merchant.authorization, target: '_blank'
-              li.item
-                .itm_media
-                  label.title_label
                     | 名称
                   .itm_body
                   = merchant.name
+              li.item
+                .itm_media
+                  label.title_label
+                    | 名字
+                  .itm_body
+                  = merchant.first_name
+              li.item
+                .itm_media
+                  label.title_label
+                    | 姓氏
+                  .itm_body
+                  = merchant.last_name
+              li.item
+                .itm_media
+                  label.title_label
+                    | 性别
+                  .itm_body
+                  = merchant.class.genders.keys.map { |gender| [gender, t("activerecord.enums.#{merchant.class.name.underscore}.gender.#{gender}")] }.to_h[merchant.gender]
+              li.item
+                .itm_media
+                  label.title_label
+                    | 城市
+                  .itm_body
+                    = merchant.city.try(:name)
+              li.item
+                .itm_media
+                  label.title_label
+                    | 地址
+                  .itm_body
+                    = merchant.address
               li.item
                 .itm_media
                   label.title_label
@@ -46,72 +64,39 @@
               li.item
                 .itm_media
                   label.title_label
-                    | 负责人姓名
-                  .itm_body
-                  = merchant.principal_name
-              li.item
-                .itm_media
-                  label.title_label
-                    | 负责人证件
-                  .itm_body
-                  = merchant.principal_identifier
-              li.item
-                .itm_media
-                  label.title_label
-                    | 负责人头像
-                  .itm_body
-                  div = image_tag merchant.principal_photo, alt: '' if merchant.principal_photo
-              li.item
-                .itm_media
-                  label.title_label
-                    | 城市
-                  .itm_body
-                  = merchant.city.try(:name)
-              li.item
-                .itm_media
-                  label.title_label
-                    | 地址
-                  .itm_body
-                  = merchant.address
-              li.item
-                .itm_media
-                  label.title_label
                     | 电话
                   .itm_body
-                  /| (
-                  /= merchant.phone_country.try(:phone_code)
-                  /| )
-                  = merchant.phone_number
+                    = merchant.phone_number
               li.item
                 .itm_media
                   label.title_label
                     | 邮箱
                   .itm_body
-                  = merchant.email
+                    = merchant.email
               li.item
                 .itm_media
                   label.title_label
                     | QQ
                   .itm_body
-                  = merchant.qq
+                    = merchant.qq
               li.item
                 .itm_media
                   label.title_label
                     | 微信
                   .itm_body
-                  = merchant.wechat
+                    = merchant.wechat
               li.item
                 .itm_media
                   label.title_label
                     | Skype
                   .itm_body
-                  = merchant.skype
+                    = merchant.skype
               li.item
                 .itm_media
                   label.title_label
                     | LOGO
                   .itm_body
-                  div = image_tag merchant.logo, alt: '' if merchant.logo
+                    div = image_tag merchant.logo, alt: '' if merchant.logo
               li.item
                 .itm_media
                   label.title_label
