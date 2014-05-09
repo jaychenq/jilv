@@ -23,5 +23,5 @@
           td
             = link_to '查看', [:business, journey]
             = link_to '编辑', [:edit, :business, journey]
-            = link_to '访问', journey
+            = link_to '访问', [:business, journey]
             = link_to '查看库存', business_travel_inventories_path(%s(where[journey_id]) => journey)

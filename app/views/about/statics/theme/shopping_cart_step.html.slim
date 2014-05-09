@@ -1,0 +1,85 @@
+doctype html
+html
+	head
+		= render "about/statics/theme/meta"
+	body
+		= render "about/statics/theme/header"
+		.body
+			.container
+				= render "about/statics/theme/breadcrumb"
+				.cart
+					style
+						| .cart-step { margin-bottom: 30px;}
+					.cart-step
+						.step-line
+						ul
+							li.step-1.current
+								span 1
+								strong Cart
+							li.step-2
+								span 2
+								strong Customer Information
+							li.step-3
+								span 3
+								strong
+									i.icons-lock-gray-s-disabled
+									| Secure payment
+							li.step-4
+								span 4
+								strong Confirmation
+					.cart-step
+						.step-line
+						ul
+							li.step-1.step-past
+								span 1
+								strong Cart
+							li.step-2.current
+								span 2
+								strong Customer Information
+							li.step-3
+								span 3
+								strong
+									i.icons-lock-gray-s-disabled
+									| Secure payment
+							li.step-4
+								span 4
+								strong Confirmation
+					.cart-step
+						.step-line
+						ul
+							li.step-1.step-past
+								span 1
+								strong Cart
+							li.step-2.step-past
+								span 2
+								strong Customer Information
+							li.step-3.current
+								span 3
+								strong
+									i.icons-lock-gray-s-disabled
+									| Secure payment
+							li.step-4
+								span 4
+								strong Confirmation
+					.cart-step
+						.step-line
+						ul
+							li.step-1.step-past
+								span 1
+								strong Cart
+							li.step-2.step-past
+								span 2
+								strong Customer Information
+							li.step-3.step-past
+								span 3
+								strong
+									i.icons-lock-gray-s-disabled
+									| Secure payment
+							li.step-4.current
+								span 4
+								strong Confirmation
+								
+								
+								
+		= render "about/statics/theme/footer"
+		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"

@@ -1,0 +1,509 @@
+.cart-step
+	position: relative
+	overflow: hidden
+	margin-bottom: 20px
+	.step-line
+		border-top: 2px solid #868781
+		width: 810px
+		margin: 0 auto
+		position: absolute
+		top: 12px
+		left: 76px
+	ul
+		li
+			display: inline-block
+			width: 200px
+			position: relative
+			vertical-align: top
+			.icons-lock-gray-s-disabled,
+			.icons-lock-gray-s
+				vertical-align: sub
+				margin-right: 10px
+			&.step-1
+				left: -20px
+			&.step-2
+				left: 53px
+			&.step-3
+				left: 107px
+			&.step-4
+				left: 180px
+			span
+				background-color: #FFF
+				border: 2px solid #868781
+				border-radius: 50%
+				direction: ltr
+				display: block
+				font-weight: bold
+				height: 20px
+				left: 50%
+				margin: 0 0 0 -10px
+				overflow: hidden
+				padding: 0
+				position: relative
+				text-indent: -50px
+				// top: -10px
+				width: 20px
+			strong
+				color: #333
+				font-size: 14px
+				display: block
+				text-align: center
+				line-height: 180%
+				padding-top: 10px
+			&.step-past
+				span
+					background-color: #fff
+					border-color: #7EC440
+				&:after
+					content: " "
+					background: #7EC440
+					width: 250px
+					height: 2px
+					left: 113px
+					top: 12px
+					position: absolute
+			&.current
+				span
+					background-color: #7EC440
+					border-color: #7EC440
+				strong
+					font-weight: bold
+
+.cart-more
+	overflow: hidden
+	margin-bottom: 40px
+	hr
+		margin-bottom: 20px
+		background: #000
+		box-shadow: 1px 1px 0px #ccc
+	.thead
+		color: #393931
+		font-size: 18px
+		padding: 5px 0 15px
+		display: block
+	.list
+		width: 1280px
+		margin: 10px 0
+		li
+			border: 1px solid #D9D9D0
+			cursor: pointer
+			display: inline-block
+			height: 225px
+			margin-right: 51px
+			vertical-align: top
+			width: 284px
+			position: relative
+			a:hover
+				text-decoration: none
+			.name
+				bottom: 10px
+				left: 15px
+				position: absolute
+				color: #606159
+				text-decoration: none
+				font-size: 16px
+			.morlink
+				bottom: 10px
+				right: 15px
+				position: absolute
+				font-size: 14px
+				color: #868780
+				padding-right: 20px
+				background: asset-url("jilv/other/more-arrow.jpg") no-repeat right center
+			.pic
+				width: 288px
+				height: 177px
+				img
+					width: 100%
+					height: 177px
+.payment-methods
+	.payment-icon
+		float: left
+		margin-right: 5px
+.payment-icon
+	display: block
+	width: 48px
+	height: 30px
+.cart-empyt
+	display: block
+	padding: 30px 0
+	width: 600px
+	h5
+		font-size: 16px
+		margin: 0 0 5px
+		color: #3A3A32
+		padding: 0
+		span
+			color: #7EC440
+			font-weight: 600
+	.etext
+		color: #3A3A32
+		font-size: 12px
+		margin: 12px 0 30px
+		padding: 0
+		line-height: 160%
+		strong
+			font-weight: bold
+.cart
+	.cart-login
+		margin-top: 20px
+		display: block
+		// padding: 20px 0
+		a
+			color: #00AEEF
+			cursor: pointer
+			display: inline-block
+			font-size: 14px
+			overflow: hidden
+			&:hover
+				text-decoration: none
+			span
+				float: left
+				margin: 10px
+			em
+				font-size: 36px
+				padding-left: 10px
+				float: left
+	.required-fields
+		color: #73746D
+		display: block
+		font-size: 15px
+		padding-top: 10px
+		text-align: right
+		span
+			color: #FF3D00
+			font-size: 17px
+			padding: 0 5px
+	.from-title
+		display: block
+		padding: 20px 0 20px 42px
+		font-size: 18px
+		border-top: 1px solid #ccc
+		border-bottom: 1px solid #ccc
+		position: relative
+		margin: 15px 0
+		.t-number
+			background-color: #7EC440
+			border-radius: 50%
+			color: #FFF
+			font: 18px 'AlbertExtraBold',Arial,Helvetica,sans-serif
+			height: 22px
+			left: 0
+			padding: 4px 0
+			position: absolute
+			text-align: center
+			width: 30px
+			top: 15px
+	.back
+		background: asset-url("jilv/other/arrow-right.gif") no-repeat 0 2px
+		display: block
+		font-size: 12px
+		font-weight: 600
+		padding: 5px 0 0 20px
+		color: #333
+		text-decoration: underline
+	.cs-block
+		background: #EEE
+		border-radius: 4px
+		margin-bottom: 10px
+		overflow: hidden
+		display: block
+		padding: 20px
+		h3
+			font-size: 16px
+			margin: 2px 0 6px
+			padding-left: 2px
+		.help-phone
+			i
+				float: left
+			span
+				float: left
+				margin: 6px 0 0 2px
+		.text-mod
+			position: relative
+			// padding-left: 38px
+			.icon32x32-tick-green,
+			.icon32x32-cart-phone,
+			.icon32x32-cart-lock
+				position: absolute
+				top: 0
+				left: 0
+			p
+				font-size: 12px
+				position: relative
+				color: #3A3A32
+				margin: 12px 0 0 39px
+				padding: 0
+				line-height: 16px
+				a
+					color: #333
+					text-decoration: underline
+
+.checkout-box
+	padding: 20px
+	background: #eee
+	border-radius: 4px
+	margin-bottom: 20px
+	.overall-price
+		padding: 5px 0 10px
+		font-size: 16px
+		font-weight: bold
+		em
+			color: #000
+		span
+			color: #6A6A6A
+			margin-left: 5px
+	.book-button
+		padding: 10px
+		font-size: 24px
+		border-radius: 4px
+		color: #fff
+		display: block
+		height: 40px
+		padding: 2px 15px 5px
+		text-align: center
+		text-decoration: none
+		background-color: #7EC440
+		border: medium none
+		box-shadow: 0 -3px 0 0 #67a031 inset
+		line-height: 40px
+
+
+.cart-box
+	.formbody .fms_block .textfield input
+		width: 278px
+	.formbody .fms_block .title_label
+		color: #73746D
+	.formbody .item
+		margin-bottom: 20px
+		.itm_body
+			position: relative
+			.formOk
+				display: block
+				font-size: 12px
+				margin-top: 8px
+				width: 20px
+				height: 20px
+				text-indent: -99px
+				overflow: hidden
+				position: absolute
+				top: 4px
+				left: 310px
+				background: asset-url("jilv/other/cart-ok.png") no-repeat left center
+	.explanation
+		width: 350px
+		color: #000
+	.formbody
+		.error-info
+			display: block
+			padding: 5px 0
+			.icons-error
+				float: left
+				margin-top: 5px
+			span
+				font-size: 12px
+				line-height: 17px
+				padding: 0 0 0 6px
+				color: #C60006
+				float: left
+				margin-top: 8px
+	.optional-from
+		display: block
+		margin-bottom: 10px
+		h3
+			font-weight: bold
+			font-size: 14px
+			color: #666
+		label
+			padding: 10px
+			display: block
+			input
+				float: left
+				margin: 0 5px 0 0
+			span
+				font-size: 12px
+	.shopping-list
+		h4
+			font-size: 16px
+			margin: 2px 0 6px
+			padding-left: 2px
+			font-weight: bold
+		&.result-list .result-cont .info .pic
+			width: 80px
+			height: 55px
+		&.result-list .result-cont .graphic-info .text-block
+			margin-left: 100px
+	.payment-list
+		margin-bottom: 20px
+		.promo-code
+			// min-height: 166px
+			padding: 10px 20px
+			.title
+				color: #73746D
+				display: block
+				font-size: 14px
+				font-weight: normal
+				margin: 10px 0
+			.textfield
+				input
+					width: 220px
+			.button
+				margin: 0 0 0 10px
+			hr
+				width: 400px
+				margin: 30px auto 20px
+		.radio-block
+			display: block
+			overflow: hidden
+			label
+				display: block
+				padding: 5px 0
+				overflow: hidden
+				input
+					float: left
+					margin-right: 10px
+					margin-top: 8px
+				.payment-icon
+					float: left
+					margin-right: 10px
+				strong
+					float: left
+					font-size: 14px
+					line-height: 30px
+	.back
+		margin: 20px 0
+	.thead,
+	.tfoot
+		background: #EEE
+		color: #666
+		font-size: 12px
+		font-weight: 600
+		letter-spacing: 0.02em
+		margin: 0 0 6px
+		padding: 8px 10px 4px
+		text-align: right
+		position: relative
+	.thead
+		border-bottom: 1px solid #ccc
+		border-top-left-radius: 4px
+		border-top-right-radius: 4px
+		padding: 8px 10px 8px
+		h3
+			left: 10px
+			top: 10px
+			position: absolute
+		span
+	.tfoot
+		border-top: 1px solid #ccc
+		border-bottom-left-radius: 4px
+		border-bottom-right-radius: 4px
+		span
+		strong
+			color: #333
+			font-size: 18px
+	.set-btn
+		display: inline-block
+		span
+			display: block
+		a
+			color: #333
+			line-height: 18px
+			padding-left: 20px
+			text-decoration: underline
+	.price-block
+		font-weight: bold
+		font-size: 14px
+		line-height: 120%
+		span
+			display: block
+		.price
+			color: #000
+		.old-price
+			color: #666
+			text-decoration: line-through
+		.red-highlight
+			color: #CC0000
+	.help-phone
+		.icons-phone-blue
+			float: left
+		span
+			display: inline
+			line-height: 24px
+			padding-left: 5px
+			font-size: 16px
+	.result-list .result-cont
+		border: 0
+		border-top: 1px solid #CCC
+		background: none
+		padding: 10px 0px
+		height: auto
+		margin-bottom: 0
+		&:first-child
+			border-top: 0
+	.result-list .result-cont .pre-book
+		border: 0
+		background: none
+		height: auto
+	.result-list .result-cont .info
+		width: 468px
+		padding: 0
+		height: auto
+		.pic
+			background: #FFF
+			border: 1px solid #BBB
+			border-radius: 4px
+			float: left
+			padding: 3px
+			width: 175px
+			height: 114px
+	.result-list .result-cont .pre-book
+		width: 156px
+		top: 35px
+		span
+			display: block
+			text-align: right
+	.result-list .result-cont .graphic-info .text-block
+		margin-left: 200px
+		.other-info li
+			margin-bottom: 10px
+		.other-info
+			margin: 0px
+			li strong,
+			li span
+				display: block
+				line-height: 120%
+
+.terms-confirm
+	li
+		display: block
+		margin-bottom: 5px
+		label
+			display: block
+			padding: 8px 8px 8px 35px
+			// background: #eee
+			border-radius: 4px
+			position: relative
+			input
+				left: 10px
+				top: 8px
+				position: absolute
+				margin: 0
+			span
+				font-size: 12px
+			a
+				color: #000
+				text-decoration: underline
+			.red
+				color: red
+			&.check-important
+				background: #FDCBCC
+			&.check-current
+				background: #B0E0AA
+.confirm-block
+	display: block
+	min-height: 100px
+	padding-top: 20px
+	.button
+		float: right
+
+

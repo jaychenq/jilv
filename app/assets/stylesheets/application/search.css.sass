@@ -1,0 +1,450 @@
+.search-page
+	// padding-top: 40px
+	.side
+		width: 215px
+	.main
+		width: 745px
+	.page-title
+		padding: 25px 0
+		h1
+			font-size: 24px
+			font-weight: bold
+			padding: 0
+	.pageber
+		display: block
+		background: #F4EEE5
+		border-radius: 4px
+		clear: both
+		font-size: 12px
+		margin: 0 0 5px
+		padding: 8px
+		text-align: center
+		.pagination
+			em,
+			a,
+			span
+				padding: 0 5px
+			a
+				color: #333
+				text-decoration: underline
+				border-right: 1px solid #CCC
+				// border-left: 1px solid #CCC
+				display: inline
+			span
+			.gap
+				border-right: 1px solid #CCC
+			.current
+				background: #666
+				border-radius: 3px
+				color: #FFF
+				font-weight: 600
+				margin: 0 4px
+				padding: 1px 5px
+				& + a
+					border-left: 1px solid #CCC
+			.previous_page
+				border-right: 1px solid #CCC
+				&.disabled
+					color: #ccc
+			.next_page
+				border-right: 0px
+				&.disabled
+					color: #ccc
+.sub-box
+	background: #F4EEE5
+	&:first-child,
+	&:first-child .title
+		border-top-left-radius: 4px
+		border-top-right-radius: 4px
+	&:last-child
+		border-bottom-left-radius: 4px
+		border-bottom-right-radius: 4px
+	.cont
+		padding-bottom: 10px
+	.title
+		background: #E2DACA
+		color: #7B766F
+		cursor: pointer
+		padding: 5px 10px
+		position: relative
+		z-index: 3
+		h3
+			color: #7B766F
+			font-weight: bold
+		.sub-switch
+			width: 16px
+			height: 9px
+			cursor: pointer
+			overflow: hidden
+			display: block
+			right: 5px
+			margin: 4px 0 0
+			position: absolute
+			text-indent: -9999px
+			top: 5px
+			background: asset-url("jilv/other/sub-switch.png") no-repeat 0 0
+			&.close
+				background-position: 0 -8px
+				height: 15px
+				top: 2px
+				// right: 2px
+	.simple-list
+		padding: 10px 10px 0
+		ul
+		li
+			clear: both
+			display: block
+			overflow: hidden
+			ul
+				margin-left: 20px
+				display: none
+			&.open
+				ul
+					display: block
+			&.close
+				ul
+					display: none
+			a
+				color: #333
+				font-size: 12px
+				text-decoration: none
+				display: block
+				margin: 4px 0 6px
+				position: relative
+				line-height: 16px
+				.toggle-icon
+					display: block
+					float: left
+					width: 18px
+					height: 16px
+					overflow: hidden
+					text-indent: -99px
+					background: asset-url("jilv/other/sub-list-switch.png") no-repeat -99px 5px
+					&.i-single
+						background-position: 0 5px
+					&.i-close
+						background-position: -3px -37px
+					&.i-open
+						background-position: 0 -17px
+				.name
+					text-decoration: underline
+				.count
+					font-size: 10px
+				&.selected
+					padding: 3px 24px 4px 6px
+					background-color: #666
+					border-radius: 3px
+					color: #FFF
+					font-weight: bold
+					.s-close
+						display: block
+						background: #fff asset-url("jilv/other/small_close_x.png") no-repeat center center
+						border: 1px solid #eee
+						border-radius: 2px
+						height: 10px
+						margin: 0 2px 0 0
+						outline: medium none
+						position: absolute
+						right: 4px
+						text-indent: -99px
+						top: 6px
+						width: 10px
+						overflow: hidden
+				.s-close
+					display: none
+	.rating-list
+		padding: 10px 10px 0
+		label
+			display: block
+			font-size: 12px
+			overflow: hidden
+			clear: both
+			margin-bottom: 5px
+			&.disabled
+				color: #CCC
+				pointer-events: none
+				.pic-flag
+					opacity: 0.6
+				span,
+				em,
+				strong
+					color: #ccc
+			.pic-flag
+				width: 16px
+				margin-right: 5px
+				margin-top: 4px
+				float: left
+			input
+				float: left
+				margin: 2px 4px
+			strong
+				line-height: 18px
+				display: inline-block
+			em
+				font-size: 10px
+				line-height: 16px
+	.date-input
+		padding: 10px 10px 0
+		label
+			position: relative
+		input
+			border: 1px solid #999
+			color: #333
+			display: inline-block
+			padding: 3px 4px
+			background: #fff
+			font-size: 12px
+			width: 70px
+		.from
+		.to
+		.date-icon
+			display: block
+			width: 22px
+			height: 20px
+			position: absolute
+			right: 3px
+			top: -2px
+			pointer-events: none
+			background: asset-url("jilv/other/date_search_icon.png") no-repeat 0 0
+			&.date-left
+				background-position: 0 0
+			&.date-right
+				background-position: 0 -20px
+		span
+			display: inline-block
+			padding: 0 5px
+
+.search-tag
+	vertical-align: middle
+	margin: 0 0 10px 0
+	.tag-title
+		float: left
+		font-weight: 600
+		margin: 6px 4px 0 0
+		font-size: 12px
+		vertical-align: middle
+	.tag-box
+		display: inline-block
+		vertical-align: middle
+		.tag-iem
+			background: #FBF2D3
+			border: 1px solid #CCC
+			border-radius: 2px
+			display: inline-block
+			margin: 2px 5px 2px 0
+			padding: 3px 20px 3px 4px
+			position: relative
+			color: #333
+			font-size: 12px
+			font-weight: bold
+			&:hover
+				border-color: #ECD37F
+				text-decoration: none
+			em
+				background: asset-url("jilv/other/small_close_x.png") no-repeat center center
+				border: 1px solid #ECD37F
+				border-radius: 2px
+				display: block
+				height: 10px
+				margin: 0 2px 0 0
+				outline: medium none
+				position: absolute
+				right: 0
+				text-indent: -99px
+				top: 3px
+				width: 10px
+				overflow: hidden
+	.remove-all
+		text-decoration: underline
+		color: #333
+		font-size: 12px
+		font-weight: bold
+		vertical-align: middle
+		&:hover
+			text-decoration: none
+
+.sort
+	background: #F4EEE5
+	border-radius: 4px
+	font-size: 12px
+	padding: 5px 10px
+	margin: 0 0 15px 0
+
+.result-list
+	.result-cont
+		border-radius: 4px
+		display: block
+		font-size: 12px
+		margin: 0 0 15px 0
+		position: relative
+		text-decoration: none
+		border: 2px solid #eee
+		border-bottom: 2px solid #ddd
+		height: 240px
+		background: #eee
+		.supplier
+			color: #666
+			display: block
+			padding: 8px 0 0 5px
+			font-size: 12px
+			em
+				padding-right: 5px
+			span
+				font-weight: bold
+		.info
+			display: block
+			margin: 0
+			width: 535px
+			height: 198px
+			padding: 10px 10px 6px
+			border-radius: 4px
+			background: #fff
+			overflow: hidden
+		.title
+			display: block
+			margin: 1px 0 4px
+			a
+				cursor: pointer
+				font-size: 14px
+				line-height: 1.1em
+				color: #333
+				font-weight: bold
+				text-decoration: underline
+		.review-block
+			strong
+				color: #666
+				font-size: 12px
+				font-weight: normal
+				em
+					font-weight: bold
+					padding: 0 5px 0 2px
+			.rating-stars
+			.pipe
+				padding: 0 5px
+			.wishlist-btn
+				display: inline-block
+				a
+					padding-left: 18px
+					color: #333
+					line-height: 18px
+					text-decoration: underline
+		.graphic-info
+			padding-top: 5px
+			.pic
+				display: block
+				width: 150px
+				height: 100px
+				position: relative
+				float: left
+				border-radius: 4px
+				img
+					display: block
+					width: 100%
+					height: 100%
+					border-radius: 4px
+				.bestseller
+					position: absolute
+					left: 0px
+					bottom: 0px
+					padding: 0 10px
+					text-align: center
+					text-decoration: none
+					z-index: 1
+					background: #FE3300
+					background: linear-gradient(to bottom, #FE3300 0%, #BD3300 100%) repeat scroll 0 0 rgba(0, 0, 0, 0)
+					border-top-right-radius: 4px
+					span
+						color: #FFF
+						font-size: 12px
+						font-weight: bold
+						line-height: 26px
+						text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3)
+						text-transform: uppercase
+			.text-block
+				margin-left: 160px
+				.text
+					color: #3A3A32
+					font-size: 12px
+					line-height: 120%
+				.more
+					color: #333
+					text-decoration: underline
+					margin-top: 2px
+				.other-info
+					margin-top: 18px
+					li
+						font-size: 12px
+						margin: 5px 0
+						display: block
+						strong
+							font-weight: bold
+						span
+						p
+							font-weight: bold
+							color: #7EC440
+		.pre-book
+			bottom: 2px
+			position: absolute
+			right: 0px
+			top: 0px
+			width: 185px
+			height: 240px
+			border-left: 1px solid #CCC
+			background: #eee
+			.save-up
+				position: absolute
+				right: -2px
+				top: 40px
+				padding: 0 10px
+				text-align: center
+				text-decoration: none
+				z-index: 1
+				background: #FE3300
+				background: linear-gradient(to bottom, #FE3300 0%, #BD3300 100%) repeat scroll 0 0 rgba(0, 0, 0, 0)
+				box-shadow: -1px 2px 4px rgba(50, 50, 50, 0.75)
+				&:before
+					border-color: #B01616 #AB3C39 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
+					border-style: solid
+					border-width: 2px
+					content: " "
+					height: 0
+					position: absolute
+					top: 100%
+					width: 0
+					right: 0
+				span
+					color: #FFF
+					font-size: 12px
+					font-weight: bold
+					line-height: 26px
+					text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3)
+					text-transform: uppercase
+			.btn-s
+				position: absolute
+				right: 10px
+				bottom: 120px
+			.pricing
+				position: absolute
+				right: 10px
+				bottom: 68px
+				strong
+					display: block
+					text-align: right
+					font-size: 20px
+					color: #333
+					font-weight: bold
+					em
+						font-size: 12px
+						padding-right: 10px
+						color: #666
+				span
+					display: block
+					text-align: right
+					color: #666
+			.book-btn
+				position: absolute
+				right: 10px
+				bottom: 10px
+				.button
+					padding: 8px 9px
+

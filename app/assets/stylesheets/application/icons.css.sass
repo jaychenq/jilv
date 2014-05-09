@@ -4,11 +4,21 @@
 	display: inline-block
 	width: 20px
 	height: 20px
+[class^="icon32x32-"]
+	background: no-repeat 0 0
+	display: inline-block
+	width: 32px
+	height: 32px
 
 @import "jilv/icons/*.png"
 @include all-icons-sprites
 @import "jilv/media/*.png"
 @include all-media-sprites
+@import "jilv/icon32x32/*.png"
+@include all-icon32x32-sprites
+@import "jilv/payment/*.png"
+@include all-payment-sprites
+
 
 .icon-ok
 	width: 26px
@@ -52,6 +62,16 @@
 .rating-stars.s10
 	background-position: 0 -160px
 
+.add-wishlist,
+.full-wishlist,
+.remove-wishlist
+	background: asset-url("jilv/other/wishlist-icons.png") no-repeat -99px 0
+.add-wishlist
+	background-position: 0 0px
+.full-wishlist
+	background-position: 0 -20px
+.remove-wishlist
+	background-position: 0 -38px
 
-
-
+.red-remove
+	background: asset-url("jilv/other/red-remove.png") no-repeat 0 0
