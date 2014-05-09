@@ -25,7 +25,14 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :sessions
-    resources :users
+    resources :users do
+      member do
+        get :password
+        put :password
+        get :setting
+        put :setting
+      end
+    end
   end
 
   namespace :admin do
@@ -81,7 +88,7 @@ Rails.application.routes.draw do
       resources :journeys, concerns: :deletable
       resources :languages, concerns: :deletable
       resources :locations, concerns: :deletable
-      resources :merchants
+      resources :merchants, concerns: :deletable
       resources :products, concerns: :deletable
       resources :questions
       resources :refunds
@@ -92,21 +99,26 @@ Rails.application.routes.draw do
 
   namespace :business do
     namespace :travel do
+      resources :bookings
+      resources :complaints
       resources :inventories
       resources :journeys
       resources :merchants
+      resources :photos
       resources :products
-      resources :products_photos
+      resources :questions
     end
   end
 
   namespace :travel do
     resources :attributes
+    resources :books
     resources :categories
     resources :cities
     resources :continents
     resources :costumers
     resources :countries
+    resources :favorites
     resources :languages
     resources :locations
     resources :merchants

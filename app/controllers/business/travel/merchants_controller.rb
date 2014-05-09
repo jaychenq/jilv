@@ -6,6 +6,7 @@ class Business::Travel::MerchantsController < Business::Travel::ApplicationContr
   end
 
   def new
+    return redirect_to new_account_user_path(redirect: request.fullpath) if !@current_user
     @merchant = model.new
     @merchant.attributes = params[model.table_name.singularize].to_h.slice(*model.business_fields)
   end
@@ -14,7 +15,7 @@ class Business::Travel::MerchantsController < Business::Travel::ApplicationContr
     @merchant.id = @current_user.id
     @merchant.attributes = params[model.table_name.singularize].to_h.slice(*model.business_fields)
 
-    if @merchant.save then redirect_to new_business_travel_product_path
+    if @merchant.save then redirect_to [:business, @merchant] # new_business_travel_product_path
     else render :new
     end
   end

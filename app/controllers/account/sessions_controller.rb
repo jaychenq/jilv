@@ -2,7 +2,11 @@ class Account::SessionsController < ApplicationController
   def index
     redirect_to :root
   end
-  
+
+  def show
+    redirect_to :root
+  end
+
   def new
     @session = Account::Session.new
   end
@@ -16,7 +20,7 @@ class Account::SessionsController < ApplicationController
       @session.save
       session[:session_id] = @session.id
       
-      redirect_to params[:redirect] || :root
+      redirect_to params[:redirect].presence || :root
     else
       render 'new'
     end

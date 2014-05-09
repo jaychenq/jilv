@@ -1,14 +1,105 @@
-- @page_title = '商家首页'
+- @page_title = '商家信息'
+- merchant = @merchant
 
-= render 'business/travel/merchants/nav'
-
-div
-  div
-    div ID
-    div = @merchant.id
-  div
-    div 名称
-    div = @merchant.name
-  div
-    div 网址
-    div = link_to @merchant.website, @merchant.website
+= render 'layouts/application/nav', current: 'merchant'
+.container
+  .side.lfloat
+    .row-290
+      = render 'layouts/application/nav_business', current: 'merchant'
+  .main.rfloat
+    .row-600.profile-form
+      h4.page-h4 商家信息
+      .formbody
+        = form_for @merchant, url: [:business, @merchant], method: 'post', html: { multipart: true } do |f|
+          fieldset.fms_block
+            ul
+              li.item
+                .itm_media
+                  label.title_label
+                    | 主体
+                  .itm_body
+                  = merchant.class.entities.keys.map { |entity| [entity, t("activerecord.enums.#{merchant.class.name.underscore}.entity.#{entity}")] }.to_h[merchant.entity]
+              li.item
+                .itm_media
+                  label.title_label
+                    | 名称
+                  .itm_body
+                  = merchant.name
+              li.item
+                .itm_media
+                  label.title_label
+                    | 名字
+                  .itm_body
+                  = merchant.first_name
+              li.item
+                .itm_media
+                  label.title_label
+                    | 姓氏
+                  .itm_body
+                  = merchant.last_name
+              li.item
+                .itm_media
+                  label.title_label
+                    | 性别
+                  .itm_body
+                  = merchant.class.genders.keys.map { |gender| [gender, t("activerecord.enums.#{merchant.class.name.underscore}.gender.#{gender}")] }.to_h[merchant.gender]
+              li.item
+                .itm_media
+                  label.title_label
+                    | 城市
+                  .itm_body
+                    = merchant.city.try(:name)
+              li.item
+                .itm_media
+                  label.title_label
+                    | 地址
+                  .itm_body
+                    = merchant.address
+              li.item
+                .itm_media
+                  label.title_label
+                    | 网站
+                  .itm_body
+                  = link_to_object merchant.website, target: '_blank'
+              li.item
+                .itm_media
+                  label.title_label
+                    | 电话
+                  .itm_body
+                    = merchant.phone_number
+              li.item
+                .itm_media
+                  label.title_label
+                    | 邮箱
+                  .itm_body
+                    = merchant.email
+              li.item
+                .itm_media
+                  label.title_label
+                    | QQ
+                  .itm_body
+                    = merchant.qq
+              li.item
+                .itm_media
+                  label.title_label
+                    | 微信
+                  .itm_body
+                    = merchant.wechat
+              li.item
+                .itm_media
+                  label.title_label
+                    | Skype
+                  .itm_body
+                    = merchant.skype
+              li.item
+                .itm_media
+                  label.title_label
+                    | LOGO
+                  .itm_body
+                    div = image_tag merchant.logo, alt: '' if merchant.logo
+              li.item
+                .itm_media
+                  label.title_label
+                    | 介绍
+                  .itm_body
+                  = sanitize_format merchant.description

@@ -1,0 +1,24 @@
+.sub_nav
+  ul.tablist
+    - if 1 
+      li class=('selected' if current == 'merchant')
+        a href=new_business_travel_merchant_path
+          i.icons-user-gray
+          span = @current_user.try(:merchant) ? '商家信息' : '商家入驻'
+    - if 1 # @current_user.try(:merchant)
+      li class=('selected' if current == 'product')
+        a href=business_travel_products_path
+          i.icons-lock-gray
+          span 产品管理
+      li class=('selected' if current == 'booking')
+        a href=business_travel_bookings_path
+          i.icons-lock-gray
+          span 订单管理
+      li class=('selected' if current == 'question')
+        a href=business_travel_questions_path
+          i.icons-lock-gray
+          span 问答管理
+      li class=('selected' if current == 'complaint')
+        a href=business_travel_complaints_path
+          i.icons-lock-gray
+          span 反馈投诉

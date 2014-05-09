@@ -6,8 +6,8 @@ class Travel::Journey < ActiveRecord::Base
   default_scope { where(active: true) }
 
   validates :product_id, existence: true
-  validates :name, :started_on, :ended_on, presence: true
-  validates :sequence, :market_price, :lowest_price, :people_quota, :duration, :start_hour, :early_booking, numericality: { only_integer: true }
+  validates :name, presence: true # , :started_on, :ended_on
+  validates :sequence, :market_price, :lowest_price, :duration, :start_hour, :early_booking, numericality: { only_integer: true } #, people_quota
 
   cattr_accessor :admin_fields, :business_fields
   self.business_fields = %w[ product_id name sequence market_price lowest_price people_quota started_on ended_on duration start_hour early_booking pick_up with_food introduction fee_description refund_policy route tips published ]

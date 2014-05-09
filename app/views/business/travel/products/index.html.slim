@@ -1,8 +1,26 @@
-= render 'business/travel/merchants/nav'
+- @page_title = '产品列表'
 
-div = link_to '新建', new_business_travel_product_path
-
-div
-  - @products.reject(&:new_record?).each do |product|
-    div
-      = link_to product.name, [:business, product]
+= render 'layouts/application/nav', current: 'merchant'
+.container
+  .side.lfloat
+    .row-290
+      = render 'layouts/application/nav_business', current: 'product'
+  .main.rfloat
+    div = link_to '新增', new_business_travel_product_path
+    table
+      tr
+        th 名称
+        th 开始日期
+        th 结束日期
+        th 审核
+        th 操作
+      - @products.reject(&:new_record?).each do |product|
+        tr
+          td = link_to product.name, [:business, product]
+          td = datetime_tag product.started_on
+          td = datetime_tag product.ended_on
+          td = boolean_tag product.published?
+          td
+            = link_to '查看', [:business, product]
+            = link_to '编辑', [:edit, :business, product]
+            = link_to '访问', product

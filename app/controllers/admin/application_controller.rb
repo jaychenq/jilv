@@ -18,21 +18,24 @@ class Admin::ApplicationController < ApplicationController
   def destroy
     record = model.f(id)
     raise if !record.respond_to?(:deletable?) || !record.deletable?
-    record.attributes = { active: false, updater_id: @current_user.id }
+    record.attributes = { active: false }
+    record.updater_id = @current_user.id if record.respond_to?(:updater_id)
     record.save
     render :show, status: record.valid? ? :accepted : :bad_request
   end
 
   def publish
     record = model.f(id)
-    record.attributes = { published: true, updater_id: @current_user.id }
+    record.attributes = { published: true }
+    record.updater_id = @current_user.id if record.respond_to?(:updater_id)
     record.save
     head record.valid? ? :accepted : :bad_request
   end
 
   def withdraw
     record = model.f(id)
-    record.attributes = { published: false, updater_id: @current_user.id }
+    record.attributes = { published: false }
+    record.updater_id = @current_user.id if record.respond_to?(:updater_id)
     record.save
     head record.valid? ? :accepted : :bad_request
   end

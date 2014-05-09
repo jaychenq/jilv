@@ -1,5 +1,5 @@
 = link_to t('show'), [:admin, audio] if can?(:show, audio)
 = link_to t('edit'), [:edit, :admin, audio] if can?(:update, audio)
-= link_to t('delete'), [:delete, :admin, audio], rel: 'facebox' if can?(:destroy, audio)
+= link_to t('delete'), [:delete, :admin, audio], class: 'facebox' if can?(:destroy, audio)
 = link_to t('copy'), action: 'new', id: audio.id if can?(:create, audio) && can?(:show, audio)
 = link_to t('visit'), audio, target: '_blank'

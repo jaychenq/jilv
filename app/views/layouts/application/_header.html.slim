@@ -2,11 +2,14 @@
   .fixed_header.fixed-border
     .container
       ul.top_bar
-        li.cart
+        li
           a href=new_business_travel_merchant_path
-            /i.icons-cart
-            /span.cart-count 0
             span 商家入驻
+        li.cart
+          a href=""
+            i.icons-cart
+            span.cart-count 0
+            span 购物车
         li.help
           a href=""
             i.icons-help
@@ -33,16 +36,20 @@
               em.down-arrow
             ul.submenu
               li
-                a href="#"
+                a href=url_for(@current_user)
                   i.icons-user-white
                   span 主页
               li
-                a href="#"
+                a href=travel_books_path
                   i.icons-tag-white
                   span 订单
               li
-                a href="#"
-                  i.icons-lock-white
+                a href=travel_favorites_path
+                  i.icons-love-white
+                  span 收藏
+              li
+                a href=url_for([:edit, @current_user])
+                  i.icons-settings-white
                   span 设置
               li
                 = link_to account_session_path(0), method: 'delete' do
@@ -63,11 +70,11 @@
                   i.icons-user-white
                   span 注册
               li
-                a href="#"
+                a href=travel_books_path
                   i.icons-tag-white
                   span 订单
               li
-                a href="#"
+                a href=travel_favorites_path
                   i.icons-love-white
                   span 收藏
       .mheader

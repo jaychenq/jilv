@@ -11,7 +11,7 @@
       p #{t(params[:action])} #{t('failed')}
 h2
   | #{t(show ? 'show' : product.new_record? ? 'new' : 'edit')} #{t(product.class.model_name.human)}
-  span style='font-size:12px;' = render 'actions', product: product if show && product.active?
+  span style='font-size:12px;' = render 'actions', product: product if product.id && product.active?
 = form_for product, url: [:admin, product], method: product.new_record? ? :post : :put, html: { multipart: true } do |f|
   table.form-table
     tbody
@@ -46,13 +46,21 @@ h2
             = f.text_area :description
             = f.error_message_on :description
       tr
-        th = f.label :category_id
+        th = f.label :category1_id
         td
           - if show
-            = link_to_admin product.category
+            = link_to_admin product.category1
           - else
-            = f.collection_select :category_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-            = f.error_message_on :category_id
+            = f.collection_select :category1_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :category1_id
+      tr
+        th = f.label :category2_id
+        td
+          - if show
+            = link_to_admin product.category2
+          - else
+            = f.collection_select :category2_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+            = f.error_message_on :category2_id
       tr
         th = f.label :continent_id
         td
@@ -78,13 +86,13 @@ h2
             = f.collection_select :city_id, Travel::City.order('sequence ASC, name ASC'), :id, :name, include_blank: true
             = f.error_message_on :city_id
       tr
-        th = f.label :lowest_price
+        th = f.label :address
         td
           - if show
-            = product.lowest_price
+            = product.address
           - else
-            = f.text_field :lowest_price
-            = f.error_message_on :lowest_price
+            = f.text_field :address
+            = f.error_message_on :address
       tr
         th = f.label :latitude
         td
@@ -117,6 +125,14 @@ h2
           - else
             = f.text_field :ended_on
             = f.error_message_on :ended_on
+      tr
+        th = f.label :lowest_price
+        td
+          - if show
+            = product.lowest_price
+          - else
+            = f.text_field :lowest_price
+            = f.error_message_on :lowest_price
       tr
         th = f.label :speakings
         td

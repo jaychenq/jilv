@@ -5,20 +5,26 @@ zh-CN:
     attributes:
       travel/merchant:
         entity: 主体
-        registration: 登记表
-        authorization: 授权书
+        #registration: 登记表
+        #authorization: 授权书
         name: 名称
         website: 网址
-        principal_name: 负责人姓名
-        principal_identifier: 负责人证件
-        principal_photo: 负责人照片
+        #principal_name: 负责人姓名
+        #principal_identifier: 负责人证件
+        #principal_photo: 负责人照片
+        first_name: 名字
+        last_name: 姓氏
+        gender: 性别
+        company: 公司
+        identification: 身份证明
+        lisense: 营业执照
         continent_id: 大洲
         country_id: 国家
         city_id: 城市
         address: 地址
         latitude: 经度
         longitude: 维度
-        phone_country_id: 电话国家
+        #phone_country_id: 电话国家
         phone_number: 电话号码
         email: 邮件
         qq: QQ
@@ -34,6 +40,7 @@ zh-CN:
         vetoed_at: 否决时间
         forbidden_by_id: 禁止人员
         forbidden_at: 禁止时间
+        published: 发布
         products: 产品
     enums:
       travel/merchant:
@@ -43,6 +50,9 @@ zh-CN:
           institution: 机构
           organization: 组织
           agent: 旅行社
+        gender:
+          male: 先生
+          female: 女士
         status:
           applied: 申请
           approved: 通过

@@ -7,6 +7,7 @@
 - Account::User 用户
 - Account::Session 登录
 - Account::Connection 连接
+- Account::Mailer 邮件
 
 ### Admin 管理
 
@@ -16,6 +17,14 @@
 - Admin::Role 角色
 - Admin::Permission 权限
 - Admin::Notification 通知
+
+### About 关于
+
+- About::Page 页面
+- About::Image 图片
+- About::Audio 音频
+- About::Video 视频
+- About::Static 静态
 
 ### Travel 旅游
 
@@ -42,41 +51,29 @@
 #### 游客
 
 - Travel::Tourist 游客
-- Travel::Review 评价
 - Travel::Favorite 收藏
 - Travel::Question 问答
-- Travel::Order 订单
+- Travel::View 访问
+- Travel::Booking 订单
+- Travel::Contact 联系
+- Travel::Review 评价
 - Travel::Refund 退款
 - Travel::Complaint 投诉
 
 ### Payment 支付
 
 - Payment::Platform 平台
-- Payment::Currency 货币
 - Payment::Transaction 交易
 
 ### Message 消息
 
 - Message::Notification 通知
 - Message::Email 邮件
+- Message::Sms 短信
 - Message::Feedback 反馈
 - Message::Chat 聊天
-
-### About 关于
-
-- About::Page 页面
-- About::Image 图片
-- About::Audio 音频
-- About::Video 视频
-- About::Static 静态
 
 ### Analytic 分析
 
 - Analytic::Statistic 统计
 - Analytic::Google 谷歌
-
-### Office 办公
-
-- Office::Finance 财务
-- Office::Human 人事
-- Office::Application 申请

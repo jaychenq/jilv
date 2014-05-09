@@ -18,7 +18,7 @@ br.clear
 table.widefat
   thead
     tr
-      - %w[id merchant_id name category_id continent_id country_id city_id started_on ended_on published journeys actions].each do |field|
+      - %w[id merchant_id name category1_id category2_id continent_id country_id city_id started_on ended_on journeys actions published].each do |field|
         th = model.human_attribute_name(field)
   tbody
     - @products.each do |product|
@@ -26,15 +26,16 @@ table.widefat
         td = product.id
         td = link_to_admin product.merchant
         td = link_to_admin product
-        td = link_to_admin product.category
+        td = link_to_admin product.category1
+        td = link_to_admin product.category2
         td = link_to_admin product.continent
         td = link_to_admin product.country
         td = link_to_admin product.city
         td = product.started_on
         td = product.ended_on
-        td = boolean_tag product.published
         td
           = link_to_admin_count product.journeys
           = link_to '+', new_admin_travel_journey_path('travel_journey[product_id]' => product.id) if can?(:create, product.journeys)
         td = render 'actions', product: product
+        td = render 'admin/shared/publish', record: product
 = render 'admin/shared/pagination'

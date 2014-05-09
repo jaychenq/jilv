@@ -24,6 +24,7 @@ module Jilv
     config.i18n.default_locale = :'zh-CN'
     config.i18n.fallbacks = [:en]
 
+    config.action_mailer.smtp_settings = YAML.load_file(Rails.root.join('config', 'mailer.yml'))['smtp'].symbolize_keys
     config.sass.preferred_syntax = :sass
   end
 end
