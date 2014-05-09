@@ -1,0 +1,93 @@
+doctype html
+html
+	head
+		= render "about/statics/theme/meta"
+	body
+		= render "about/statics/theme/header"
+		.body
+			.container
+				= render "about/statics/theme/breadcrumb"
+				.cart
+					.cart-step
+						.step-line
+						ul
+							li.step-1
+								span 1
+								strong Cart
+							li.step-2.current
+								span 2
+								strong Customer Information
+							li.step-3
+								span 3
+								strong
+									i.icons-lock-gray-s-disabled
+									| Secure payment
+							li.step-4
+								span 4
+								strong Confirmation
+					.cart-empyt
+						h5
+							| You have 1 item in your
+							span cart
+							| .
+						.etext
+							strong By the way: 
+							| Once you add an activity to your cart, we save your spot for 60 minutes. So go ahead and keep exploring – just don't forget to come back and check out!
+					.cart-box
+						.main.lfloat
+							a.back href="#" Find things to do
+							.thead
+								h3 购物车
+								span 价格
+							
+							.result-list
+								- 2.times do
+									.result-cont
+										.info
+											h3.title
+												a href="#" Eiffel Tower Skip-The-Line Ticket with Summit Access=
+											.graphic-info
+												a.pic href="#"
+													img src="/jilv/150x100.jpg"
+												.text-block
+													/ p.text  Skip the long lines to enjoy panoramic views of Paris from the 2nd and 3rd floors of the Eiffel Tower, and enjoy bird’s eye views of Notre-Dame, the … 
+													/ a.more href="#" Read more »
+													ul.other-info
+														li
+															strong Location:
+															span Paris
+														li
+															strong Location:
+															span Paris
+															span Paris
+														li
+															p Viewed 122 times today
+														li
+															p Last booking: 3 hours ago
+														li.set-btn
+															span
+																a.red-remove href="#" Remove
+															span
+																a.add-wishlist href="#" Add to Wishlist
+										.pre-book.price-block
+											span.price US$ 78.90
+											span.old-price US$ 98.63
+											span.red-highlight Save
+											span.red-highlight US$ 19.73
+							
+							.tfoot
+								span Total price: 
+								strong US$ 78.90 
+							a.back href="#" Find things to do
+						.side.rfloat
+							.row-290.rfloat.product-side
+								.checkout-box
+									.overall-price
+										em Total (1 item):
+										span US$ 78.90
+									a.book-button href="#" Book now
+								.help-phone
+									i.icons-phone-blue
+									span +86 13533333333
+		= render "about/statics/theme/footer"
+		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"

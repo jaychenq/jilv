@@ -1,0 +1,351 @@
+doctype html
+html
+	head
+		= render :partial => "about/statics/theme/meta"
+	body
+		= render :partial => "about/statics/theme/header"
+		.body
+			.container
+				= render :partial => "about/statics/theme/breadcrumb"
+				.search-page
+					.page-title
+						a.rfloat.button.btn-m.btn-green href="#" About Paris
+						h1 32 activities found for Paris
+					.side.lfloat
+						.row-200.lfloat.product-side
+							.sub-box
+								.title
+									h3 列表
+									a.sub-switch.close 折叠
+								.cont
+							.sub-box
+								.title
+									h3 列表
+									a.sub-switch.close 折叠
+								.cont
+									.simple-list
+										ul
+											li.close
+												a href="#"
+													i.toggle-icon.i-close icon
+													span.name Boulevard
+													em.count （50）
+											li.open
+												a.selected href="#"
+													i.toggle-icon.i-open icon
+													span.name Boulevard
+													em.count （50）
+													i.s-close x
+												ul
+													li.close
+														a href="#"
+															i.toggle-icon.i-open icon
+															span.name Boulevard
+															em.count （50）
+															i.s-close x
+														ul
+															-3.times do
+																li.single
+																	a href="#"
+																		i.toggle-icon.i-single icon
+																		span.name Boulevard
+																		em.count （50）
+													li.open
+														a.selected href="#"
+															i.toggle-icon.i-open icon
+															span.name Boulevard
+															em.count （50）
+															i.s-close x
+														ul
+															-3.times do
+																li.single
+																	a href="#"
+																		i.toggle-icon.i-single icon
+																		span.name Boulevard
+																		em.count （50）
+													-3.times do
+														li.single
+															a href="#"
+																i.toggle-icon.i-single icon
+																span.name Boulevard
+																em.count （50）
+											li.open
+												a href="#"
+													i.toggle-icon.i-open icon
+													span.name Boulevard
+													em.count （50）
+											-3.times do
+												li
+													a href="#"
+														i.toggle-icon.i-single icon
+														span.name Boulevard
+														em.count （50）
+							.sub-box
+								.title
+									h3 多选
+									a.sub-switch 折叠
+								.cont
+									.rating-list
+										label.disabled
+											input type="checkbox" value="5"
+											img.pic-flag src="/jilv/flag-pic.png"
+											strong  Wheelchair Accessible
+											em （50）
+										label
+											input type="checkbox" value="4"
+											img.pic-flag src="/jilv/flag-pic.png"
+											strong  Wheelchair Accessible
+											em （50）
+										label
+											input type="checkbox" value="3"
+											img.pic-flag src="/jilv/flag-pic.png"
+											strong  Wheelchair Accessible
+											em （50）
+										label
+											input type="checkbox" value="2"
+											img.pic-flag src="/jilv/flag-pic.png"
+											strong  Wheelchair Accessible
+											em （50）
+										label
+											input type="checkbox" value="1"
+											img.pic-flag src="/jilv/flag-pic.png"
+											strong  Wheelchair Accessible
+											em （50）
+										label
+											input type="checkbox" value="5"
+											img.pic-flag src="/jilv/flag-pic.png"
+											strong  Wheelchair Accessible 
+											em （50）
+							.sub-box
+								.title
+									h3 多选
+									a.sub-switch 折叠
+								.cont
+									.rating-list
+										label
+											input type="checkbox" value="5"
+											strong  Wheelchair Accessible
+											em （50）
+										label
+											input type="checkbox" value="4"
+											strong  Wheelchair Accessible
+											em （50）
+										label
+											input type="checkbox" value="3"
+											strong  Wheelchair Accessible
+											em （50）
+										label
+											input type="checkbox" value="2"
+											strong  Wheelchair Accessible
+											em （50）
+										label
+											input type="checkbox" value="1"
+											strong  Wheelchair Accessible
+											em （50）
+										label
+											input type="checkbox" value="5"
+											strong  Wheelchair Accessible 
+											em （50）
+							.sub-box
+								.title
+									h3 评分
+									a.sub-switch 折叠
+								.cont
+									.rating-list
+										label
+											input type="checkbox" value="5"
+											span.rating-stars.s50 &nbsp;
+											em （50）
+										label
+											input type="checkbox" value="4"
+											span.rating-stars.s40 &nbsp;
+											em （50）
+										label
+											input type="checkbox" value="3"
+											span.rating-stars.s30 &nbsp;
+											em （50）
+										label
+											input type="checkbox" value="2"
+											span.rating-stars.s20 &nbsp;
+											em （50）
+										label
+											input type="checkbox" value="1"
+											span.rating-stars.s10 &nbsp;
+											em （50）
+										label
+											input type="checkbox" value="5"
+											strong Not yet rated 
+											em （50）
+							.sub-box
+								.title
+									h3 日期
+									a.sub-switch 折叠
+								.cont
+									.date-input
+										label.from
+											i.date-icon.date-left
+											input type="text" placeholder="from"
+										span -
+										label.to
+											i.date-icon.date-right
+											input type="text" placeholder="to"
+					.main.rfloat
+						.search-tag
+							h3.tag-title tag:
+							.tag-box
+								a.tag-iem href="#"
+									| Category
+									em x
+							a.remove-all href="#" Remove all
+						.sort
+							h3 Sort by:
+						.search-result
+							.result-list
+								.result-cont
+									.info
+										h3.title
+											a href="#" Eiffel Tower Skip-The-Line Ticket with Summit Access
+										p.review-block
+											span.rating-stars.s50 &nbsp;
+											strong
+												em 29
+												| Customer Reviews
+											span.pipe |
+											span.wishlist-btn
+												a.full-wishlist href="#" full Wishlist
+										.graphic-info
+											a.pic href="#"
+												img src="/jilv/150x100.jpg"
+												span.bestseller
+													span bestseller
+											.text-block
+												p.text  Skip the long lines to enjoy panoramic views of Paris from the 2nd and 3rd floors of the Eiffel Tower, and enjoy bird’s eye views of Notre-Dame, the … 
+												a.more href="#" Read more »
+												ul.other-info
+													li
+														strong Location:
+														span Paris
+													li
+														strong Location:
+														span Paris
+													li
+														p Viewed 122 times today
+													li
+														p Last booking: 3 hours ago
+									.supplier
+										em by
+										span BLUE FOX TOURS - BLUE BIKE TOURS
+									.pre-book
+										a.save-up href="#"
+											span Save up to 20%
+										a.button.btn-s.btn-green Add to comparator
+										.pricing
+											strong
+												em from
+												| $3456.00
+											span per person
+										.book-btn
+											a.button.btn-blue View details
+								.result-cont
+									.info
+										h3.title
+											a href="#" Eiffel Tower Skip-The-Line Ticket with Summit Access
+										p.review-block
+											span.rating-stars.s50 &nbsp;
+											strong
+												em 29
+												| Customer Reviews
+											span.pipe |
+											span.wishlist-btn
+												a.add-wishlist href="#" Add to Wishlist
+										.graphic-info
+											a.pic href="#"
+												img src="/jilv/150x100.jpg"
+												span.bestseller
+													span bestseller
+											.text-block
+												p.text  Skip the long lines to enjoy panoramic views of Paris from the 2nd and 3rd floors of the Eiffel Tower, and enjoy bird’s eye views of Notre-Dame, the … 
+												a.more href="#" Read more »
+												ul.other-info
+													li
+														strong Location:
+														span Paris
+													li
+														strong Location:
+														span Paris
+													li
+														p Viewed 122 times today
+													li
+														p Last booking: 3 hours ago
+									.supplier
+										em by
+										span BLUE FOX TOURS - BLUE BIKE TOURS
+									.pre-book
+										a.save-up href="#"
+											span Save up to 20%
+										a.button.btn-s.btn-green Add to comparator
+										.pricing
+											strong
+												em from
+												| $3456.00
+											span per person
+										.book-btn
+											a.button.btn-blue View details
+								- 5.times do
+									.result-cont
+										.info
+											h3.title
+												a href="#" Eiffel Tower Skip-The-Line Ticket with Summit Access
+											p.review-block
+												span.rating-stars.s50 &nbsp;
+												strong
+													em 29
+													| Customer Reviews
+												span.pipe |
+												span.wishlist-btn
+													a.remove-wishlist href="#" Remove to Wishlist
+											.graphic-info
+												a.pic href="#"
+													img src="/jilv/150x100.jpg"
+													span.bestseller
+														span bestseller
+												.text-block
+													p.text  Skip the long lines to enjoy panoramic views of Paris from the 2nd and 3rd floors of the Eiffel Tower, and enjoy bird’s eye views of Notre-Dame, the … 
+													a.more href="#" Read more »
+													ul.other-info
+														li
+															strong Location:
+															span Paris
+														li
+															strong Location:
+															span Paris
+														li
+															p Viewed 122 times today
+														li
+															p Last booking: 3 hours ago
+										.supplier
+											em by
+											span BLUE FOX TOURS - BLUE BIKE TOURS
+										.pre-book
+											a.button.btn-s.btn-green Add to comparator
+											.pricing
+												strong
+													em from
+													| $3456.00
+												span per person
+											.book-btn
+												a.button.btn-blue View details
+						
+						.pageber
+							.pagination
+								span.previous_page.disabled «
+								em class="current" 1
+								a href="#" 2
+								a href="#" 3
+								a href="#" 4
+								a href="#" 5
+								span.gap …
+								a href="#" 165
+								a.next_page href="#" 下一页 »
+
+		= render :partial => "about/statics/theme/footer"

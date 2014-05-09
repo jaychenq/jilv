@@ -8,8 +8,22 @@ html
 			.container
 				= render "about/statics/theme/breadcrumb"
 				.cart
-					
-					.empyt
+					.cart-step
+						.step-line
+						ul
+							li.step-1
+								span 1
+								strong Cart
+							li.step-2.current
+								span 2
+								strong Customer Information
+							li.step-3
+								span 3
+								strong Secure payment
+							li.step-4
+								span 4
+								strong Confirmation
+					.cart-empyt
 						h5
 							| Your cart is 
 							span empty
@@ -17,5 +31,16 @@ html
 						.etext
 							strong By the way: 
 							| Once you add an activity to your cart, we save your spot for 60 minutes. So go ahead and keep exploring – just don't forget to come back and check out!
+						a.back href="#" Find things to do
+					.cart-more
+						hr
+						h3.thead Why don't you check out some of our popular destinations?
+						ul.list
+							- 3.times do
+								li
+									a.pic
+										img src="/jilv/640x360.png"
+									a.name href="#" 法国
+									a.morlink href="#" 666 活动
 		= render "about/statics/theme/footer"
 		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"
