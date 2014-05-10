@@ -1,6 +1,11 @@
 class Business::Travel::JourneysController < Business::Travel::ApplicationController
   before_action :journey
 
+  def index
+    @journeys = model.business(params)
+    @journeys = @journeys.none if !can?(:index, model) && @journeys.many?
+  end
+
   def show
   end
 

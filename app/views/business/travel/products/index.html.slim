@@ -24,3 +24,4 @@
             = link_to '查看', [:business, product]
             = link_to '编辑', [:edit, :business, product]
             = link_to '访问', product
+            = link_to '查看行程', business_travel_journeys_path(%s(where[product_id]) => product)
