@@ -9,13 +9,20 @@
       = render 'layouts/application/nav_business', current: 'product'
   .main.rfloat
     .row-600.profile-form
-      h4.page-h4 产品
+      h4.page-h4 第一步：基本信息
       .formbody
         = form_for product, url: [:business, product], method: product.new_record? ? :post : :put, html: { multipart: true } do |f|
           = f.hidden_field :merchant_id
           = f.error_message_on :merchant_id
           fieldset.fms_block
             ul
+              - if product.id
+                li.item
+                  .itm_media
+                    label.title_label
+                      | 编号
+                  .itm_body
+                    = product.id
               li.item
                 .itm_media
                   label.title_label
@@ -39,7 +46,7 @@
                   - if show
                     = sanitize_format product.description
                   - else
-                    .textfield
+                    .textareafield
                       = f.text_area :description
                       = f.error_message_on :description
               li.item
@@ -53,11 +60,10 @@
                     = product.category2.try(:name)
                   - else
                     .selectfield
-                      = f.collection_select :category1_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-                      = f.error_message_on :category1_id
-                    .selectfield
-                      = f.collection_select :category2_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                      /= f.collection_select :category2_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                      = f.grouped_collection_select :category2_id, Travel::Category.find(1).children, :children, :name, :id, :name, { include_blank: '' }
                       = f.error_message_on :category2_id
+                      
               li.item
                 .itm_media
                   label.title_label
@@ -93,7 +99,7 @@
               li.item
                 .itm_media
                   label.title_label
-                    | 最低价格
+                    | 极旅价
                     - if !show
                       span.important *
                 .itm_body
@@ -129,31 +135,38 @@
                     .textfield
                       = f.text_field :ended_on
                       = f.error_message_on :ended_on
+              li.item
+                .itm_media
+                  label.title_label
+                    | 支持语言
+                    - if !show
+                      span.important *
+                .itm_body
+                  - if show
+                  - else
+                    - speakings = product.speakings.all.to_a
+                    - Travel::Language.order('sequence ASC, name ASC').each_with_index do |language, index|
+                      = check_box_tag "language_ids[#{index}]", language.id, speakings.any? { |speaking| speaking.language_id == language.id }
+                      = image_tag language.icon, alt: '' if language.icon
+                      = label_tag "language_ids[#{index}]", language.name
+                      | &nbsp;&nbsp;&nbsp;&nbsp;
+              li.item
+                .itm_media
+                  label.title_label
+                    | 图片列表
+                    - if !show
+                      span.important *
+                .itm_body
+                  - if show
+                  - else
+                    - 8.times do |index|
+                      - photo = product.photos.find_or_initialize_by(sequence: index)
+                      div = image_tag "#{photo.file}.640x360.jpg", alt: '' if photo.file
+                      div = file_field_tag "photo_files[#{index}]"
+                      hr style="margin: 10px 0;"
               - if !show
                 li.item.item-btn
-                  button.button.btn-blue 提交
-              - if show
-                li.item
-                  .itm_media
-                    label.title_label
-                      | 操作
-                  .itm_body
-                    =' link_to '编辑', [:edit, :business, product]
-                    =' link_to '继续添加', new_business_travel_product_path
-                li.item
-                  .itm_media
-                    label.title_label
-                      | 价格类型
-                  .itm_body
-                    = link_to '新增', new_business_travel_journey_path('travel_journey[product_id]' => product.id)
-                    table
-                      tr
-                        th 名称
-                        th 操作
-                      - product.journeys.each do |journey|
-                        tr
-                          td = link_to journey.name, [:business, journey]
-                          td = link_to '编辑', [:edit, :business, journey]
+                  button.button.btn-blue 下一步 >
 
 - if nil#!product.new_record?
 

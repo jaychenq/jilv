@@ -105,7 +105,12 @@ Rails.application.routes.draw do
       resources :journeys
       resources :merchants
       resources :photos
-      resources :products
+      resources :products do
+        member do
+          get :journeys
+          get :complete
+        end
+      end
       resources :questions
     end
   end
