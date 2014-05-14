@@ -1,6 +1,7 @@
 table.calendar {
   border-collapse: collapse;
   width: 100%;
+  display: table;
 
   thead {
     font-size: 14px;
@@ -114,20 +115,10 @@ table.calendar {
         border-bottom: 1px solid #E6E6E6;
         border-left: 1px solid #E6E6E6;
         cursor: pointer;
-
-        &.active, &.enable:hover{
-          background: #00BEE3;
-          color: white;
-          .num{color: white;}
-        }
+        width: 80px;
 
         &.otherMonth {
           color: #F7F7F7;
-        }
-
-        &.disable{
-          color: #E6E6E6;
-          cursor: default;
         }
 
         div {

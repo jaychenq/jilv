@@ -191,8 +191,8 @@
                     | 介绍
                     span.important *
                 .itm_body
-                  .textfield
-                    = f.text_area :description, style: 'width:550px; height:150px;'
+                  .textareafield
+                    = f.text_area :description
                     = f.error_message_on :description
           h4.page-h4 4、确认入驻
           fieldset.fms_block

@@ -16,8 +16,10 @@ class Business::Travel::JourneysController < Business::Travel::ApplicationContro
 
   def create
     @journey.attributes = params[model.table_name.singularize].to_h.slice(*model.business_fields)
-    @journey.save
-    render :show
+    ok = @journey.save
+    
+    return render :show if !ok
+    redirect_to [:journeys, :business, @journey.product]
   end
 
   def edit
@@ -27,8 +29,10 @@ class Business::Travel::JourneysController < Business::Travel::ApplicationContro
 
   def update
     @journey.attributes = params[model.table_name.singularize].to_h.slice(*model.business_fields)
-    @journey.save
-    render :show
+    ok = @journey.save
+
+    return render :show if !ok
+    redirect_to [:journeys, :business, @journey.product]
   end
 
 private

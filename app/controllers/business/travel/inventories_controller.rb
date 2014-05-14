@@ -8,5 +8,6 @@ class Business::Travel::InventoriesController < Business::Travel::ApplicationCon
   
   private
   def inventory
+    @date = (params[:date] || Time.now).to_date
   end
 end
