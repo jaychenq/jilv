@@ -1,0 +1,135 @@
+table.calendar {
+  border-collapse: collapse;
+  width: 100%;
+  display: table;
+
+  thead {
+    font-size: 14px;
+    font-weight: normal;
+    color: #777777;
+
+    tr {
+      color: #777777;
+      height: 35px;
+
+      th{
+        text-align: center;
+      }
+
+      th:first-child, th:last-child{
+        cursor: pointer;
+      }
+    }
+    tr.dayName {
+      color: #272727;
+      height: 25px;
+      background: white;
+      th {
+        abbr {
+          cursor: pointer;
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        padding: 7px 5px;
+        color: #777777;
+        line-height: 14px;
+        text-align: right;
+        background: none;
+        border-bottom: 1px solid #E6E6E6;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.otherMonth {
+          color: #F7F7F7;
+        }
+
+        div {
+          margin-top: 3px;
+          font-size: 12px;
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+.selectable-calendar {
+  table {
+    width: 100%;
+    border: 1px solid #E6E6E6;
+  }
+
+  thead {
+    font-size: 14px;
+    font-weight: normal;
+    color: #777777;
+
+    tr {
+      color: #777777;
+      background: #F7F7F7;
+      height: 55px;
+
+      th{
+        text-align: center;
+        border-bottom: 1px solid #E6E6E6;
+      }
+
+      th:first-child, th:last-child{
+        cursor: pointer;
+
+        > a{
+          display: block;
+        }
+      }
+    }
+    tr.dayName {
+      color: #272727;
+      height: 25px;
+      background: white;
+
+      th {
+        abbr {
+          cursor: pointer;
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  tbody {
+    tr {
+      height: 80px;
+
+      td {
+        padding: 5px 5px;
+        color: #777777;
+        line-height: 14px;
+        text-align: right;
+        background: none;
+        border-bottom: 1px solid #E6E6E6;
+        border-left: 1px solid #E6E6E6;
+        cursor: pointer;
+        width: 80px;
+
+        &.otherMonth {
+          color: #F7F7F7;
+        }
+
+        div {
+          margin-top: 3px;
+          text-align: right;
+
+          &.num{
+            color: #AAAAAA;
+          }
+        }
+      }
+    }
+  }
+}

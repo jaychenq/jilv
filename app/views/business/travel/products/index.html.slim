@@ -25,3 +25,4 @@
             td
               =' link_to '修改', [:edit, :business, product]
               =' link_to '价格', [:journeys, :business, product]
+              = link_to '查看行程', business_travel_journeys_path(%s(where[product_id]) => product)
