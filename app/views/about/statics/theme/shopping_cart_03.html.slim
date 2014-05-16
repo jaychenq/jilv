@@ -1,0 +1,137 @@
+doctype html
+html
+	head
+		= render "about/statics/theme/meta"
+	body
+		= render "about/statics/theme/header"
+		.body
+			.container
+				= render "about/statics/theme/breadcrumb"
+				.cart
+					.cart-step
+						.step-line
+						ul
+							li.step-1.step-past
+								span 1
+								strong Cart
+							li.step-2.step-past
+								span 2
+								strong Customer Information
+							li.step-3.current
+								span 3
+								strong
+									i.icons-lock-gray-s-disabled
+									| Secure payment
+							li.step-4
+								span 4
+								strong Confirmation
+						
+					.cart-box
+						.main.lfloat
+							.thead.paymenthead
+								i.icons-lock-gray
+								span Total price: 
+								.pic
+							.required-fields
+								span *
+								| Required Fields
+							.formbody
+								form
+									fieldset.fms_block
+										.payment-methods
+											span.payment-icon.payment-master
+											span.payment-icon.payment-paypal
+										.credit-card Credit
+											
+									fieldset.fms_block
+										ul
+											li.item
+												.itm_media
+													label.title_label
+														| Company Name
+														span.important *
+												.itm_body
+													.selectfield.small
+														select
+															option 请选择
+															option 
+															option
+											li.item
+												.itm_media
+													label.title_label
+														| Company Name
+														span.important *
+												.itm_body
+													.textfield
+														.field_with_errors
+															input type="text"
+													.error-info
+														i.icons-error
+														span Please enter a first name.
+											li.item
+												.itm_media
+													label.title_label
+														| Company Name
+														span.important *
+												.itm_body
+													.textfield
+														input type="text"
+													.formError Please enter a first name.
+											
+											li.item
+												.itm_media
+													label.title_label
+														| Company Name
+														span.important *
+												.itm_body
+													.selectfield.small.lfloat
+														select
+															option 请选择
+															option 
+															option
+													span.slash -
+													.selectfield.small.lfloat
+														select
+															option 请选择
+															option 
+															option
+											li.item
+												.itm_media
+													label.title_label
+														| Company Name
+														span.important *
+												.itm_body
+													.textfield
+														input type="text"
+										
+							.stuff-list
+								.tfoot
+									span.lfloat Total price: 
+								ul
+									- 3.times do
+										li
+											strong plalalla
+											span 啦啦啦
+							.tfoot
+								span Total price: 
+								strong US$ 78.90
+							.confirm-block
+								a.button.btn-green href="#" Proceed to payment
+						.side.rfloat
+							.row-290.rfloat.product-side
+								.cs-block
+									h3 Need Help?
+									.help-phone
+										i.icon32x32-cart-phone
+										span +86 13533333333
+								.cs-block
+									h3 Book with Confidence
+									.text-mod
+										span.icon32x32-tick-green
+										p Your info's safe with us. All data is encrypted and transmitted securely with an SSL protocol.
+										p
+											| GetYourGuide respects your privacy. We do not sell your personal information to anyone. 
+											a href="#" Privacy Statement »
+							
+		= render "about/statics/theme/footer"
+		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"

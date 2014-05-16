@@ -1,3 +1,19 @@
+
+.bestseller
+	padding: 0 10px
+	text-align: center
+	text-decoration: none
+	position: absolute
+	z-index: 1
+	background: #FE3300
+	background: linear-gradient(to bottom, #FE3300 0%, #BD3300 100%) repeat scroll 0 0 rgba(0, 0, 0, 0)
+	span
+		color: #FFF
+		font-size: 12px
+		font-weight: bold
+		line-height: 26px
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3)
+		text-transform: uppercase
 .search-page
 	// padding-top: 40px
 	.side
@@ -13,7 +29,7 @@
 	.pageber
 		display: block
 		background: #F4EEE5
-		border-radius: 4px
+		@include border-radius(4px)
 		clear: both
 		font-size: 12px
 		margin: 0 0 5px
@@ -35,7 +51,7 @@
 				border-right: 1px solid #CCC
 			.current
 				background: #666
-				border-radius: 3px
+				@include border-radius(3px)
 				color: #FFF
 				font-weight: 600
 				margin: 0 4px
@@ -133,14 +149,14 @@
 				&.selected
 					padding: 3px 24px 4px 6px
 					background-color: #666
-					border-radius: 3px
+					@include border-radius(3px)
 					color: #FFF
 					font-weight: bold
 					.s-close
 						display: block
 						background: #fff asset-url("jilv/other/small_close_x.png") no-repeat center center
 						border: 1px solid #eee
-						border-radius: 2px
+						@include border-radius(2px)
 						height: 10px
 						margin: 0 2px 0 0
 						outline: medium none
@@ -229,7 +245,7 @@
 		.tag-iem
 			background: #FBF2D3
 			border: 1px solid #CCC
-			border-radius: 2px
+			@include border-radius(2px)
 			display: inline-block
 			margin: 2px 5px 2px 0
 			padding: 3px 20px 3px 4px
@@ -243,7 +259,7 @@
 			em
 				background: asset-url("jilv/other/small_close_x.png") no-repeat center center
 				border: 1px solid #ECD37F
-				border-radius: 2px
+				@include border-radius(2px)
 				display: block
 				height: 10px
 				margin: 0 2px 0 0
@@ -265,14 +281,14 @@
 
 .sort
 	background: #F4EEE5
-	border-radius: 4px
+	@include border-radius(4px)
 	font-size: 12px
 	padding: 5px 10px
 	margin: 0 0 15px 0
 
 .result-list
 	.result-cont
-		border-radius: 4px
+		@include border-radius(4px)
 		display: block
 		font-size: 12px
 		margin: 0 0 15px 0
@@ -297,7 +313,7 @@
 			width: 535px
 			height: 198px
 			padding: 10px 10px 6px
-			border-radius: 4px
+			@include border-radius(4px)
 			background: #fff
 			overflow: hidden
 		.title
@@ -336,30 +352,17 @@
 				height: 100px
 				position: relative
 				float: left
-				border-radius: 4px
+				@include border-radius(4px)
 				img
 					display: block
 					width: 100%
 					height: 100%
-					border-radius: 4px
+					@include border-radius(4px)
 				.bestseller
 					position: absolute
 					left: 0px
 					bottom: 0px
-					padding: 0 10px
-					text-align: center
-					text-decoration: none
-					z-index: 1
-					background: #FE3300
-					background: linear-gradient(to bottom, #FE3300 0%, #BD3300 100%) repeat scroll 0 0 rgba(0, 0, 0, 0)
 					border-top-right-radius: 4px
-					span
-						color: #FFF
-						font-size: 12px
-						font-weight: bold
-						line-height: 26px
-						text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3)
-						text-transform: uppercase
 			.text-block
 				margin-left: 160px
 				.text

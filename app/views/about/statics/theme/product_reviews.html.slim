@@ -1,0 +1,92 @@
+doctype html
+html
+	head
+		= render :partial => "about/statics/theme/meta"
+	body
+		= render :partial => "about/statics/theme/header"
+		.body
+			.product
+				.container
+					= render :partial => "about/statics/theme/breadcrumb"
+					.page-title
+						h1 新西兰遛马团
+						p
+						
+							span.rating-stars.s50 &nbsp;
+							| 29 Customer Reviews | Read reviews »
+					.product_show
+						.main.lfloat
+							.product_cont
+								= render :partial => "about/statics/theme/product_covers"
+								.basis_info
+									.info
+										ul
+											li
+												strong  时间:
+												span 3 天
+											li
+												strong 语言:
+												span 英语，俄语
+								= render :partial => "about/statics/theme/product_tab"
+								.product_review
+									h3.rating-title Filter by Rating
+									ul.rating-count
+										li
+											h5.label
+												span.rating-stars.s40 &nbsp;
+											span.bar
+												span style="width: 80%" 88%
+											strong.count 33
+										li
+											h5.label
+												span.rating-stars.s40 &nbsp;
+											span.bar
+												span style="width: 70%" 88%
+											span.count 33
+										li
+											h5.label
+												span.rating-stars.s40 &nbsp;
+											span.bar
+												span style="width: 40%" 88%
+											span.count 33
+										li.no-rating
+											h5.label
+												span.rating-stars.s40 &nbsp;
+											span.bar
+												span style="width: 0%" 88%
+											span.count 33
+										li.no-rating
+											h5.label
+												span.rating-stars.s40 &nbsp;
+											span.bar
+												span style="width: 0%" 88%
+											span.count 33
+									.review-content
+										.shadow-top-440
+										ul.list
+											- 6.times do
+												li
+													span.rating-stars.s40
+													.title “Practical, efficient way to visit the eiffel tower”
+													.author
+														| Reviewed by
+														strong Piotr from Warszawa, Poland
+														| on
+														| May 11th, 2014
+													.message  We were promptly greeted by our very friendly guide. The tour of the Tower was very good, and I would recommend booking your tickets in advance, as the queues were prob about an hour, definitely worth jumping the queue, maybe a bit expensive for the privilege, but the official sites tickets were all sold out 3 weeks prior to visiting. 
+													hr
+										.more
+											a href="#" See more reviews
+										.shadow-bottom-440
+									.product-tfoot
+										.pcode
+											strong Product ID:
+											| 2242424
+										a.go-booking href="#"
+											| Book now
+											i.icons-arrow-top-blue
+						.side.rfloat
+							.row-290.rfloat.product-side
+								= render :partial => "about/statics/theme/product_sub"
+					= render :partial => "about/statics/theme/linkbox"
+			= render :partial => "about/statics/theme/footer"

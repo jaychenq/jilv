@@ -1,0 +1,89 @@
+doctype html
+html
+	head
+		= render "about/statics/theme/meta"
+	body
+		= render "about/statics/theme/header"
+		.body
+			.container
+				= render "about/statics/theme/breadcrumb"
+				.cart
+					.cart-step
+						.step-line
+						ul
+							li.step-1.step-past
+								span 1
+								strong Cart
+							li.step-2.step-past
+								span 2
+								strong Customer Information
+							li.step-3.step-past
+								span 3
+								strong
+									i.icons-lock-gray-s-disabled
+									| Secure payment
+							li.step-4.current
+								span 4
+								strong Confirmation
+						
+					.cart-box
+						.main.lfloat
+							.cart-success
+								i.icons-ok
+								p
+									| success!
+									br
+									| lala
+							.cart-thead
+								span Order summary
+							.result-list.order-list
+								- 2.times do
+									.result-cont
+										.info
+											.title
+												a href="#" Eiffel Tower Skip-The-Line Ticket with Summit Access=
+											.graphic-info
+												.pic
+													img src="/jilv/150x100.jpg"
+												.text-block
+													ul.other-info
+														li
+															strong Location:
+															span Paris
+														li
+															strong Location:
+															span Paris
+															span Paris
+										.pre-book.no-block
+											span No.
+											strong GEE0--222
+										.order-text Etsuna's workshop in Shangha见到大家超开心！第一天赶完飞机回来失眠加上化妆包没带，国内现买的彩妆不熟悉妆容奇怪简直憔悴的没法看，实在对不住大家第二天虽然也兴奋的到凌晨五点才睡好在彩妆终于稍微适应了一些
+										a.button.btn-s.btn-blue 啦啦啦啦
+							
+							.cart-thead
+								span Order summary
+							.cart-feedback
+								p.text Etsuna's workshop in Shangha见到大家超开心！第一天赶完飞机回来失眠加上化妆包没带，国内现买的彩妆不熟悉妆容奇怪简直憔悴的没法看，实在对不住大家第二天虽然也兴奋的到凌晨五点才睡好在彩妆终于稍微适应了一些
+								ul
+									- 11.times do |i|
+										li
+											strong= i
+											span= i
+								p.text Etsuna's workshop in Shangha见到大家超开心！第一天赶完飞机回来失眠加上化妆包没带，国内现买的彩妆不熟悉妆容奇怪简直憔悴的没法看，实在对不住大家第二天虽然也兴奋的到凌晨五点才睡好在彩妆终于稍微适应了一些
+								p.text Etsuna's workshop in Shangha见到大家超开心！第一天赶完å飞机回来失眠加上化妆包没带，国内现买的彩妆不熟悉妆容奇怪简直憔悴的没法看，实在对不住大家第二天虽然也兴奋的到凌晨五点才睡好在彩妆终于稍微适应了一些
+								textarea
+							
+							.confirm-block
+								a.button.btn-green href="#" Proceed to payment
+							.cart-tfoot
+								span.rfloat Order summary
+						.side.rfloat
+							.row-290.rfloat.product-side
+								.cs-block
+									h3 Need Help?
+									.help-phone
+										i.icon32x32-cart-phone
+										span +86 13533333333
+							
+		= render "about/statics/theme/footer"
+		img src="/jilv/home1.jpg" style="display: none; left: 50%; margin-left: -960px; opacity: 0.5; position: absolute; top: 13px; z-index: 999;"

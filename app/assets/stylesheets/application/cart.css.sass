@@ -30,7 +30,7 @@
 			span
 				background-color: #FFF
 				border: 2px solid #868781
-				border-radius: 50%
+				@include border-radius(50%)
 				direction: ltr
 				display: block
 				font-weight: bold
@@ -145,6 +145,28 @@
 		strong
 			font-weight: bold
 .cart
+	.fms_block
+		position: relative
+		.payment-methods
+			overflow: hidden
+			float: left
+		.credit-card
+			font-size: 14px
+			color: #666
+			border-bottom: 1px solid #ccc
+			display: block
+			float: left
+			margin-bottom: 20px
+			padding: 12px 0
+			margin-left: 10px
+			width: 400px
+	.slash
+		float: left
+		margin-right: 10px
+		font-size: 24px
+		color: #999
+		font-weight: normal
+		line-height: 30px
 	.cart-login
 		margin-top: 20px
 		display: block
@@ -184,7 +206,7 @@
 		margin: 15px 0
 		.t-number
 			background-color: #7EC440
-			border-radius: 50%
+			@include border-radius(50%)
 			color: #FFF
 			font: 18px 'AlbertExtraBold',Arial,Helvetica,sans-serif
 			height: 22px
@@ -204,7 +226,7 @@
 		text-decoration: underline
 	.cs-block
 		background: #EEE
-		border-radius: 4px
+		@include border-radius(4px)
 		margin-bottom: 10px
 		overflow: hidden
 		display: block
@@ -242,7 +264,7 @@
 .checkout-box
 	padding: 20px
 	background: #eee
-	border-radius: 4px
+	@include border-radius(4px)
 	margin-bottom: 20px
 	.overall-price
 		padding: 5px 0 10px
@@ -256,7 +278,7 @@
 	.book-button
 		padding: 10px
 		font-size: 24px
-		border-radius: 4px
+		@include border-radius(4px)
 		color: #fff
 		display: block
 		height: 40px
@@ -270,8 +292,23 @@
 
 
 .cart-box
+	.cart-success
+		padding: 10px
+		background: #c5e8a5
+		margin-bottom: 10px
+		position: relative
+		i
+			position: absolute
+			top: 10px
+			left: 10px
+		p
+			font-size: 12px
+			color: #000
+			line-height: 160%
+			padding-left: 30px
 	.formbody .fms_block .textfield input
 		width: 278px
+		border-color: #868780
 	.formbody .fms_block .title_label
 		color: #73746D
 	.formbody .item
@@ -373,7 +410,9 @@
 	.back
 		margin: 20px 0
 	.thead,
-	.tfoot
+	.tfoot,
+	.cart-thead,
+	.cart-tfoot
 		background: #EEE
 		color: #666
 		font-size: 12px
@@ -383,6 +422,21 @@
 		padding: 8px 10px 4px
 		text-align: right
 		position: relative
+		overflow: hidden
+	.cart-thead
+		text-align: left
+		border-bottom: 1px solid #ccc
+		span,
+		strong
+			color: #333
+			font-size: 18px
+	.cart-tfoot
+		text-align: left
+		border-top: 1px solid #ccc
+		padding-bottom: 8px
+		span
+			font-size: 12px
+			font-weight: normal
 	.thead
 		border-bottom: 1px solid #ccc
 		border-top-left-radius: 4px
@@ -440,6 +494,11 @@
 		margin-bottom: 0
 		&:first-child
 			border-top: 0
+		.order-text
+			font-size: 12px
+			color: #000
+			line-height: 140%
+			margin: 20px 0 10px
 	.result-list .result-cont .pre-book
 		border: 0
 		background: none
@@ -451,7 +510,7 @@
 		.pic
 			background: #FFF
 			border: 1px solid #BBB
-			border-radius: 4px
+			@include border-radius(4px)
 			float: left
 			padding: 3px
 			width: 175px
@@ -472,7 +531,73 @@
 			li span
 				display: block
 				line-height: 120%
-
+	.result-list.order-list .result-cont
+		padding: 15px 0
+		.no-block
+			text-align: right
+			span
+				display: block
+				font-size: 12px
+			strong
+				display: block
+				font-size: 14px
+				color: #7ec440
+	.paymenthead
+		text-align: left
+		.icons-lock-gray
+			float: left
+			margin-right: 5px
+		span
+			line-height: 24px
+			
+	.stuff-list
+		.tfoot
+			margin-bottom: 0
+			border-bottom-left-radius: 0
+			border-bottom-right-radius: 0
+			.lfloat
+				font-size: 14px
+		li
+			overflow: hidden
+			display: block
+			padding: 10px 10px
+			border-top: 1px solid #e1e1e1
+			strong
+				font-size: 14px
+			span
+				font-size: 12px
+				float: right
+				line-height: 16px
+.cart-feedback
+	margin-top: 30px
+	.text
+		font-size: 12px
+		color: #000
+		line-height: 160%
+		margin: 15px 0
+	ul
+		li
+			display: inline-block
+			text-align: center
+			margin: 0 14px
+			strong
+				text-align: center
+				font-size: 12px
+				color: #000
+				display: block
+				padding: 5px 0
+			span
+				display: inline-block
+				width: 24px
+				height: 24px
+				border: 2px solid #ccc
+				@include border-radius(50%)
+				text-indent: -99px
+				overflow: hidden
+	textarea
+		padding: 10px
+		width: 610px
+		height: 80px
 .terms-confirm
 	li
 		display: block
@@ -481,7 +606,7 @@
 			display: block
 			padding: 8px 8px 8px 35px
 			// background: #eee
-			border-radius: 4px
+			@include border-radius(4px)
 			position: relative
 			input
 				left: 10px

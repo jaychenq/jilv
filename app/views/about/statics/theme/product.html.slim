@@ -16,27 +16,22 @@ html
 							| 29 Customer Reviews | Read reviews »
 					.product_show
 						.main.lfloat
+							= render :partial => "about/statics/theme/product_covers"
+							.short-info
+								dl
+									dt 时间:
+									dd 3 天
+								dl
+									dt 时间:
+									dd 3 天
+								dl
+									dt 时间:
+									dd 3 天
+								span class="wishlist-btn"
+									a href="#" class="add-wishlist" Add to Wishlist
+							= render :partial => "about/statics/theme/product_tab"
 							.product_cont
-								.prodoct-covers
-									.list
-										- 5.times do
-											img src="/jilv/640x360.png"
-									.page
-										ul
-											- 5.times do
-												li
-													img src="/jilv/640x360.png"
-									a.prev href="#" « previous
-									a.next href="#" next »
 								.basis_info
-									.info
-										ul
-											li
-												strong  时间:
-												span 3 天
-											li
-												strong 语言:
-												span 英语，俄语
 									p Sightseeing tour of Berlin with live commentary in German and English. Day ticket with 20 stops. Vouchers on flyers/VIP tickets (discounted entry to Madame Tussauds Berlin, Sealife, Legoland and Dungeon). Tour can be started at any of the 20 stops.
 									p Sightseeing tour of Berlin with live commentary in German and English. Day ticket with 20 stops. Vouchers on flyers/VIP tickets (discounted entry to Madame Tussauds Berlin, Sealife, Legoland and Dungeon). Tour can be started at any of the 20 stops.
 									p Sightseeing tour of Berlin with live commentary in German and English. Day ticket with 20 stops. Vouchers on flyers/VIP tickets (discounted entry to Madame Tussauds Berlin, Sealife, Legoland and Dungeon). Tour can be started at any of the 20 stops.
@@ -52,14 +47,19 @@ html
 										li Visit Museum Island, which houses many of the big museums of Berlin
 								.tour-options
 									h3 Availability:
-									p
-										When do you want to go?
+									.tourfrom
+										label When do you want to go?
 										input type="text" placeholder="pick a date" id="date-input-calendar" class="date-input hasDatepicker"
+								.tour-options
+									h3 Availability:
+									.tourfrom
+										label When do you want to go?
+										a.button.btn-green Pick a Date
 								.Activity
 									h3 活动什么的
 									- 5.times do
 										.item-block
-											a.title href="#" 新马泰
+											a.title href="#" Eiffel Tower Skip-The-Line Ticket with Summit Access
 											p
 												strong 语言：
 												span 英文，泰语
@@ -76,42 +76,30 @@ html
 													em rmb
 													span ￥34534
 													em 每人
-											a.view href="#"  详情 »
+											a.view href="#" 详情 »
+								.basis_info
+									p Sightseeing tour of Berlin with live commentary in German and English. Day ticket with 20 stops. Vouchers on flyers/VIP tickets (discounted entry to Madame Tussauds Berlin, Sealife, Legoland and Dungeon). Tour can be started at any of the 20 stops.
+									p Sightseeing tour of Berlin with live commentary in German and English. Day ticket with 20 stops. Vouchers on flyers/VIP tickets (discounted entry to Madame Tussauds Berlin, Sealife, Legoland and Dungeon). Tour can be started at any of the 20 stops.
+									p Sightseeing tour of Berlin with live commentary in German and English. Day ticket with 20 stops. Vouchers on flyers/VIP tickets (discounted entry to Madame Tussauds Berlin, Sealife, Legoland and Dungeon). Tour can be started at any of the 20 stops.
+									h3 Highlights:
+									ul
+										li Ride through Berlin on a double-decker bus and along the river by boat
+										li Go to the top of the Berliner Dom for a view of the city
+										li Take advantage of shopping opportunities along Kurfürstendamm and at Alexanderplatz
+										li Stop off at Checkpoint Charlie, a former crossing between East and West Berlin
+										li Admire the Brandenburg Gate and visit the nearby Holocaust Memorial
+										li Head along Unter den Linden, a long street lined with lime trees
+										li Tour through the Jewish Synagogue on Oranienburger Straße
+										li Visit Museum Island, which houses many of the big museums of Berlin
+								.product-tfoot
+									.pcode
+										strong Product ID:
+										| 2242424
+									a.go-booking href="#"
+										| Book now
+										i.icons-arrow-top-blue
 						.side.rfloat
 							.row-290.rfloat.product-side
-								.book-box
-									a.book-button href="#" Book now
-									.overall-price
-										em RMB
-										span ￥23456
-									.price-expla
-										| (per person)
-								.controls
-									.list
-										a.question href="#" 咨询该旅游问题
-										a.gift href="#" 礼物
-								.WePromise
-									h3 承诺
-									p 快速预定和保留
-									p 最低价格保证
-								.GuessLike
-									h3 您可能还会喜欢...
-									.list
-										- 5.times do
-											.tour-item
-												a.title href="#" 新西兰超级无敌空气炮一击毙命戏码团
-												a.pic href="#"
-													img src="/jilv/640x360.png"
-												.text
-													span.rating-stars.s50 &nbsp;
-													span.price 9999 rmb / 人
-									.more
-										a href="#" 查看更多
-								.locations
-									h3 景点
-									-21.times do
-										a href="#" 八仙过海
-										| ,
-										a href="#" 土门客栈
+								= render :partial => "about/statics/theme/product_sub"
 					= render :partial => "about/statics/theme/linkbox"
 			= render :partial => "about/statics/theme/footer"

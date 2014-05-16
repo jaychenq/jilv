@@ -1,6 +1,6 @@
 .button
 	color: #FFF
-	border-radius: 4px
+	@include border-radius(4px)
 	cursor: pointer
 	display: inline-block
 	font-size: 1em
@@ -23,7 +23,7 @@
 .btn-s
 	padding: 4px 8px
 	font-size: 12px
-	border-radius: 3px
+	@include border-radius(3px)
 .btn-m
 	padding: 8px 10px
 .btn-green
@@ -53,7 +53,7 @@
 		width: 252px
 		background-color: #FFFFFF
 		border: 2px solid #D9DAD0
-		border-radius: 4px
+		@include border-radius(4px)
 		font-size: 16px
 		height: 34px
 		margin: 0
@@ -68,7 +68,7 @@
 	.search-send
 		background-color: #00AEEF
 		border-image: none
-		border-radius: 0 6px 6px 0
+		@include border-radius(0 6px 6px 0)
 		border-color: #00AEEF #00AEEF #009DD5
 		border-image: none
 		border-style: solid
@@ -137,7 +137,7 @@
 			z-index: 1
 			width: 100%
 			text-align: center
-			border-radius: 4px
+			@include border-radius(4px)
 			&:hover
 				background-color: #3db9f0
 .product-type
@@ -250,7 +250,7 @@
 		display: inline-block
 		input
 			border: 2px solid #D9DAD0
-			border-radius: 4px
+			@include border-radius(4px)
 			color: #606159
 			font-size: 18px
 			height: 30px
@@ -281,7 +281,7 @@
 				padding: 1px 10px
 				float: left
 				border-color: #00AEEF
-				border-radius: 0px 4px 4px 0px
+				@include border-radius(0px 4px 4px 0px)
 				border-style: solid
 				border-width: 2px
 				height: 35px
@@ -306,11 +306,11 @@
 		.form_minus
 			left: 0px
 			border-right: 2px solid #e2e2e2
-			border-radius: 4px 0 0 4px
+			@include border-radius(4px 0 0 4px)
 		.form_plus
 			right: 0px
 			border-left: 2px solid #e2e2e2
-			border-radius: 0 4px 4px 0
+			@include border-radius(0 4px 4px 0)
 		// .form_minus,
 		// .form_plus,
 		.input_btn
@@ -329,7 +329,7 @@
 	.selectfield
 		background: linear-gradient(to bottom, #E7E7E7 0%, #FFF 100%) repeat scroll 0 0 rgba(0, 0, 0, 0)
 		border: 1px solid #CCC
-		border-radius: 4px
+		@include border-radius(4px)
 		margin: 0
 		overflow: hidden
 		position: relative
@@ -358,7 +358,7 @@
 			bottom: 1px
 			border-left: 1px solid #e2e2e2
 			box-shadow: inset 0 1px rgba(255,255,255,0.75)
-			border-radius: 0 4px 4px 0
+			@include border-radius(0 4px 4px 0)
 			background: #fff
 			background: -webkit-linear-gradient(#f5f5f5,#f2f2f2)
 			background: -moz-linear-gradient(#f5f5f5,#f2f2f2)
@@ -366,7 +366,7 @@
 		select
 			background: none repeat scroll 0 0 rgba(0, 0, 0, 0)
 			border: medium none
-			border-radius: 4px
+			@include border-radius(4px)
 			color: #606159
 			font-size: 16px
 			outline: medium none
@@ -381,7 +381,7 @@
 		position: relative
 		textarea
 			background-color: #fff
-			border-radius: 4px 4px 4px 4px
+			@include border-radius(4px)
 			border: 2px solid #D9DAD0
 			// box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.05) inset
 			transition: box-shadow 0.3s ease 0s, border-color 0.2s ease 0s

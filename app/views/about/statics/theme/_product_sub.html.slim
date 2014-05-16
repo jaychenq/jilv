@@ -1,0 +1,73 @@
+.book-box
+	a.book-button href="#" Book now
+	.overall-price
+		em RMB
+		span ￥23456
+	.price-expla
+		| (per person)
+.controls
+	.list
+		a.question href="#" 咨询该旅游问题
+		a.gift href="#" 礼物
+.WePromise
+	h3 承诺
+	p 快速预定和保留
+	p 最低价格保证
+.side-reviews
+	h3 lkkkkkkkk Reviews
+	hr
+	ul.rating-count
+		li
+			h5.label 5 stars
+			span.bar
+				span style="width: 80%" 88%
+			strong.count 33
+		li
+			h5.label 5 stars
+			span.bar
+				span style="width: 70%" 88%
+			span.count 33
+		li
+			h5.label 5 stars
+			span.bar
+				span style="width: 40%" 88%
+			span.count 33
+		li.no-rating
+			h5.label 5 stars
+			span.bar
+				span style="width: 0%" 88%
+			span.count 33
+		li.no-rating
+			h5.label 5 stars
+			span.bar
+				span style="width: 0%" 88%
+			span.count 33
+	ul.reviews-list
+		- 3.times do
+			li
+				p.title “Very quick, easy and enjoyable way to visit the Eiffel Tower.”
+				p.rating-pic
+					.rating-stars.s50
+				p.message “Our guide was good fun and very enthusiastic. I would recommend using this company to jump the huge queues.”
+				p.author Helen from Harrogate, United Kingdom
+	.morelink
+		a href="#" See all reviews
+.GuessLike
+	h3 您可能还会喜欢...
+	.list
+		- 5.times do
+			.tour-item
+				a.title href="#" 新西兰超级无敌空气炮一击毙命戏码团
+				a.pic href="#"
+					img src="/jilv/640x360.png"
+				.text
+					span.rating-stars.s50 &nbsp;
+					span.price 9999 rmb / 人
+	.more
+		a href="#" 查看更多
+.locations
+	h3 景点
+	-21.times do
+		a href="#" 八仙过海
+		| ,
+		a href="#" 土门客栈
