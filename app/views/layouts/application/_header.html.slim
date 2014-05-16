@@ -13,6 +13,7 @@
         li.help
           a href=""
             i.icons-help
+            i.icons-faq-white
             span 帮助
             em.down-arrow
           ul.submenu
@@ -32,6 +33,7 @@
           - if @current_user
             a.login-link href=url_for(@current_user)
               i.icons-user
+              i.icons-user-white
               span = @current_user.name
               em.down-arrow
             ul.submenu
