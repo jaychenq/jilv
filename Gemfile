@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+# source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -74,6 +75,8 @@ gem 'datetime_tag_helper'
 gem 'modular_migration'
 gem 'tel_to_helper'
 
+#generate calendar
+gem 'calendar_helper', '~> 0.2.6'
 
 gem 'rails-assets-bundler'
 require 'rails-assets-bundler'

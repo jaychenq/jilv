@@ -71,4 +71,28 @@ module ApplicationHelper
     keys = I18n.normalize_keys(e.locale, e.key, e.options[:scope])
     keys.last.to_s.titleize
   end
+
+  def inventories_calendar
+    calendar(:year => @date.year,
+             :month => @date.month,
+             :show_today => true,
+             :first_day_of_week => 1,
+             :previous_month_text => link_to('<<', business_travel_inventories_path(params.merge(date: @date - 1.month))),
+             :next_month_text => link_to('>>', business_travel_inventories_path(params.merge(date: @date + 1.month))),
+             :calendar_title => "#{@date.year}年#{@date.month}月",
+             :table_class => 'calendar inventories_calendar inventories-calendar',
+             :table_id => "inventories-#{@date.year}-#{"%02d" % @date.month}",
+            ) do |day|
+              inventorie = @inventories.find_by(started_on: day)
+              available = inventorie.present?
+              passed = available && inventorie.started_on < Time.now.to_date
+              inventorie_html = available ? "<div class='inventories-day inventories_day #{available}'><p><label>库存:</label><span>#{inventorie.total_number.to_i - inventorie.remained_number.to_i}</span></p><p><label>成人价:</label><span>#{inventorie.adult_price.to_i}</span></p><p><label>儿童价:</label><span>#{inventorie.child_price.to_i}</span></p></div>" : ""
+              day_html = "<div class='day'>#{day.day}</div>"
+              [inventorie_html+day_html,
+                {
+                  :'data-inventorie-id' => inventorie.try(:id),
+                }
+              ]
+            end
+  end
 end

@@ -1,0 +1,10 @@
+- @page_title = '查看库存'
+
+= render 'layouts/application/nav', current: 'merchant'
+.container
+  .side.lfloat
+    .row-290
+      = render 'layouts/application/nav_business', current: 'product'
+  .main.rfloat
+    .selectable-calendar
+      = inventories_calendar

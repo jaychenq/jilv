@@ -1,0 +1,27 @@
+- @page_title = '行程列表'
+
+= render 'layouts/application/nav', current: 'merchant'
+.container
+  .side.lfloat
+    .row-290
+      = render 'layouts/application/nav_business', current: 'product'
+  .main.rfloat
+    div = link_to '新增', new_business_travel_journey_path(%s(travel_journey[product_id]) => params[:where].try(:[], :product_id))
+    table
+      tr
+        th 名称
+        th 开始日期
+        th 结束日期
+        th 审核
+        th 操作
+      - @journeys.reject(&:new_record?).each do |journey|
+        tr
+          td = link_to journey.name, [:business, journey]
+          td = datetime_tag journey.started_on
+          td = datetime_tag journey.ended_on
+          td = boolean_tag journey.published?
+          td
+            = link_to '查看', [:business, journey]
+            = link_to '编辑', [:edit, :business, journey]
+            = link_to '访问', [:business, journey]
+            = link_to '查看库存', business_travel_inventories_path(%s(where[journey_id]) => journey)
