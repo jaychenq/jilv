@@ -44,16 +44,29 @@
               li.item
                 .itm_media
                   label.title_label
-                    | 极旅价
+                    | 成人价
                     - if !show
                       span.important *
                 .itm_body
                   - if show
-                    = journey.lowest_price
+                    = journey.adult_price
                   - else
                     .textfield
-                      = f.text_field :lowest_price
-                      = f.error_message_on :lowest_price
+                      = f.text_field :adult_price
+                      = f.error_message_on :adult_price
+              li.item
+                .itm_media
+                  label.title_label
+                    | 儿童价
+                    - if !show
+                      span.important *
+                .itm_body
+                  - if show
+                    = journey.child_price
+                  - else
+                    .textfield
+                      = f.text_field :child_price
+                      = f.error_message_on :child_price
               li.item
                 .itm_media
                   label.title_label

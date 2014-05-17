@@ -1,0 +1,96 @@
+- @page_title = @product.name
+- @page_breadcrumb = { @product.continent.try(:name) => travel_products_path('where[continent_id]' => @product.continent.try(:id)), @product.country.try(:name) => travel_products_path('where[country_id]' => @product.country.try(:id)), @product.city.try(:name) => travel_products_path('where[city_id]' => @product.city.try(:id)), @product.category1.try(:name) => travel_products_path('where[category1_id]' => @product.category1.try(:id)), @product.category2.try(:name) => travel_products_path('where[category1_id]' => @product.category1.try(:id)), @product.name => nil }
+
+.product
+  .container
+    = render 'layouts/application/breadcrumb'
+    .page-title
+      h1 = @product.name
+    .product_show
+      .main.lfloat
+        .product-covers
+          .list
+            - if photo = @product.cover
+              a.pic
+                = image_tag "#{photo.file}.640x360.jpg", alt: '', id: '_product_photo'
+          .page
+            ul
+              - @product.photos.order('sequence ASC').each do |photo|
+                li
+                  a href="#" data={ src: "#{photo.file}.640x360.jpg" } onclick="$('#_product_photo').attr('src', $(this).data('src')); return false;"
+                    = image_tag "#{photo.file}.72x50.jpg", alt: ''
+        .short-info
+          dl
+            dt 语言：
+            dd
+              - @product.speakings.map(&:language).uniq.compact.each do |language|
+                = image_tag language.icon, alt: '' if language.icon
+                = language.name
+                | &nbsp;&nbsp;
+          span class="wishlist-btn"
+            a href="#" class="add-wishlist" 添加到收藏
+        .product_cont
+          .basis_info
+            = sanitize_format @product.description
+          .Activity
+            h3 价格类型
+            - @product.journeys.order(adult_price: :asc).each do |journey|
+              .item-block
+                .title = journey.name
+                p
+                  strong 人数限制：
+                  span = journey.people_quota
+                p
+                  strong 接送服务：
+                  span = journey.pick_up? ? '有' : '无'
+                p
+                  strong 活动亮点：
+                  span = sanitize_format journey.introduction
+                p
+                  strong 费用说明：
+                  span = sanitize_format journey.fee_description
+                p
+                  strong 退改规则：
+                  span = sanitize_format journey.refund_policy
+                .block
+                  .price
+                    em rmb
+                    span ￥#{journey.adult_price}
+                    em 每人
+          .product-tfoot
+            .pcode
+              strong 产品编号：
+              = @product.id
+            a.go-booking href="#"
+              | 立即预定
+              i.icons-arrow-top-blue
+      .side.rfloat
+        .row-290.rfloat.product-side
+          .book-box
+            a.book-button href="#" 立即预定
+            .overall-price
+              em RMB
+              span ￥#{@product.lowest_price}
+            .price-expla
+              | （每人）
+          .controls
+            .list
+              a.question href="mailto:service@jilvtrip.com" 咨询该旅游问题
+          .WePromise
+            h3 承诺
+            p 快速预定和保留
+            p 最低价格保证
+          .GuessLike
+            h3 商家
+            = @product.merchant.name
+            .list
+              - @product.merchant.products.where(published: true).where('id != ?', @product.id).limit(5).each do |product|
+                .tour-item
+                  a.title href=url_for(product) = product.name
+                  a.pic href=url_for(product)
+                    = image_tag "#{product.cover.try(:file)}.640x360.jpg"
+                  .text
+                    span.rating-stars.s50 &nbsp;
+                    span.price #{product.lowest_price} RMB / 人
+            .more
+              a href=travel_products_path('where[merchant_id]' => @product.merchant.id) 查看更多

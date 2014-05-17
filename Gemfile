@@ -3,7 +3,7 @@ source 'http://ruby.taobao.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -76,15 +76,15 @@ gem 'modular_migration'
 gem 'tel_to_helper'
 
 #generate calendar
-gem 'calendar_helper', '~> 0.2.6'
+# gem 'calendar_helper', '~> 0.2.6'
 
 gem 'rails-assets-bundler'
 require 'rails-assets-bundler'
 
 asset 'backbone'
-asset 'background.js'
+# asset 'background.js'
 # asset 'facebox'
-asset 'jquery'
+# asset 'jquery'
 asset 'jquery.cookie'
 asset 'jquery.lazyload'
 asset 'underscore'

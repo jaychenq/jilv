@@ -54,13 +54,21 @@ h2
             = f.text_field :market_price
             = f.error_message_on :market_price
       tr
-        th = f.label :lowest_price
+        th = f.label :adult_price
         td
           - if show
-            = journey.lowest_price
+            = journey.adult_price
           - else
-            = f.text_field :lowest_price
-            = f.error_message_on :lowest_price
+            = f.text_field :adult_price
+            = f.error_message_on :adult_price
+      tr
+        th = f.label :child_price
+        td
+          - if show
+            = journey.child_price
+          - else
+            = f.text_field :child_price
+            = f.error_message_on :child_price
       tr
         th = f.label :people_quota
         td

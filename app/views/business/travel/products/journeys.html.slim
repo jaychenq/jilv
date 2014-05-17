@@ -10,13 +10,15 @@
         tr
           th 名称
           th 门市价
-          th 极旅价
+          th 成人价
+          th 儿童价
           th 操作
         - @product.journeys.each do |journey|
           tr
             td = link_to journey.name, [:edit, :business, journey]
             td = journey.market_price
-            td = journey.lowest_price
+            td = journey.adult_price
+            td = journey.child_price
             td
               =' link_to '修改', [:edit, :business, journey]
         tr
