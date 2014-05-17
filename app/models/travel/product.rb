@@ -11,6 +11,7 @@ class Travel::Product < ActiveRecord::Base
   has_many :inventories
   has_many :photos
   has_many :speakings
+  has_many :languages, through: :speakings
   has_many :parameters
 
   accepts_nested_attributes_for :photos

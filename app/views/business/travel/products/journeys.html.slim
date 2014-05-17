@@ -13,7 +13,7 @@
           th 成人价
           th 儿童价
           th 操作
-        - @product.journeys.each do |journey|
+        - @product.journeys.order(id: :desc).each do |journey|
           tr
             td = link_to journey.name, [:edit, :business, journey]
             td = journey.market_price

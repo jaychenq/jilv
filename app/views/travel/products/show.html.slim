@@ -23,7 +23,7 @@
           dl
             dt 语言：
             dd
-              - @product.speakings.map(&:language).uniq.compact.each do |language|
+              - @product.languages.each do |language|
                 = image_tag language.icon, alt: '' if language.icon
                 = language.name
                 | &nbsp;&nbsp;
