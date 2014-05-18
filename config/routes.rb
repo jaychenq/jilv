@@ -83,7 +83,7 @@ Rails.application.routes.draw do
       resources :complaints
       resources :continents, concerns: :deletable
       resources :countries, concerns: :deletable
-      resources :favorites
+      resources :favorites, concerns: :deletable
       resources :inventories, concerns: [:deletable, :batch]
       resources :journeys, concerns: :deletable
       resources :languages, concerns: :deletable

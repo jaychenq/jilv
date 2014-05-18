@@ -1,0 +1,46 @@
+- favorite = @favorite
+- @page_title = "#{favorite.class.model_name.human} #{favorite.id}"
+- show = params[:action] == 'show' || !%w[new edit].include?(params[:action]) && favorite.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if favorite.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : favorite.new_record? ? 'new' : 'edit')} #{t(favorite.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', favorite: favorite if show && favorite.active?
+= form_for favorite, url: [:admin, favorite], method: favorite.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if favorite.id?
+        tr
+          th = f.label :id
+          td = favorite.id
+      tr
+        th = f.label :user_id
+        td
+          - if show
+            = link_to_admin favorite.user
+          - else
+            = f.text_field :user_id
+            = f.error_message_on :user_id
+      tr
+        th = f.label :product_id
+        td
+          - if show
+            = link_to_admin favorite.product
+          - else
+            = f.text_field :product_id
+            = f.error_message_on :product_id
+      - if favorite.id?
+        tr
+          th = f.label :created_at
+          td = favorite.created_at
+        tr
+          th = f.label :updated_at
+          td = favorite.updated_at
+  - unless show
+    .submit = f.submit

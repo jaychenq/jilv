@@ -33,7 +33,7 @@
           .basis_info
             = sanitize_format @product.description
           .Activity
-            h3 价格类型
+            h3 选项
             - @product.journeys.order(adult_price: :asc).each do |journey|
               .item-block
                 .title = journey.name

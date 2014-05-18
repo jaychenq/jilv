@@ -1,0 +1,5 @@
+= link_to t('show'), [:admin, favorite] if can?(:show, favorite)
+= link_to t('edit'), [:edit, :admin, favorite] if can?(:update, favorite)
+= link_to t('delete'), [:delete, :admin, favorite], class: 'facebox' if can?(:destroy, favorite)
+= link_to t('copy'), action: 'new', id: favorite.id if can?(:create, favorite) && can?(:show, favorite)
+= link_to t('visit'), favorite
