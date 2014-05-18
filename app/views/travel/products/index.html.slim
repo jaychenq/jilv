@@ -1,6 +1,6 @@
 - @page_title = '产品列表'
 - @page_breadcrumb = { 列表: nil }
-- params[:where] ||= {}
+- where = params[:where] || {}
 
 .container
   = render 'layouts/application/breadcrumb'
@@ -9,7 +9,7 @@
       h1 #{@products.count} 个产品
     .side.lfloat
       .row-200.lfloat.product-side
-        - if !params[:where][:continent_id] && !params[:where][:country_id] && !params[:where][:city_id]
+        - if !where[:continent_id] && !where[:country_id] && !where[:city_id]
           .sub-box
             .title
               h3 大洲
@@ -21,7 +21,7 @@
                       a href=url_for(params.deep_merge(where: { continent_id: product.continent_id }))
                         span.name = product.continent.name
                         em.count （#{product.c}）
-        - if params[:where][:continent_id] && !params[:where][:country_id] && !params[:where][:city_id]
+        - if where[:continent_id] && !where[:country_id] && !where[:city_id]
           .sub-box
             .title
               h3 国家
@@ -33,7 +33,7 @@
                       a href=url_for(params.deep_merge(where: { country_id: product.country_id }))
                         span.name = product.country.name
                         em.count （#{product.c}）
-        - if params[:where][:country_id] && !params[:where][:city_id]
+        - if where[:country_id] && !where[:city_id]
           .sub-box
             .title
               h3 城市
@@ -45,7 +45,7 @@
                       a href=url_for(params.deep_merge(where: { city_id: product.city_id }))
                         span.name = product.city.name
                         em.count （#{product.c}）
-        - if !params[:where][:category1_id] && !params[:where][:category2_id]
+        - if !where[:category1_id] && !where[:category2_id]
           .sub-box
             .title
               h3 活动
@@ -57,7 +57,7 @@
                       a href=url_for(params.deep_merge(where: { category1_id: product.category1_id }))
                         span.name = product.category1.name
                         em.count （#{product.c}）
-        - if params[:where][:category1_id] && !params[:where][:category2_id]
+        - if where[:category1_id] && !where[:category2_id]
           .sub-box
             .title
               h3 活动
@@ -69,7 +69,7 @@
                       a href=url_for(params.deep_merge(where: { category2_id: product.category2_id }))
                         span.name = product.category2.name
                         em.count （#{product.c}）
-        - if !params[:where][:language_id]
+        - if !where[:language_id]
           .sub-box
             .title
               h3 语言
@@ -85,18 +85,18 @@
                         span.name = language.name
                         em.count （#{product.c}）
     .main.rfloat
-      - if params[:where].present?
+      - if where.present?
         .search-tag
           h3.tag-title 条件：
           .tag-box
             - %w[merchant continent country city category1 category2].each do |field|
-              - if params[:where].send(:[], "#{field}_id")
+              - if where.send(:[], "#{field}_id")
                 a.tag-iem href=(p = params.deep_dup; p[:where].delete("#{field}_id"); p.delete(:where) if p[:where].blank?; url_for(p))
                   = @products.first.try(field).try(:name)
                   em x
-            - if params[:where][:language_id]
+            - if where[:language_id]
               a.tag-iem href=(p = params.deep_dup; p[:where].delete(:language_id); p.delete(:where) if p[:where].blank?; url_for(p))
-                = Travel::Language.find_by_id(params[:where][:language_id]).try(:name)
+                = Travel::Language.find_by_id(where[:language_id]).try(:name)
                 em x
           a.remove-all href=travel_products_path 全部清除
       .search-result
@@ -108,10 +108,10 @@
                   a href=url_for(product) style="font-size: 18px;" = product.name
                 p.review-block
                   span.wishlist-btn
-                    a.add-wishlist href="#" 添加到收藏
+                    a.add-wishlist._add_travel_favorite href="#" data={ product_id: product.id } 添加到收藏
                 .graphic-info
                   a.pic href=url_for(product)
-                    img src="#{product.cover.try(:file)}.640x360.jpg"
+                    = image_tag "#{product.cover.try(:file)}.640x360.jpg", alt: ''
                   .text-block
                     p.text = product.description[0..99]
                     a.more href=url_for(product) 查看详情 »
