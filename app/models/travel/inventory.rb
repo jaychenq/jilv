@@ -18,5 +18,6 @@ class Travel::Inventory < ActiveRecord::Base
     self.remained_number = self.total_number.to_i - self.preserved_number.to_i
     self.product_id = self.journey.product.id
     self.merchant_id = self.journey.product.merchant.id
+    true
   end
 end

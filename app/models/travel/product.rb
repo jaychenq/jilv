@@ -31,5 +31,6 @@ class Travel::Product < ActiveRecord::Base
   before_validation do
     self.cover_id = self.photos.sort_by { |photo| photo.sequence.presence || photo.id || 99999999 }.first.try(:id)
     self.category1_id = self.category2.try(:parent).try(:id)
+    true
   end
 end

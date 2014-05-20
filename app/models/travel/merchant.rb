@@ -13,10 +13,8 @@ class Travel::Merchant < ActiveRecord::Base
   has_many :products
   has_many :journeys
   has_many :inventories
+  has_many :bookings
 
-  # validates :phone_number, format: { with: /\A[\d-]+\Z/ }
-  # validates :email, format: { with: /\A.+@.+\Z/ }
-  # validates :qq, format: { with: /\A\d+\Z/ }
   validates :entity, :name, :first_name, :last_name, :gender, :identification, :company, :address, :phone_number, :logo, :description, presence: true
   validates :continent, :country, :city, existence: true
 

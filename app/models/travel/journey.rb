@@ -15,5 +15,6 @@ class Travel::Journey < ActiveRecord::Base
   
   before_validation do
     self.merchant_id = self.product.merchant.id
+    true
   end
 end

@@ -1,0 +1,248 @@
+- @page_title = "预订"
+- @page_breadcrumb = { 预订: nil }
+
+- if params[:step] == '1'
+  .container
+    = render 'layouts/application/breadcrumb'
+    .cart
+      .cart-step
+        .step-line
+        ul
+          li.step-1.current
+            span 1
+            strong 购物车
+          li.step-2
+            span 2
+            strong 联系方式
+          li.step-3
+            span 3
+            strong
+              i.icons-lock-gray-s-disabled
+              | 安全支付
+          li.step-4
+            span 4
+            strong 完成
+      .cart-box
+        .main.lfloat
+          .thead
+            h3 产品
+            span 价格
+          .result-list
+            - total_price = 0
+            - [@booking].each do |booking|
+              - next if !journey = booking.journey
+              - next if !product = journey.product
+              - total_price = booking.adult_number.to_i * journey.adult_price + booking.child_number.to_i * journey.child_price
+              .result-cont
+                .info
+                  h3.title
+                    a href=url_for(product) = product.name
+                  .graphic-info
+                    a.pic href=url_for(product)
+                      = image_tag "#{product.cover.try(:file)}.640x360.jpg", alt: ''
+                    .text-block
+                      ul.other-info
+                        li
+                          strong 选项：
+                          span = booking.journey.try(:name)
+                        li
+                          strong 日期：
+                          span = booking.started_on
+                        li
+                          strong 成人：
+                          span #{booking.adult_number} 位
+                        li
+                          strong 儿童：
+                          span #{booking.child_number} 位
+                        li.set-btn
+                          span
+                            a.add-wishlist._add_travel_favorite href="#" data={ product_id: product.id } 添加到收藏
+                .pre-book.price-block
+                  span.price RMB￥ #{journey.adult_price}.00
+                  span.old-price RMB￥ #{journey.market_price}.00
+          .tfoot
+            span 总价格：
+            strong RMB￥ #{total_price}.00
+        .side.rfloat
+          .row-290.rfloat.product-side
+            .checkout-box
+              .overall-price
+                em 总计：
+                span RMB￥ #{total_price}.00
+              a.book-button href=url_for(params.merge(step: 2)) 立即预订
+            .help-phone
+              i.icons-phone-blue
+              span +86 020-53664444
+- else
+  .container
+    = render 'layouts/application/breadcrumb'
+    .cart
+      .cart-step
+        .step-line
+        ul
+          li.step-1.step-past
+            span 1
+            strong 购物车
+          li.step-2.current
+            span 2
+            strong 联系方式
+          li.step-3
+            span 3
+            strong
+              i.icons-lock-gray-s-disabled
+              | 安全支付
+          li.step-4
+            span 4
+            strong 完成
+      .cart-box
+        .main.lfloat
+          h2.from-title
+            span.t-number 1
+            | 联系方式
+          .required-fields
+            span *
+            | 必填
+          .formbody
+            = form_for @booking do |f|
+              = f.hidden_field :journey_id
+              = f.hidden_field :started_on
+              = f.hidden_field :adult_number
+              = f.hidden_field :child_number
+              fieldset.fms_block
+                ul
+                  li.item
+                    .itm_media
+                      label.title_label
+                        | 姓名
+                        span.important *
+                    .itm_body
+                      .textfield
+                        = f.text_field :name
+                        = f.error_message_on :name
+                  li.item
+                    .itm_media
+                      label.title_label
+                        | 手机
+                        span.important *
+                    .itm_body
+                      .textfield
+                        = f.text_field :phone
+                        = f.error_message_on :phone
+                  li.item
+                    .itm_media
+                      label.title_label
+                        | 国家
+                        span.important *
+                    .itm_body
+                      .textfield
+                        = f.text_field :country
+                        = f.error_message_on :country
+                  li.item
+                    .itm_media
+                      label.title_label
+                        | 省份
+                        span.important *
+                    .itm_body
+                      .textfield
+                        = f.text_field :state
+                        = f.error_message_on :state
+                  li.item
+                    .itm_media
+                      label.title_label
+                        | 城市
+                        span.important *
+                    .itm_body
+                      .textfield
+                        = f.text_field :city
+                        = f.error_message_on :city
+                  li.item
+                    .itm_media
+                      label.title_label
+                        | 地址
+                        span.important *
+                    .itm_body
+                      .textfield
+                        = f.text_field :address
+                        = f.error_message_on :address
+                  li.item
+                    .itm_media
+                      label.title_label
+                        | 邮编
+                        span.important *
+                    .itm_body
+                      .textfield
+                        = f.text_field :postcode
+                        = f.error_message_on :postcode
+          h2.from-title
+            span.t-number 2
+            | 确认行程
+          .result-list.shopping-list
+            - total_price = 0
+            - [@booking].each do |booking|
+              - next if !journey = booking.journey
+              - next if !product = journey.product
+              - total_price = booking.adult_number.to_i * journey.adult_price + booking.child_number.to_i * journey.child_price
+              .result-cont
+                .info
+                  h4.title = product.name
+                  .graphic-info
+                    .pic
+                      = image_tag "#{product.cover.try(:file)}.640x360.jpg", alt: ''
+                    .text-block
+                      ul.other-info
+                        li
+                          strong 选项：
+                          span = booking.journey.try(:name)
+                        li
+                          strong 日期：
+                          span = booking.started_on
+                        li
+                          strong 成人：
+                          span #{booking.adult_number} 位
+                        li
+                          strong 儿童：
+                          span #{booking.child_number} 位
+                .pre-book.price-block
+                  span.price RMB￥ #{total_price}.00
+          h2.from-title
+            span.t-number 3
+            | 支付方式
+          .formbody
+            ul.payment-list
+              li.radio-block
+                label
+                  input type="radio" id="p_s_creditcard" value="creditcard" name="p_s" checked="checked"
+                  strong 支付宝
+          .tfoot
+            span 总价格：
+            strong RMB￥ #{total_price}.00
+          ul.terms-confirm
+            li
+              label.check-current
+                input type="checkbox" checked="checked" disabled="disabled"
+                span
+                  span.red * 
+                  | 我接受极旅的使用条款
+          .confirm-block
+            a.button.btn-green href="#" onclick="$('#new_travel_booking').submit(); return false;" 继续支付
+        .side.rfloat
+          .row-290.rfloat.product-side
+            .cs-block
+              h3 需要帮助？
+              .help-phone
+                i.icon32x32-cart-phone
+                span +86 020-53664444
+            .cs-block
+              h3 数据安全
+              .text-mod
+                span.icon32x32-cart-lock
+                p Your info's safe with us. All data is encrypted and transmitted securely with an SSL protocol.
+                p
+                  | G respects your privacy. We do not sell your personal information to anyone. 
+            .cs-block
+              h3 最低价格
+              .text-mod
+                span.icon32x32-tick-green
+                p Your info's safe with us. All data is encrypted and transmitted securely with an SSL protocol.
+                p
+                  | G respects your privacy. We do not sell your personal information to anyone. 

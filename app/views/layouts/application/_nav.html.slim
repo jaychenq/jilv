@@ -6,8 +6,8 @@
           a href=new_business_travel_merchant_path 商家
       li class=('selected' if current == 'index')
         a href="/account/users/#{@current_user.try(:id)||0}" 主页
-      li class=('selected' if current == 'book')
-        a href=travel_books_path 订单
+      li class=('selected' if current == 'booking')
+        a href=travel_bookings_path 订单
       li class=('selected' if current == 'favorite')
         a href=travel_favorites_path 收藏
       li class=('selected' if current == 'setting')

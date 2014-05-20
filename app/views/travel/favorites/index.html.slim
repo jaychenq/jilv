@@ -1,3 +1,5 @@
+- @page_title = '收藏'
+
 = render 'layouts/application/nav', current: 'favorite'
 .container
   .bookings
@@ -10,7 +12,6 @@
         .bookblock
           a.pic href=url_for(product)
             = image_tag "#{product.cover.try(:file)}.640x360.jpg", alt: ''
-            /img src="/jilv/348x261.jpg"
           .name = product.name
           P.b-info
             = sanitize_format product.description[0..99]

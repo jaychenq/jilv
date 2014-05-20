@@ -1,0 +1,78 @@
+- booking = @booking
+- @page_title = "#{booking.class.model_name.human} #{booking.id}"
+- show = true || params[:action] == 'show' || !%w[new edit].include?(params[:action]) && booking.valid?
+
+- if %w[create update destroy].include?(params[:action])
+  - if booking.valid?
+    .updated
+      p #{t(params[:action])} #{t('successful')}
+  - else
+    .error
+      p #{t(params[:action])} #{t('failed')}
+h2
+  | #{t(show ? 'show' : booking.new_record? ? 'new' : 'edit')} #{t(booking.class.model_name.human)}
+  span style='font-size:12px;' = render 'actions', booking: booking if show && booking.active?
+= form_for booking, url: [:admin, booking], method: booking.new_record? ? :post : :put, html: { multipart: true } do |f|
+  table.form-table
+    tbody
+      - if booking.id?
+        tr
+          th = f.label :id
+          td = booking.id
+      tr
+        th = f.label :user_id
+        td = link_to_admin booking.user
+      tr
+        th = f.label :merchant_id
+        td = link_to_admin booking.merchant
+      tr
+        th = f.label :product_id
+        td = link_to_admin booking.product
+      tr
+        th = f.label :journey_id
+        td = link_to_admin booking.journey
+      tr
+        th = f.label :adult_number
+        td = booking.adult_number
+      tr
+        th = f.label :child_number
+        td = booking.child_number
+      tr
+        th = f.label :total_price
+        td = booking.total_price
+      tr
+        th = f.label :name
+        td = booking.name
+      tr
+        th = f.label :phone
+        td = booking.phone
+      tr
+        th = f.label :country
+        td = booking.country
+      tr
+        th = f.label :state
+        td = booking.state
+      tr
+        th = f.label :city
+        td = booking.city
+      tr
+        th = f.label :address
+        td = booking.address
+      tr
+        th = f.label :postcode
+        td = booking.postcode
+      tr
+        th = f.label :payment_platform
+        td = booking.payment_platform
+      tr
+        th = f.label :payment_identifier
+        td = booking.payment_identifier
+      - if booking.id?
+        tr
+          th = f.label :created_at
+          td = booking.created_at
+        tr
+          th = f.label :updated_at
+          td = booking.updated_at
+  - unless show
+    .submit = f.submit

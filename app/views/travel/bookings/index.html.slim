@@ -1,0 +1,42 @@
+- @page_title = '订单'
+
+= render 'layouts/application/nav', current: 'booking'
+.container
+  .bookings
+    h2.wish-title 订单列表
+    - if @bookings.empty?
+      .toptips 您的订单列表为空
+  .cart
+    .cart-box
+      .main.lfloat
+        .result-list.order-list
+          - @bookings.each do |booking|
+            .result-cont
+              .info
+                .title
+                  a href=url_for(booking.product) = booking.product.name
+                .graphic-info
+                  .pic
+                    = image_tag "#{booking.product.cover.try(:file)}", alt: ''
+                  .text-block
+                    ul.other-info
+                      li
+                        strong 选项：
+                        span = booking.journey.try(:name)
+                      li
+                        strong 日期：
+                        span = booking.started_on
+                      li
+                        strong 成人：
+                        span #{booking.adult_number} 位
+                      li
+                        strong 儿童：
+                        span #{booking.child_number} 位
+              a.button.btn-blue href=url_for(booking) = booking.payment_platform? ? '查看详情' : '继续支付'
+      .side.rfloat
+        .row-290.rfloat.product-side
+          .cs-block
+            h3 需要帮助？
+            .help-phone
+              i.icon32x32-cart-phone
+              span +86 020-53664444

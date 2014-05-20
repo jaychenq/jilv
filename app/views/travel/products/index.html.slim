@@ -1,5 +1,5 @@
 - @page_title = '产品列表'
-- @page_breadcrumb = { 列表: nil }
+- @page_breadcrumb = { 产品: nil }
 - where = params[:where] || {}
 
 .container
@@ -105,7 +105,7 @@
             .result-cont
               .info
                 h3.title
-                  a href=url_for(product) style="font-size: 18px;" = product.name
+                  a href=url_for(product) style="font-size: 20px;" = product.name
                 p.review-block
                   span.wishlist-btn
                     a.add-wishlist._add_travel_favorite href="#" data={ product_id: product.id } 添加到收藏
