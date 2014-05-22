@@ -4,7 +4,7 @@
       li class=('selected' if current == 'merchant')
         a href=new_business_travel_merchant_path
           i.icons-user-gray
-          span = @current_user.try(:merchant) ? '商家信息' : '商家入驻'
+          span = @current_user.try(:merchant) ? '商家首页' : '商家入驻'
     - if 1 # @current_user.try(:merchant)
       li class=('selected' if current == 'product')
         a href=business_travel_products_path

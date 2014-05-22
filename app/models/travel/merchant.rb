@@ -26,6 +26,6 @@ class Travel::Merchant < ActiveRecord::Base
   validates_attachment :identification_attachment, size: { in: 0..10.megabytes }
   has_attached_file :lisense, url: '/upload/travel/merchant/:id_partition/lisense/:updated_at.:extension:style_extension'
   validates_attachment :lisense_attachment, size: { in: 0..10.megabytes }
-  has_attached_file :logo, url: '/upload/travel/merchant/:id_partition/logo/:updated_at.:extension:style_extension'
+  has_attached_file :logo, url: '/upload/travel/merchant/:id_partition/logo/:updated_at.:extension:style_extension', styles: { :'128x128' => '128x128#' }
   validates_attachment :logo_attachment, size: { in: 0..10.megabytes }, content_type: { content_type: %w[ image/jpeg image/jpg image/pjpeg image/png image/x-png image/gif ] }
 end
