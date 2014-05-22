@@ -15,7 +15,7 @@ class Business::Travel::MerchantsController < Business::Travel::ApplicationContr
     @merchant.id = @current_user.id
     @merchant.attributes = params[model.table_name.singularize].to_h.slice(*model.business_fields)
 
-    if @merchant.save then redirect_to [:business, @merchant] # new_business_travel_product_path
+    if @merchant.save then redirect_to [:business, @merchant]
     else render :new
     end
   end

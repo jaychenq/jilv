@@ -22,6 +22,7 @@ zh-CN:
         postcode: 邮编
         payment_platform: 付款平台
         payment_identifier: 付款编号
+        confirmation: 确认
     enums:
       travel/booking:
         status:

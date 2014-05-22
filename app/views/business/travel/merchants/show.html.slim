@@ -9,7 +9,7 @@
   .main.rfloat
     .row-600.profile-form
       div style="position: relative; margin-bottom: 20px;"
-        div style="float: left; width: 128px; height: 128px; padding: 5px; border: 1px solid silver;" = image_tag "#{merchant.logo}.128x128.jpg", alt: ''
+        div style="float: left; width: 128px; height: 128px; padding: 5px; border: 1px solid silver; border-radius: 4px;" = image_tag "#{merchant.logo}.128x128.jpg", alt: ''
         div style="float: right; width: 590px;"
           div style="font-size: 24px; margin-bottom: 24px; margin-top: 5px;"
             = merchant.name
@@ -28,7 +28,7 @@
             = merchant.phone_number
         div style="clear: both;"
       h4.page-h4 最新产品
-      div style="margin: 10px 0px 10px 0; text-align: right;" = link_to '新增产品', new_business_travel_product_path, style: 'display: inline-block; border-radius: 3px; background-color: #00AEEF; color: white; padding: 8px 12px; text-decoration: none;'
+      div style="margin: 10px 0px 10px 0; text-align: right;" = link_to '新增产品', new_business_travel_product_path, style: 'display: inline-block; border-radius: 3px; background-color: #00AEEF; color: white; padding: 10px 15px; text-decoration: none;'
       table.business_table
         tr
           th 编号
@@ -56,7 +56,9 @@
           th 产品
           th 行程
           th 联系方式
+          th 确认
           th 付款
+          th 操作
         - merchant.bookings.order(id: :desc).limit(5).each do |booking|
           tr
             td = booking.id
@@ -68,4 +70,9 @@
               | 手机：#{booking.phone}
               br
               | 地址：#{booking.country} #{booking.state} #{booking.city} #{booking.address} #{booking.postcode}
+            td = booking.confirmation.nil? ? '？' : booking.confirmation? ? '✔' : '✘'
             td = boolean_tag booking.payment_platform?
+            td
+              - if booking.confirmation.nil?
+                =' link_to '接受', [:accept, :business, booking], method: :put
+                =' link_to '取消', [:reject, :business, booking], method: :put

@@ -14,7 +14,9 @@
           th 产品
           th 行程
           th 联系方式
+          th 确认
           th 付款
+          th 操作
         - @bookings.each do |booking|
           tr
             td = booking.id
@@ -26,4 +28,9 @@
               | 手机：#{booking.phone}
               br
               | 地址：#{booking.country} #{booking.state} #{booking.city} #{booking.address} #{booking.postcode}
+            td = booking.confirmation.nil? ? '？' : booking.confirmation? ? '✔' : '✘'
             td = boolean_tag booking.payment_platform?
+            td
+              - if booking.confirmation.nil?
+                =' link_to '接受', [:accept, :business, booking], method: :put
+                =' link_to '取消', [:reject, :business, booking], method: :put

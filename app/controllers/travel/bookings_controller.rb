@@ -1,10 +1,11 @@
 class Travel::BookingsController < Travel::ApplicationController
+  before_action :booking, except: [:new]
+
   def index
     @bookings = @current_user.bookings.order(id: :desc).paginate(page: params[:page], per_page: params[:per_page] || 100)
   end
 
   def show
-    @booking = model.f(id)
   end
 
   def new
@@ -13,13 +14,23 @@ class Travel::BookingsController < Travel::ApplicationController
   end
 
   def create
-    return redirect_to new_account_user_path if !@current_user
     @booking = model.new
     @booking.attributes = params[:travel_booking].to_h.merge(user_id: @current_user.id)
     ok = @booking.save
     
-    if ok then redirect_to @booking
-    else render :new
+    if ok
+      Mailer.mail(to: @booking.merchant.user.email, subject: "[极旅]用户向你预订了#{@booking.product.name}，请及时确认", body: %{<a href="#{url_for([:business, Travel::Booking])}">#{url_for([:business, Travel::Booking])}</a>})
+      redirect_to @booking
+    else
+      render :new
     end
+  end
+
+private
+
+  def booking
+    return redirect_to new_account_user_path if !@current_user
+    @booking = model.f(id) if id
+    return redirect_to action: 'index' if @booking && @booking.user_id != @current_user.id
   end
 end

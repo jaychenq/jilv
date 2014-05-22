@@ -100,7 +100,12 @@ Rails.application.routes.draw do
 
   namespace :business do
     namespace :travel do
-      resources :bookings
+      resources :bookings do
+        member do
+          put :accept
+          put :reject
+        end
+      end
       resources :complaints
       resources :inventories
       resources :journeys

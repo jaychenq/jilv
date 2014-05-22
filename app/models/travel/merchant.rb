@@ -3,6 +3,7 @@ class Travel::Merchant < ActiveRecord::Base
   enum gender: %i[male female]
   enum status: %i[applied approved vetoed forbidden]
 
+  belongs_to :user, class_name: Account::User, foreign_key: 'id'
   belongs_to :continent
   belongs_to :country
   belongs_to :city
