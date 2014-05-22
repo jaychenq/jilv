@@ -49,7 +49,7 @@ h2
           - if show
             = page.keywords
           - else
-            = f.text_field :keywords
+            = f.text_field :keywords, class: '_not_editor'
             = f.error_message_on :keywords
       tr
         th = f.label :description
@@ -65,7 +65,7 @@ h2
           - if show
             = text_format page.body
           - else
-            = f.text_area :body
+            = f.text_area :body, class: '_not_editor'
             = f.error_message_on :body
       tr
         th = f.label :template
@@ -81,7 +81,7 @@ h2
           - if show
             = text_format page.data
           - else
-            = f.text_area :data
+            = f.text_area :data, class: '_not_editor'
             = f.error_message_on :data
       - if page.id?
         tr

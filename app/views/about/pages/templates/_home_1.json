@@ -1,12 +1,100 @@
 {
-  "continents": [
+  "background": {
+    "image": "/jilv/intro_paris.jpg",
+    "url": "/travel/products"
+  },
+  "categories": [
     {
-      "id": "",
-      "countries": [
-        {
-          "id": "",
-        }
-      ] 
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    }
+  ],
+  "cities": [
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
+    },
+    {
+      "name": "热气球",
+      "image": "/jilv/348x261.jpg",
+      "url": "/travel/products"
     }
   ]
 }
