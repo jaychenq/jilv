@@ -11,7 +11,7 @@ default: &default
   database: jilv
   pool: 5
   username: root
-  password: admin
+  password: 
   socket: /tmp/mysql.sock
   # adapter: sqlite3
   # pool: 5

@@ -18,7 +18,7 @@ br.clear
 table.widefat
   thead
     tr
-      - %w[id merchant_id product_id name sequence market_price lowest_price people_quota published inventories created_at updated_at actions].each do |field|
+      - %w[id merchant_id product_id name sequence market_price adult_price child_price people_quota published inventories created_at updated_at actions].each do |field|
         th = model.human_attribute_name(field)
   tbody
     - @journeys.each do |journey|
@@ -29,7 +29,8 @@ table.widefat
         td = link_to_admin journey
         td = journey.sequence
         td = journey.market_price
-        td = journey.lowest_price
+        td = journey.adult_price
+        td = journey.child_price
         td = journey.people_quota
         td = boolean_tag journey.published?
         td

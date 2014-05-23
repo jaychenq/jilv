@@ -1,0 +1,31 @@
+zh-CN:
+  activerecord:
+    models:
+      travel/booking: 订单
+    attributes:
+      travel/booking:
+        status: 状态
+        user_id: 用户
+        merchant_id: 商家
+        product_id: 产品
+        journey_id: 行程
+        started_on: 日期
+        adult_number: 成人数
+        child_number: 儿童数
+        total_price: 总价格
+        name: 姓名
+        phone: 手机
+        country: 国家
+        state: 省份
+        city: 城市
+        address: 地址
+        postcode: 邮编
+        payment_platform: 付款平台
+        payment_identifier: 付款编号
+        confirmation: 确认
+    enums:
+      travel/booking:
+        status:
+          created: 已创建
+          completed: 已完成
+          canceled: 已取消

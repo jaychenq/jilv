@@ -76,13 +76,26 @@
                   - else
                     .selectfield
                       = f.collection_select :continent_id, Travel::Continent.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-                      = f.error_message_on :continent_id
                     .selectfield
                       = f.collection_select :country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-                      = f.error_message_on :country_id
                     .selectfield
                       = f.collection_select :city_id, Travel::City.order('sequence ASC, name ASC'), :id, :name, include_blank: true
                       = f.error_message_on :city_id
+                    #continents data-continents=Travel::Continent.all.to_json(only: [:id, :name], include: { countries: { only: [:id, :name], include: { cities: { only: [:id, :name] } } } })
+                    coffee:
+                      $ ->
+                        $('#travel_product_continent_id').on 'change', ->
+                          continents = $('#continents').data('continents')
+                          countries = (_.find(continents, ((continent) -> continent.id == parseInt($('#travel_product_continent_id').val()))) || {}).countries || []
+                          options = _.map(countries, ((country) -> '<option value="' + country.id + '">' + country.name + '</option>')).join('')
+                          $('#travel_product_country_id').html('<option></option>' + options)
+                          $('#travel_product_city_id').html('<option></option>')
+                        $('#travel_product_country_id').on 'change', ->
+                          continents = $('#continents').data('continents')
+                          countries = (_.find(continents, ((continent) -> continent.id == parseInt($('#travel_product_continent_id').val()))) || {}).countries || []
+                          cities = (_.find(countries, ((country) -> country.id == parseInt($('#travel_product_country_id').val()))) || {}).cities || []
+                          options = _.map(cities, ((city) -> '<option value="' + city.id + '">' + city.name + '</option>')).join('')
+                          $('#travel_product_city_id').html('<option></option>' + options)
               li.item
                 .itm_media
                   label.title_label
@@ -161,7 +174,7 @@
                   - else
                     - 8.times do |index|
                       - photo = product.photos.find_or_initialize_by(sequence: index)
-                      div = image_tag "#{photo.file}.640x360.jpg", alt: '' if photo.file
+                      div = image_tag "#{photo.file}.640x360.jpg", alt: '', style: 'width: 320px; height: 180px;' if photo.file
                       div = file_field_tag "photo_files[#{index}]"
                       hr style="margin: 10px 0;"
               - if !show

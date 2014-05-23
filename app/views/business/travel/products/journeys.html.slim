@@ -10,16 +10,18 @@
         tr
           th 名称
           th 门市价
-          th 极旅价
+          th 成人价
+          th 儿童价
           th 操作
-        - @product.journeys.each do |journey|
+        - @product.journeys.order(id: :desc).each do |journey|
           tr
             td = link_to journey.name, [:edit, :business, journey]
             td = journey.market_price
-            td = journey.lowest_price
+            td = journey.adult_price
+            td = journey.child_price
             td
               =' link_to '修改', [:edit, :business, journey]
         tr
-          td colspan="999" = link_to '+ 增加价格类型', new_business_travel_journey_path('travel_journey[product_id]' => @product.id)
+          td colspan="999" = link_to '+ 增加价格类型', new_business_travel_journey_path('travel_journey[product_id]' => @product.id), style: 'display: inline-block; border-radius: 3px; background-color: #00AEEF; color: white; padding: 7px 12px; text-decoration: none;'
       form action=complete_business_travel_product_path(@product) method="get"
         button.button.btn-blue 下一步 >

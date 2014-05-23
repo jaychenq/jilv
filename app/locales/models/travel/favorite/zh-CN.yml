@@ -1,0 +1,8 @@
+zh-CN:
+  activerecord:
+    models:
+      travel/favorite: 收藏
+    attributes:
+      travel/favorite:
+        user_id: 用户
+        product_id: 产品

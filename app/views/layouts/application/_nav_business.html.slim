@@ -1,10 +1,10 @@
 .sub_nav
   ul.tablist
-    - if 1 
+    - if 1  
       li class=('selected' if current == 'merchant')
         a href=new_business_travel_merchant_path
           i.icons-user-gray
-          span = @current_user.try(:merchant) ? '商家信息' : '商家入驻'
+          span = @current_user.try(:merchant) ? '商家首页' : '商家入驻'
     - if 1 # @current_user.try(:merchant)
       li class=('selected' if current == 'product')
         a href=business_travel_products_path
@@ -21,4 +21,15 @@
       li class=('selected' if current == 'complaint')
         a href=business_travel_complaints_path
           i.icons-lock-gray
-          span 反馈投诉
+          span 投诉管理
+
+sass:
+  .sub_nav
+    width: 160px
+  .side
+    width: 200px
+  .main
+    width: 760px
+  .row-600
+    width: 760px
+

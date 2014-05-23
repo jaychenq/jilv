@@ -1,0 +1,142 @@
+- @page_title = '产品列表'
+- @page_breadcrumb = { 产品: nil }
+- where = params[:where] || {}
+
+.container
+  = render 'layouts/application/breadcrumb'
+  .search-page
+    .page-title
+      h1 #{@products.count} 个产品
+    .side.lfloat
+      .row-200.lfloat.product-side
+        - if !where[:continent_id] && !where[:country_id] && !where[:city_id]
+          .sub-box
+            .title
+              h3 大洲
+            .cont
+              .simple-list
+                ul
+                  - @products.paginate(page: 1, per_page: 10000).group(:continent_id).select('continent_id, COUNT(*) AS c').order('c DESC').joins(:continent).each do |product|
+                    li
+                      a href=url_for(params.deep_merge(where: { continent_id: product.continent_id }))
+                        span.name = product.continent.name
+                        em.count （#{product.c}）
+        - if where[:continent_id] && !where[:country_id] && !where[:city_id]
+          .sub-box
+            .title
+              h3 国家
+            .cont
+              .simple-list
+                ul
+                  - @products.paginate(page: 1, per_page: 10000).group(:country_id).select('country_id, COUNT(*) AS c').order('c DESC').joins(:country).each do |product|
+                    li
+                      a href=url_for(params.deep_merge(where: { country_id: product.country_id }))
+                        span.name = product.country.name
+                        em.count （#{product.c}）
+        - if where[:country_id] && !where[:city_id]
+          .sub-box
+            .title
+              h3 城市
+            .cont
+              .simple-list
+                ul
+                  - @products.paginate(page: 1, per_page: 10000).group(:city_id).select('city_id, COUNT(*) AS c').order('c DESC').joins(:city).each do |product|
+                    li
+                      a href=url_for(params.deep_merge(where: { city_id: product.city_id }))
+                        span.name = product.city.name
+                        em.count （#{product.c}）
+        - if !where[:category1_id] && !where[:category2_id]
+          .sub-box
+            .title
+              h3 活动
+            .cont
+              .simple-list
+                ul
+                  - @products.paginate(page: 1, per_page: 10000).group(:category1_id).select('category1_id, COUNT(*) AS c').order('c DESC').joins(:category1).each do |product|
+                    li
+                      a href=url_for(params.deep_merge(where: { category1_id: product.category1_id }))
+                        span.name = product.category1.name
+                        em.count （#{product.c}）
+        - if where[:category1_id] && !where[:category2_id]
+          .sub-box
+            .title
+              h3 活动
+            .cont
+              .simple-list
+                ul
+                  - @products.paginate(page: 1, per_page: 10000).group(:category2_id).select('category2_id, COUNT(*) AS c').order('c DESC').joins(:category2).each do |product|
+                    li
+                      a href=url_for(params.deep_merge(where: { category2_id: product.category2_id }))
+                        span.name = product.category2.name
+                        em.count （#{product.c}）
+        - if !where[:language_id]
+          .sub-box
+            .title
+              h3 语言
+            .cont
+              .simple-list
+                ul
+                  - @products.paginate(page: 1, per_page: 10000).joins(:languages).group('travel_speakings.language_id').select('language_id, COUNT(*) AS c').order('c DESC').each do |product|
+                    - next if !language = Travel::Language.find_by_id(product.language_id)
+                    li
+                      a href=url_for(params.deep_merge(where: { language_id: product.language_id }))
+                        = image_tag language.icon, alt: '' if language.icon
+                        | &nbsp;
+                        span.name = language.name
+                        em.count （#{product.c}）
+    .main.rfloat
+      - if where.present?
+        .search-tag
+          h3.tag-title 条件：
+          .tag-box
+            - %w[merchant continent country city category1 category2].each do |field|
+              - if where.send(:[], "#{field}_id")
+                a.tag-iem href=(p = params.deep_dup; p[:where].delete("#{field}_id"); p.delete(:where) if p[:where].blank?; url_for(p))
+                  = @products.first.try(field).try(:name)
+                  em x
+            - if where[:language_id]
+              a.tag-iem href=(p = params.deep_dup; p[:where].delete(:language_id); p.delete(:where) if p[:where].blank?; url_for(p))
+                = Travel::Language.find_by_id(where[:language_id]).try(:name)
+                em x
+          a.remove-all href=travel_products_path 全部清除
+      .search-result
+        .result-list
+          - @products.joins(:cover, :city, :category2).each do |product|
+            .result-cont
+              .info
+                h3.title
+                  a href=url_for(product) style="font-size: 20px;" = product.name
+                p.review-block
+                  span.wishlist-btn
+                    a.add-wishlist._add_travel_favorite href="#" data={ product_id: product.id } 添加到收藏
+                .graphic-info
+                  a.pic href=url_for(product)
+                    = image_tag "#{product.cover.try(:file)}.640x360.jpg", alt: ''
+                  .text-block
+                    p.text = product.description[0..99]
+                    a.more href=url_for(product) 查看详情 »
+                    ul.other-info
+                      li
+                        strong 城市：
+                        span = product.city.try(:name)
+                      li
+                        strong 活动：
+                        span = product.category2.try(:name)
+                      li
+                        strong 语言：
+                        span
+                          - product.languages.each do |language|
+                            =' language.name
+              .supplier
+                em 商家：
+                span = product.merchant.try(:name)
+              .pre-book
+                .pricing
+                  strong
+                    em 低至
+                    | $#{product.lowest_price}.00
+                  span 每人
+                .book-btn
+                  a.button.btn-blue href=url_for(product) 查看详情
+      .pageber
+        = will_paginate(@products)

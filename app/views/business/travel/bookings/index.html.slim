@@ -6,3 +6,31 @@
     .row-290
       = render 'layouts/application/nav_business', current: 'booking'
   .main.rfloat
+    .row-600.profile-form
+      h4.page-h4 订单管理
+      table.business_table
+        tr
+          th 编号
+          th 产品
+          th 行程
+          th 联系方式
+          th 确认
+          th 付款
+          th 操作
+        - @bookings.each do |booking|
+          tr
+            td = booking.id
+            td = link_to_object booking.product
+            td = booking.journey.name
+            td
+              | 姓名：#{booking.name}
+              br
+              | 手机：#{booking.phone}
+              br
+              | 地址：#{booking.country} #{booking.state} #{booking.city} #{booking.address} #{booking.postcode}
+            td = booking.confirmation.nil? ? '？' : booking.confirmation? ? '✔' : '✘'
+            td = boolean_tag booking.payment_platform?
+            td
+              - if booking.confirmation.nil?
+                =' link_to '接受', [:accept, :business, booking], method: :put
+                =' link_to '取消', [:reject, :business, booking], method: :put

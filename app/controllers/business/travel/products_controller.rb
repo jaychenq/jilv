@@ -2,7 +2,7 @@ class Business::Travel::ProductsController < Business::Travel::ApplicationContro
   before_action :merchant, :product
 
   def index
-    @products = @merchant.products
+    @products = @merchant.products.order(id: :desc)
   end
 
   def show

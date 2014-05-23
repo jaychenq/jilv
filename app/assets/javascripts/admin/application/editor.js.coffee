@@ -1,8 +1,13 @@
 $ ->
   $(document).on 'page:change', ->
-    $.getScript 'http://tinymce.cachefly.net/4.0/tinymce.min.js', ->
+    return true if not $("textarea").length
+    $.ajax 
+      url: 'http://tinymce.cachefly.net/4.0/tinymce.min.js'
+      dataType: 'script'
+      cache: true
+    .done ->
       tinymce.init
-        selector: "textarea"
+        selector: "textarea:not(._not_editor)"
         theme: "modern"
         height: 200
         plugins: [

@@ -4,6 +4,8 @@ class Account::User < ActiveRecord::Base
   belongs_to :admin_user, class_name: Admin::User, foreign_key: 'id'
   belongs_to :merchant, class_name: Travel::Merchant, foreign_key: 'id'
   has_many :sessions
+  has_many :favorites, class_name: Travel::Favorite
+  has_many :bookings, class_name: Travel::Booking
   
   attr_accessor :terms_of_service
   

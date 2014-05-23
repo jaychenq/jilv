@@ -83,7 +83,8 @@ Rails.application.routes.draw do
       resources :complaints
       resources :continents, concerns: :deletable
       resources :countries, concerns: :deletable
-      resources :favorites
+      resources :bookings, concerns: :deletable
+      resources :favorites, concerns: :deletable
       resources :inventories, concerns: [:deletable, :batch]
       resources :journeys, concerns: :deletable
       resources :languages, concerns: :deletable
@@ -99,7 +100,12 @@ Rails.application.routes.draw do
 
   namespace :business do
     namespace :travel do
-      resources :bookings
+      resources :bookings do
+        member do
+          put :accept
+          put :reject
+        end
+      end
       resources :complaints
       resources :inventories
       resources :journeys
@@ -117,7 +123,7 @@ Rails.application.routes.draw do
 
   namespace :travel do
     resources :attributes
-    resources :books
+    resources :bookings
     resources :categories
     resources :cities
     resources :continents

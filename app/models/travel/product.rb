@@ -11,6 +11,7 @@ class Travel::Product < ActiveRecord::Base
   has_many :inventories
   has_many :photos
   has_many :speakings
+  has_many :languages, through: :speakings
   has_many :parameters
 
   accepts_nested_attributes_for :photos
@@ -30,5 +31,6 @@ class Travel::Product < ActiveRecord::Base
   before_validation do
     self.cover_id = self.photos.sort_by { |photo| photo.sequence.presence || photo.id || 99999999 }.first.try(:id)
     self.category1_id = self.category2.try(:parent).try(:id)
+    true
   end
 end

@@ -1,57 +1,40 @@
-/h1 home_1
-/div = data
-/div = data['continents'][0]['id'] rescue nil
-/div = data.try(:[], 'continents').try(:[], 0).try(:[], 'id')
-/div = data.continents[0].id rescue nil
-
 .home
-  .home-pic style="background-image: url('/jilv/intro_paris.jpg');"
-    .container
-      .intro-box
-        .home-search-box
-          h2
-            | Things to do,
-            br
-            | all over the world
-          form.search-place-date
-            .search-box
-              input.text type="text" placeholder="你想去哪个城市？"
-              button.search-send type="submit"
-                span 搜索
+  a href=(data.background.url rescue nil)
+    span.home-pic style="display: block; background-image: url('#{data.background.image rescue nil}');"
   .services_banner
     .container
-      h3 JilvTrip gives you:
-      ul
+      h3 “最接地气”体验式旅行、发现世界新玩法！
+      ul style="left: 350px;"
         li
-          h5 THE BEST SELECTION
-          p More than 24400 things to do
+          h5 发现
+          p 足不出户、先知天下
         li
-          h5 THE LOWEST PRICES
-          p We guarantee it!
+          h5 计划
+          p 抛开攻略，轻松计划旅行
         li
-          h5 FAST & EASY BOOKING
-          p Book online to lock in your tickets
+          h5 预定
+          p 在线预定，快乐出行
   .image_list.image_list_3
     .container
       .title
         h3 热门活动
       .list
         ul
-          - 9.times do
+          - data.categories.to_a.each do |category|
             li
-              a.link href="#"
-                img.pic src="/jilv/348x261.jpg"
+              a.link href=category.url
+                = image_tag category.image.to_s, alt: '', class: 'pic'
                 .description
-                  h5 热气球
-                  p 冲绳 济州岛 巴厘岛 马尔代夫马尔代夫马尔代夫
-  .image_list.image_list_4
+                  h5 = category.name
+  .image_list.image_list_3
     .container
       .title
         h3 热门城市
       .list
         ul
-          - 12.times do
+          - data.cities.to_a.each do |category|
             li
-              a.link href="#"
-                img.pic src="/jilv/348x261.jpg"
-                .pic_name 巴黎
+              a.link href=category.url
+                = image_tag category.image.to_s, alt: '', class: 'pic'
+                .description
+                  h5 = category.name
