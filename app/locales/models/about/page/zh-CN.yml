@@ -16,5 +16,7 @@ zh-CN:
       about/page:
         position:
           home: 首页
+          merchant: 商家入驻
         template:
           home_1: 首页第1版
+          merchant_1: 商家入驻第1版

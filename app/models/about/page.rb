@@ -1,6 +1,6 @@
 class About::Page < ActiveRecord::Base
-  enum position: %w[home]
-  enum template: %w[home_1]
+  enum position: %i[home merchant]
+  enum template: %i[home_1 merchant_1]
 
   belongs_to :creator, class_name: Admin::User
   belongs_to :updater, class_name: Admin::User
@@ -20,9 +20,10 @@ class About::Page < ActiveRecord::Base
   class << self
     def search(id_or_position)
       self
-        .where((id_or_position.to_s.match(/\A\d+\Z/) ? :id : :position) => id_or_position)
+        .where(id_or_position.to_s.match(/\A\d+\Z/) ? { id: id_or_position } : { position: self.positions[id_or_position] })
         .where(published: true)
-        .order('id DESC').first
+        .order(id: :desc)
+        .first
     end
   end
 end
