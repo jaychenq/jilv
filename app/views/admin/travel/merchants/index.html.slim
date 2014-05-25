@@ -1,8 +1,8 @@
 - @page_title = model.model_name.human
 h2
   | #{model.model_name.human} #{t('list')} (#{@merchants.total_entries}) &nbsp;
-  = link_to t('new'), action: 'new' if can?(:create, model)
-  = link_to t('visit'), model
+  / = link_to t('new'), action: 'new' if can?(:create, model)
+  / = link_to t('visit'), model
 = form_tag request.path, method: 'get', id: 'search_form' do
   .tablenav
     .alignleft

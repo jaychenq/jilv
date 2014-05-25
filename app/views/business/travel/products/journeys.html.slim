@@ -5,7 +5,19 @@
       = render 'layouts/application/nav_business', current: 'product'
   .main.rfloat
     .row-600.profile-form
-      h4.page-h4 第二步：价格类型
+      .cart
+        .cart-step
+          .step-line style="width: 530px;"
+          ul
+            li.step-1.step-past
+              span 1
+              strong 第一步：基本信息
+            li.step-2.current
+              span 2
+              strong 第二步：活动报价
+            li.step-3
+              span 3
+              strong 第三步：完成
       table.business_table
         tr
           th 名称

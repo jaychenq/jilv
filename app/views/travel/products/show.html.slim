@@ -21,22 +21,39 @@
                     = image_tag "#{photo.file}.72x50.jpg", alt: ''
         .short-info
           dl
+            dt 活动时间：
+            dd = @product.activity_time
+          dl
+            dt 适合群体：
+            dd = @product.colony
+          dl
+            dt 提前预订：
+            dd
+              = @product.early_booking
+              | &nbsp;天
+          dl
             dt 语言：
             dd
               - @product.languages.each do |language|
-                = image_tag language.icon, alt: '' if language.icon
-                = language.name
-                | &nbsp;&nbsp;
+                =' image_tag language.icon, alt: '' if language.icon
+                =' language.name
+                | &nbsp;&nbsp;&nbsp;&nbsp;
           span class="wishlist-btn"
             a.add-wishlist._add_travel_favorite href="#" data={ product_id: @product.id } 添加到收藏
         .product_cont
           .basis_info
-            = sanitize_format @product.description
+            = simple_format @product.description
           .Activity._journeys
             h3 选项
             - @product.journeys.order(adult_price: :asc).each do |journey|
               .item-block style="position: relative; min-height: 140px;"
                 .title = journey.name
+                p
+                  strong 开始时间：
+                  span = journey.start_time
+                p
+                  strong 持续时间：
+                  span = journey.duration_time
                 p
                   strong 人数限制：
                   span = journey.people_quota
@@ -74,6 +91,18 @@
                       tr
                         td
                         td = submit_tag '预 订', name: nil, style: "border-radius: 3px; background-color: #7EC440; color: white; border: medium none; padding: 4px 15px; margin-top: 3px; cursor: pointer; box-shadow: 0 -2px 0 0 #67A031 inset;"
+          .basis_info
+            h3 活动地点
+            p
+              =' @product.country.try(:name)
+              =' @product.city.try(:name)
+              =' @product.address
+          .basis_info
+            h3 如何抵达
+            = simple_format @product.arrival
+          .basis_info
+            h3 温馨提示
+            = simple_format @product.tips
           .product-tfoot
             .pcode
               strong 产品编号：

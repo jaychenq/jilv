@@ -9,7 +9,19 @@
       = render 'layouts/application/nav_business', current: 'product'
   .main.rfloat
     .row-600.profile-form
-      h4.page-h4 第二步：价格类型
+      .cart
+        .cart-step
+          .step-line style="width: 530px;"
+          ul
+            li.step-1.step-past
+              span 1
+              strong 第一步：基本信息
+            li.step-2.current
+              span 2
+              strong 第二步：活动报价
+            li.step-3
+              span 3
+              strong 第三步：完成
       .formbody
         = form_for journey, url: [:business, journey], method: journey.new_record? ? :post : :put, html: { multipart: true } do |f|
           = f.hidden_field :product_id
@@ -67,6 +79,32 @@
                     .textfield
                       = f.text_field :child_price
                       = f.error_message_on :child_price
+              li.item
+                .itm_media
+                  label.title_label
+                    | 开始时间
+                    - if !show
+                      span.important *
+                .itm_body
+                  - if show
+                    = journey.start_time
+                  - else
+                    .textfield
+                      = f.text_field :start_time
+                      = f.error_message_on :start_time
+              li.item
+                .itm_media
+                  label.title_label
+                    | 持续时间
+                    - if !show
+                      span.important *
+                .itm_body
+                  - if show
+                    = journey.duration_time
+                  - else
+                    .textfield
+                      = f.text_field :duration_time
+                      = f.error_message_on :duration_time
               li.item
                 .itm_media
                   label.title_label

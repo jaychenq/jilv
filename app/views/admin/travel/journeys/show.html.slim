@@ -70,6 +70,22 @@ h2
             = f.text_field :child_price
             = f.error_message_on :child_price
       tr
+        th = f.label :start_time
+        td
+          - if show
+            = journey.start_time
+          - else
+            = f.text_field :start_time
+            = f.error_message_on :start_time
+      tr
+        th = f.label :duration_time
+        td
+          - if show
+            = journey.duration_time
+          - else
+            = f.text_field :duration_time
+            = f.error_message_on :duration_time
+      tr
         th = f.label :people_quota
         td
           - if show

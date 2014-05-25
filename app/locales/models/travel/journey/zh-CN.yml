@@ -12,11 +12,13 @@ zh-CN:
         # lowest_price: 最低价
         adult_price: 成人价
         child_price: 儿童价
+        start_time: 开始时间
+        duration_time: 持续时间
         people_quota: 人数限制
         # started_on: 开始日期
         # ended_on: 结束日期
-        # duration: 持续天数
         # start_hour: 开始小时
+        # duration: 持续时间
         # early_booking: 提前预订天数
         pick_up: 接送服务
         # with_food: 配备餐食

@@ -9,7 +9,19 @@
       = render 'layouts/application/nav_business', current: 'product'
   .main.rfloat
     .row-600.profile-form
-      h4.page-h4 第一步：基本信息
+      .cart
+        .cart-step
+          .step-line style="width: 530px;"
+          ul
+            li.step-1.current
+              span 1
+              strong 第一步：基本信息
+            li.step-2
+              span 2
+              strong 第二步：活动报价
+            li.step-3
+              span 3
+              strong 第三步：完成
       .formbody
         = form_for product, url: [:business, product], method: product.new_record? ? :post : :put, html: { multipart: true } do |f|
           = f.hidden_field :merchant_id
@@ -125,29 +137,68 @@
               li.item
                 .itm_media
                   label.title_label
-                    | 开始日期
+                    | 提前预订天数
                     - if !show
                       span.important *
                 .itm_body
                   - if show
-                    = product.started_on
+                    = product.early_booking
                   - else
-                    .textfield
-                      = f.text_field :started_on
-                      = f.error_message_on :started_on
+                    .selectfield
+                      = f.select :early_booking, 0..30
+                      = f.error_message_on :early_booking
               li.item
                 .itm_media
                   label.title_label
-                    | 结束日期
+                    | 活动时间
                     - if !show
                       span.important *
                 .itm_body
                   - if show
-                    = product.ended_on
+                    = product.activity_time
                   - else
-                    .textfield
-                      = f.text_field :ended_on
-                      = f.error_message_on :ended_on
+                    .selectfield
+                      = f.select :activity_time, %w[上午 下午 晚上 一日 超值套餐]
+                      = f.error_message_on :activity_time
+              li.item
+                .itm_media
+                  label.title_label
+                    | 适合群体
+                    - if !show
+                      span.important *
+                .itm_body
+                  - if show
+                    = product.colony
+                  - else
+                    .selectfield
+                      = f.select :colony, %w[家庭 亲子 情侣 商务 背包 户外 奢华 新婚蜜月 团体]
+                      = f.error_message_on :colony
+              li.item
+                .itm_media
+                  label.title_label
+                    | 如何抵达
+                    - if !show
+                      span.important *
+                .itm_body
+                  - if show
+                    = product.arrival
+                  - else
+                    .textareafield
+                      = f.text_area :arrival
+                      = f.error_message_on :arrival
+              li.item
+                .itm_media
+                  label.title_label
+                    | 温馨提示
+                    - if !show
+                      span.important *
+                .itm_body
+                  - if show
+                    = product.tips
+                  - else
+                    .textareafield
+                      = f.text_area :tips
+                      = f.error_message_on :tips
               li.item
                 .itm_media
                   label.title_label
@@ -166,7 +217,7 @@
               li.item
                 .itm_media
                   label.title_label
-                    | 图片列表
+                    | 图片列表（尺寸为16:9，分辨率大于640x360）
                     - if !show
                       span.important *
                 .itm_body

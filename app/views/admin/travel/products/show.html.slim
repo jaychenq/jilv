@@ -94,37 +94,13 @@ h2
             = f.text_field :address
             = f.error_message_on :address
       tr
-        th = f.label :latitude
+        th = f.label :activity_time
         td
           - if show
-            = product.latitude
+            = product.activity_time
           - else
-            = f.text_field :latitude
-            = f.error_message_on :latitude
-      tr
-        th = f.label :longitude
-        td
-          - if show
-            = product.longitude
-          - else
-            = f.text_field :longitude
-            = f.error_message_on :longitude
-      tr
-        th = f.label :started_on
-        td
-          - if show
-            = product.started_on
-          - else
-            = f.text_field :started_on
-            = f.error_message_on :started_on
-      tr
-        th = f.label :ended_on
-        td
-          - if show
-            = product.ended_on
-          - else
-            = f.text_field :ended_on
-            = f.error_message_on :ended_on
+            = f.text_field :activity_time
+            = f.error_message_on :activity_time
       tr
         th = f.label :lowest_price
         td
@@ -133,6 +109,38 @@ h2
           - else
             = f.text_field :lowest_price
             = f.error_message_on :lowest_price
+      tr
+        th = f.label :colony
+        td
+          - if show
+            = product.colony
+          - else
+            = f.text_field :colony
+            = f.error_message_on :colony
+      tr
+        th = f.label :early_booking
+        td
+          - if show
+            = product.early_booking
+          - else
+            = f.text_field :early_booking
+            = f.error_message_on :early_booking
+      tr
+        th = f.label :arrival
+        td
+          - if show
+            = product.arrival
+          - else
+            = f.text_area :arrival
+            = f.error_message_on :arrival
+      tr
+        th = f.label :tips
+        td
+          - if show
+            = product.tips
+          - else
+            = f.text_area :tips
+            = f.error_message_on :tips
       tr
         th = f.label :speakings
         td
