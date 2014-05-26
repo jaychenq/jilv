@@ -1,5 +1,5 @@
 $ ->
-  retrun false
+  return false
   $(document).on 'page:change', ->
     return true if not $("textarea").length
     $.ajax 
