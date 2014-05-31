@@ -30,7 +30,7 @@
               li.item
                 .itm_media
                   label.title_label
-                    | 名称
+                    | 价格类型名称
                     - if !show
                       span.important *
                 .itm_body
@@ -56,29 +56,75 @@
               li.item
                 .itm_media
                   label.title_label
-                    | 成人价
+                    | 极旅价
                     - if !show
                       span.important *
                 .itm_body
-                  - if show
-                    = journey.adult_price
-                  - else
-                    .textfield
-                      = f.text_field :adult_price
-                      = f.error_message_on :adult_price
-              li.item
-                .itm_media
-                  label.title_label
-                    | 儿童价
-                    - if !show
-                      span.important *
-                .itm_body
-                  - if show
-                    = journey.child_price
-                  - else
-                    .textfield
-                      = f.text_field :child_price
-                      = f.error_message_on :child_price
+                  sass:
+                    .business_table
+                      td
+                        padding: 5px
+                        input
+                          color: gray
+                          border: 1px solid silver
+                          margin-top: 2px
+                          font-size: 13px
+                  div style="background-color: #f0f0f0; padding: 20px; font-size: 14px;"
+                    / span style="font-weight: bold;" 批量设置：
+                    | &nbsp;&nbsp;开始日期：
+                    = text_field_tag 'started_on', nil, size: 10, class: 'date', style: "border: 1px solid silver;"
+                    | &nbsp;&nbsp;结束日期：
+                    = text_field_tag 'ended_on', nil, size: 10, class: 'date', style: "border: 1px solid silver;"
+                    | &nbsp;&nbsp;成人价：
+                    = text_field_tag 'adult_price', nil, size: 6, style: "border: 1px solid silver;"
+                    | &nbsp;&nbsp;儿童价：
+                    = text_field_tag 'child_price', nil, size: 6, style: "border: 1px solid silver;"
+                    | &nbsp;&nbsp;
+                    = button_tag '批量修改', id: 'batch_button'
+                    coffee:
+                      $ ->
+                        $('#started_on, #ended_on').datepicker
+                          dateFormat: 'yy-mm-dd'
+                        $('#batch_button').on('click', -> false).on 'mousedown', ->
+                          return alert('请填写开始日期') if !started_on = Date.parse($('#started_on').val())
+                          return alert('请填写结束日期') if !ended_on = Date.parse($('#ended_on').val())
+                          $('._inventory').each ->
+                            timestamp = parseInt($(this).data('timestamp'))
+                            if started_on / 1000 < timestamp && timestamp < ended_on / 1000
+                              $(this).find('input:eq(1)').val($('#adult_price').val())
+                              $(this).find('input:eq(2)').val($('#child_price').val())
+                          alert('批量修改完成')
+                  - inventories = journey.inventories.where('started_on > ?', Date.today).to_a
+                  div
+                    - (Date.tomorrow..3.months.from_now.to_date).group_by(&:month).each do |month, days|
+                      - days_by_cweek = days.group_by(&:cweek)
+                      table.business_table
+                        tr style="color: silver;"
+                          th
+                          th 周一
+                          th 周二
+                          th 周三
+                          th 周四
+                          th 周五
+                          th 周六
+                          th 周日
+                        tr
+                          th rowspan=(days_by_cweek.size + 1) style="width: 8%;"
+                            div style="color: silver;" #{days.first.year}年
+                            div style="font-size: 20px; margin-top: 6px;" #{days.first.month}月
+                        - days_by_cweek.each do |week, _days|
+                          tr
+                            - (_days.first.cwday - 1).times do
+                              td style="width: 10%;"
+                            - _days.each do |day|
+                              td style="width: 10%;" class="_inventory" data-timestamp=day.to_time.to_i
+                                - inventory = inventories.find { |inventory| inventory.started_on == day }
+                                = hidden_field_tag "travel_inventory[][started_on]", day
+                                div = day.day
+                                div = text_field_tag "travel_inventory[][adult_price]", inventory.try(:adult_price), placeholder: '成人价', size: 5
+                                div = text_field_tag "travel_inventory[][child_price]", inventory.try(:child_price), placeholder: '儿童价', size: 5
+                            - (7 - _days.last.cwday).times do
+                              td style="width: 10%;"
               li.item
                 .itm_media
                   label.title_label

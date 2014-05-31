@@ -124,19 +124,6 @@
               li.item
                 .itm_media
                   label.title_label
-                    | 极旅价
-                    - if !show
-                      span.important *
-                .itm_body
-                  - if show
-                    = product.lowest_price
-                  - else
-                    .textfield
-                      = f.text_field :lowest_price
-                      = f.error_message_on :lowest_price
-              li.item
-                .itm_media
-                  label.title_label
                     | 提前预订天数
                     - if !show
                       span.important *

@@ -7,7 +7,7 @@ class Travel::Inventory < ActiveRecord::Base
 
   validates :journey, existence: true
   validates :started_on, presence: true
-  validates :adult_price, :child_price, :total_number, :preserved_number, :remained_number, numericality: { only_integer: true }
+  validates :adult_price, :child_price, :total_number, :preserved_number, :remained_number, numericality: { only_integer: true }, allow_blank: true
 
   cattr_accessor :admin_fields, :business_fields
   self.business_fields = %w[ journey_id started_on adult_price child_price total_number ]

@@ -19,7 +19,7 @@ br.clear
 table.widefat
   thead
     tr
-      - %w[id merchant_id product_id journey_id started_on adult_price child_price total_number preserved_number remained_number actions].each do |field|
+      - %w[id merchant_id product_id journey_id started_on adult_price child_price actions].each do |field|
         th = model.human_attribute_name(field)
   tbody
     - @inventories.each do |inventory|
@@ -28,11 +28,8 @@ table.widefat
         td = link_to_admin inventory.merchant
         td = link_to_admin inventory.product
         td = link_to_admin inventory.journey
-        td = link_to inventory.started_on, [:admin, inventory]
+        td = inventory.started_on
         td = inventory.adult_price
         td = inventory.child_price
-        td = inventory.total_number
-        td = inventory.preserved_number
-        td = inventory.remained_number
         td = render 'actions', inventory: inventory
 = render 'admin/shared/pagination'

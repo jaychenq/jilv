@@ -1,8 +1,9 @@
 #= require jquery.min
 #= require jquery_ujs
+#= require jqueryui
 #= require turbolinks
 #= require underscore
-#= require admin/application/datetime
+# require admin/application/datetime
 # require admin/application/editor
 #= require shared/analytics
 

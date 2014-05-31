@@ -17,6 +17,7 @@ class Business::Travel::JourneysController < Business::Travel::ApplicationContro
   def create
     @journey.attributes = params[model.table_name.singularize].to_h.slice(*model.business_fields)
     ok = @journey.save
+    save_inventories if ok
     
     return render :show if !ok
     redirect_to [:journeys, :business, @journey.product]
@@ -30,6 +31,7 @@ class Business::Travel::JourneysController < Business::Travel::ApplicationContro
   def update
     @journey.attributes = params[model.table_name.singularize].to_h.slice(*model.business_fields)
     ok = @journey.save
+    save_inventories if ok
 
     return render :show if !ok
     redirect_to [:journeys, :business, @journey.product]
@@ -43,5 +45,17 @@ private
     @product = @journey.product
     @merchant = @product.merchant
     return redirect_to [:business, @merchant] if @merchant != @current_user.merchant
+  end
+
+  def save_inventories
+    old_inventories = @journey.inventories.to_a
+    new_inventories = (params[:travel_inventory]||[]).each do |i|
+      started_on = Date.parse(i.permit(:started_on)[:started_on])
+      inventory = old_inventories.find { |inventory| inventory.started_on == started_on } || @journey.inventories.new(started_on: started_on)
+      inventory.attributes = i.permit(:adult_price, :child_price)
+      next if inventory.new_record? && !inventory.adult_price && !inventory.child_price
+      inventory.save
+    end
+    @product.update(lowest_price: @product.inventories.where('started_on > ?', Date.today).where('adult_price IS NOT NULL').order(adult_price: :asc).first.try(:adult_price).to_i)
   end
 end
