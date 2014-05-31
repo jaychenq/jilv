@@ -14,17 +14,18 @@ zh-CN:
         child_price: 儿童价
         start_time: 开始时间
         duration_time: 持续时间
-        people_quota: 人数限制
+        # people_quota: 人数限制
         # started_on: 开始日期
         # ended_on: 结束日期
         # start_hour: 开始小时
         # duration: 持续时间
-        # early_booking: 提前预订天数
-        pick_up: 接送服务
+        early_booking: 提前预订天数
+        # pick_up: 接送服务
         # with_food: 配备餐食
-        introduction: 活动亮点
+        # introduction: 活动亮点
         fee_description: 费用说明
         refund_policy: 退改规则
+        other_description: 其它
         # route: 如何抵达
         # tips: 温馨提示
         # published: 发布

@@ -14,7 +14,7 @@
             = image_tag "#{product.cover.try(:file)}.640x360.jpg", alt: ''
           .name = product.name
           P.b-info
-            = sanitize_format product.description[0..99]
+            = text_format product.description[0..99]
           .operating
             span.stext 低至 ￥#{product.lowest_price} 元 / 每人
             a.button.btn-blue href=url_for(product) 查看详情

@@ -56,6 +56,8 @@ private
       next if inventory.new_record? && !inventory.adult_price && !inventory.child_price
       inventory.save
     end
+    @product = @journey.product
     @product.update(lowest_price: @product.inventories.where('started_on > ?', Date.today).where('adult_price IS NOT NULL').order(adult_price: :asc).first.try(:adult_price).to_i)
+    @journey.update(lowest_price: @journey.inventories.where('started_on > ?', Date.today).where('adult_price IS NOT NULL').order(adult_price: :asc).first.try(:adult_price).to_i)
   end
 end

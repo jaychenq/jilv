@@ -183,7 +183,7 @@ h2
         th = f.label :description
         td
           - if show
-            = sanitize_format merchant.description
+            = text_format merchant.description
           - else
             = f.text_area :description
             = f.error_message_on :description

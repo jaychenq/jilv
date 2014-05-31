@@ -32,7 +32,7 @@
             - [@booking].each do |booking|
               - next if !journey = booking.journey
               - next if !product = journey.product
-              - total_price = booking.adult_number.to_i * journey.adult_price + booking.child_number.to_i * journey.child_price
+              - total_price = booking.adult_number.to_i * journey.inventories.find_by(started_on: booking.started_on).try(:adult_price).to_i + booking.child_number.to_i * journey.inventories.find_by(started_on: booking.started_on).try(:child_price).to_i
               .result-cont
                 .info
                   h3.title
@@ -58,7 +58,7 @@
                           span
                             a.add-wishlist._add_travel_favorite href="#" data={ product_id: product.id } 添加到收藏
                 .pre-book.price-block
-                  span.price RMB￥ #{journey.adult_price}.00
+                  span.price RMB￥ #{journey.lowest_price}.00
                   span.old-price RMB￥ #{journey.market_price}.00
           .tfoot
             span 总价格：
@@ -181,7 +181,7 @@
             - [@booking].each do |booking|
               - next if !journey = booking.journey
               - next if !product = journey.product
-              - total_price = booking.adult_number.to_i * journey.adult_price + booking.child_number.to_i * journey.child_price
+              - total_price = booking.adult_number.to_i * journey.inventories.find_by(started_on: booking.started_on).try(:adult_price).to_i + booking.child_number.to_i * journey.inventories.find_by(started_on: booking.started_on).try(:child_price).to_i
               .result-cont
                 .info
                   h4.title = product.name

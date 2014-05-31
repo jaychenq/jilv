@@ -16,7 +16,7 @@ class Travel::Booking < ActiveRecord::Base
   before_validation do
     self.product_id = self.journey.product.id
     self.merchant_id = self.product.merchant.id
-    self.total_price = self.adult_number.to_i * self.journey.adult_price.to_i + self.child_number.to_i * self.journey.child_price.to_i
+    self.total_price = self.adult_number.to_i * self.journey.inventories.find_by(started_on: self.started_on).try(:adult_price).to_i + self.child_number.to_i * self.journey.inventories.find_by(started_on: self.started_on).try(:child_price).to_i
     true
   end
 end

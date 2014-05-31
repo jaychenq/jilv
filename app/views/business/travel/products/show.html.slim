@@ -56,11 +56,24 @@
                       span.important *
                 .itm_body
                   - if show
-                    = sanitize_format product.description
+                    = text_format product.description
                   - else
                     .textareafield
                       = f.text_area :description
                       = f.error_message_on :description
+              li.item
+                .itm_media
+                  label.title_label
+                    | 亮点
+                    - if !show
+                      span.important *
+                .itm_body
+                  - if show
+                    = text_format product.highlight
+                  - else
+                    .textareafield
+                      = f.text_area :highlight
+                      = f.error_message_on :highlight
               li.item
                 .itm_media
                   label.title_label
@@ -111,7 +124,7 @@
               li.item
                 .itm_media
                   label.title_label
-                    | 地址
+                    | 详细地址
                     - if !show
                       span.important *
                 .itm_body
@@ -121,19 +134,6 @@
                     .textfield
                       = f.text_field :address
                       = f.error_message_on :address
-              li.item
-                .itm_media
-                  label.title_label
-                    | 提前预订天数
-                    - if !show
-                      span.important *
-                .itm_body
-                  - if show
-                    = product.early_booking
-                  - else
-                    .selectfield
-                      = f.select :early_booking, 0..30
-                      = f.error_message_on :early_booking
               li.item
                 .itm_media
                   label.title_label
@@ -197,10 +197,10 @@
                   - else
                     - speakings = product.speakings.all.to_a
                     - Travel::Language.order('sequence ASC, name ASC').each_with_index do |language, index|
-                      = check_box_tag "language_ids[#{index}]", language.id, speakings.any? { |speaking| speaking.language_id == language.id }
-                      = image_tag language.icon, alt: '' if language.icon
-                      = label_tag "language_ids[#{index}]", language.name
-                      | &nbsp;&nbsp;&nbsp;&nbsp;
+                      span style="display: inline-block; width: 150px;  overflow: hidden; white-space: nowrap;"
+                        =' check_box_tag "language_ids[#{index}]", language.id, speakings.any? { |speaking| speaking.language_id == language.id }
+                        =' image_tag language.icon, alt: '' if language.icon
+                        =' label_tag "language_ids[#{index}]", language.name
               li.item
                 .itm_media
                   label.title_label

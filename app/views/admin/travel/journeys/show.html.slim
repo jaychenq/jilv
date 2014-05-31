@@ -38,14 +38,6 @@ h2
             = f.text_field :name
             = f.error_message_on :name
       tr
-        th = f.label :sequence
-        td
-          - if show
-            = journey.sequence
-          - else
-            = f.text_field :sequence
-            = f.error_message_on :sequence
-      tr
         th = f.label :market_price
         td
           - if show
@@ -53,22 +45,6 @@ h2
           - else
             = f.text_field :market_price
             = f.error_message_on :market_price
-      tr
-        th = f.label :adult_price
-        td
-          - if show
-            = journey.adult_price
-          - else
-            = f.text_field :adult_price
-            = f.error_message_on :adult_price
-      tr
-        th = f.label :child_price
-        td
-          - if show
-            = journey.child_price
-          - else
-            = f.text_field :child_price
-            = f.error_message_on :child_price
       tr
         th = f.label :start_time
         td
@@ -86,46 +62,6 @@ h2
             = f.text_field :duration_time
             = f.error_message_on :duration_time
       tr
-        th = f.label :people_quota
-        td
-          - if show
-            = journey.people_quota
-          - else
-            = f.text_field :people_quota
-            = f.error_message_on :people_quota
-      tr
-        th = f.label :started_on
-        td
-          - if show
-            = journey.started_on
-          - else
-            = f.text_field :started_on
-            = f.error_message_on :started_on
-      tr
-        th = f.label :ended_on
-        td
-          - if show
-            = journey.ended_on
-          - else
-            = f.text_field :ended_on
-            = f.error_message_on :ended_on
-      tr
-        th = f.label :duration
-        td
-          - if show
-            = journey.duration
-          - else
-            = f.text_field :duration
-            = f.error_message_on :duration
-      tr
-        th = f.label :start_hour
-        td
-          - if show
-            = journey.start_hour
-          - else
-            = f.text_field :start_hour
-            = f.error_message_on :start_hour
-      tr
         th = f.label :early_booking
         td
           - if show
@@ -134,34 +70,10 @@ h2
             = f.text_field :early_booking
             = f.error_message_on :early_booking
       tr
-        th = f.label :pick_up
-        td
-          - if show
-            = boolean_tag journey.pick_up
-          - else
-            = f.check_box :pick_up
-            = f.error_message_on :pick_up
-      tr
-        th = f.label :with_food
-        td
-          - if show
-            = boolean_tag journey.with_food
-          - else
-            = f.check_box :with_food
-            = f.error_message_on :with_food
-      tr
-        th = f.label :introduction
-        td
-          - if show
-            = sanitize_format journey.introduction
-          - else
-            = f.text_area :introduction
-            = f.error_message_on :introduction
-      tr
         th = f.label :fee_description
         td
           - if show
-            = sanitize_format journey.fee_description
+            = text_format journey.fee_description
           - else
             = f.text_area :fee_description
             = f.error_message_on :fee_description
@@ -169,34 +81,18 @@ h2
         th = f.label :refund_policy
         td
           - if show
-            = sanitize_format journey.refund_policy
+            = text_format journey.refund_policy
           - else
             = f.text_area :refund_policy
             = f.error_message_on :refund_policy
       tr
-        th = f.label :route
+        th = f.label :other_description
         td
           - if show
-            = sanitize_format journey.route
+            = text_format journey.other_description
           - else
-            = f.text_area :route
-            = f.error_message_on :route
-      tr
-        th = f.label :tips
-        td
-          - if show
-            = sanitize_format journey.tips
-          - else
-            = f.text_area :tips
-            = f.error_message_on :tips
-      tr
-        th = f.label :published
-        td
-          - if show
-            = boolean_tag journey.published
-          - else
-            = f.check_box :published
-            = f.error_message_on :published
+            = f.text_area :other_description
+            = f.error_message_on :other_description
       - if journey.id?
         tr
           th = f.label :created_at

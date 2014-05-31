@@ -154,41 +154,16 @@
               li.item
                 .itm_media
                   label.title_label
-                    | 人数限制
+                    | 提前预订天数
                     - if !show
                       span.important *
                 .itm_body
                   - if show
-                    = journey.people_quota
+                    = product.early_booking
                   - else
-                    .textfield
-                      = f.text_field :people_quota
-                      = f.error_message_on :people_quota
-              li.item
-                .itm_media
-                  label.title_label
-                    | 接送服务
-                    - if !show
-                      span.important *
-                .itm_body
-                  - if show
-                    = boolean_tag journey.pick_up
-                  - else
-                    = f.check_box :pick_up
-                    = f.error_message_on :pick_up
-              li.item
-                .itm_media
-                  label.title_label
-                    | 活动亮点
-                    - if !show
-                      span.important *
-                .itm_body
-                  - if show
-                    = journey.introduction
-                  - else
-                    .textareafield
-                      = f.text_area :introduction
-                      = f.error_message_on :introduction
+                    .selectfield
+                      = f.select :early_booking, 1..30
+                      = f.error_message_on :early_booking
               li.item
                 .itm_media
                   label.title_label
@@ -200,6 +175,7 @@
                     = journey.fee_description
                   - else
                     .textareafield
+                      - journey.fee_description ||= "费用包含\n\n\n不包含\n\n\n"
                       = f.text_area :fee_description
                       = f.error_message_on :fee_description
               li.item
@@ -215,6 +191,19 @@
                     .textareafield
                       = f.text_area :refund_policy
                       = f.error_message_on :refund_policy
+              li.item
+                .itm_media
+                  label.title_label
+                    | 其它
+                    - if !show
+                      span.important *
+                .itm_body
+                  - if show
+                    = journey.other_description
+                  - else
+                    .textareafield
+                      = f.text_area :other_description
+                      = f.error_message_on :other_description
               - if !show
                 li.item.item-btn
                   button.button.btn-blue 下一步 >

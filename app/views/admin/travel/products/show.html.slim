@@ -41,10 +41,18 @@ h2
         th = f.label :description
         td
           - if show
-            = sanitize_format product.description
+            = text_format product.description
           - else
             = f.text_area :description
             = f.error_message_on :description
+      tr
+        th = f.label :highlight
+        td
+          - if show
+            = text_format product.highlight
+          - else
+            = f.text_area :highlight
+            = f.error_message_on :highlight
       tr
         th = f.label :category1_id
         td
@@ -117,14 +125,6 @@ h2
           - else
             = f.text_field :colony
             = f.error_message_on :colony
-      tr
-        th = f.label :early_booking
-        td
-          - if show
-            = product.early_booking
-          - else
-            = f.text_field :early_booking
-            = f.error_message_on :early_booking
       tr
         th = f.label :arrival
         td

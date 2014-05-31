@@ -27,59 +27,50 @@
             dt 适合群体：
             dd = @product.colony
           dl
-            dt 提前预订：
-            dd
-              = @product.early_booking
-              | &nbsp;天
-          dl
             dt 语言：
             dd
               - @product.languages.each do |language|
                 =' image_tag language.icon, alt: '' if language.icon
                 =' language.name
                 | &nbsp;&nbsp;&nbsp;&nbsp;
-          span class="wishlist-btn"
+          span class="wishlist-btn" style="margin-bottom: 16px;"
             a.add-wishlist._add_travel_favorite href="#" data={ product_id: @product.id } 添加到收藏
-        .product_cont
-          .basis_info
-            = simple_format @product.description
           .Activity._journeys
             h3 选项
-            - @product.journeys.order(adult_price: :asc).each do |journey|
-              .item-block style="position: relative; min-height: 140px;"
+            - @product.journeys.order(lowest_price: :asc).each do |journey|
+              .item-block style="position: relative; min-height: 65px;"
                 .title = journey.name
                 p
-                  strong 开始时间：
-                  span = journey.start_time
+                  string &nbsp;
                 p
                   strong 持续时间：
                   span = journey.duration_time
                 p
-                  strong 人数限制：
-                  span = journey.people_quota
-                p
-                  strong 接送服务：
-                  span = journey.pick_up? ? '有' : '无'
-                p
-                  strong 活动亮点：
-                  span = sanitize_format journey.introduction
-                p
-                  strong 费用说明：
-                  span = sanitize_format journey.fee_description
-                p
-                  strong 退改规则：
-                  span = sanitize_format journey.refund_policy
+                  strong 提前预定：
+                  span 至少提前 #{journey.early_booking} 天
+                div class="_show_#{journey.id}" style="display: none; width: 450px;"
+                  p
+                    strong 费用说明：
+                    span = text_format journey.fee_description
+                  p
+                    strong 退改规则：
+                    span = text_format journey.refund_policy
+                  p
+                    strong 其它：
+                    span = text_format journey.other_description
                 .block
                   .price
                     em RMB
-                    span ￥#{journey.adult_price}
-                    em 每人
+                    span ￥#{journey.lowest_price}
+                    em 每人起
+                div class="_hide_#{journey.id}" onclick="$('._hide_#{journey.id}').hide(); $('._show_#{journey.id}').show();" style="position: absolute; right: 30px; top: 45px; display: inline-block; font-size: 12px; border-radius: 3px; background-color: #7EC440; color: white; border: medium none; padding: 4px 15px; margin-top: 3px; cursor: pointer; box-shadow: 0 -2px 0 0 #67A031 inset;" 预 订
+                div class="_hide_#{journey.id}" onclick="$('._hide_#{journey.id}').hide(); $('._show_#{journey.id}').show();" style="position: absolute; left: 270px; top: 65px; display: inline-block; font-size: 12px; cursor: pointer;" ▼ 查看详细信息
                 = form_tag new_travel_booking_path, method: :get do
                   = hidden_field_tag 'travel_booking[journey_id]', journey.id
                   = hidden_field_tag 'step', 1
                   - inventory = journey.inventories.where('started_on > ?', Date.today).where('adult_price IS NOT NULL').first
                   ._inventories data-inventories=journey.inventories.where('started_on > ?', Date.today).where('adult_price IS NOT NULL').to_json(only: [:started_on, :adult_price, :child_price])
-                  div style="position: absolute; top: 40px; right: 10px; background-color: white; font-size: 12px; padding: 5px;"
+                  div class="_show_#{journey.id}" style="display: none; position: absolute; top: 40px; right: 10px; background-color: white; font-size: 12px; padding: 5px;"
                     table
                       tr
                         td style="width: 40px;" 日期
@@ -107,6 +98,14 @@
                         inventory = _.find(inventories, ((inventory) -> $('#travel_booking_started_on').val() == inventory.started_on)) || {}
                         $('#travel_booking_adult_number').html(if !inventory.adult_price then '' else _.times(10, ((i) -> '<option value="' + (i+1) + '">' + (i+1) + ' 位（￥' + (i+1)*inventory.adult_price + '）</option>' )).join(''))
                         $('#travel_booking_child_number').html(if !inventory.child_price then '' else _.times(10, ((i) -> '<option value="' + (i+1) + '">' + (i+1) + ' 位（￥' + (i+1)*inventory.child_price + '）</option>' )).join(''))
+        .product_cont
+          .basis_info
+            = simple_format @product.description
+          .basis_info
+            h3 亮点
+            ul style="list-style: circle;"
+             - @product.highlight.to_s.split(/\n/).each do |line|
+               li = line
           .basis_info
             h3 活动地点
             p
@@ -134,7 +133,7 @@
               em RMB
               span ￥#{@product.lowest_price}
             .price-expla
-              | （每人）
+              | （每人）起
           .controls
             .list
               a.question href="mailto:service@jilvtrip.com" 咨询该活动
