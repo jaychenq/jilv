@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile += %w[ wordpress/ie.css ]
+Rails.application.config.assets.precompile += [ 'wordpress/ie.css', '*.png', '*.jpg', '*.gif' ]
