@@ -3,8 +3,9 @@ class Travel::Booking < ActiveRecord::Base
   belongs_to :merchant
   belongs_to :product
   belongs_to :journey
+  belongs_to :inventory
 
-  validates :user, :merchant, :product, :journey, existence: true
+  validates :user, :merchant, :product, :journey, :inventory, existence: true
   validates :adult_number, :child_number, :total_price, numericality: { only_integer: true }
   validates :started_on, :name, :phone, :country, :state, :city, :address, :postcode, presence: true
   

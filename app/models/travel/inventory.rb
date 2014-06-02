@@ -2,6 +2,7 @@ class Travel::Inventory < ActiveRecord::Base
   belongs_to :journey
   belongs_to :product
   belongs_to :merchant
+  has_many :bookings
 
   default_scope { where(active: true) }
 
@@ -15,6 +16,7 @@ class Travel::Inventory < ActiveRecord::Base
   
   before_validation do
     self.preserved_number ||= 0
+    self.total_number = self.preserved_number if self.total_number.to_i < self.preserved_number.to_i
     self.remained_number = self.total_number.to_i - self.preserved_number.to_i
     self.product_id = self.journey.product.id
     self.merchant_id = self.journey.product.merchant.id

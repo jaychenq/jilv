@@ -32,6 +32,9 @@ h2
         th = f.label :journey_id
         td = link_to_admin booking.journey
       tr
+        th = f.label :inventory_id
+        td = link_to booking.inventory.started_on, [:admin, booking.inventory]
+      tr
         th = f.label :adult_number
         td = booking.adult_number
       tr

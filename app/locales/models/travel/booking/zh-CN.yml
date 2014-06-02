@@ -9,6 +9,7 @@ zh-CN:
         merchant_id: 商家
         product_id: 产品
         journey_id: 行程
+        inventory_id: 库存
         started_on: 日期
         adult_number: 成人数
         child_number: 儿童数

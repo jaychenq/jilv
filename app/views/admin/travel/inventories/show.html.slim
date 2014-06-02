@@ -53,7 +53,7 @@ h2
           - else
             = f.text_field :child_price
             = f.error_message_on :child_price
-      tr style="display:none;"
+      tr
         th = f.label :total_number
         td
           - if show
@@ -61,10 +61,10 @@ h2
           - else
             = f.text_field :total_number
             = f.error_message_on :total_number
-      tr style="display:none;"
+      tr
         th = f.label :preserved_number
         td = inventory.preserved_number
-      tr style="display:none;"
+      tr
         th = f.label :remained_number
         td = inventory.remained_number
       - if inventory.id?

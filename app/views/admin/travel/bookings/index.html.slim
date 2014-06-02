@@ -15,7 +15,7 @@ br.clear
 table.widefat
   thead
     tr
-      - %w[id user_id merchant_id product_id started_on adult_number child_number total_price created_at actions].each do |field|
+      - %w[id user_id merchant_id product_id journey_id inventory_id adult_number child_number total_price created_at actions].each do |field|
         th = model.human_attribute_name(field)
   tbody
     - @bookings.each do |booking|
@@ -25,7 +25,8 @@ table.widefat
         td = link_to_admin booking.user
         td = link_to_admin booking.merchant
         td = link_to_admin booking.product
-        td = booking.started_on
+        td = link_to_admin booking.journey
+        td = link_to booking.inventory.started_on, [:admin, booking.inventory]
         td = booking.adult_number
         td = booking.child_number
         td = booking.total_price

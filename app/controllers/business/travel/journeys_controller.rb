@@ -52,12 +52,12 @@ private
     new_inventories = (params[:travel_inventory]||[]).each do |i|
       started_on = Date.parse(i.permit(:started_on)[:started_on])
       inventory = old_inventories.find { |inventory| inventory.started_on == started_on } || @journey.inventories.new(started_on: started_on)
-      inventory.attributes = i.permit(:adult_price, :child_price)
-      next if inventory.new_record? && !inventory.adult_price && !inventory.child_price
+      inventory.attributes = i.permit(:adult_price, :child_price, :total_number)
+      next if inventory.new_record? && !inventory.adult_price && !inventory.child_price && !inventory.total_number
       inventory.save
     end
     @product = @journey.product
-    @product.update(lowest_price: @product.inventories.where('started_on > ?', Date.today).where('adult_price IS NOT NULL').order(adult_price: :asc).first.try(:adult_price).to_i)
-    @journey.update(lowest_price: @journey.inventories.where('started_on > ?', Date.today).where('adult_price IS NOT NULL').order(adult_price: :asc).first.try(:adult_price).to_i)
+    @product.update(lowest_price: @product.inventories.where('started_on > ?', Date.today).where('adult_price > 0 AND remained_number > 0').order(adult_price: :asc).first.try(:adult_price).to_i)
+    @journey.update(lowest_price: @journey.inventories.where('started_on > ?', Date.today).where('adult_price > 0 AND remained_number > 0').order(adult_price: :asc).first.try(:adult_price).to_i)
   end
 end

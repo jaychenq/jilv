@@ -27,7 +27,7 @@
             dt 适合群体：
             dd = @product.colony
           dl
-            dt 语言：
+            dt 服务语言：
             dd
               - @product.languages.each do |language|
                 =' image_tag language.icon, alt: '' if language.icon
@@ -38,7 +38,9 @@
           .Activity._journeys
             h3 选项
             - @product.journeys.order(lowest_price: :asc).each do |journey|
-              .item-block style="position: relative; min-height: 65px;"
+              - inventories = journey.inventories.where('started_on > ?', Date.today).where('adult_price > 0 AND remained_number > 0')
+              - inventory = inventories.first
+              .item-block style="position: relative; min-height: 60px;"
                 .title = journey.name
                 p
                   string &nbsp;
@@ -63,41 +65,49 @@
                     em RMB
                     span ￥#{journey.lowest_price}
                     em 每人起
-                div class="_hide_#{journey.id}" onclick="$('._hide_#{journey.id}').hide(); $('._show_#{journey.id}').show();" style="position: absolute; right: 30px; top: 45px; display: inline-block; font-size: 12px; border-radius: 3px; background-color: #7EC440; color: white; border: medium none; padding: 4px 15px; margin-top: 3px; cursor: pointer; box-shadow: 0 -2px 0 0 #67A031 inset;" 预 订
-                div class="_hide_#{journey.id}" onclick="$('._hide_#{journey.id}').hide(); $('._show_#{journey.id}').show();" style="position: absolute; left: 270px; top: 65px; display: inline-block; font-size: 12px; cursor: pointer;" ▼ 查看详细信息
+                - if inventory
+                  div class="_hide_#{journey.id}" onclick="$('._hide_#{journey.id}').hide(); $('._show_#{journey.id}').show();" style="position: absolute; right: 30px; top: 45px; display: inline-block; font-size: 12px; border-radius: 3px; background-color: #7EC440; color: white; border: medium none; padding: 4px 15px; margin-top: 3px; cursor: pointer; box-shadow: 0 -2px 0 0 #67A031 inset;" 预 订
+                div class="_hide_#{journey.id}" onclick="$('._hide_#{journey.id}').hide(); $('._show_#{journey.id}').show();" style="position: absolute; left: 270px; top: 60px; display: inline-block; font-size: 12px; cursor: pointer;" ▼ 查看详细信息
                 = form_tag new_travel_booking_path, method: :get do
                   = hidden_field_tag 'travel_booking[journey_id]', journey.id
                   = hidden_field_tag 'step', 1
-                  - inventory = journey.inventories.where('started_on > ?', Date.today).where('adult_price IS NOT NULL').first
-                  ._inventories data-inventories=journey.inventories.where('started_on > ?', Date.today).where('adult_price IS NOT NULL').to_json(only: [:started_on, :adult_price, :child_price])
-                  div class="_show_#{journey.id}" style="display: none; position: absolute; top: 40px; right: 10px; background-color: white; font-size: 12px; padding: 5px;"
+                  div class="_inventories_#{journey.id}" data-inventories=inventories.to_json(only: [:started_on, :adult_price, :child_price, :remained_number])
+                  div class="_show_#{journey.id if inventory}" style="display: none; position: absolute; top: 40px; right: 10px; background-color: white; font-size: 12px; padding: 5px;"
                     table
                       tr
                         td style="width: 40px;" 日期
-                        td = text_field_tag 'travel_booking[started_on]', inventory.try(:started_on), style: 'width: 100px;'
+                        td = text_field_tag 'travel_booking[started_on]', inventory.try(:started_on), id: "_travel_booking_started_on_#{journey.id}", class: '_travel_booking_started_on', 'data-journey_id' => journey.id, style: 'width: 100px;'
                       tr
                         td 成人
-                        td = select_tag 'travel_booking[adult_number]', !inventory ? nil : options_for_select((1..10).map { |i| ["#{i} 位（￥#{inventory.adult_price.to_i * i}）", i] }), style: 'width: 100px;'
+                        td = select_tag 'travel_booking[adult_number]', !inventory ? nil : options_for_select((1..inventory.remained_number).map { |i| ["#{i} 位（￥#{inventory.adult_price.to_i * i}）", i] }), id: "_travel_booking_adult_number_#{journey.id}", class: '_travel_booking_adult_number', 'data-journey_id' => journey.id, style: 'width: 100px;'
                       tr
                         td 儿童
-                        td = select_tag 'travel_booking[child_number]', !inventory || !inventory.child_price ? nil : options_for_select((0..10).map { |i| ["#{i} 位（￥#{inventory.child_price.to_i * i}）", i] }), style: 'width: 100px;'
+                        td = select_tag 'travel_booking[child_number]', !inventory || !inventory.child_price ? nil : options_for_select((0..(inventory.remained_number-1)).map { |i| ["#{i} 位（￥#{inventory.child_price.to_i * i}）", i] }), id: "_travel_booking_child_number_#{journey.id}", class: '_travel_booking_child_number', 'data-journey_id' => journey.id, style: 'width: 100px;'
                       tr
                         td
                         td = submit_tag '预 订', name: nil, style: "border-radius: 3px; background-color: #7EC440; color: white; border: medium none; padding: 4px 15px; margin-top: 3px; cursor: pointer; box-shadow: 0 -2px 0 0 #67A031 inset;"
-                  coffee:
-                    $ ->
-                      inventories = $('._inventories').data('inventories')
-                      $('#travel_booking_started_on').datepicker
-                        dateFormat: 'yy-mm-dd'
-                        gotoCurrent: true
-                        minDate: (_.first(inventories)||{}).started_on
-                        maxDate: (_.last(inventories)||{}).started_on
-                        onSelect: -> $(this).change()
-                      $('#travel_booking_started_on').on 'change', ->
-                        #inventories = $('._inventories').data('inventories')
-                        inventory = _.find(inventories, ((inventory) -> $('#travel_booking_started_on').val() == inventory.started_on)) || {}
-                        $('#travel_booking_adult_number').html(if !inventory.adult_price then '' else _.times(10, ((i) -> '<option value="' + (i+1) + '">' + (i+1) + ' 位（￥' + (i+1)*inventory.adult_price + '）</option>' )).join(''))
-                        $('#travel_booking_child_number').html(if !inventory.child_price then '' else _.times(10, ((i) -> '<option value="' + (i+1) + '">' + (i+1) + ' 位（￥' + (i+1)*inventory.child_price + '）</option>' )).join(''))
+            coffee:
+              $ ->
+                $('._travel_booking_started_on').each ->
+                  inventories = $('._inventories_'+$(this).data('journey_id')).data('inventories')
+                  $(this).datepicker
+                    dateFormat: 'yy-mm-dd'
+                    gotoCurrent: true
+                    minDate: (_.first(inventories)||{}).started_on
+                    maxDate: (_.last(inventories)||{}).started_on
+                    onSelect: _.bind((-> $(this).change()), this)
+                $('._travel_booking_started_on').on 'change', ->
+                  that = this
+                  inventories = $('._inventories_'+$(this).data('journey_id')).data('inventories')
+                  inventory = _.find(inventories, ((inventory) -> $(that).val() == inventory.started_on)) || {}
+                  adult_number = $('#_travel_booking_adult_number_'+$(this).data('journey_id'))
+                  child_number = $('#_travel_booking_child_number_'+$(this).data('journey_id'))
+                  adult_number_val = adult_number.val()
+                  child_number_val = child_number.val()
+                  adult_number.html(if !inventory.adult_price then '' else _.times(inventory.remained_number - parseInt(child_number.val()), ((i) -> '<option value="' + (i+1) + '">' + (i+1) + ' 位（￥' + (i+1)*inventory.adult_price + '）</option>' )).join('')).val(adult_number_val)
+                  child_number.html(if !inventory.child_price then '' else _.times(1 + inventory.remained_number - parseInt(adult_number.val()), ((i) -> '<option value="' + (i) + '">' + (i) + ' 位（￥' + (i)*inventory.child_price + '）</option>' )).join('')).val(child_number_val)
+                $('._travel_booking_adult_number, ._travel_booking_child_number').change ->
+                  $('#_travel_booking_started_on_'+$(this).data('journey_id')).change()
         .product_cont
           .basis_info
             = simple_format @product.description
@@ -133,7 +143,7 @@
               em RMB
               span ￥#{@product.lowest_price}
             .price-expla
-              | （每人）起
+              | 每人起
           .controls
             .list
               a.question href="mailto:service@jilvtrip.com" 咨询该活动

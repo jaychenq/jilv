@@ -13,26 +13,16 @@
         li.step-2.step-past
           span 2
           strong 联系方式
-        li.step-3 class=(@booking.confirmation? ? 'step-past' : 'current')
+        li.step-3.step-past
           span 3
-          strong 商家确认
-        li.step-4 class=('current' if @booking.confirmation?)
-          span 4
           strong
             i.icons-lock-gray-s-disabled
             | 安全支付
+        li.step-4.current
+          span 4
+          strong 交易完成
     .cart-box
       .main.lfloat
-        - if @booking.confirmation.nil?
-          .cart-success
-            p style="font-size: 14px;" 请等待商家确认
-        - elsif @booking.confirmation?
-          .cart-success
-            i.icons-ok
-            p style="font-size: 14px;" 支付成功！你可以放心的前往目的地！
-        - else
-          .cart-success style="background-color: #FDCBCC;"
-            p style="font-size: 14px;" 此产品当日已售完
         .cart-thead
           span 订单详情
         .result-list.order-list
@@ -51,7 +41,7 @@
                         span = booking.journey.try(:name)
                       li
                         strong 日期：
-                        span = booking.started_on
+                        span = booking.inventory.started_on
                       li
                         strong 成人：
                         span #{booking.adult_number} 位
