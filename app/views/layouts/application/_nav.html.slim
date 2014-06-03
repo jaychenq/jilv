@@ -1,14 +1,17 @@
 .tab_nav
   .container
     ul.tablist
-      - if @current_user.try(:merchant)
+      - if current == 'merchant'
         li class=('selected' if current == 'merchant')
-          a href=new_business_travel_merchant_path 商家
-      li class=('selected' if current == 'index')
-        a href="/account/users/#{@current_user.try(:id)||0}" 主页
-      li class=('selected' if current == 'booking')
-        a href=travel_bookings_path 订单
-      li class=('selected' if current == 'favorite')
-        a href=travel_favorites_path 收藏
-      li class=('selected' if current == 'setting')
-        a href="/account/users/#{@current_user.try(:id)||0}/edit" 设置
+          a href=new_business_travel_merchant_path 商家中心
+        li
+          a href="/account/users/#{@current_user.try(:id)||0}" 我是极客
+      - else
+        li class=('selected' if current == 'index')
+          a href="/account/users/#{@current_user.try(:id)||0}" 主页
+        li class=('selected' if current == 'booking')
+          a href=travel_bookings_path 订单
+        li class=('selected' if current == 'favorite')
+          a href=travel_favorites_path 收藏
+        li class=('selected' if current == 'setting')
+          a href="/account/users/#{@current_user.try(:id)||0}/edit" 设置

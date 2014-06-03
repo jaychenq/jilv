@@ -12,7 +12,7 @@
         .bookblock
           a.pic href=url_for(product)
             = image_tag "#{product.cover.try(:file)}.640x360.jpg", alt: ''
-          .name = product.name
+          a.name href=url_for(product) = product.name
           P.b-info
             = text_format product.description[0..99]
           .operating

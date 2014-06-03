@@ -76,9 +76,9 @@
                     | &nbsp;到&nbsp;
                     = text_field_tag 'ended_on', 3.months.from_now.to_date, size: 10, class: 'date', style: "border: 1px solid silver;"
                     | &nbsp;&nbsp;成人价：
-                    = text_field_tag 'adult_price', nil, size: 6, style: "border: 1px solid silver;"
+                    = text_field_tag 'adult_price', nil, placeholder: '12岁以上', size: 6, style: "border: 1px solid silver;"
                     | &nbsp;&nbsp;儿童价：
-                    = text_field_tag 'child_price', nil, size: 6, style: "border: 1px solid silver;"
+                    = text_field_tag 'child_price', nil, placeholder: '未满12岁', size: 6, style: "border: 1px solid silver;"
                     | &nbsp;&nbsp;数量：
                     = text_field_tag 'total_number', nil, size: 6, style: "border: 1px solid silver;"
                     | &nbsp;&nbsp;

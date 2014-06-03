@@ -21,12 +21,6 @@
                     = image_tag "#{photo.file}.72x50.jpg", alt: ''
         .short-info
           dl
-            dt 活动时间：
-            dd = @product.activity_time
-          dl
-            dt 适合群体：
-            dd = @product.colony
-          dl
             dt 服务语言：
             dd
               - @product.languages.each do |language|
