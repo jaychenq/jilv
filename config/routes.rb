@@ -123,7 +123,11 @@ Rails.application.routes.draw do
 
   namespace :travel do
     resources :attributes
-    resources :bookings
+    resources :bookings do
+      member do
+        get :alipay_return
+      end
+    end
     resources :categories
     resources :cities
     resources :continents

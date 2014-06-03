@@ -6,6 +6,7 @@ class Travel::BookingsController < Travel::ApplicationController
   end
 
   def show
+    return redirect_to @booking.alipay_checkout_url if !@booking.payment_platform
   end
 
   def new
@@ -27,6 +28,13 @@ class Travel::BookingsController < Travel::ApplicationController
     else
       render :new
     end
+  end
+  
+  def alipay_return
+    return render text: 'failure', layout: false if params['sign'].downcase != Digest::MD5.hexdigest(params.except(*%w[controller action id sign_type sign source]).sort.map{|k,v| "#{k}=#{k == 'notify_id' ? v : CGI.unescape(v)}" }.join("&")+CONFIG.alipay.key)
+    @booking.update(payment_platform: 'alipay', payment_identifier: params['trade_no'])
+    redirect_to @booking
+    Mailer.mail(to: @booking.merchant.user.email, subject: "用户向你预订了#{@booking.product.name}", body: %{<a href="#{url_for([:business, Travel::Booking])}">#{url_for([:business, Travel::Booking])}</a>})
   end
 
 private
