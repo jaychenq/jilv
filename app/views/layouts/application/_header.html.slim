@@ -2,9 +2,10 @@
   .fixed_header.fixed-border
     .container
       ul.top_bar
-        li
-          a href="/about/pages/merchant"
-            span 商家入驻
+        - if !@current_user.try(:merchant)
+          li
+            a href="/about/pages/merchant"
+              span 商家入驻
         li.help
           a href=""
             i.icons-help
@@ -32,10 +33,16 @@
               span = @current_user.name
               em.down-arrow
             ul.submenu
-              li
-                a href=url_for(@current_user)
-                  i.icons-user-white
-                  span 主页
+              - if @current_user.merchant
+                li
+                  a href=url_for([:business, @current_user.merchant])
+                    i.icons-user-white
+                    span 商家
+              - else
+                li
+                  a href=url_for(@current_user)
+                    i.icons-user-white
+                    span 主页
               li
                 a href=travel_bookings_path
                   i.icons-tag-white

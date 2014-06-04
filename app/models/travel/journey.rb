@@ -6,7 +6,7 @@ class Travel::Journey < ActiveRecord::Base
   default_scope { where(active: true) }
 
   validates :product_id, existence: true
-  validates :name, :start_time, :duration_time, :fee_description, :refund_policy, :other_description, presence: true
+  validates :name, :start_time, :duration_time, :fee_description, :refund_policy, presence: true
   validates :market_price, numericality: { only_integer: true }
 
   cattr_accessor :admin_fields, :business_fields

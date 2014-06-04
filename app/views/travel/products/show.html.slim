@@ -51,9 +51,10 @@
                   p
                     strong 退改规则：
                     span = text_format journey.refund_policy
-                  p
-                    strong 其它：
-                    span = text_format journey.other_description
+                  - if journey.other_description.present?
+                    p
+                      strong 其它：
+                      span = text_format journey.other_description
                 .block
                   .price
                     em RMB
