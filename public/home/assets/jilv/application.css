@@ -1,0 +1,998 @@
+/* line 17, ../../../../../.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../.rvm/gems/ruby-2.1.1/gems/compass-0.12.4/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 3, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+a {
+  color: #029ff0;
+  text-decoration: none;
+}
+/* line 6, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+a:hover {
+  text-decoration: underline;
+}
+
+/* line 9, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.page_size {
+  width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* line 13, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header {
+  display: block;
+  background-color: white;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 0 10px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 0 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 0 10px;
+  display: block;
+  width: 100%;
+  height: 62px;
+  z-index: 90;
+  position: fixed;
+}
+/* line 22, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .logo {
+  position: absolute;
+  top: 0;
+  left: 29px;
+  display: block;
+  width: 140px;
+  height: 140px;
+  text-indent: -99px;
+  overflow: hidden;
+  background: #029ff0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 7px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 7px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 7px;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 34, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .logo h1 {
+  display: block;
+  width: 113px;
+  height: 60px;
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+  text-indent: -99px;
+  overflow: hidden;
+  background: url(./logo.png) no-repeat 0 0;
+}
+/* line 44, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .logo:hover {
+  height: 154px;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 47, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .top_bar {
+  float: right;
+}
+/* line 49, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .top_bar li {
+  display: inline-block;
+  height: 62px;
+  background: url(./layouts/header_line.png) no-repeat right center;
+}
+/* line 53, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .top_bar li:last-child {
+  background: none;
+}
+/* line 55, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .top_bar li a {
+  display: inline-block;
+  padding: 16px 11px;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 59, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .top_bar li a:hover {
+  background: rgba(0, 0, 0, 0.1);
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 62, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .top_bar li a i {
+  float: left;
+}
+/* line 64, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .top_bar li a span {
+  float: left;
+  padding: 9px;
+}
+/* line 67, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header {
+  display: block;
+  float: left;
+  margin-left: 170px;
+}
+/* line 72, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .home-item {
+  height: 62px;
+  display: inline-block;
+  float: left;
+}
+/* line 76, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go-item {
+  display: inline-block;
+  float: left;
+  padding: 10px 0 0 10px;
+  position: relative;
+}
+/* line 83, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go-item.open .go, .layout_header .header .nav .go-item:hover .go {
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background: white;
+  border-color: #666666;
+  position: relative;
+  z-index: 100;
+  height: 34px;
+}
+/* line 90, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go-item.open .go:after, .layout_header .header .nav .go-item:hover .go:after {
+  display: block;
+  width: 150px;
+  height: 10px;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  z-index: 101;
+  content: " ";
+  background: white;
+}
+/* line 100, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go-item.open .info, .layout_header .header .nav .go-item:hover .info {
+  display: block;
+}
+/* line 102, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go-item .info {
+  position: absolute;
+  z-index: 25;
+  top: 50px;
+  left: 10px;
+  width: 634px;
+  border: 1px solid #666666;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background: white;
+  z-index: 99;
+  display: none;
+}
+/* line 123, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go-item .info .list {
+  padding: 20px;
+  font-size: 0;
+}
+/* line 126, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go-item .info .list .box_item {
+  width: 148px;
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 130, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go-item .info .list .box_header {
+  display: block;
+  font-size: 15px;
+  color: #333333;
+  margin-bottom: 10px;
+}
+/* line 135, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go-item .info .list .link_item {
+  display: block;
+  font-size: 15px;
+  display: block;
+}
+/* line 139, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go-item .info .list .link_item a {
+  padding: 5px 0;
+  display: inline-block;
+}
+/* line 142, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go-item .info .info_section {
+  display: block;
+  width: 600px;
+  margin: 0 auto;
+  padding: 10px 0;
+  border-top: 1px solid #cccccc;
+  font-size: 12px;
+}
+/* line 149, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go-item .info .info_section a {
+  color: #999999;
+}
+/* line 151, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go-item .info .info_section a:hover {
+  color: black;
+}
+/* line 153, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .home {
+  height: 46px;
+  padding-top: 16px;
+  display: inline-block;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 158, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .home:hover {
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 160, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .home {
+  float: left;
+  padding: 16px 20px 0;
+  background: url(./layouts/header_line.png) no-repeat right center;
+}
+/* line 165, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go {
+  display: inline-block;
+  padding: 6px 9px 0;
+  height: 44px;
+  border-top: 1px solid white;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  -ms-border-radius: 5px 5px 0 0;
+  -o-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+/* line 174, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go .icon_tag {
+  float: left;
+  margin-right: 4px;
+}
+/* line 177, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go span {
+  float: left;
+  display: inline-block;
+  font-size: 14px;
+  margin: 10px 0 0;
+  padding: 0;
+}
+/* line 183, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_header .header .nav .go .icon_arrow_bottom {
+  float: left;
+  margin-top: 2px;
+}
+
+/* line 187, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home {
+  position: relative;
+}
+/* line 190, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home a img {
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 192, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home a:hover img {
+  -webkit-filter: brightness(1.15);
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 195, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go {
+  height: 676px;
+}
+/* line 197, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go ul, .layout_home .where_to_go li {
+  list-style: none;
+}
+/* line 199, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .destination_box {
+  position: absolute;
+  z-index: 25;
+  top: 50%;
+  margin-top: 109px;
+  left: 50%;
+  margin-left: -130px;
+}
+/* line 206, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .destination_box .button_destination {
+  width: 250px;
+  height: 49px;
+  border: 4px solid #029ff0;
+  background: white;
+  position: relative;
+  cursor: pointer;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/* line 215, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .destination_box .button_destination.close {
+  display: none;
+}
+/* line 218, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .destination_box .button_destination span {
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  line-height: 50px;
+  padding-right: 20px;
+}
+/* line 224, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .destination_box .button_destination i {
+  position: absolute;
+  top: 10px;
+  left: 145px;
+}
+/* line 229, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .active-block.close {
+  display: none;
+}
+/* line 235, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .active-block .button_destination span {
+  position: relative;
+  background: white;
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  -ms-border-radius: 5px 5px 0 0;
+  -o-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+  z-index: 55;
+}
+/* line 240, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .active-block .button_destination i {
+  z-index: 56;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+/* line 243, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .info {
+  width: 655px;
+  border: 4px solid #029ff0;
+  background: white;
+  position: relative;
+  left: -201px;
+  top: -12px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/* line 252, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .info .list {
+  font-size: 0;
+}
+/* line 254, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .info .list .box_header {
+  font-size: 20px;
+  color: black;
+  position: absolute;
+  top: 53px;
+  left: 43px;
+}
+/* line 260, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .info .list .link_item {
+  width: 144px;
+  display: inline-block;
+  padding: 6px 5px;
+  margin-bottom: 3px;
+  font-size: 0;
+  position: relative;
+}
+/* line 268, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .info .list .link_item a:hover {
+  color: black;
+}
+/* line 270, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .info .list .link_item .link {
+  font-size: 16px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  display: inline-block;
+}
+/* line 279, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .info .list .link_item:hover .link {
+  color: black;
+}
+/* line 281, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .info .list .link_item:hover .link_box {
+  display: block;
+}
+/* line 283, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .info .list .link_item .link_box {
+  position: absolute;
+  top: 0px;
+  left: 60%;
+  border: 1px solid #cccccc;
+  width: 120px;
+  padding: 5px;
+  display: none;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background: white;
+  z-index: 99;
+}
+/* line 295, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .info .list .link_item .link_box a {
+  display: block;
+  font-size: 14px;
+  padding: 5px;
+}
+/* line 299, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .info .list .link_item .link_box a:hover {
+  text-decoration: none;
+}
+/* line 301, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .info .box_item {
+  border-bottom: 1px solid #cccccc;
+  width: 463px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 133px;
+  padding-top: 20px;
+  padding-bottom: 9px;
+}
+/* line 309, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .where_to_go .info .box_item:last-child {
+  border: none;
+}
+/* line 311, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .covers {
+  position: absolute;
+  font-size: 0;
+  width: 1440px;
+  height: 676px;
+  overflow: hidden;
+  top: 0;
+  left: 50%;
+  margin-left: -710px;
+}
+/* line 320, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .covers .list {
+  position: relative;
+  width: 1440px;
+  height: 676px;
+  overflow: hidden;
+}
+/* line 325, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .covers .list .link {
+  width: 1440px;
+  height: 676px;
+}
+/* line 328, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .covers .list img {
+  width: 100%;
+  height: 100%;
+}
+/* line 331, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .covers .prev,
+.layout_home .covers .next {
+  width: 60px;
+  height: 60px;
+  display: none;
+  position: absolute;
+  z-index: 25;
+  top: 50%;
+  margin-top: -30px;
+  opacity: 1;
+  background-image: url(./layouts/home_arrow.png);
+  background-repeat: no-repeat;
+}
+/* line 343, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .covers .prev:hover,
+.layout_home .covers .next:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/* line 345, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .covers .prev {
+  left: 10px;
+  background-position: 0 0;
+}
+/* line 348, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .covers .next {
+  right: 10px;
+  background-position: 0 -60px;
+}
+/* line 351, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .covers:hover .prev, .layout_home .covers:hover .next {
+  display: block;
+}
+/* line 354, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .title {
+  text-align: center;
+  display: block;
+  padding: 62px 0;
+}
+/* line 358, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .title h2 {
+  font-size: 36px;
+}
+/* line 360, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .title h3 {
+  font-size: 25px;
+  margin-top: 25px;
+}
+/* line 363, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_theme {
+  background: #fafafa;
+  padding-bottom: 51px;
+}
+/* line 366, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_theme .images {
+  display: block;
+  margin-left: 102px;
+}
+/* line 369, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_theme .images a {
+  display: inline-block;
+  width: 348px;
+  height: 169px;
+  position: relative;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  margin-right: 16px;
+  margin-bottom: 11px;
+  background: rgba(255, 255, 255, 0.5);
+}
+/* line 378, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_theme .images a:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) inset;
+  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) inset;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 389, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_theme .images a:hover:after {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 392, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_theme .images img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 397, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_theme .images .description {
+  display: block;
+  width: 220px;
+  height: 52px;
+  position: absolute;
+  top: 102px;
+  left: 0;
+  background: rgba(0, 0, 0, 0.65);
+  color: white;
+}
+/* line 406, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_theme .images .description h5 {
+  font-size: 18px;
+  margin-left: 12px;
+  margin-top: 8px;
+}
+/* line 410, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_theme .images .description p {
+  font-size: 14px;
+  line-height: 22px;
+  margin-left: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
+}
+/* line 418, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city {
+  background: #efefef;
+  border-top: 1px solid #c8c8c8;
+  overflow: hidden;
+  padding-bottom: 145px;
+}
+/* line 423, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .images {
+  display: block;
+  margin-left: 14px;
+  width: 580px;
+  float: left;
+}
+/* line 428, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .images a {
+  display: inline-block;
+  width: 274px;
+  height: 169px;
+  position: relative;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  margin-right: 16px;
+  margin-bottom: 11px;
+  background: rgba(255, 255, 255, 0.5);
+}
+/* line 437, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .images a:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) inset;
+  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) inset;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 448, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .images a:hover:after {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 451, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .images a h5 {
+  position: absolute;
+  top: 78px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  color: white;
+  text-shadow: 0 0 5px black;
+}
+/* line 460, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .images img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 465, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .city_list {
+  display: block;
+  float: left;
+  margin-left: 102px;
+  width: 499px;
+  overflow: hidden;
+}
+/* line 471, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .city_list .large_image {
+  width: 499px;
+  height: 352px;
+  display: block;
+  font-size: 0;
+  position: relative;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.5);
+}
+/* line 479, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .city_list .large_image:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) inset;
+  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) inset;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 490, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .city_list .large_image:hover:after {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+/* line 493, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .city_list .large_image img {
+  width: 100%;
+  height: 100%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 497, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .city_list .city_item {
+  font-size: 0;
+  width: 565px;
+  padding-top: 21px;
+  clear: both;
+}
+/* line 502, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .city_list .city_item .list {
+  width: 187px;
+  display: inline-block;
+  font-size: 14px;
+  vertical-align: top;
+}
+/* line 507, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .city_list .city_item .list h3 {
+  font-size: 18px;
+  color: #333333;
+}
+/* line 510, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .city_list .city_item .list ul {
+  margin-top: 8px;
+}
+/* line 512, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .city_list .city_item .list ul li {
+  display: block;
+}
+/* line 514, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_home .top_city .city_list .city_item .list a {
+  color: #029ff0;
+  display: inline-block;
+  padding: 8px 0;
+}
+
+/* line 520, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_footer {
+  display: block;
+  width: 100%;
+  background: #f8f8f8;
+  border-top: 1px solid #cacaca;
+  padding: 45px 0;
+}
+/* line 526, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_footer .info {
+  width: 218px;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 0;
+}
+/* line 531, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_footer .info h3 {
+  color: #707070;
+  font-size: 14px;
+}
+/* line 534, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_footer .info li {
+  padding-left: 10px;
+  display: block;
+}
+/* line 537, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_footer .info a {
+  color: #029ff0;
+  font-size: 16px;
+  display: inline-block;
+  padding: 8px 0;
+}
+/* line 542, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_footer .info:first-child {
+  margin-left: 60px;
+}
+/* line 544, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_footer .copyright {
+  color: #707070;
+  font-size: 12px;
+  padding: 43px 0 0 60px;
+}
+/* line 548, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+.layout_footer .copyright span {
+  padding-right: 32px;
+}
+
+@media \0screen {
+  /* line 552, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+  .layout_home .top_theme .images .description {
+    background: #111111;
+  }
+
+  /* line 554, ../../../app/assets/stylesheets/jilv/application/home.css.sass */
+  .layout_header .top_bar li a:hover {
+    background-color: #eeeeee;
+  }
+}
+/* line 1, ../../../app/assets/stylesheets/jilv/application/reset.css.sass */
+input, button, a, object, embed, select {
+  outline: medium none;
+}
+
+/* line 3, ../../../app/assets/stylesheets/jilv/application/reset.css.sass */
+body {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, Verdana, sans-serif !important;
+}
+
+/* line 1, ../../../app/assets/stylesheets/jilv/application/icons.css.sass */
+.icons_friendly,
+.icon_tag,
+.icon_lock,
+.icon_user,
+.icon_home,
+.icon_arrow_bottom {
+  background: url(./icons-s8129328e87.png) no-repeat 0 0;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
+
+/* line 13, ../../../app/assets/stylesheets/jilv/application/icons.css.sass */
+.icons_friendly {
+  background-position: 0 0;
+}
+
+/* line 15, ../../../app/assets/stylesheets/jilv/application/icons.css.sass */
+.icon_tag {
+  background-position: 0 -30px;
+}
+
+/* line 17, ../../../app/assets/stylesheets/jilv/application/icons.css.sass */
+.icon_lock {
+  background-position: 0 -60px;
+}
+
+/* line 19, ../../../app/assets/stylesheets/jilv/application/icons.css.sass */
+.icon_user {
+  background-position: 0 -90px;
+}
+
+/* line 21, ../../../app/assets/stylesheets/jilv/application/icons.css.sass */
+.icon_home {
+  background-position: 0 -120px;
+}
+
+/* line 23, ../../../app/assets/stylesheets/jilv/application/icons.css.sass */
+.icon_arrow_bottom {
+  background-position: 0 -150px;
+}
