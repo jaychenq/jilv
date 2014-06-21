@@ -1,4 +1,4 @@
-smtp:
+smtp_gmail:
   address: smtp.gmail.com
   domain: gmail.com
   port: 587
@@ -7,6 +7,14 @@ smtp:
   password: jilv2048
   enable_starttls_auto: :true
   from: jilv1024@gmail.com
+smtp:
+  address: smtp.163.com
+  domain: 163.com
+  port: 25
+  authentication: :login
+  user_name: jilvtrip@163.com
+  password: a123456
+  from: jilvtrip@163.com
 smtp_jilv:
   address: smtp.exmail.qq.com
   domain: jilvtrip.com

@@ -32,6 +32,14 @@ Rails.application.routes.draw do
         get :setting
         put :setting
       end
+      collection do
+        get :ajaxValidateFieldName
+        get :forget
+        post :forget_mail
+        get :reset_password
+        post :reset_passwd
+        get :reset_password_ok
+      end
     end
   end
 

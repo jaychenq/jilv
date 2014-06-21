@@ -1,0 +1,23 @@
+.container
+  .new-user
+    .user-content
+    	h2 请按照输入框的提示操作，我们会全力配合您找回。
+    	- if @result == "1"
+        	.err_text 您输入的邮件地址不存在，请重新输入！
+        - elsif @result == "2"
+        	.err_text 已经向您邮箱发送密码重置邮件,请查收!
+        - elsif @result == "3"
+        	.err_text 您要重置密码的账号不存在!
+        - elsif @result == "4"
+        	.err_text reset_token已经失效，请重新发送邮件!
+    	.formbody
+        	= form_for "", url: "/account/users/forget_mail", method: 'post', html: { class: 'user-form' } do |f|
+        		.field
+			        = f.label :name, '账号', class: 'login-label'
+			        = f.text_field :name, class: 'text validate[required,custom[email],account_user[name]]',placeholder: '请输入电子邮件地址'
+			    .field-button
+          			input type="submit" value=" 登 录 "
+          		.field
+			    	.span-space
+			    script
+        			| $(".user-form").validationEngine()

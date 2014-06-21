@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class Account::UsersController < ApplicationController
   before_action :user_required, only: [ :show, :edit, :update, :password, :setting ]
 
@@ -9,9 +11,67 @@ class Account::UsersController < ApplicationController
     @user = Account::User.new
   end
 
+  def forget_mail
+      reset_token = SecureRandom.hex
+      @user = Account::User.where(:name=>params[:name])
+      @result = "0"
+      if @user.blank?
+        @result = "1"
+      else
+        @result = "2"
+        @user.first.reset_token = reset_token
+        @user.first.save
+        UserMailer.foget_pass(params[:name],reset_token).deliver
+      end
+      render :action => "forget", :collection=>@result
+  end
+
+  def reset_password
+      @user = Account::User.where(:name=>params[:name])
+
+      if @user.blank?
+        @result = "3"
+        render :action => "forget", :collection=>@result
+        return
+      end
+
+      if @user.first.reset_token != params[:reset_token]
+        @result = "4"
+        render :action => "forget", :collection=>@result
+        return
+      end
+  end
+
+  def reset_passwd
+    @user = Account::User.where(:name=>params[:name])
+    if @user.blank?
+        @result = "3"
+        render :action => "forget", :collection=>@result
+        return
+    end
+    reset_token = SecureRandom.hex
+    @user.first.reset_token = reset_token
+    @user.first.save
+    @user.first.update(password: params[:password])
+    redirect_to "/account/users/reset_password_ok"
+  end
+
+  def ajaxValidateFieldName
+    name = params[:fieldValue]
+    @users = Account::User.where(:name=>name)
+    result = []
+    result[0] = params[:fieldId]
+    if @users.blank?
+      result[1] = false
+    else
+      result[1] = true
+    end
+    render :json => result, status => :OK
+  end
+
   def create
     @user = Account::User.new
-    @user.attributes = params[:account_user].permit(*%w[name gender avatar email password terms_of_service])
+    @user.attributes = params[:account_user].permit(*%w[name gender avatar password terms_of_service])
     @user.save
 
     if @user.valid?

@@ -1,0 +1,5 @@
+.container
+  .new-user
+    .user-content
+    	h2 您好，#{@name} 请点击下面的链接重置密码
+    	a href="http://jilv.co/account/users/reset_password?reset_token=#{@reset_token}&name=#{@name}" 密码重置

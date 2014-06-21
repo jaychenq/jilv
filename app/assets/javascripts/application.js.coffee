@@ -5,6 +5,8 @@
 #= require underscore
 # require admin/application/datetime
 # require admin/application/editor
+#= require jquery.validationEngine
+#= require languages/jquery.validationEngine-zh_CN
 #= require shared/analytics
 
 $ ->

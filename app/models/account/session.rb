@@ -1,7 +1,7 @@
 class Account::Session < ActiveRecord::Base
   belongs_to :user
   
-  attr_accessor :email, :password
+  attr_accessor :name, :password
   
   def logout
     return if self.expired_at
