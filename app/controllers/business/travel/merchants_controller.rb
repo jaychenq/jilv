@@ -11,6 +11,10 @@ class Business::Travel::MerchantsController < Business::Travel::ApplicationContr
     @merchant.attributes = params[model.table_name.singularize].to_h.slice(*model.business_fields)
   end
 
+  def reg
+
+  end
+
   def create
     @merchant.id = @current_user.id
     @merchant.attributes = params[model.table_name.singularize].to_h.slice(*model.business_fields)
@@ -24,7 +28,7 @@ private
 
   def merchant
     @merchant ||= @current_user.try(:merchant)
-    if params[:action].in?(%w[new create])
+    if params[:action].in?(%w[new create reg])
       return redirect_to [:business, @merchant] if @merchant
       return @merchant = model.new
     end

@@ -1,0 +1,200 @@
+.row-600.profile-form
+      .formbody
+        = form_for @merchant, url: [:business, @merchant], method: 'post', html: { multipart: true } do |f|
+          h4.page-h4 1、商家名称
+          fieldset.fms_block
+            ul
+              li.item
+                .itm_media
+                  label.title_label
+                    | 主体
+                    span.important *
+                .itm_body
+                  = render 'shared/enum_radio', form: f, field: 'entity'
+                  = f.error_message_on :entity
+              li.item
+                .itm_media
+                  label.title_label
+                    | 名称
+                    span.important *
+                .itm_body
+                  .textfield
+                    = f.text_field :name
+                    = f.error_message_on :name
+          h4.page-h4 2、联系方式
+          fieldset.fms_block
+            ul
+              li.item
+                .itm_media
+                  label.title_label
+                    | 名字
+                    span.important *
+                    span.ptext 您的联系方式不会被公开
+                .itm_body
+                  .textfield
+                    = f.text_field :first_name
+                    = f.error_message_on :first_name
+              li.item
+                .itm_media
+                  label.title_label
+                    | 姓氏
+                    span.important *
+                .itm_body
+                  .textfield
+                    = f.text_field :last_name
+                    = f.error_message_on :last_name
+              li.item
+                .itm_media
+                  label.title_label
+                    | 性别
+                    span.important *
+                .itm_body
+                  = render 'shared/enum_radio', form: f, field: 'gender'
+              li.item
+                .itm_media
+                  label.title_label
+                    | 身份认证
+                    span.important *
+                    span.ptext 请上传运营者身份证或护照清晰彩色原件扫描件
+                .itm_body
+                  .textfield
+                    = f.file_field :identification
+                    = f.error_message_on :identification
+          hr
+          fieldset.fms_block
+            ul
+              li.item
+                .itm_media
+                  label.title_label
+                    | 工商注册名称
+                    span.important *
+                    span.ptext 对于公司请输入您的公司全称，否则请填“个人”。
+                .itm_body
+                  .textfield
+                    = f.text_field :company
+                    = f.error_message_on :company
+              li.item
+                .itm_media
+                  label.title_label
+                    | 城市
+                    span.important *
+                .itm_body
+                  .selectfield
+                    = f.collection_select :continent_id, Travel::Continent.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                  .selectfield
+                    = f.collection_select :country_id, @merchant.country ? @merchant.country.continent.countries.order('sequence ASC, name ASC') : [], :id, :name, include_blank: true
+                  .selectfield
+                    = f.collection_select :city_id, @merchant.city ? @merchant.city.country.cities.order('sequence ASC, name ASC') : [], :id, :name, include_blank: true
+                    = f.error_message_on :city_id
+                  #continents data-continents=Travel::Continent.all.to_json(only: [:id, :name], include: { countries: { only: [:id, :name], include: { cities: { only: [:id, :name] } } } })
+                  coffee:
+                    $ ->
+                      $('#travel_merchant_continent_id').on 'change', ->
+                        continents = $('#continents').data('continents')
+                        countries = (_.find(continents, ((continent) -> continent.id == parseInt($('#travel_merchant_continent_id').val()))) || {}).countries || []
+                        options = _.map(countries, ((country) -> '<option value="' + country.id + '">' + country.name + '</option>')).join('')
+                        $('#travel_merchant_country_id').html('<option></option>' + options)
+                        $('#travel_merchant_city_id').html('<option></option>')
+                      $('#travel_merchant_country_id').on 'change', ->
+                        continents = $('#continents').data('continents')
+                        countries = (_.find(continents, ((continent) -> continent.id == parseInt($('#travel_merchant_continent_id').val()))) || {}).countries || []
+                        cities = (_.find(countries, ((country) -> country.id == parseInt($('#travel_merchant_country_id').val()))) || {}).cities || []
+                        options = _.map(cities, ((city) -> '<option value="' + city.id + '">' + city.name + '</option>')).join('')
+                        $('#travel_merchant_city_id').html('<option></option>' + options)
+              li.item
+                .itm_media
+                  label.title_label
+                    | 地址
+                    span.important *
+                .itm_body
+                  .textfield
+                    = f.text_field :address
+                    = f.error_message_on :address
+              li.item
+                .itm_media
+                  label.title_label
+                    | 网站
+                .itm_body
+                  .textfield
+                    = f.text_field :website
+                    = f.error_message_on :website
+              li.item
+                .itm_media
+                  label.title_label
+                    | 营业执照
+                    span.important *
+                    span.ptext 请上传合法有效营业执照清晰彩色原件扫描件
+                .itm_body
+                  .textfield
+                    = f.file_field :lisense
+                    = f.error_message_on :lisense
+          hr
+          fieldset.fms_block
+            ul
+              li.item
+                .itm_media
+                  label.title_label
+                    | 电话
+                    span.important *
+                .itm_body
+                  .textfield
+                    = f.text_field :phone_number
+                    = f.error_message_on :phone_number
+              li.item
+                .itm_media
+                  label.title_label
+                    | QQ
+                .itm_body
+                  .textfield
+                    = f.text_field :qq
+                    = f.error_message_on :qq
+              li.item
+                .itm_media
+                  label.title_label
+                    | 微信
+                .itm_body
+                  .textfield
+                    = f.text_field :wechat
+                    = f.error_message_on :wechat
+              li.item
+                .itm_media
+                  label.title_label
+                    | Skype
+                .itm_body
+                  .textfield
+                    = f.text_field :skype
+                    = f.error_message_on :skype
+          h4.page-h4 3、提交上传
+          fieldset.fms_block
+            ul
+              li.item
+                .itm_media
+                  label.title_label
+                    | LOGO
+                    span.important *
+                    span.ptext 头像将在公共产品页面可见。禁止上传拥有联系方式的头像。
+                .itm_body
+                  .textfield
+                    = f.file_field :logo
+                    = f.error_message_on :logo
+              li.item
+                .itm_media
+                  label.title_label
+                    | 介绍
+                    span.important *
+                .itm_body
+                  .textareafield
+                    = f.text_area :description
+                    = f.error_message_on :description
+          h4.page-h4 4、确认入驻
+          fieldset.fms_block
+            ul
+              li.item
+                .itm_media
+                  label.title_label 
+                .itm_body
+                  .newsletter-confirm
+                    input type="checkbox" checked="checked" disabled="disabled"
+                    span.name 我已阅读《极旅入驻协议》并同意。
+              li.item.item-btn
+                button.button.btn-blue 提交

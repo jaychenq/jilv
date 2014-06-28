@@ -117,7 +117,11 @@ Rails.application.routes.draw do
       resources :complaints
       resources :inventories
       resources :journeys
-      resources :merchants
+      resources :merchants do
+        collection do
+          get :reg
+        end
+      end
       resources :photos
       resources :products do
         member do

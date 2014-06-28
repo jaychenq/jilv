@@ -1,0 +1,166 @@
+.row-960.profile-form
+      h3.title_h 注册成为供应商
+      .formbody
+        = form_for @merchant, url: [:business, @merchant], method: 'post', html: { multipart: true } do |f|
+          h4.page-h4 1、商家名称
+          fieldset.fms_block
+            ul
+              li.item
+                .item_control
+                  label.control_label
+                    | 运营主体
+                .control_input
+                  = render 'shared/enum_radio', form: f, field: 'entity'
+                  = f.error_message_on :entity
+              li.item
+                .item_control
+                  label.control_label
+                    | 名称
+                .control_input
+                  .newtextfield
+                    = f.text_field :name,:class=>"validate[required]"
+                    = f.error_message_on :name
+          h4.page-h4 2、联系方式(您的个人资料会被严格保密)
+          fieldset.fms_block
+            ul
+              li.item
+                .item_control
+                  label.control_label
+                    | 名字
+                    span.ptext
+                .control_input
+                  .newtextfield
+                    = f.text_field :first_name,:class=>"validate[required]"
+                    = f.error_message_on :first_name
+              li.item
+                .item_control
+                  label.control_label
+                    | 姓氏
+                .control_input
+                  .newtextfield
+                    = f.text_field :last_name,:class=>"validate[required]"
+                    = f.error_message_on :last_name
+              li.item
+                .item_control
+                  label.control_label
+                    | 性别
+                .control_input
+                  = render 'shared/enum_radio', form: f, field: 'gender'
+              li.item
+                .item_control
+                  label.control_label
+                    | 身份证
+                    span.ptext
+                .control_input
+                  .newtextfield
+                    = f.file_field :identification,:class=>"validate[required]"
+                    = f.error_message_on :identification
+          hr
+          fieldset.fms_block
+            ul
+              li.item
+                .item_control
+                  label.control_label
+                    | 工商注册名称
+                    span.ptext
+                .control_input
+                  .newtextfield
+                    = f.text_field :company,:class=>"validate[required]"
+                    = f.error_message_on :company
+              li.item
+                .item_control
+                  label.control_label
+                    | 城市
+                .control_input
+                  .new_selectfield
+                    = f.collection_select :continent_id, Travel::Continent.order('sequence ASC, name ASC'), :id, :name,{include_blank: true},{:class=>"validate[required]"}
+                  .new_selectfield
+                    = f.collection_select :country_id, @merchant.country ? @merchant.country.continent.countries.order('sequence ASC, name ASC') : [], :id, :name, {include_blank: true},{:class=>"validate[required]"}
+                  .new_selectfield
+                    = f.collection_select :city_id, @merchant.city ? @merchant.city.country.cities.order('sequence ASC, name ASC') : [], :id, :name,{include_blank: true},{:class=>"validate[required]"}
+                    = f.error_message_on :city_id
+                  #continents data-continents=Travel::Continent.all.to_json(only: [:id, :name], include: { countries: { only: [:id, :name], include: { cities: { only: [:id, :name] } } } })
+                  coffee:
+                    $ ->
+                      $('#travel_merchant_continent_id').on 'change', ->
+                        continents = $('#continents').data('continents')
+                        countries = (_.find(continents, ((continent) -> continent.id == parseInt($('#travel_merchant_continent_id').val()))) || {}).countries || []
+                        options = _.map(countries, ((country) -> '<option value="' + country.id + '">' + country.name + '</option>')).join('')
+                        $('#travel_merchant_country_id').html('<option></option>' + options)
+                        $('#travel_merchant_city_id').html('<option></option>')
+                      $('#travel_merchant_country_id').on 'change', ->
+                        continents = $('#continents').data('continents')
+                        countries = (_.find(continents, ((continent) -> continent.id == parseInt($('#travel_merchant_continent_id').val()))) || {}).countries || []
+                        cities = (_.find(countries, ((country) -> country.id == parseInt($('#travel_merchant_country_id').val()))) || {}).cities || []
+                        options = _.map(cities, ((city) -> '<option value="' + city.id + '">' + city.name + '</option>')).join('')
+                        $('#travel_merchant_city_id').html('<option></option>' + options)
+              li.item
+                .item_control
+                  label.control_label
+                    | 详细地址
+                .control_input
+                  .newtextfield
+                    = f.text_field :address,:class=>"validate[required]"
+                    = f.error_message_on :address
+              li.item
+                .item_control
+                  label.control_label
+                    | 网站地址
+                .control_input
+                  .newtextfield
+                    = f.text_field :website
+                    = f.error_message_on :website
+              li.item
+                .item_control
+                  label.control_label
+                    | 执照上传
+                    span.ptext 
+                .control_input
+                  .newtextfield
+                    = f.file_field :lisense,:class=>"validate[required]"
+                    = f.error_message_on :lisense
+          hr
+          fieldset.fms_block
+            ul
+              li.item
+                .item_control
+                  label.control_label
+                    | 电话
+                .control_input
+                  .newtextfield
+                    = f.text_field :phone_number,:class=>"validate[required]"
+                    = f.error_message_on :phone_number
+          h4.page-h4 3、提交上传
+          fieldset.fms_block
+            ul
+              li.item
+                .item_control
+                  label.control_label
+                    | 头像
+                    span.ptext
+                .control_input
+                  .newtextfield
+                    = f.file_field :logo,:class=>"validate[required]"
+                    = f.error_message_on :logo
+              li.item
+                .item_control
+                  label.control_label
+                    | 商家介绍
+                .control_input
+                  .textareafield
+                    = f.text_area :description,:class=>"validate[required]"
+                    = f.error_message_on :description
+          h4.page-h4 4、确认入驻
+          fieldset.fms_block
+            ul
+              li.item
+                .item_control
+                  label.control_label 
+                .control_input
+                  .newsletter-confirm
+                    input type="checkbox" checked="checked" disabled="disabled"
+                    span.name 我已阅读《极旅入驻协议》并同意。
+              li.item.item-btn
+                button.button.confirm_new_in 提交入驻
+script
+    | $("#new_travel_merchant").validationEngine()

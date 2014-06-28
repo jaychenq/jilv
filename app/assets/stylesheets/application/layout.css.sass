@@ -1,4 +1,6 @@
 $main-color: #029ff0
+.row-960
+	width: 960px
 .row-600
 	width: 600px
 .row-290
@@ -9,7 +11,7 @@ a
 	color: $main-color
 	text-decoration: none
 	&:hover
-		text-decoration: underline
+		text-decoration: none
 .lfloat
 	float: left
 .rfloat
@@ -57,9 +59,114 @@ a
 	z-index: 90
 	// position: fixed
 	position: relative
+.fixed_mheader
+	display: block
+	// background-color: rgba(0, 0, 0, 0.9)
+	// @include box-shadow(rgba(#000, 0.4) 0 0 10px)
+	width: 100%
+	height: 450px
+	z-index: 90
+	// position: fixed
+	position: relative
+	background-image: url('/assets/jilv/merchant/mem_in_book.png')
+.fixed-mborder
+	border-bottom: 1px solid #ECEDE8
+	// background: #fff
 .fixed-border
 	border-bottom: 1px solid #ECEDE8
 	// background: #fff
+.new_header
+	display: block
+	width: 100%
+	height: 450px
+	.icons-user-white
+		float: left
+		margin-top: 2px
+	.icons-faq-white
+		float: left
+		margin-top: 2px
+	.login_div
+		position: absolute
+		top: 160px
+		left: 850px
+		display: block
+		width: 250px
+		height: 250px
+		overflow: hidden
+		background: asset-url("jilv/merchant/t_back.png") no-repeat 0 0
+		.top_line
+			margin-top: 25px
+			margin-left: 25px
+		.next_text
+			color: white
+			font-size: 14px
+			margin-top: 25px
+			margin-left: 25px
+		.nc_text
+			color: white
+			font-size: 14px
+			margin-top: 13px
+			margin-left: 25px
+		.log_btns
+			background: asset-url("jilv/merchant/login_btn.png") no-repeat 0 0
+			width: 200px
+			height: 40px
+			margin-left: 25px
+			margin-top: 25px
+			text-align: center
+			padding-top: 12px
+			.bt-text
+				color: white
+	.top_bar
+		display: inline-block
+		height: 60px
+		vertical-align: top
+		position: relative
+		width: 100%
+		background: asset-url("jilv/merchant/t_back_1.png") repeat 0 0
+		.logo-gyg
+			position: absolute
+			top: 0
+			left: 150px
+			display: block
+			width: 75px
+			height: 111px
+			overflow: hidden
+			background: asset-url("jilv/gyg_logo.png") no-repeat 0 0
+			h1
+				display: none
+		.login_g
+			position: absolute
+			top: 20px
+			left: 850px
+			display: block
+			width: 250px
+			height: 40px
+			color: white
+			.l_icon
+				background: asset-url("jilv/merchant/s_icon_1.png") no-repeat 0 0
+				height: 60px
+				float: left
+				width: 30px
+			.r_icon
+				background: asset-url("jilv/merchant/s_icon_2.png") no-repeat 0 0
+				height: 60px
+				float: left
+				width: 30px
+			.help_i
+				padding-top: 5px
+				float: left
+				padding-left: 10px
+			.login_i
+				padding-top: 5px
+				float: left
+				padding-left: 5px
+				padding-right: 20px
+			a
+				color: white
+				font-size: 13px
+			.sep
+				float: left
 .header
 	display: block
 	width: 100%
@@ -276,7 +383,42 @@ a
 		span
 			padding-right: 32px
 
-
+.layout_new_footer
+	background: #475164
+	width: 100%
+	height: 185px
+	color: white
+	.f_span
+		margin-top: 20px
+	span
+		width: 200px
+		margin-top: 5px
+		display: inline-block
+		a 
+			color: white
+			font-size: 13px
+	.fir
+		width: 200px
+	.sec
+		width: 200px
+	.thir
+	li
+		float: left
+		h3
+			margin-top: 35px
+		a 
+			img
+				margin-top: 15px
+				margin-right: 5px
+	li.left
+		width: 40%
+		.img_show
+			padding-top: 20px
+		.com_text
+			color: white
+			margin-top: 10px
+	li.right
+		width: 60%
 .layout_footer
 	display: block
 	clear: both
