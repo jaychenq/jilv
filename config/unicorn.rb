@@ -21,7 +21,7 @@ worker_processes 20
 
 # Help ensure your application will always spawn in the symlinked
 # "current" directory that Capistrano sets up.
-APP_PATH = "/Users/jason/Documents/code/jilv"
+APP_PATH = "/root/jilv"
 
 
 working_directory APP_PATH # available in 0.94.0+
