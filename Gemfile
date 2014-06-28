@@ -51,7 +51,7 @@ gem 'paperclip'
 gem 'pry-rails', group: :development
 gem 'quiet_assets', group: :development
 gem 'rb-readline', group: :development
-gem 'thin'
+gem 'unicorn'
 gem 'rails-i18n'
 gem 'rails_autolink'
 gem 'recursive-open-struct'
