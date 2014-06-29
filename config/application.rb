@@ -17,6 +17,8 @@ module Jilv
     # config.time_zone = 'Central Time (US & Canada)'
     config.time_zone = 'Beijing'
 
+    config.assets.enabled = true
+
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     I18n.config.enforce_available_locales = false
     config.i18n.load_path += Dir[Rails.root.join('app', 'locales', '**', '*.{rb,yml}').to_s]
