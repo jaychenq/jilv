@@ -1,32 +1,33 @@
 .new_header
   .fixed_mheader.fixed-mborder
     .top_bar
-      .mheader
-        a.logo-gyg href="/"
-          h1 极旅°
-        .login_g
-          div
-            i.icons-user-white
-            div.login_i
-              - if @current_user
-                  a.login-link href=url_for(@current_user)
-                    span = @current_user.name
-                  span  , 
-                  = link_to account_session_path(0), method: 'delete' do
-                    span 退出
-              - else
-                  a href="/account/sessions/new" 登录
-                  span &nbsp;|&nbsp;
-                  a href="/account/users/new" 注册
-            i.icons-faq-white
-            div.help_i
-              a 帮助
-    div.login_div
-      ul.login_cs
-        li.top_line
-          = image_tag "/assets/jilv/merchant/t_title_3.png"
-        li.next_text 免费为您敞开推广
-        li.nc_text 市场大门线上精准营销
-        li.nc_text 线下汇聚客流
-        li.log_btns
-          a.bt-text href="/account/users/new" 免费注册
+      .container
+        .mheader
+          a.logo-gyg href="/"
+            h1 极旅°
+          .login_g
+            div
+              i.icons-user-white
+              div.login_i
+                - if @current_user
+                    a.login-link href=url_for(@current_user)
+                      span = @current_user.name
+                    span  , 
+                    = link_to account_session_path(0), method: 'delete' do
+                      span 退出
+                - else
+                    a href="/account/sessions/new" 登录
+                    span &nbsp;|&nbsp;
+                    a href="/account/users/new" 注册
+              i.icons-faq-white
+              div.help_i
+                a 帮助
+      div.login_div
+        ul.login_cs
+          li.top_line
+            = image_tag "/assets/jilv/merchant/t_title_3.png"
+          li.next_text 免费为您敞开推广
+          li.nc_text 市场大门线上精准营销
+          li.nc_text 线下汇聚客流
+          li.log_btns
+            a.bt-text href="/account/users/new" 免费注册
