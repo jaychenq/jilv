@@ -28,165 +28,57 @@
           fieldset.fms_block
             ul
               li.item
-                .itm_media
-                  label.title_label
-                    | 价格类型名称
-                    - if !show
-                      span.important *
+                .item_control
+                  label.control_label
+                    | 产品名称
                 .itm_body
                   - if show
                     = journey.name
                   - else
-                    .textfield
-                      = f.text_field :name
-                      = f.error_message_on :name
+                    .control_input
+                        .newtextfield
+                          = f.text_field :name
+                          = f.error_message_on :name
               li.item
-                .itm_media
-                  label.title_label
-                    | 门市价
-                    - if !show
-                      span.important *
-                .itm_body
-                  - if show
-                    = journey.market_price
-                  - else
-                    .textfield
-                      = f.text_field :market_price
-                      = f.error_message_on :market_price
-              li.item
-                .itm_media
-                  label.title_label
-                    | 极旅价
-                    - if !show
-                      span.important *
-                .itm_body
-                  sass:
-                    .business_table
-                      td
-                        padding: 5px
-                        input
-                          color: gray
-                          border: 1px solid silver
-                          margin-top: 2px
-                          font-size: 13px
-                  div style="background-color: #f0f0f0; padding: 20px; font-size: 14px;"
-                    / span style="font-weight: bold;" 批量设置：
-                    | 日期从&nbsp;
-                    = text_field_tag 'started_on', Date.tomorrow, size: 10, class: 'date', style: "border: 1px solid silver;"
-                    | &nbsp;到&nbsp;
-                    = text_field_tag 'ended_on', 3.months.from_now.to_date, size: 10, class: 'date', style: "border: 1px solid silver;"
-                    | &nbsp;&nbsp;成人价：
-                    = text_field_tag 'adult_price', nil, placeholder: '12岁以上', size: 6, style: "border: 1px solid silver;"
-                    | &nbsp;&nbsp;儿童价：
-                    = text_field_tag 'child_price', nil, placeholder: '未满12岁', size: 6, style: "border: 1px solid silver;"
-                    | &nbsp;&nbsp;数量：
-                    = text_field_tag 'total_number', nil, size: 6, style: "border: 1px solid silver;"
-                    | &nbsp;&nbsp;
-                    = button_tag '批量修改', id: 'batch_button'
-                    coffee:
-                      $ ->
-                        $('#started_on, #ended_on').datepicker
-                          dateFormat: 'yy-mm-dd'
-                          minDate: $('#started_on').val()
-                          maxDate: $('#ended_on').val()
-                        $('#batch_button').on('click', -> false).on 'mousedown', ->
-                          return alert('请填写开始日期') if !started_on = Date.parse($('#started_on').val())
-                          return alert('请填写结束日期') if !ended_on = Date.parse($('#ended_on').val())
-                          $('._inventory').each ->
-                            timestamp = parseInt($(this).data('timestamp'))
-                            if (started_on / 1000 <= timestamp) && (timestamp <= ended_on / 1000)
-                              $(this).find('input:eq(1)').val($('#adult_price').val())
-                              $(this).find('input:eq(2)').val($('#child_price').val())
-                              $(this).find('input:eq(3)').val($('#total_number').val())
-                          alert('批量修改完成')
-                  - inventories = journey.inventories.where('started_on > ?', Date.today).to_a
-                  div
-                    - (Date.tomorrow..3.months.from_now.to_date).group_by(&:month).each do |month, days|
-                      - days_by_cweek = days.group_by(&:cweek)
-                      table.business_table
-                        tr style="color: silver;"
-                          th
-                          th 周一
-                          th 周二
-                          th 周三
-                          th 周四
-                          th 周五
-                          th 周六
-                          th 周日
-                        tr
-                          th rowspan=(days_by_cweek.size + 1) style="width: 8%;"
-                            div style="color: silver;" #{days.first.year}年
-                            div style="font-size: 20px; margin-top: 6px;" #{days.first.month}月
-                        - days_by_cweek.each do |week, _days|
-                          tr
-                            - (_days.first.cwday - 1).times do
-                              td style="width: 10%;"
-                            - _days.each do |day|
-                              td style="width: 10%;" class="_inventory" data-timestamp=day.to_time.to_i
-                                - inventory = inventories.find { |inventory| inventory.started_on == day }
-                                = hidden_field_tag "travel_inventory[][started_on]", day
-                                div = day.day
-                                div = text_field_tag "travel_inventory[][adult_price]", inventory.try(:adult_price), placeholder: '成人价', size: 5
-                                div = text_field_tag "travel_inventory[][child_price]", inventory.try(:child_price), placeholder: '儿童价', size: 5
-                                div = text_field_tag "travel_inventory[][total_number]", inventory.try(:total_number), placeholder: '数量', size: 5
-                            - (7 - _days.last.cwday).times do
-                              td style="width: 10%;"
-              li.item
-                .itm_media
-                  label.title_label
+                .item_control
+                  label.control_label
                     | 开始时间
-                    - if !show
-                      span.important *
                 .itm_body
                   - if show
                     = journey.start_time
                   - else
-                    .textfield
-                      = f.text_field :start_time
-                      = f.error_message_on :start_time
+                    .control_input
+                        .newtextfield
+                          = f.text_field :start_time
+                          = f.error_message_on :start_time
               li.item
-                .itm_media
-                  label.title_label
+                .item_control
+                  label.control_label
                     | 持续时间
-                    - if !show
-                      span.important *
                 .itm_body
                   - if show
                     = journey.duration_time
                   - else
-                    .textfield
-                      = f.text_field :duration_time
-                      = f.error_message_on :duration_time
+                    .control_input
+                        .newtextfield
+                          = f.text_field :duration_time
+                          = f.error_message_on :duration_time
               li.item
-                .itm_media
-                  label.title_label
-                    | 提前预订天数
-                    - if !show
-                      span.important *
+                .item_control
+                  label.control_label
+                    | 提前
                 .itm_body
                   - if show
                     = product.early_booking
                   - else
-                    .selectfield
-                      = f.select :early_booking, 1..30
-                      = f.error_message_on :early_booking
+                    .control_input
+                      .newtextfield
+                        = f.text_field :early_booking
+                        | 天预订
+                        = f.error_message_on :early_booking
               li.item
-                .itm_media
-                  label.title_label
-                    | 费用说明
-                    - if !show
-                      span.important *
-                .itm_body
-                  - if show
-                    = journey.fee_description
-                  - else
-                    .textareafield
-                      - journey.fee_description ||= "费用包含\n\n\n不包含\n\n\n"
-                      = f.text_area :fee_description
-                      = f.error_message_on :fee_description
-              li.item
-                .itm_media
-                  label.title_label
+                .item_control
+                  label.control_label
                     | 退改规则
                     - if !show
                       span.important *
@@ -194,20 +86,274 @@
                   - if show
                     = journey.refund_policy
                   - else
-                    .textareafield
-                      = f.text_area :refund_policy
-                      = f.error_message_on :refund_policy
+                    .control_input
+                        .newtextfield
+                          = f.text_field :refund_policy
+                          = f.error_message_on :refund_policy
               li.item
-                .itm_media
-                  label.title_label
-                    | 其它
+                .item_control
+                  label.control_label
+                    | 费用说明
                 .itm_body
                   - if show
-                    = journey.other_description
+                    = journey.fee_description
                   - else
-                    .textareafield
-                      = f.text_area :other_description
-                      = f.error_message_on :other_description
+                    .control_input
+                        .textareafield
+                          - journey.fee_description ||= "费用包含\n\n\n不包含\n\n\n"
+                          = f.text_area :fee_description
+                          = f.error_message_on :fee_description
+              li.item
+                .item_control
+                  label.control_label
+                    | 门市价
+                .itm_body
+                  - if show
+                    = journey.market_price
+                  - else
+                    .control_input
+                        .textareafield
+                          = f.text_field :market_price
+                          | 元
+                          = f.error_message_on :market_price
+              li.item
+                .item_control
+                  label.control_label
+                    | 编辑价格
+                .itm_body
+                  .control_input_w
+                    ul.tab_list
+                      li.current_t tab="1"
+                        | 批量添加价格
+                      li.com_t tab="2"
+                        | 添加指定时间段价格
+                      li.com_t tab="3"
+                        | 快速编辑模式
+                    div.cal_s
+                        ul.check_list
+                          li
+                            = check_box_tag "everyday","11",false,:class=>"check_css everyday"
+                            | 天天发团
+                          li
+                            = check_box_tag "day1","1",false,:class=>"check_css week day1"
+                            | 周一
+                          li
+                            = check_box_tag "day2","2",false,:class=>"check_css week day2"
+                            | 周二
+                          li
+                            = check_box_tag "day3","3",false,:class=>"check_css week day3"
+                            | 周三
+                          li
+                            = check_box_tag "day4","4",false,:class=>"check_css week day4"
+                            | 周四
+                          li
+                            = check_box_tag "day5","5",false,:class=>"check_css week day5"
+                            | 周五
+                          li
+                            = check_box_tag "day6","6",false,:class=>"check_css week day6"
+                            | 周六
+                          li
+                            = check_box_tag "day7","0",false,:class=>"check_css week day7"
+                            | 周日
+                        ul.start_end_list
+                          li
+                            | 时间段：
+                          li.input_css_c
+                            = text_field_tag 'started_on', Date.tomorrow, size: 10, class: 'date', style: "border: 1px solid silver;"
+                          li.input_css_c
+                            = text_field_tag 'ended_on', 3.months.from_now.to_date, size: 10, class: 'date', style: "border: 1px solid silver;"
+                        sass:
+                          .business_table
+                            td
+                              padding: 5px
+                              input
+                                color: gray
+                                border: 1px solid silver
+                                margin-top: 2px
+                                font-size: 13px
+                        div.model_part style="background-color: #fff6c3; padding: 20px; font-size: 14px;"                          
+                          | &nbsp;&nbsp;成人价：
+                          = text_field_tag 'adult_price', nil, placeholder: '12岁以上', size: 6, style: "width:100px; border: 1px solid silver;"
+                          | &nbsp;&nbsp;儿童价：
+                          = text_field_tag 'child_price', nil, placeholder: '未满12岁', size: 6, style: "width:100px;border: 1px solid silver;"
+                          | &nbsp;&nbsp;库存：
+                          = text_field_tag 'total_number', nil, size: 6, style: "width:100px;border: 1px solid silver;"
+                          | &nbsp;&nbsp;
+                          = button_tag '添加', id: 'batch_button'
+                          = button_tag '添加', id: 'disch_button'
+                          coffee:
+                            $ ->
+                              $(".tab_list li").on('click', -> false).on 'mousedown', ->
+                                  if($(this).attr("tab")=="1")
+                                    $(".check_list").show()
+                                    $(".start_end_list").hide()
+                                    $("#disch_button").hide()
+                                    $("#batch_button").show()
+                                    $(".model_part").show()
+                                    $(".price").show()
+                                    $(".c_adult_p").hide();
+                                    $(".c_child_p").hide();
+                                    $(".c_total_n").hide();
+                                  if($(this).attr("tab")=="2")
+                                    $(".check_list").hide()
+                                    $(".start_end_list").show()
+                                    $("#batch_button").hide()
+                                    $("#disch_button").show()
+                                    $(".model_part").show()
+                                    $(".price").show()
+                                    $(".c_adult_p").hide();
+                                    $(".c_child_p").hide();
+                                    $(".c_total_n").hide();
+                                  if($(this).attr("tab")=="3")
+                                    $(".check_list").hide()
+                                    $(".model_part").hide()
+                                    $(".start_end_list").hide()
+                                    $(".price").hide()
+                                    $(".c_adult_p").show();
+                                    $(".c_child_p").show();
+                                    $(".c_total_n").show();
+                                  $(".tab_list li").each ->
+                                    $(this).removeClass("com_t")
+                                    $(this).removeClass("current_t")
+                                    $(this).addClass("com_t")
+                                  $(this).removeClass("com_t")
+                                  $(this).addClass("current_t")
+                              $(".c_adult_p").hide();
+                              $(".c_child_p").hide();
+                              $(".c_total_n").hide();
+                              $(".c_adult_p").on 'keyup', ->
+                                new_value = $(this).val()
+                                if(!isNaN(new_value))
+                                  $(this).parent().parent().find(".price").text("￥"+$(this).val())
+                                else
+                                  $(this).val("")
+                              $('#started_on, #ended_on').datepicker
+                                dateFormat: 'yy-mm-dd'
+                                minDate: $('#started_on').val()
+                                maxDate: $('#ended_on').val()
+                              $('._inventory').hover(
+                                -> if($(this).find(".price").html()=="")
+                                      $(this).find(".add_price").show()
+                                -> if($(this).find(".price").html()=="")
+                                      $(this).find(".add_price").hide()
+                              )
+                              $(".price").on('click', -> false).on 'mousedown', ->
+                                $(this).hide()
+                                $(this).parent().parent().find(".comfirn_btn").show()
+                                $(this).parent().parent().find(".c_adult_p").show()
+                                $(this).parent().parent().find(".c_child_p").show()
+                                $(this).parent().parent().find(".c_total_n").show()
+                              $(".comfirn_btn").on('click', -> false).on 'mousedown', ->
+                                $(this).hide()
+                                price = $(this).parent().find(".c_adult_p").val()
+                                $(this).parent().find(".c_adult_p").hide()
+                                $(this).parent().find(".c_child_p").hide()
+                                $(this).parent().find(".c_total_n").hide()
+                                $(this).parent().find(".price").text("￥"+price)
+                                $(this).parent().find(".price").show()
+                              $('.add_price').on('click', -> false).on 'mousedown', ->
+                                $(this).hide()
+                                $(this).parent().parent().find(".comfirn_btn").show()
+                                $(this).parent().parent().find(".c_adult_p").show()
+                                $(this).parent().parent().find(".c_child_p").show()
+                                $(this).parent().parent().find(".c_total_n").show()
+                              $(".week").on 'click', ->
+                                $(".everyday").attr("checked",false)
+                              $(".everyday").on 'change', ->
+                                check_flag = $(this).is(":checked")
+                                $(".check_css").each ->
+                                  $(this).prop("checked",check_flag)
+                              $("#disch_button").on('click', -> false).on 'mousedown', ->
+                                price = $("#adult_price").val()
+                                c_price = $("#child_price").val()
+                                t_num = $("#total_number").val()
+                                if(price == "")
+                                  alert("请输入成人价")
+                                  return
+                                if(c_price == "")
+                                  alert("请输入儿童价")
+                                  return
+                                if(t_num == "")
+                                  alert("请输入库存")
+                                  return
+                                return alert('请填写开始日期') if !started_on = Date.parse($('#started_on').val())
+                                return alert('请填写结束日期') if !ended_on = Date.parse($('#ended_on').val())
+                                $('._inventory').each ->
+
+                                  timestamp = parseInt($(this).data('timestamp'))
+                                  if (started_on / 1000 <= timestamp) && (timestamp <= ended_on / 1000)
+                                    $(this).find(".price").text("￥"+price)
+                                    $(this).find('input:eq(1)').val($('#adult_price').val())
+                                    $(this).find('input:eq(2)').val($('#child_price').val())
+                                    $(this).find('input:eq(3)').val($('#total_number').val())
+                                $("#adult_price").val("")
+                                $("#child_price").val("")
+                                $("#total_number").val("")
+                              $('#batch_button').on('click', -> false).on 'mousedown', ->
+                                $(".week").each ->
+                                    if($(this).is(":checked"))
+                                        day = $(this).val()
+                                        $(".day_"+day).show()
+                                        price = $("#adult_price").val()
+                                        c_price = $("#child_price").val()
+                                        t_num = $("#total_number").val()
+                                        if(price == "")
+                                          alert("请输入成人价")
+                                          return
+                                        if(c_price == "")
+                                          alert("请输入儿童价")
+                                          return
+                                        if(t_num == "")
+                                          alert("请输入库存")
+                                          return
+                                        $(".day_"+day).text("￥"+price)
+                                        $(".day_"+day).each ->
+                                            $(this).parent().parent().find('input:eq(1)').val(price)
+                                            $(this).parent().parent().find('input:eq(2)').val(c_price)
+                                            $(this).parent().parent().find('input:eq(3)').val(t_num)
+                                        $("#adult_price").val("")
+                                        $("#child_price").val("")
+                                        $("#total_number").val("")
+                        - inventories = journey.inventories.where('started_on > ?', Date.today).to_a
+                        div
+                          - (Date.tomorrow..3.months.from_now.to_date).group_by(&:month).each do |month, days|
+                            - days_by_cweek = days.group_by(&:cweek)
+                            table.business_table
+                              tr style="color: white;background: #808080;font-size:12px;"
+                                th
+                                th 周一
+                                th 周二
+                                th 周三
+                                th 周四
+                                th 周五
+                                th 周六
+                                th 周日
+                              tr
+                                th rowspan=(days_by_cweek.size + 1) style="width: 8%;"
+                                  div style="color: silver;" #{days.first.year}年
+                                  div style="font-size: 20px; margin-top: 6px;" #{days.first.month}月
+                              - days_by_cweek.each do |week, _days|
+                                tr
+                                  - (_days.first.cwday - 1).times do
+                                    td style="width: 10%;height:45px;"
+                                  - _days.each do |day|
+                                    td style="width: 10%;height:45px;" class="_inventory" data-timestamp=day.to_time.to_i
+                                      - inventory = inventories.find { |inventory| inventory.started_on == day }
+                                      = hidden_field_tag "travel_inventory[][started_on]", day
+                                      div
+                                        = day.day
+                                        - if inventory.try(:adult_price)
+                                          p class="day_#{day.wday} price" 
+                                            | ￥#{inventory.try(:adult_price)}
+                                        - else
+                                          p class="day_#{day.wday} price"
+                                        p class="add_price #{days.first.month}-#{day.day}" 添加价格
+                                      div = text_field_tag "travel_inventory[][adult_price]", inventory.try(:adult_price), placeholder: '成人价', size: 5,:class=>"c_adult_p"
+                                      div = text_field_tag "travel_inventory[][child_price]", inventory.try(:child_price), placeholder: '儿童价', size: 5,:class=>"c_child_p"
+                                      div = text_field_tag "travel_inventory[][total_number]", inventory.try(:total_number), placeholder: '库存', size: 5,:class=>"c_total_n"
+                                      div.comfirn_btn 确定
+                                  - (7 - _days.last.cwday).times do
+                                    td style="width: 10%;"
               - if !show
                 li.item.item-btn
-                  button.button.btn-blue 下一步 >
+                  button.button.btn-blue 下一步

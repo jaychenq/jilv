@@ -36,177 +36,139 @@
                   .itm_body
                     = product.id
               li.item
-                .itm_media
-                  label.title_label
+                .item_control
+                  label.control_label
                     | 名称
-                    - if !show
-                      span.important *
                 .itm_body
                   - if show
                     = product.name
                   - else
-                    .textfield
-                      = f.text_field :name
-                      = f.error_message_on :name
+                    .control_input
+                      .newtextfield
+                        = f.text_field :name
+                        = f.error_message_on :name
               li.item
-                .itm_media
-                  label.title_label
-                    | 介绍
-                    - if !show
-                      span.important *
+                .item_control
+                  label.control_label
+                    | 服务语言
                 .itm_body
                   - if show
-                    = text_format product.description
                   - else
-                    .textareafield
-                      = f.text_area :description
-                      = f.error_message_on :description
+                    .control_input
+                        - speakings = product.speakings.all.to_a
+                        - Travel::Language.order('sequence ASC, name ASC').each_with_index do |language, index|
+                          span style="display: inline-block; width: 150px;  overflow: hidden; white-space: nowrap;"
+                            =' check_box_tag "language_ids[#{index}]", language.id, speakings.any? { |speaking| speaking.language_id == language.id }
+                            =' image_tag language.icon, alt: '' if language.icon
+                            =' label_tag "language_ids[#{index}]", language.name
               li.item
-                .itm_media
-                  label.title_label
-                    | 亮点
-                    - if !show
-                      span.important *
-                .itm_body
-                  - if show
-                    = text_format product.highlight
-                  - else
-                    .textareafield
-                      = f.text_area :highlight
-                      = f.error_message_on :highlight
-              li.item
-                .itm_media
-                  label.title_label
-                    | 分类
-                    - if !show
-                      span.important *
-                .itm_body
-                  - if show
-                    = product.category2.try(:name)
-                  - else
-                    .selectfield
-                      /= f.collection_select :category2_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-                      = f.grouped_collection_select :category2_id, Travel::Category.find(1).children, :children, :name, :id, :name, { include_blank: '' }
-                      = f.error_message_on :category2_id
-                      
-              li.item
-                .itm_media
-                  label.title_label
-                    | 城市
-                    - if !show
-                      span.important *
-                .itm_body
-                  - if show
-                    = product.city.try(:name)
-                  - else
-                    .selectfield
-                      = f.collection_select :continent_id, Travel::Continent.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-                    .selectfield
-                      = f.collection_select :country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-                    .selectfield
-                      = f.collection_select :city_id, Travel::City.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-                      = f.error_message_on :city_id
-                    #continents data-continents=Travel::Continent.all.to_json(only: [:id, :name], include: { countries: { only: [:id, :name], include: { cities: { only: [:id, :name] } } } })
-                    coffee:
-                      $ ->
-                        $('#travel_product_continent_id').on 'change', ->
-                          continents = $('#continents').data('continents')
-                          countries = (_.find(continents, ((continent) -> continent.id == parseInt($('#travel_product_continent_id').val()))) || {}).countries || []
-                          options = _.map(countries, ((country) -> '<option value="' + country.id + '">' + country.name + '</option>')).join('')
-                          $('#travel_product_country_id').html('<option></option>' + options)
-                          $('#travel_product_city_id').html('<option></option>')
-                        $('#travel_product_country_id').on 'change', ->
-                          continents = $('#continents').data('continents')
-                          countries = (_.find(continents, ((continent) -> continent.id == parseInt($('#travel_product_continent_id').val()))) || {}).countries || []
-                          cities = (_.find(countries, ((country) -> country.id == parseInt($('#travel_product_country_id').val()))) || {}).cities || []
-                          options = _.map(cities, ((city) -> '<option value="' + city.id + '">' + city.name + '</option>')).join('')
-                          $('#travel_product_city_id').html('<option></option>' + options)
-              li.item
-                .itm_media
-                  label.title_label
-                    | 详细地址
-                    - if !show
-                      span.important *
-                .itm_body
-                  - if show
-                    = product.address
-                  - else
-                    .textfield
-                      = f.text_field :address
-                      = f.error_message_on :address
-              li.item
-                .itm_media
-                  label.title_label
-                    | 活动时间
-                    - if !show
-                      span.important *
-                .itm_body
-                  - if show
-                    = product.activity_time
-                  - else
-                    .selectfield
-                      = f.select :activity_time, %w[上午 下午 晚上 一日 超值套餐]
-                      = f.error_message_on :activity_time
-              li.item
-                .itm_media
-                  label.title_label
+                .item_control
+                  label.control_label
                     | 适合群体
-                    - if !show
-                      span.important *
                 .itm_body
                   - if show
                     = product.colony
                   - else
-                    .selectfield
-                      = f.select :colony, %w[家庭 亲子 情侣 商务 背包 户外 奢华 新婚蜜月 团体]
-                      = f.error_message_on :colony
+                    .control_input
+                      .newtextfield
+                        = f.select :colony, %w[家庭 亲子 情侣 商务 背包 户外 奢华 新婚蜜月 团体]
+                        = f.error_message_on :colony
               li.item
-                .itm_media
-                  label.title_label
+                .item_control
+                  label.control_label
+                    | 分类
+                .itm_body
+                  - if show
+                    = product.category2.try(:name)
+                  - else
+                    .control_input
+                      .selectfield
+                        /= f.collection_select :category2_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                        = f.grouped_collection_select :category2_id, Travel::Category.find(1).children, :children, :name, :id, :name, { include_blank: '' }
+                        = f.error_message_on :category2_id
+              li.item
+                .item_control
+                  label.control_label
+                    | 城市
+                .itm_body
+                  - if show
+                    = product.city.try(:name)
+                  - else
+                    .control_input
+                        .newtextfield
+                          = f.collection_select :continent_id, Travel::Continent.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                        .newtextfield
+                          = f.collection_select :country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                        .newtextfield
+                          = f.collection_select :city_id, Travel::City.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                          = f.error_message_on :city_id
+                        #continents data-continents=Travel::Continent.all.to_json(only: [:id, :name], include: { countries: { only: [:id, :name], include: { cities: { only: [:id, :name] } } } })
+                        coffee:
+                          $ ->
+                            $('#travel_product_continent_id').on 'change', ->
+                              continents = $('#continents').data('continents')
+                              countries = (_.find(continents, ((continent) -> continent.id == parseInt($('#travel_product_continent_id').val()))) || {}).countries || []
+                              options = _.map(countries, ((country) -> '<option value="' + country.id + '">' + country.name + '</option>')).join('')
+                              $('#travel_product_country_id').html('<option></option>' + options)
+                              $('#travel_product_city_id').html('<option></option>')
+                            $('#travel_product_country_id').on 'change', ->
+                              continents = $('#continents').data('continents')
+                              countries = (_.find(continents, ((continent) -> continent.id == parseInt($('#travel_product_continent_id').val()))) || {}).countries || []
+                              cities = (_.find(countries, ((country) -> country.id == parseInt($('#travel_product_country_id').val()))) || {}).cities || []
+                              options = _.map(cities, ((city) -> '<option value="' + city.id + '">' + city.name + '</option>')).join('')
+                              $('#travel_product_city_id').html('<option></option>' + options)
+              li.item
+                .item_control
+                  label.control_label
+                    | 详细地址
+                .itm_body
+                  - if show
+                    = product.address
+                  - else
+                    .control_input
+                        .newtextfield
+                          = f.text_field :address
+                          = f.error_message_on :address
+              li.item
+                .item_control
+                  label.control_label
                     | 如何抵达
-                    - if !show
-                      span.important *
                 .itm_body
                   - if show
                     = product.arrival
                   - else
-                    .textareafield
-                      = f.text_area :arrival
-                      = f.error_message_on :arrival
+                    .control_input
+                        .newtextfield
+                          = f.text_field :arrival
+                          = f.error_message_on :arrival
               li.item
-                .itm_media
-                  label.title_label
+                .item_control
+                  label.control_label
                     | 温馨提示
-                    - if !show
-                      span.important *
                 .itm_body
                   - if show
                     = product.tips
                   - else
-                    .textareafield
-                      = f.text_area :tips
-                      = f.error_message_on :tips
+                    .control_input
+                        .newtextfield
+                          = f.text_field :tips
+                          = f.error_message_on :tips
               li.item
-                .itm_media
-                  label.title_label
-                    | 支持语言
-                    - if !show
-                      span.important *
+                .item_control
+                  label.control_label
+                    | 介绍
                 .itm_body
                   - if show
+                    = text_format product.description
                   - else
-                    - speakings = product.speakings.all.to_a
-                    - Travel::Language.order('sequence ASC, name ASC').each_with_index do |language, index|
-                      span style="display: inline-block; width: 150px;  overflow: hidden; white-space: nowrap;"
-                        =' check_box_tag "language_ids[#{index}]", language.id, speakings.any? { |speaking| speaking.language_id == language.id }
-                        =' image_tag language.icon, alt: '' if language.icon
-                        =' label_tag "language_ids[#{index}]", language.name
+                    .control_input
+                      .textareafield
+                        = f.text_area :description
+                        = f.error_message_on :description
               li.item
                 .itm_media
                   label.title_label
                     | 图片列表（尺寸为16:9，分辨率大于640x360）
-                    - if !show
-                      span.important *
                 .itm_body
                   - if show
                   - else
@@ -217,7 +179,7 @@
                       hr style="margin: 10px 0;"
               - if !show
                 li.item.item-btn
-                  button.button.btn-blue 下一步 >
+                  button.button.btn-blue 下一步
 
 - if nil#!product.new_record?
 

@@ -21,7 +21,7 @@ class Travel::Product < ActiveRecord::Base
   default_scope { where(active: true) }
 
   validates_associated :photos, :speakings, :parameters
-  validates :name, :description, :highlight, :address, :activity_time, :colony, :arrival, :tips, presence: true
+  validates :name, :description, :address, :colony, :arrival, :tips, presence: true
   validates :merchant, :category1, :category2, :continent, :country, :city, existence: true
 
   cattr_accessor :admin_fields, :business_fields
