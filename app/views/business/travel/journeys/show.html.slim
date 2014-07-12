@@ -194,11 +194,12 @@
                                 font-size: 13px
                         div.model_part style="background-color: #fff6c3; padding: 20px; font-size: 14px;"                          
                           | &nbsp;&nbsp;成人价：
-                          = text_field_tag 'adult_price', nil, placeholder: '12岁以上', size: 6, style: "width:100px; border: 1px solid silver;"
+                          = text_field_tag 'adult_price', nil, placeholder: '', size: 6, style: "width:70px; border: 1px solid silver;"
                           | &nbsp;&nbsp;儿童价：
-                          = text_field_tag 'child_price', nil, placeholder: '未满12岁', size: 6, style: "width:100px;border: 1px solid silver;"
-                          | &nbsp;&nbsp;库存：
-                          = text_field_tag 'total_number', nil, size: 6, style: "width:100px;border: 1px solid silver;"
+                          = text_field_tag 'child_price', nil, placeholder: '', size: 6, style: "width:70px;border: 1px solid silver;"
+                          = f.select "child_level", options_for_select(["8岁以下","9岁以下","10岁以下","11岁以下","12岁以下","13岁以下"], journey.child_level)
+                          | &nbsp;&nbsp;库存:
+                          = text_field_tag 'total_number', nil, size: 6, style: "width:70px;border: 1px solid silver;"
                           | &nbsp;&nbsp;
                           = button_tag '添加', id: 'batch_button'
                           = button_tag '添加', id: 'disch_button'
@@ -342,7 +343,7 @@
                                         $("#total_number").val("")
                         - inventories = journey.inventories.where('started_on > ?', Date.today).to_a
                         div
-                          - (Date.tomorrow..6.months.from_now.to_date).group_by(&:month).each do |month, days|
+                          - (Date.tomorrow..10.months.from_now.to_date).group_by(&:month).each do |month, days|
                             - days_by_cweek = days.group_by(&:cweek)
                             table.business_table
                               tr style="color: white;background: #808080;font-size:12px;"
