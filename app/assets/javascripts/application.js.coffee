@@ -7,6 +7,7 @@
 # require admin/application/editor
 #= require jquery.validationEngine
 #= require languages/jquery.validationEngine-zh_CN
+#= require jquery.datetimepicker
 #= require shared/analytics
 
 $ ->

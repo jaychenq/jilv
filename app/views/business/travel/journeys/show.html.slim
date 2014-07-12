@@ -25,6 +25,7 @@
       .formbody
         = form_for journey, url: [:business, journey], method: journey.new_record? ? :post : :put, html: { multipart: true } do |f|
           = f.hidden_field :product_id
+          = f.hidden_field :start_time
           fieldset.fms_block
             ul
               li.item
@@ -49,8 +50,29 @@
                   - else
                     .control_input
                         .newtextfield
-                          = f.text_field :start_time
-                          = f.error_message_on :start_time
+                          - start_time_arrays = []
+                          -if !journey.start_time.blank?
+                            - start_time_arrays = journey.start_time.split(",")
+                          - times = ["01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","24:00"]
+                          - times.each do |time|
+                            span style="display: inline-block; margin-top: 10px; width: 100px; height:20px; white-space: nowrap;"
+                              -if journey.start_time.blank?
+                                span.time_style style="border: 1px solid #ccc;padding:3px 5px 3px 5px;"
+                                    = time
+                              -else
+                                -if journey.start_time.include? time
+                                  - start_time_arrays.delete time
+                                  span.time_style.time_select_style style="border: 1px solid #ccc;padding:3px 5px 3px 5px;"
+                                    = time
+                                -else
+                                  span.time_style style="border: 1px solid #ccc;padding:3px 5px 3px 5px;"
+                                    = time
+                          - start_time_arrays.each do |time|
+                              span style="display: inline-block; margin-top: 10px; width: 100px; height:20px; white-space: nowrap;"
+                                  span.time_style.time_select_style style="border: 1px solid #ccc;padding:3px 5px 3px 5px;"
+                                      = time
+                          span style="display: inline-block; margin-top: 10px; width: 100px; height:20px; white-space: nowrap;"
+                              span.time_add_style style="border: 1px solid #ccc;padding:3px 9px 3px 9px;" 新增
               li.item
                 .item_control
                   label.control_label
@@ -80,15 +102,13 @@
                 .item_control
                   label.control_label
                     | 退改规则
-                    - if !show
-                      span.important *
                 .itm_body
                   - if show
                     = journey.refund_policy
                   - else
                     .control_input
-                        .newtextfield
-                          = f.text_field :refund_policy
+                        .textareafield
+                          = f.text_area :refund_policy
                           = f.error_message_on :refund_policy
               li.item
                 .item_control
@@ -129,6 +149,7 @@
                         | 添加指定时间段价格
                       li.com_t tab="3"
                         | 快速编辑模式
+                    span.clear_price.orange_button 清除所有报价
                     div.cal_s
                         ul.check_list
                           li
@@ -237,6 +258,11 @@
                                 -> if($(this).find(".price").html()=="")
                                       $(this).find(".add_price").hide()
                               )
+                              $(".clear_price").on('click', -> false).on 'mousedown', ->
+                                $(".price").text("")
+                                $(".c_adult_p").val("")
+                                $(".c_child_p").val("")
+                                $(".c_total_n").val("")
                               $(".price").on('click', -> false).on 'mousedown', ->
                                 $(this).hide()
                                 $(this).parent().parent().find(".comfirn_btn").show()
@@ -316,7 +342,7 @@
                                         $("#total_number").val("")
                         - inventories = journey.inventories.where('started_on > ?', Date.today).to_a
                         div
-                          - (Date.tomorrow..3.months.from_now.to_date).group_by(&:month).each do |month, days|
+                          - (Date.tomorrow..6.months.from_now.to_date).group_by(&:month).each do |month, days|
                             - days_by_cweek = days.group_by(&:cweek)
                             table.business_table
                               tr style="color: white;background: #808080;font-size:12px;"
@@ -357,3 +383,44 @@
               - if !show
                 li.item.item-btn
                   button.button.btn-blue 下一步
+script
+  |$(".time_add_style").datetimepicker({
+          onSelectTime: function(date) {
+              var hour = date.getHours();
+              var min = date.getMinutes();
+              var min_str = "";
+              if(min < 10)
+              {
+                min_str = "0"+min;
+              }else
+              {
+                min_str = min;
+              }
+              var date = hour+":"+min_str;
+              var strss = "<span style='display: inline-block; margin-top: 10px; width: 100px; height:20px; white-space: nowrap;'><span class='time_style' style='border: 1px solid #ccc;padding:3px 5px 3px 5px;'>"+date+"</span></span>"
+              $(".time_add_style").parent().before(strss);
+          },
+          datepicker:false,
+          format:'H:i',
+          step:5
+    });
+    $(document).on("click",".time_style",function(){
+      if($(this).hasClass("time_select_style")){
+          $(this).removeClass("time_select_style");
+      }else{
+          $(this).addClass("time_select_style");
+      }
+      var new_value = "";
+      var arrays = $(".time_select_style");
+      for(var i=0;i<arrays.length;i++)
+      {
+         if(new_value=="")
+         {
+            new_value = $(arrays[i]).text();
+         }else
+         {
+            new_value = new_value +","+$(arrays[i]).text();
+         }
+      }
+      $("#travel_journey_start_time").val(new_value);
+    });

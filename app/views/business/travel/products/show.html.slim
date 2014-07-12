@@ -70,9 +70,17 @@
                     = product.colony
                   - else
                     .control_input
-                      .newtextfield
-                        = f.select :colony, %w[家庭 亲子 情侣 商务 背包 户外 奢华 新婚蜜月 团体]
-                        = f.error_message_on :colony
+                        - ["家庭","亲子","情侣","商务","背包","户外","奢华","新婚蜜月","团体"].each_with_index do |text,index|
+                            span style="display: inline-block; width: 150px;  overflow: hidden; white-space: nowrap;"
+                              -if !product.colony.blank?
+                                  -if product.colony.split(",").include? text
+                                    = check_box_tag "colony[]", text, true
+                                  -else
+                                    = check_box_tag "colony[]", text, false
+                                    = text
+                              -else
+                                  = check_box_tag "colony[]", text, false
+                                  = text
               li.item
                 .item_control
                   label.control_label

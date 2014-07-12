@@ -79,6 +79,10 @@ class Account::UsersController < ApplicationController
       session[:session_id] = account_session.id
       Mailer.mail(to: @user.email, subject: '欢迎成为极旅用户！', body: "欢迎欢迎<br />from极旅团队")
 
+      if params[:redirect].index("/account/users/new") != -1 || params[:redirect].index("account/sessions/new") != -1
+        params.delete(:redirect)
+      end
+
       redirect_to params[:redirect].presence || :root
     else
       render :new

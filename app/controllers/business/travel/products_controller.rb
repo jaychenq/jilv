@@ -15,6 +15,7 @@ class Business::Travel::ProductsController < Business::Travel::ApplicationContro
 
   def create
     @product.attributes = params[model.table_name.singularize].to_h.slice(*model.business_fields).merge(merchant_id: @current_user.id)
+    @product.colony = params[:colony].join(",")
     ok = @product.save
     
     if ok
@@ -22,7 +23,6 @@ class Business::Travel::ProductsController < Business::Travel::ApplicationContro
       language_ids = params[:language_ids].to_h.values.map(&:to_i)
       speakings.find_all { |speaking| !language_ids.include?(speaking.language_id) }.each { |speaking| speaking.update(active: false) }
       language_ids.each { |language_id| Travel::Speaking.where(active: true).find_or_create_by(language_id: language_id, product_id: @product.id) }
-      
       params[:photo_files].to_h.each do |index, file|
         next unless file
         photo = @product.photos.find_or_initialize_by(sequence: index)

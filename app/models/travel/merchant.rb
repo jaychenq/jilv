@@ -16,7 +16,7 @@ class Travel::Merchant < ActiveRecord::Base
   has_many :inventories
   has_many :bookings
 
-  validates :entity, :name, :first_name, :last_name, :gender, :identification, :company, :address, :phone_number, :logo, :description, presence: true
+  validates :entity, :name, :first_name, :last_name, :gender, :identification, :address, :phone_number, :logo, :description, presence: true
   validates :continent, :country, :city, existence: true
 
   cattr_accessor :admin_fields, :business_fields

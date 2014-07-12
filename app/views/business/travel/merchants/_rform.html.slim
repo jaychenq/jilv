@@ -58,7 +58,7 @@
           hr
           fieldset.fms_block
             ul
-              li.item
+              li.item.factory_part
                 .item_control
                   label.control_label
                     | 工商注册名称
@@ -151,6 +151,15 @@
                     = f.text_area :description,:class=>"validate[required]"
                     = f.error_message_on :description
           h4.page-h4 4、确认入驻
+          coffee:
+            $ ->
+              $("input[name='travel_merchant[entity]']").on('click', -> true).on 'mousedown', ->
+                 if $(this).val()=="individual"
+                    $(".factory_part").hide()
+                    $("#travel_merchant_company").removeClass("validate[required]")
+                 else
+                    $(".factory_part").show()
+                    $("#travel_merchant_company").addClass("validate[required]")
           fieldset.fms_block
             ul
               li.item
