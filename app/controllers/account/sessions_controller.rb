@@ -25,8 +25,6 @@ class Account::SessionsController < ApplicationController
          params.delete(:redirect)
       end
       
-      pp params[:redirect]
-
       redirect_to params[:redirect].presence || :root
     else
       @msg = "登录失败，请确认账号和密码是正确的"
