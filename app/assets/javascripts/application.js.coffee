@@ -9,7 +9,7 @@
 #= require languages/jquery.validationEngine-zh_CN
 #= require jquery.datetimepicker
 #= require shared/analytics
-
+#= require jquery.tipsy
 $ ->
   $(document).on 'page:change', ->
     $('._add_travel_favorite').on 'click', ->

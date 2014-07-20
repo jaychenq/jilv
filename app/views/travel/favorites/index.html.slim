@@ -2,20 +2,24 @@
 
 = render 'layouts/application/nav', current: 'favorite'
 .container
-  .bookings
-    h2.wish-title 收藏列表
-    - if @current_user.favorites.empty?
-      .toptips 您的收藏列表为空
-    .list
-      - @current_user.favorites.joins(:product).each do |favorite|
-        - product = favorite.product
-        .bookblock
-          a.pic href=url_for(product)
-            = image_tag "#{product.cover.try(:file)}.640x360.jpg", alt: ''
-          a.name href=url_for(product) = product.name
-          P.b-info
-            = text_format product.description[0..99]
-          .operating
-            span.stext 低至 ￥#{product.lowest_price} 元 / 每人
-            a.button.btn-blue href=url_for(product) 查看详情
-            a.button.btn-gray._remove_travel_favorite href="#" data={ id: favorite.id } 取消收藏
+  .side.lfloat
+    .row-290
+      = render 'layouts/application/nav_user', current: 'favorites'
+  .main.rfloat
+    .bookings
+      h2.wish-title 收藏列表
+      - if @current_user.favorites.empty?
+        .toptips 您的收藏列表为空
+      .list
+        - @current_user.favorites.joins(:product).each do |favorite|
+          - product = favorite.product
+          .bookblock
+            a.pic href=url_for(product)
+              = image_tag "#{product.cover.try(:file)}.640x360.jpg", alt: ''
+            a.name href=url_for(product) = product.name
+            P.b-info
+              = text_format product.description[0..99]
+            .operating
+              span.stext 低至 ￥#{product.lowest_price} 元 / 每人
+              a.button.btn-blue href=url_for(product) 查看详情
+              a.button.btn-gray._remove_travel_favorite href="#" data={ id: favorite.id } 取消收藏

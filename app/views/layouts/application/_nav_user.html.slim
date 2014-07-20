@@ -1,0 +1,25 @@
+.sub_nav
+  ul.tablist
+    - if 1  
+      li class=('selected' if current == 'users')
+        a href=url_for(@current_user)
+          span 主页
+    - if 1 # @current_user.try(:merchant)
+      li class=('selected' if current == 'bookings')
+        a href=travel_bookings_path
+          span 订单
+    - if 1 # @current_user.try(:merchant)
+      li class=('selected' if current == 'favorites')
+        a href=travel_favorites_path
+          span 收藏
+
+sass:
+  .sub_nav
+    width: 160px
+  .side
+    width: 200px
+  .main
+    width: 760px
+  .row-600
+    width: 760px
+

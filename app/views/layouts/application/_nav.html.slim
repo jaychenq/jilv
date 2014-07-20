@@ -7,13 +7,11 @@
         li
           a href="/account/users/#{@current_user.try(:id)||0}" 我是极客
         li
-          a href="/account/users/#{@current_user.try(:id)||0}" 账户设置
+          a href=url_for([:setting, @current_user]) 账户设置
       - else
+        li
+          a href=new_business_travel_merchant_path 商家中心
         li class=('selected' if current == 'index')
-          a href="/account/users/#{@current_user.try(:id)||0}" 主页
-        li class=('selected' if current == 'booking')
-          a href=travel_bookings_path 订单
-        li class=('selected' if current == 'favorite')
-          a href=travel_favorites_path 收藏
-        li class=('selected' if current == 'setting')
-          a href="/account/users/#{@current_user.try(:id)||0}/edit" 设置
+          a href="/account/users/#{@current_user.try(:id)||0}" 我是极客
+        li
+          a href=url_for([:setting, @current_user]) 账户设置

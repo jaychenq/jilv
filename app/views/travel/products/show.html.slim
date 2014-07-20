@@ -1,7 +1,7 @@
 - @page_title = @product.name
 - @page_breadcrumb = { @product.continent.try(:name) => travel_products_path('where[continent_id]' => @product.continent.try(:id)), @product.country.try(:name) => travel_products_path('where[country_id]' => @product.country.try(:id)), @product.city.try(:name) => travel_products_path('where[city_id]' => @product.city.try(:id)), @product.category1.try(:name) => travel_products_path('where[category1_id]' => @product.category1.try(:id)), @product.category2.try(:name) => travel_products_path('where[category1_id]' => @product.category1.try(:id)), @product.name => nil }
 
-.product
+.product.gray
   .container
     = render 'layouts/application/breadcrumb'
     .page-title
@@ -27,24 +27,23 @@
                 =' image_tag language.icon, alt: '' if language.icon
                 =' language.name
                 | &nbsp;&nbsp;&nbsp;&nbsp;
-          span class="wishlist-btn" style="margin-bottom: 16px;"
-            a.add-wishlist._add_travel_favorite href="#" data={ product_id: @product.id } 添加到收藏
           .Activity._journeys
             h3 选项
             - @product.journeys.order(lowest_price: :asc).each do |journey|
               - inventories = journey.inventories.where('started_on > ?', Date.today).where('adult_price > 0 AND remained_number > 0')
               - inventory = inventories.first
-              .item-block style="position: relative; min-height: 60px;"
+              .item-block style="position: relative;"
                 .title = journey.name
                 p
                   string &nbsp;
                 p
                   strong 持续时间：
                   span = journey.duration_time
+                  span.production_id.hidden = journey.id
                 p
                   strong 提前预定：
                   span 至少提前 #{journey.early_booking} 天
-                div class="_show_#{journey.id}" style="display: none; width: 450px;"
+                div class="_show_#{journey.id}" style="display: none; width: 450px;min-height: 280px;"
                   p
                     strong 费用说明：
                     span = text_format journey.fee_description
@@ -57,52 +56,162 @@
                       span = text_format journey.other_description
                 .block
                   .price
-                    em RMB
-                    span ￥#{journey.lowest_price}
-                    em 每人起
+                    span ￥#{journey.lowest_price} 每人起
                 - if inventory
-                  div class="_hide_#{journey.id}" onclick="$('._hide_#{journey.id}').hide(); $('._show_#{journey.id}').show();" style="position: absolute; right: 30px; top: 45px; display: inline-block; font-size: 12px; border-radius: 3px; background-color: #7EC440; color: white; border: medium none; padding: 4px 15px; margin-top: 3px; cursor: pointer; box-shadow: 0 -2px 0 0 #67A031 inset;" 预 订
+                  div class="_hide_#{journey.id}" onclick="$('._hide_#{journey.id}').hide(); $('._show_#{journey.id}').show();" style="position: absolute; right: 30px; top: 45px; display: inline-block; font-size: 12px; background-color: #ff862f; color: white; padding: 4px 15px; margin-top: 3px; cursor: pointer; " 预 订
                 div class="_hide_#{journey.id}" onclick="$('._hide_#{journey.id}').hide(); $('._show_#{journey.id}').show();" style="position: absolute; left: 270px; top: 60px; display: inline-block; font-size: 12px; cursor: pointer;" ▼ 查看详细信息
                 = form_tag new_travel_booking_path, method: :get do
                   = hidden_field_tag 'travel_booking[journey_id]', journey.id
+                  = hidden_field_tag 'travel_booking[started_on]'
                   = hidden_field_tag 'step', 1
                   div class="_inventories_#{journey.id}" data-inventories=inventories.to_json(only: [:started_on, :adult_price, :child_price, :remained_number])
-                  div class="_show_#{journey.id if inventory}" style="display: none; position: absolute; top: 40px; right: 10px; background-color: white; font-size: 12px; padding: 5px;"
+                  div class="_show_#{journey.id if inventory} show_order"
                     table
                       tr
-                        td style="width: 40px;" 日期
-                        td = text_field_tag 'travel_booking[started_on]', inventory.try(:started_on), id: "_travel_booking_started_on_#{journey.id}", class: '_travel_booking_started_on', 'data-journey_id' => journey.id, style: 'width: 100px;'
+                        td colspan="3" style="text-align: center;font-size: 16px;font-weight:bold;" 预订
                       tr
-                        td 成人
-                        td = select_tag 'travel_booking[adult_number]', !inventory ? nil : options_for_select((1..inventory.remained_number).map { |i| ["#{i} 位（￥#{inventory.adult_price.to_i * i}）", i] }), id: "_travel_booking_adult_number_#{journey.id}", class: '_travel_booking_adult_number', 'data-journey_id' => journey.id, style: 'width: 100px;'
+                        td colspan="3"
+                          div.cal_show
                       tr
-                        td 儿童
-                        td = select_tag 'travel_booking[child_number]', !inventory || !inventory.child_price ? nil : options_for_select((0..(inventory.remained_number-1)).map { |i| ["#{i} 位（￥#{inventory.child_price.to_i * i}）", i] }), id: "_travel_booking_child_number_#{journey.id}", class: '_travel_booking_child_number', 'data-journey_id' => journey.id, style: 'width: 100px;'
-                      tr
+                        td style="width: 65px;" 开始日期：
+                        td = select_tag 'travel_booking[start_time]',!inventory ? nil : options_for_select((journey.start_time.split(",")).map { |i| [i, i] }), id: "_travel_booking_start_time_#{journey.id}"
                         td
-                        td = submit_tag '预 订', name: nil, style: "border-radius: 3px; background-color: #7EC440; color: white; border: medium none; padding: 4px 15px; margin-top: 3px; cursor: pointer; box-shadow: 0 -2px 0 0 #67A031 inset;"
-            coffee:
-              $ ->
-                $('._travel_booking_started_on').each ->
-                  inventories = $('._inventories_'+$(this).data('journey_id')).data('inventories')
-                  $(this).datepicker
-                    dateFormat: 'yy-mm-dd'
-                    gotoCurrent: true
-                    minDate: (_.first(inventories)||{}).started_on
-                    maxDate: (_.last(inventories)||{}).started_on
-                    onSelect: _.bind((-> $(this).change()), this)
-                $('._travel_booking_started_on').on 'change', ->
-                  that = this
-                  inventories = $('._inventories_'+$(this).data('journey_id')).data('inventories')
-                  inventory = _.find(inventories, ((inventory) -> $(that).val() == inventory.started_on)) || {}
-                  adult_number = $('#_travel_booking_adult_number_'+$(this).data('journey_id'))
-                  child_number = $('#_travel_booking_child_number_'+$(this).data('journey_id'))
-                  adult_number_val = adult_number.val()
-                  child_number_val = child_number.val()
-                  adult_number.html(if !inventory.adult_price then '' else _.times(inventory.remained_number - parseInt(child_number.val()), ((i) -> '<option value="' + (i+1) + '">' + (i+1) + ' 位（￥' + (i+1)*inventory.adult_price + '）</option>' )).join('')).val(adult_number_val)
-                  child_number.html(if !inventory.child_price then '' else _.times(1 + inventory.remained_number - parseInt(adult_number.val()), ((i) -> '<option value="' + (i) + '">' + (i) + ' 位（￥' + (i)*inventory.child_price + '）</option>' )).join('')).val(child_number_val)
-                $('._travel_booking_adult_number, ._travel_booking_child_number').change ->
-                  $('#_travel_booking_started_on_'+$(this).data('journey_id')).change()
+                      tr
+                        td 成人：
+                        td = text_field_tag 'travel_booking[adult_number]',"",placeholder: "数量",:class=>"short_num price"
+                        td.adult_price
+                      tr.padding_line
+                        td 儿童：
+                        td = text_field_tag 'travel_booking[child_number]',"0",placeholder: "数量",:class=>"short_num price"
+                        td.child_price
+                      tr.price_line
+                        td colspan="2" 儿童票标准：#{journey.child_level}岁
+                        td.total_price
+                      tr.order_line
+                        td
+                        td
+                        td = submit_tag '预 订', name: nil, style: "background-color: #7EC440; color: white; border: medium none; padding: 4px 15px; margin-top: 5px; cursor: pointer;"
+            script
+              | $(document).ready(function(){
+                  $(".price").change(function(e){
+                      var adult_num = $("#travel_booking_adult_number").val();
+                      var child_num = $("#travel_booking_child_number").val();
+                      var score_n = $(".total_price").attr("score_num");
+                      if(score_n == null)
+                      {
+                        alert("请选择日期");
+                        $("#travel_booking_adult_number").val("0");
+                        $("#travel_booking_child_number").val("0");
+                        return false;
+                      }
+                      var ticket_num = parseInt(adult_num) + parseInt(child_num);
+                      if(ticket_num > score_n)
+                      {
+                         alert("超过这个日期提供的总票数.");
+                         $("#travel_booking_adult_number").val("0");
+                         $("#travel_booking_child_number").val("0");
+                         return false;
+                      }
+                      var adult_price = $(".adult_price").attr("price");
+                      var child_price = $(".child_price").attr("price");
+                      var total = adult_price * adult_num + child_price * child_num;
+                      $(".total_price").text("总价: ¥"+total);
+                  })
+                  $(".cal_show").datepicker({
+                    inline: true,
+                    dateFormat: "yy-mm-dd",
+                    showOtherMonths: true,
+                    onSelect: function(text,inst){
+                      $(".tipsy").remove();
+                      var id = $(".production_id").text();
+                      var scores = $("._inventories_"+id).data("inventories");
+                      var score_num = 0;
+                      for(var i=0;i<scores.length;i++)
+                      {
+                        if(scores[i]["started_on"] == text)
+                        {
+                            score_num = scores[i]["remained_number"];
+                            $(".adult_price").attr("price",scores[i]["adult_price"]);
+                            $(".child_price").attr("price",scores[i]["child_price"]);
+                            $(".adult_price").text("¥"+scores[i]["adult_price"]+"/人");
+                            $(".child_price").text("¥"+scores[i]["child_price"]+"/人");
+                            $(".total_price").attr("score_num",score_num);
+                        }
+                      }
+
+                      if(score_num == 0)
+                      {
+                        alert("这个日期没有可以预订的服务，请选择别的日期.");
+                        $("#travel_booking_adult_number").val("0");
+                        $("#travel_booking_adult_number").attr("readonly",true);
+                        $("#travel_booking_child_number").attr("readonly",true);
+                        return true;
+                      }else
+                      {
+                        $("#travel_booking_adult_number").attr("readonly",false);
+                        $("#travel_booking_child_number").attr("readonly",false);
+                        $("#travel_booking_started_on").val(text);
+                        return true;
+                      }
+                    }
+                  });
+                  $(document).on("mouseenter",".ui-state-default",function(){
+                    $(".ui-state-default").tipsy({title: function(){ 
+                        var year = $(this).parent().data("year");
+                        var month = $(this).parent().data("month");
+                        month = month + 1;
+                        if(month<10)
+                        {
+                          month = "0"+month;
+                        }
+                        var day = $(this).text();
+                        if(day<10)
+                        {
+                          day = "0"+day;
+                        }
+                        var today = year + "-" + month + "-" + day;
+                        var id = $(".production_id").text();
+                        var scores = $("._inventories_"+id).data("inventories");
+                        var score_num = 0;
+                        for(var i=0;i<scores.length;i++)
+                        {
+                          if(scores[i]["started_on"] == today)
+                          {
+                              score_num = scores[i]["remained_number"];
+                          }
+                        }
+                        return "库存"+score_num+"个";
+                    }});
+                  });
+                  $(".ui-state-default").tipsy({title: function(){ 
+                        var year = $(this).parent().data("year");
+                        var month = $(this).parent().data("month");
+                        month = month + 1;
+                        if(month<10)
+                        {
+                          month = "0"+month;
+                        }
+                        var day = $(this).text();
+                        if(day<10)
+                        {
+                          day = "0"+day;
+                        }
+                        var today = year + "-" + month + "-" + day;
+                        var id = $(".production_id").text();
+                        var scores = $("._inventories_"+id).data("inventories");
+                        var score_num = 0;
+                        for(var i=0;i<scores.length;i++)
+                        {
+                          if(scores[i]["started_on"] == today)
+                          {
+                              score_num = scores[i]["remained_number"];
+                          }
+                        }
+                        return "库存"+score_num+"个";
+                  }});
+                });
+
+
         .product_cont
           .basis_info
             = simple_format @product.description
@@ -133,15 +242,10 @@
       .side.rfloat
         .row-290.rfloat.product-side
           .book-box
-            a.book-button href="#" onclick="window.scrollTo(0, $('._journeys').offset().top); return false;" 立即预订
             .overall-price
-              em RMB
-              span ￥#{@product.lowest_price}
-            .price-expla
-              | 每人起
-          .controls
-            .list
-              a.question href="mailto:service@jilvtrip.com" 咨询该活动
+              em ￥
+              span #{@product.lowest_price} 起/人
+            a.book-button href="#" onclick="window.scrollTo(0, $('._journeys').offset().top); return false;" 立即预订
           .WePromise
             h3 承诺
             p 服务商家资质认证

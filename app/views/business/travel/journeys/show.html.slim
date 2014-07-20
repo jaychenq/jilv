@@ -38,7 +38,7 @@
                   - else
                     .control_input
                         .newtextfield
-                          = f.text_field :name
+                          = f.text_field :name,:class=>"validate[required]"
                           = f.error_message_on :name
               li.item
                 .item_control
@@ -83,7 +83,7 @@
                   - else
                     .control_input
                         .newtextfield
-                          = f.text_field :duration_time
+                          = f.text_field :duration_time,:class=>"validate[required]"
                           = f.error_message_on :duration_time
               li.item
                 .item_control
@@ -95,7 +95,7 @@
                   - else
                     .control_input
                       .newtextfield
-                        = f.text_field :early_booking
+                        = f.text_field :early_booking,:class=>"validate[required]"
                         | 天预订
                         = f.error_message_on :early_booking
               li.item
@@ -108,7 +108,7 @@
                   - else
                     .control_input
                         .textareafield
-                          = f.text_area :refund_policy
+                          = f.text_area :refund_policy,:class=>"validate[required]"
                           = f.error_message_on :refund_policy
               li.item
                 .item_control
@@ -133,7 +133,7 @@
                   - else
                     .control_input
                         .textareafield
-                          = f.text_field :market_price
+                          = f.text_field :market_price,:class=>"validate[required]"
                           | 元
                           = f.error_message_on :market_price
               li.item
@@ -197,7 +197,7 @@
                           = text_field_tag 'adult_price', nil, placeholder: '', size: 6, style: "width:70px; border: 1px solid silver;"
                           | &nbsp;&nbsp;儿童价：
                           = text_field_tag 'child_price', nil, placeholder: '', size: 6, style: "width:70px;border: 1px solid silver;"
-                          = f.select "child_level", options_for_select(["8岁以下","9岁以下","10岁以下","11岁以下","12岁以下","13岁以下"], journey.child_level)
+                          = f.select "child_level", options_for_select([['8岁以下','8'],['9岁以下','9'],['10岁以下','10'],['11岁以下','11'],['12岁以下','12'],['13岁以下','13']], journey.child_level)
                           | &nbsp;&nbsp;库存:
                           = text_field_tag 'total_number', nil, size: 6, style: "width:70px;border: 1px solid silver;"
                           | &nbsp;&nbsp;
@@ -317,22 +317,22 @@
                                 $("#child_price").val("")
                                 $("#total_number").val("")
                               $('#batch_button').on('click', -> false).on 'mousedown', ->
+                                price = $("#adult_price").val()
+                                c_price = $("#child_price").val()
+                                t_num = $("#total_number").val()
+                                if(price == "")
+                                  alert("请输入成人价")
+                                  return
+                                if(c_price == "")
+                                  alert("请输入儿童价")
+                                  return
+                                if(t_num == "")
+                                  alert("请输入库存")
+                                  return
                                 $(".week").each ->
                                     if($(this).is(":checked"))
                                         day = $(this).val()
                                         $(".day_"+day).show()
-                                        price = $("#adult_price").val()
-                                        c_price = $("#child_price").val()
-                                        t_num = $("#total_number").val()
-                                        if(price == "")
-                                          alert("请输入成人价")
-                                          return
-                                        if(c_price == "")
-                                          alert("请输入儿童价")
-                                          return
-                                        if(t_num == "")
-                                          alert("请输入库存")
-                                          return
                                         $(".day_"+day).text("￥"+price)
                                         $(".day_"+day).each ->
                                             $(this).parent().parent().find('input:eq(1)').val(price)
@@ -405,6 +405,7 @@ script
           format:'H:i',
           step:5
     });
+    $("#new_travel_journey").validationEngine();
     $(document).on("click",".time_style",function(){
       if($(this).hasClass("time_select_style")){
           $(this).removeClass("time_select_style");

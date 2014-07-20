@@ -5,6 +5,7 @@ class Account::UsersController < ApplicationController
 
   def show
     @user = Account::User.find(params[:id])
+    
   end
 
   def new

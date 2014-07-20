@@ -6,6 +6,10 @@
           li
             a href="/about/pages/merchant"
               span 商家入驻
+        - else
+          li
+            a href=url_for([:business, @current_user.merchant])
+              span 商家中心
         li.help
           a href=""
             i.icons-help

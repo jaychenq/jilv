@@ -3,6 +3,9 @@
   .dashboard
     .side.lfloat
       .row-290
+        = render 'layouts/application/nav_user', current: 'users'
+    .side.lfloat
+      .row-290
         .dashboard-info
           .pic
             = image_tag @current_user.avatar? ? "#{@current_user.avatar}.180.jpg" : '/jilv/avatar-180.png', alt: ''

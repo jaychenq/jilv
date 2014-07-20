@@ -2,13 +2,16 @@
 
 = render 'layouts/application/nav', current: 'booking'
 .container
-  .bookings
-    h2.wish-title 订单列表
-    - if @bookings.empty?
-      .toptips 您的订单列表为空
   .cart
     .cart-box
+      .side.lfloat
+        .row-290
+          = render 'layouts/application/nav_user', current: 'bookings'
       .main.lfloat
+        .bookings
+          h2.wish-title 订单列表
+          - if @bookings.empty?
+            .toptips 您的订单列表为空
         .result-list.order-list
           - @bookings.each do |booking|
             .result-cont
@@ -33,10 +36,3 @@
                         strong 儿童：
                         span #{booking.child_number} 位
               a.button.btn-blue href=url_for(booking) = booking.payment_platform? ? '查看详情' : '继续支付'
-      .side.rfloat
-        .row-290.rfloat.product-side
-          .cs-block
-            h3 需要帮助？
-            .help-phone
-              i.icon32x32-cart-phone
-              span +86 020-53664444
