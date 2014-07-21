@@ -25,7 +25,7 @@ table.widefat
       tr
         td = merchant.id
         td = link_to_admin merchant
-        td = merchant.class.entities.keys.map { |entity| [entity, t("activerecord.enums.#{merchant.class.name.underscore}.entity.#{entity}")] }.to_h[merchant.entity]
+        td = Hash[merchant.class.entities.keys.map { |entity| [entity, t("activerecord.enums.#{merchant.class.name.underscore}.entity.#{entity}")] }][merchant.entity]
         td
           = link_to_admin_count merchant.products
           = link_to '+', new_admin_travel_product_path('travel_product[merchant_id]' => merchant.id) if can?(:create, merchant.products)
