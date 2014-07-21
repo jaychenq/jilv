@@ -23,7 +23,7 @@ h2
         th = f.label :entity
         td
           - if show
-            = merchant.class.entities.keys.map { |entity| [entity, t("activerecord.enums.#{merchant.class.name.underscore}.entity.#{entity}")] }.to_h[merchant.entity]
+            = Hash[merchant.class.entities.keys.map { |entity| [entity, t("activerecord.enums.#{merchant.class.name.underscore}.entity.#{entity}")] }][merchant.entity]
           - else
             = render 'shared/enum_radio', form: f, field: 'entity'
             = f.error_message_on :entity
@@ -55,7 +55,7 @@ h2
         th = f.label :gender
         td
           - if show
-            = merchant.class.genders.keys.map { |gender| [gender, t("activerecord.enums.#{merchant.class.name.underscore}.gender.#{gender}")] }.to_h[merchant.gender]
+            = Hash[merchant.class.genders.keys.map { |gender| [gender, t("activerecord.enums.#{merchant.class.name.underscore}.gender.#{gender}")] }][merchant.gender]
           - else
             = render 'shared/enum_radio', form: f, field: 'gender'
             = f.error_message_on :gender
