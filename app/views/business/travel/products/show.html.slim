@@ -146,8 +146,8 @@
                     = product.arrival
                   - else
                     .control_input
-                        .newtextfield
-                          = f.text_field :arrival
+                        .textareafield
+                          = f.text_area :arrival
                           = f.error_message_on :arrival
               li.item
                 .item_control
@@ -158,8 +158,8 @@
                     = product.tips
                   - else
                     .control_input
-                        .newtextfield
-                          = f.text_field :tips
+                        .textareafield
+                          = f.text_area :tips
                           = f.error_message_on :tips
               li.item
                 .item_control
