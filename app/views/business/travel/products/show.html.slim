@@ -45,7 +45,7 @@
                   - else
                     .control_input
                       .newtextfield
-                        = f.text_field :name
+                        = f.text_field :name,:class=>"validate[required]"
                         = f.error_message_on :name
               li.item
                 .item_control
@@ -58,7 +58,7 @@
                         - speakings = product.speakings.all.to_a
                         - Travel::Language.order('sequence ASC, name ASC').each_with_index do |language, index|
                           span style="display: inline-block; width: 150px;  overflow: hidden; white-space: nowrap;"
-                            =' check_box_tag "language_ids[#{index}]", language.id, speakings.any? { |speaking| speaking.language_id == language.id }
+                            =' check_box_tag "language_ids[]", language.id, speakings.any? { |speaking| speaking.language_id == language.id },:class=>"validate[minCheckbox[1]]" 
                             =' image_tag language.icon, alt: '' if language.icon
                             =' label_tag "language_ids[#{index}]", language.name
               li.item
@@ -74,12 +74,12 @@
                             span style="display: inline-block; width: 150px;  overflow: hidden; white-space: nowrap;"
                               -if !product.colony.blank?
                                   -if product.colony.split(",").include? text
-                                    = check_box_tag "colony[]", text, true
+                                    = check_box_tag "colony[]", text, true,:class=>"validate[minCheckbox[1]]" 
                                   -else
-                                    = check_box_tag "colony[]", text, false
+                                    = check_box_tag "colony[]", text, false,:class=>"validate[minCheckbox[1]]" 
                                     = text
                               -else
-                                  = check_box_tag "colony[]", text, false
+                                  = check_box_tag "colony[]", text, false,:class=>"validate[minCheckbox[1]]"
                                   = text
               li.item
                 .item_control
@@ -90,9 +90,8 @@
                     = product.category2.try(:name)
                   - else
                     .control_input
-                      .selectfield
-                        /= f.collection_select :category2_id, Travel::Category.order('sequence ASC, name ASC'), :id, :name, include_blank: true
-                        = f.grouped_collection_select :category2_id, Travel::Category.find(1).children, :children, :name, :id, :name, { include_blank: '' }
+                      .newtextfield
+                        = f.grouped_collection_select :category2_id, Travel::Category.find(1).children, :children, :name, :id, :name, { include_blank: ''},{:class=>"validate[required]"}
                         = f.error_message_on :category2_id
               li.item
                 .item_control
@@ -104,11 +103,11 @@
                   - else
                     .control_input
                         .newtextfield
-                          = f.collection_select :continent_id, Travel::Continent.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                          = f.collection_select :continent_id, Travel::Continent.order('sequence ASC, name ASC'), :id, :name,{include_blank: true},{:class=>"validate[required]"}
                         .newtextfield
-                          = f.collection_select :country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                          = f.collection_select :country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name,{include_blank: true},{:class=>"validate[required]"}
                         .newtextfield
-                          = f.collection_select :city_id, Travel::City.order('sequence ASC, name ASC'), :id, :name, include_blank: true
+                          = f.collection_select :city_id, Travel::City.order('sequence ASC, name ASC'), :id, :name,{include_blank: true},{:class=>"validate[required]"}
                           = f.error_message_on :city_id
                         #continents data-continents=Travel::Continent.all.to_json(only: [:id, :name], include: { countries: { only: [:id, :name], include: { cities: { only: [:id, :name] } } } })
                         coffee:
@@ -135,7 +134,7 @@
                   - else
                     .control_input
                         .newtextfield
-                          = f.text_field :address
+                          = f.text_field :address,:class=>"validate[required]"
                           = f.error_message_on :address
               li.item
                 .item_control
@@ -146,8 +145,8 @@
                     = product.arrival
                   - else
                     .control_input
-                        .textareafield
-                          = f.text_area :arrival
+                        .newtextfield
+                          = f.text_area :arrival, :class=>"validate[required]"
                           = f.error_message_on :arrival
               li.item
                 .item_control
@@ -158,8 +157,8 @@
                     = product.tips
                   - else
                     .control_input
-                        .textareafield
-                          = f.text_area :tips
+                        .newtextfield
+                          = f.text_area :tips,:class=>"validate[required]"
                           = f.error_message_on :tips
               li.item
                 .item_control
@@ -170,8 +169,8 @@
                     = text_format product.description
                   - else
                     .control_input
-                      .textareafield
-                        = f.text_area :description
+                      .newtextfield
+                        = f.text_area :description,:class=>"validate[required]"
                         = f.error_message_on :description
               li.item
                 .itm_media
@@ -188,6 +187,8 @@
               - if !show
                 li.item.item-btn
                   button.button.btn-blue 下一步
+              script
+                  | $("#new_travel_product").validationEngine()
 
 - if nil#!product.new_record?
 

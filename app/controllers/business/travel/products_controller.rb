@@ -20,7 +20,7 @@ class Business::Travel::ProductsController < Business::Travel::ApplicationContro
     
     if ok
       speakings = @product.speakings.to_a
-      language_ids = params[:language_ids].to_h.values.map(&:to_i)
+      language_ids = params[:language_ids]
       speakings.find_all { |speaking| !language_ids.include?(speaking.language_id) }.each { |speaking| speaking.update(active: false) }
       language_ids.each { |language_id| Travel::Speaking.where(active: true).find_or_create_by(language_id: language_id, product_id: @product.id) }
       params[:photo_files].to_h.each do |index, file|
@@ -46,7 +46,7 @@ class Business::Travel::ProductsController < Business::Travel::ApplicationContro
     
     if ok
       speakings = @product.speakings.to_a
-      language_ids = params[:language_ids].to_h.values.map(&:to_i)
+      language_ids = params[:language_ids]
       speakings.find_all { |speaking| !language_ids.include?(speaking.language_id) }.each { |speaking| speaking.update(active: false) }
       language_ids.each { |language_id| Travel::Speaking.where(active: true).find_or_create_by(language_id: language_id, product_id: @product.id) }
       
