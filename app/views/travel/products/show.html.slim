@@ -39,7 +39,6 @@
                 p
                   strong 持续时间：
                   span = journey.duration_time
-                  span.production_id.hidden = journey.id
                 p
                   strong 提前预定：
                   span 至少提前 #{journey.early_booking} 天
@@ -71,9 +70,9 @@
                         td colspan="3" style="text-align: center;font-size: 16px;font-weight:bold;" 预订
                       tr
                         td colspan="3"
-                          div.cal_show
+                          div.cal_show jid="#{journey.id}"
                       tr
-                        td style="width: 65px;" 开始日期：
+                        td style="width: 65px;" 开始时间：
                         td = select_tag 'travel_booking[start_time]',!inventory ? nil : options_for_select((journey.start_time.split(",")).map { |i| [i, i] }), id: "_travel_booking_start_time_#{journey.id}"
                         td
                       tr
@@ -123,7 +122,7 @@
                     showOtherMonths: true,
                     onSelect: function(text,inst){
                       $(".tipsy").remove();
-                      var id = $(".production_id").text();
+                      var id = $(this).attr("jid");
                       var scores = $("._inventories_"+id).data("inventories");
                       var score_num = 0;
                       for(var i=0;i<scores.length;i++)
@@ -170,7 +169,7 @@
                           day = "0"+day;
                         }
                         var today = year + "-" + month + "-" + day;
-                        var id = $(".production_id").text();
+                        var id = $(this).parent().parent().parent().parent().parent().parent().attr("jid");
                         var scores = $("._inventories_"+id).data("inventories");
                         var score_num = 0;
                         for(var i=0;i<scores.length;i++)
@@ -197,7 +196,7 @@
                           day = "0"+day;
                         }
                         var today = year + "-" + month + "-" + day;
-                        var id = $(".production_id").text();
+                        var id = $(this).parent().parent().parent().parent().parent().parent().attr("jid");
                         var scores = $("._inventories_"+id).data("inventories");
                         var score_num = 0;
                         for(var i=0;i<scores.length;i++)
