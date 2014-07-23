@@ -83,7 +83,7 @@
                   - else
                     .control_input
                         .newtextfield
-                          = f.text_field :duration_time,:class=>"validate[required]"
+                          = f.text_field :duration_time
                           = f.error_message_on :duration_time
               li.item
                 .item_control
@@ -107,7 +107,7 @@
                     = journey.refund_policy
                   - else
                     .control_input
-                        .textareafield
+                        .newtextfield
                           = f.text_area :refund_policy,:class=>"validate[required]"
                           = f.error_message_on :refund_policy
               li.item
@@ -119,9 +119,9 @@
                     = journey.fee_description
                   - else
                     .control_input
-                        .textareafield
-                          - journey.fee_description ||= "费用包含\n\n\n不包含\n\n\n"
-                          = f.text_area :fee_description
+                        .newtextfield
+                          - journey.fee_description
+                          = f.text_area :fee_description,:class=>"validate[required]",:placeholder=>"费用包含不包含"
                           = f.error_message_on :fee_description
               li.item
                 .item_control
@@ -133,7 +133,7 @@
                   - else
                     .control_input
                         .textareafield
-                          = f.text_field :market_price,:class=>"validate[required]"
+                          = f.text_field :market_price
                           | 元
                           = f.error_message_on :market_price
               li.item

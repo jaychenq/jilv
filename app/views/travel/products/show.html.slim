@@ -215,11 +215,6 @@
           .basis_info
             = simple_format @product.description
           .basis_info
-            h3 亮点
-            ul style="list-style: circle;"
-             - @product.highlight.to_s.split(/\n/).each do |line|
-               li = line
-          .basis_info
             h3 活动地点
             p
               =' @product.country.try(:name)

@@ -146,7 +146,7 @@
                   - else
                     .control_input
                         .newtextfield
-                          = f.text_area :arrival, :class=>"validate[required]"
+                          = f.text_area :arrival
                           = f.error_message_on :arrival
               li.item
                 .item_control
@@ -158,7 +158,7 @@
                   - else
                     .control_input
                         .newtextfield
-                          = f.text_area :tips,:class=>"validate[required]"
+                          = f.text_area :tips
                           = f.error_message_on :tips
               li.item
                 .item_control
@@ -182,7 +182,10 @@
                     - 8.times do |index|
                       - photo = product.photos.find_or_initialize_by(sequence: index)
                       div = image_tag "#{photo.file}.640x360.jpg", alt: '', style: 'width: 320px; height: 180px;' if photo.file
-                      div = file_field_tag "photo_files[#{index}]"
+                      -if index == 0
+                        div = file_field_tag "photo_files[#{index}]",:class=>"validate[required]"
+                      -else
+                        div = file_field_tag "photo_files[#{index}]"
                       hr style="margin: 10px 0;"
               - if !show
                 li.item.item-btn

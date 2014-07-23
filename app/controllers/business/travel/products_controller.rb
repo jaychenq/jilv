@@ -59,7 +59,7 @@ class Business::Travel::ProductsController < Business::Travel::ApplicationContro
     end
     
     return render :show if !ok
-    redirect_to @product.journeys.empty? ? new_business_travel_journey_path('travel_journey[product_id]' => @product.id) : journeys_business_travel_product_path(@product.id)
+    redirect_to @product.journeys.empty? ? new_business_travel_journey_path('travel_journey[product_id]' => @product.id) : journeys_business_travel_product_path(@product.id,"update"=>"1")
   end
 
 private
