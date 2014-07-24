@@ -38,6 +38,14 @@ h2
             = f.text_field :name
             = f.error_message_on :name
       tr
+        th = f.label :lowest_price
+        td
+          - if show
+            = journey.lowest_price
+          - else
+            = f.text_field :lowest_price
+            = f.error_message_on :lowest_price
+      tr
         th = f.label :market_price
         td
           - if show

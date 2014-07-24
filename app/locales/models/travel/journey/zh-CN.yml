@@ -9,7 +9,7 @@ zh-CN:
         name: 名称
         sequence: 顺序
         market_price: 门市价
-        # lowest_price: 最低价
+        lowest_price: 最低价
         adult_price: 成人价
         child_price: 儿童价
         start_time: 开始时间
