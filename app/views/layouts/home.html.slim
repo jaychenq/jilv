@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
+    title = @page_title.present? ? "#{@page_title} - 极旅" : "极旅"
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    - if @page_keywords
+      meta name="Keywords" content=@page_keywords
+    - if @page_description
+      meta name="Description" content=@page_description
+  body
+    = render 'layouts/application/home_header'
+    .body
+      = yield
+    = render 'layouts/application/footer'

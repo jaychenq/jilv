@@ -1,0 +1,35 @@
+.header
+  .fixed_header.fixed-border.home_top_bg
+    .container
+      .hheader
+        a.logo-gyg href="/"
+          h1 极旅°
+        div.img_slogo
+          = image_tag "/assets/jilv/logo_slogo.png"
+    div.login_bar
+        ul
+          li.mem_group style="font-size: 14px;"
+            i.icons-user-white style="color: white;float:left;"
+            div style="float:left;padding-top:5px;color:white;"
+              - if @current_user
+                a href=url_for(@current_user) style="color: white;margin-left: 8px;" =@current_user.name
+                span &nbsp;,&nbsp;
+                = link_to account_session_path(0), method: 'delete' do
+                  span style="color:white;" 退出
+              - else
+                a href="/account/sessions/new" style="color: white;margin-left: 8px;" 登录
+                span &nbsp;|&nbsp;
+                a href="/account/users/new" style="color: white" 注册
+            i.icons-faq-white style="margin-left: 10px;float:left;"
+            div style="float:left;padding-top:5px;color:white;margin-left: 5px;"
+              a style="color: white" 帮助
+            - if @current_user
+              - if !@current_user.try(:merchant)
+                div style="float:left;padding-top:3px;color:white;margin-left: 15px; background:#70A7F4;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;"
+                  a href="/about/pages/merchant" style="color: white;" 商家入驻
+              - else
+                div style="float:left;padding-top:3px;color:white;margin-left: 15px; background:#70A7F4;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;"
+                  a href=url_for([:business, @current_user.merchant]) style="color: white;" 商家中心
+            - else
+              div style="float:left;padding-top:3px;color:white;margin-left: 15px; background:#70A7F4;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;"
+                a href="/about/pages/merchant" style="color: white;" 商家入驻
