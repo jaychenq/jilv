@@ -39,7 +39,10 @@
             a.login-link href=url_for(@current_user)
               i.icons-user
               i.icons-user-white
-              span = @current_user.name
+              -if !@current_user.nick_name.blank?
+                span = @current_user.nick_name
+              -else
+                span = @current_user.name
               em.down-arrow
             ul.submenu
               - if @current_user.merchant

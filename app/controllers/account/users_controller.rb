@@ -94,7 +94,7 @@ class Account::UsersController < ApplicationController
   end
 
   def update
-    @user.attributes = params[:account_user].permit(*%w[name gender avatar])
+    @user.attributes = params[:account_user].permit(*%w[name nick_name gender avatar])
     @user.save
     render action: 'edit'
   end

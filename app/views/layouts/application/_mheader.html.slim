@@ -11,7 +11,10 @@
               div.login_i
                 - if @current_user
                     a.login-link href=url_for(@current_user)
-                      span = @current_user.name
+                      -if !@current_user.nick_name.blank?
+                        span = @current_user.nick_name
+                      -else
+                        span = @current_user.name
                     span  , 
                     = link_to account_session_path(0), method: 'delete' do
                       span 退出

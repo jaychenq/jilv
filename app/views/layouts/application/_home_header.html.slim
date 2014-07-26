@@ -12,7 +12,10 @@
             i.icons-user-white style="color: white;float:left;"
             div style="float:left;padding-top:5px;color:white;"
               - if @current_user
-                a href=url_for(@current_user) style="color: white;margin-left: 8px;" =@current_user.name
+                -if !@current_user.nick_name.blank?
+                  a href=url_for(@current_user) style="color: white;margin-left: 8px;" =@current_user.nick_name
+                -else
+                  a href=url_for(@current_user) style="color: white;margin-left: 8px;" =@current_user.name
                 span &nbsp;,&nbsp;
                 = link_to account_session_path(0), method: 'delete' do
                   span style="color:white;" 退出

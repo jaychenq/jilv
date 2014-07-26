@@ -25,11 +25,19 @@
               li.item
                 .itm_media
                   label.title_label
-                    | 姓名
+                    | 账号
                     span.important *
                 .itm_body
                   .textfield
-                    = f.text_field :name
+                    = f.text_field :name,:readonly=>true
+              li.item
+                .itm_media
+                  label.title_label
+                    | 昵称
+                    span.important *
+                .itm_body
+                  .textfield
+                    = f.text_field :nick_name
               li.item
                 .itm_media
                   label.title_label
