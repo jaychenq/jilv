@@ -33,4 +33,10 @@
           li.nc_text 市场大门线上精准营销
           li.nc_text 线下汇聚客流
           li.log_btns
-            a.bt-text href="/account/users/new" 免费注册
+            - if @current_user
+              - if !@current_user.try(:merchant)
+                a.bt-text href="/business/travel/merchants/new" 商家入住
+              - else
+                a.bt-text href=url_for([:business, @current_user.merchant]) 商家中心
+            - else
+              a.bt-text href="/account/users/new" 免费注册
