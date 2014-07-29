@@ -91,6 +91,7 @@ class Account::UsersController < ApplicationController
 
       if params[:redirect] == "http://www.jilvtrip.com/about/pages/merchant"
         redirect_to "http://www.jilvtrip.com/business/travel/merchants/new"
+        return
       end 
 
       redirect_to params[:redirect].presence || :root
