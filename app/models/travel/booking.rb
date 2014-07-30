@@ -28,9 +28,9 @@ class Travel::Booking < ActiveRecord::Base
       out_trade_no: self.id,
       service: 'create_direct_pay_by_user',
       total_fee: self.total_price,
-      show_url: 'http://jilv.co/',
-      return_url: "http://jilv.co/travel/bookings/#{self.id}/alipay_return",
-      notify_url: "http://jilv.co/travel/bookings/#{self.id}/alipay_return?source=notify",
+      show_url: 'http://www.jilvtrip.com/',
+      return_url: "http://www.jilvtrip.com/travel/bookings/#{self.id}/alipay_return",
+      notify_url: "http://www.jilvtrip.com/travel/bookings/#{self.id}/alipay_return?source=notify",
       payment_type: '1',
     }
     alipay_url(options)
