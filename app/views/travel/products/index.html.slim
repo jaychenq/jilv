@@ -118,7 +118,7 @@
                   span >
                 = @products.first.try(field).try(:name)
             - if where[:language_id]
-              a.tag-iem href=(p = params.deep_dup; p[:where].delete(:language_id); p.delete(:where) if p[:where].blank?; url_for(p))
+              a href=(p = params.deep_dup; p[:where].delete(:language_id); p.delete(:where) if p[:where].blank?; url_for(p))
                 = Travel::Language.find_by_id(where[:language_id]).try(:name)
       .search-result
         .result-list
@@ -141,11 +141,11 @@
                         strong 语言：
                         span
                           - product.languages.each do |language|
-                            =' language.name
+                            = language.name
                     p.text #{product.description[0..99]}...
                     div.line_bot
                       span 低至
-                      span.price_bot ￥#{product.lowest_price}.00
+                      span.price_bot ￥#{product.lowest_price}
                       span 
                         | /人
                       span style="margin-top: 5px;"
