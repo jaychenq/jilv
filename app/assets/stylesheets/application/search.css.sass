@@ -28,11 +28,10 @@
 			padding: 0
 	.pageber
 		display: block
-		background: #F4EEE5
-		@include border-radius(4px)
+		background: #FFF
 		clear: both
-		font-size: 12px
-		margin: 0 0 5px
+		font-size: 13px
+		margin: 10px 0 5px
 		padding: 8px
 		text-align: center
 		.pagination
@@ -42,7 +41,6 @@
 				padding: 0 5px
 			a
 				color: #333
-				text-decoration: underline
 				border-right: 1px solid #CCC
 				// border-left: 1px solid #CCC
 				display: inline
@@ -51,7 +49,6 @@
 				border-right: 1px solid #CCC
 			.current
 				background: #666
-				@include border-radius(3px)
 				color: #FFF
 				font-weight: 600
 				margin: 0 4px
@@ -76,7 +73,7 @@
 		border-bottom-left-radius: 4px
 		border-bottom-right-radius: 4px
 	.cont
-		padding-bottom: 10px
+		padding-bottom: 0px
 	.title
 		background: #E2DACA
 		color: #7B766F
@@ -121,13 +118,10 @@
 				ul
 					display: none
 			a
-				color: #333
 				font-size: 12px
 				text-decoration: none
-				display: block
 				margin: 4px 0 6px
-				position: relative
-				line-height: 16px
+				line-height: 25px
 				.toggle-icon
 					display: block
 					float: left
@@ -143,7 +137,7 @@
 					&.i-open
 						background-position: 0 -17px
 				.name
-					text-decoration: underline
+					text-decoration: none
 				.count
 					font-size: 10px
 				&.selected
@@ -235,13 +229,15 @@
 	margin: 0 0 10px 0
 	.tag-title
 		float: left
-		font-weight: 600
 		margin: 6px 4px 0 0
-		font-size: 12px
+		font-size: 14px
 		vertical-align: middle
 	.tag-box
 		display: inline-block
 		vertical-align: middle
+		font-size: 14px
+		span
+			margin-left: 4px
 		.tag-iem
 			background: #FBF2D3
 			border: 1px solid #CCC
@@ -285,18 +281,22 @@
 	font-size: 12px
 	padding: 5px 10px
 	margin: 0 0 15px 0
-
+.blue
+	color: #009cef
+.loc
+	background-image: url(/assets/loc.png)
+	background-repeat: no-repeat
+	padding-top: 4px
+	padding-left: 15px
 .result-list
 	.result-cont
-		@include border-radius(4px)
 		display: block
 		font-size: 12px
-		margin: 0 0 15px 0
+		margin: 15px 0 0 0
 		position: relative
 		text-decoration: none
-		border: 2px solid #eee
-		border-bottom: 2px solid #ddd
-		height: 240px
+		border: 1px solid #eee
+		height: 210px
 		background: #eee
 		.supplier
 			color: #666
@@ -310,10 +310,8 @@
 		.info
 			display: block
 			margin: 0
-			width: 535px
-			height: 198px
-			padding: 10px 10px 6px
-			@include border-radius(4px)
+			width: 100%
+			height: 100%
 			background: #fff
 			overflow: hidden
 		.title
@@ -323,9 +321,6 @@
 				cursor: pointer
 				font-size: 14px
 				line-height: 1.1em
-				color: #333
-				font-weight: bold
-				text-decoration: underline
 		.review-block
 			strong
 				color: #666
@@ -343,47 +338,70 @@
 					padding-left: 18px
 					color: #333
 					line-height: 18px
-					text-decoration: underline
 		.graphic-info
-			padding-top: 5px
 			.pic
 				display: block
-				width: 150px
-				height: 100px
+				width: 285px
+				height: 210px
 				position: relative
 				float: left
-				@include border-radius(4px)
 				img
 					display: block
 					width: 100%
 					height: 100%
-					@include border-radius(4px)
 				.bestseller
 					position: absolute
 					left: 0px
 					bottom: 0px
 					border-top-right-radius: 4px
 			.text-block
-				margin-left: 160px
+				margin-left: 300px
+				h3.title
+					padding-top: 20px
 				.text
-					color: #3A3A32
-					font-size: 12px
+					color: #adadad
+					font-size: 13px
+					margin-top: 20px
+					float: left
 					line-height: 120%
 				.more
 					color: #333
-					text-decoration: underline
 					margin-top: 2px
+				.line_bot
+					float: left
+					color: #ff9500
+					font-size: 16px
+					margin-top: 20px
+					span
+						float: left
+						margin-top: 15px
+					.price_bot
+						font-size: 26px
+						float: left
+						margin-top: 5px
+					._add_travel_favorite
+						margin-left: 150px
+					.query_btn
+						padding: 8px 10px 8px 10px
+						float: left
+						margin-left: 10px
+						background: #009cef
+						color: white
+						font-size: 13px
 				.other-info
-					margin-top: 18px
+					margin-top: 5px
+					float: left
+					width: 95%
+					padding-bottom: 10px
+					border-bottom: 1px solid #ccc
 					li
 						font-size: 12px
-						margin: 5px 0
+						margin: 5px 5px 0 0
+						float: left
+						color: #adadad
 						display: block
-						strong
-							font-weight: bold
 						span
 						p
-							font-weight: bold
 							color: #7EC440
 		.pre-book
 			bottom: 2px

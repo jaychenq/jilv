@@ -1,142 +1,197 @@
 - @page_title = '产品列表'
 - @page_breadcrumb = { 产品: nil }
 - where = params[:where] || {}
-
-.container
-  = render 'layouts/application/breadcrumb'
+.home
+  a href=""
+      span.home-pic style="display: block; background-image: url('/assets/jilv/index_back.jpg');"
+.container style="margin-top: 30px;"
   .search-page
-    .page-title
-      h1 #{@products.count} 个产品
     .side.lfloat
       .row-200.lfloat.product-side
-        - if !where[:continent_id] && !where[:country_id] && !where[:city_id]
+        - if true
           .sub-box
-            .title
-              h3 大洲
+            .title.new_c_title
+              h3 
+                =image_tag "loc.png", alt: ''
+                span 目的地
+                a
+                  =image_tag "arrow_0.png", alt: ''
             .cont
-              .simple-list
-                ul
-                  - @products.paginate(page: 1, per_page: 10000).group(:continent_id).select('continent_id, COUNT(*) AS c').order('c DESC').joins(:continent).each do |product|
-                    li
-                      a href=url_for(params.deep_merge(where: { continent_id: product.continent_id }))
-                        span.name = product.continent.name
-                        em.count （#{product.c}）
-        - if where[:continent_id] && !where[:country_id] && !where[:city_id]
+              .simple-list style="padding:0px;"
+                ul.sf-menu
+                  li.country_hover style="padding-top: 5px;border-bottom: 1px solid #ccc"
+                      a
+                        span.name style="margin-left:20px;" 国家
+                      a style="color:#009cef;margin-left:15px;"
+                        span.current_country_name = Travel::Country.find(params[:where][:country_id]).name if params[:where]&&params[:where][:country_id]
+                      span
+                        =image_tag "arrow_1.png", alt: '',:style=>"float:right"
+                      div class="country_choose" style="z-index:9999;border:2px solid #009cef;position:absolute;left:200px;top:30px;background: #fff;display:none;"
+                        div style="margin-top:20px;border-bottom: 1px solid #ccc;margin-left: 20px;margin-right: 20px;padding-bottom:5px;" 国家
+                        div 
+                          table
+                            tr
+                              - @products_all.paginate(page: 1, per_page: 10000).group(:continent_id).select('continent_id, COUNT(*) AS c').order('c DESC').joins(:continent).each do |product|
+                                td style="padding-top:10px;padding-right:20px;vertical-align:top;"
+                                  ul style="display:block;"
+                                    li style="font-weight:bold;color:#676767;padding-bottom:10px;" = product.continent.name
+                                    - Travel::Product.where(:continent_id=>product.continent.id,:published=>1).group(:country_id).select('country_id, COUNT(*) AS c').order('c DESC').joins(:country).each do |product1|
+                                      li style="font-weight:normal;color:#818181;" 
+                                        a style="line-height:22px;" href=url_for(where: { country_id: product1.country_id })
+                                          span.name style="font-size: 13px;" = product1.country.name
+                  li.city_hover style="padding-top: 5px;"
+                      a
+                        span.name style="margin-left:20px;" 城市
+                      a style="color:#009cef;margin-left:15px;"
+                        span.current_country_name = Travel::City.find(params[:where][:city_id]).name if params[:where]&&params[:where][:city_id]
+                      span
+                        =image_tag "arrow_1.png", alt: '',:style=>"float:right"
+                      -if params[:where]&&params[:where][:country_id]
+                        div class="city_choose" style="z-index:9999;border:2px solid #009cef;position:absolute;left:200px;top:60px;background: #fff;display:none;"
+                          div style="margin-top:20px;border-bottom: 1px solid #ccc;margin-left: 20px;margin-right: 20px;padding-bottom:5px;" = Travel::Country.find(params[:where][:country_id]).name
+                          div 
+                            table
+                              tr
+                                - @products_for_city.paginate(page: 1, per_page: 10000).group(:city_id).select('city_id, COUNT(*) AS c').order('c DESC').joins(:city).each do |product|
+                                  td style="padding-top:10px;padding-right:20px;vertical-align:top;"
+                                    ul style="display:block;"
+                                      li style="font-weight:normal;color:#818181;" 
+                                          a style="line-height:22px;" href=url_for(params.deep_merge(where: { city_id: product.city_id }))
+                                            span.name style="font-size: 13px;" = product.city.name
           .sub-box
-            .title
-              h3 国家
-            .cont
-              .simple-list
-                ul
-                  - @products.paginate(page: 1, per_page: 10000).group(:country_id).select('country_id, COUNT(*) AS c').order('c DESC').joins(:country).each do |product|
-                    li
-                      a href=url_for(params.deep_merge(where: { country_id: product.country_id }))
-                        span.name = product.country.name
-                        em.count （#{product.c}）
-        - if where[:country_id] && !where[:city_id]
-          .sub-box
-            .title
-              h3 城市
-            .cont
-              .simple-list
-                ul
-                  - @products.paginate(page: 1, per_page: 10000).group(:city_id).select('city_id, COUNT(*) AS c').order('c DESC').joins(:city).each do |product|
-                    li
-                      a href=url_for(params.deep_merge(where: { city_id: product.city_id }))
-                        span.name = product.city.name
-                        em.count （#{product.c}）
-        - if !where[:category1_id] && !where[:category2_id]
-          .sub-box
-            .title
-              h3 活动
+            .title.new_c_title
+              =image_tag "flag.png", alt: ''
+              h3 
+                span 主题分类
+                a
+                  =image_tag "arrow_0.png", alt: ''
             .cont
               .simple-list
                 ul
                   - @products.paginate(page: 1, per_page: 10000).group(:category1_id).select('category1_id, COUNT(*) AS c').order('c DESC').joins(:category1).each do |product|
-                    li
-                      a href=url_for(params.deep_merge(where: { category1_id: product.category1_id }))
+                    li.cate_hover hid="#{product.category1_id}" style="padding-top: 5px; border-top: 1px solid #ccc"
+                      a href=url_for(params.deep_merge(where:{ category1_id: product.category1_id }))
                         span.name = product.category1.name
                         em.count （#{product.c}）
-        - if where[:category1_id] && !where[:category2_id]
-          .sub-box
-            .title
-              h3 活动
-            .cont
-              .simple-list
-                ul
-                  - @products.paginate(page: 1, per_page: 10000).group(:category2_id).select('category2_id, COUNT(*) AS c').order('c DESC').joins(:category2).each do |product|
-                    li
-                      a href=url_for(params.deep_merge(where: { category2_id: product.category2_id }))
-                        span.name = product.category2.name
-                        em.count （#{product.c}）
+                      span
+                        =image_tag "arrow_1.png", alt: '',:class=>"img_#{product.category1_id}",:style=>"float:right"
+                    ul.child_li class="child_cate_#{product.category1_id}" hid="#{product.category1_id}" style="border-top: 1px solid #ccc;"
+                        - @products.where(:category1_id=>product.category1_id).paginate(page: 1, per_page: 10000).group(:category2_id).select('category2_id, COUNT(*) AS c').order('c DESC').joins(:category2).each do |product2|
+                              li class="child_li_hover" hid="#{product.category1_id}" style="font-size: 12px; line-height:24px;height:24px;margin-left:20px;"
+                                a href=url_for(params.deep_merge(where:{category1_id: product.category1_id,category2_id: product2.category2_id }))
+                                  = product2.category2.name
         - if !where[:language_id]
           .sub-box
-            .title
-              h3 语言
+            .title.new_c_title
+              =image_tag "lang.png", alt: ''
+              h3 
+                span 语言
+                a
+                  =image_tag "arrow_0.png", alt: ''
             .cont
               .simple-list
                 ul
                   - @products.paginate(page: 1, per_page: 10000).joins(:languages).group('travel_speakings.language_id').select('language_id, COUNT(*) AS c').order('c DESC').each do |product|
                     - next if !language = Travel::Language.find_by_id(product.language_id)
-                    li
+                    li style="padding-top: 5px; border-top: 1px solid #ccc"
                       a href=url_for(params.deep_merge(where: { language_id: product.language_id }))
                         = image_tag language.icon, alt: '' if language.icon
                         | &nbsp;
                         span.name = language.name
                         em.count （#{product.c}）
+                      span
+                        =image_tag "arrow_1.png", alt: '',:style=>"float:right"
     .main.rfloat
       - if where.present?
         .search-tag
-          h3.tag-title 条件：
-          .tag-box
-            - %w[merchant continent country city category1 category2].each do |field|
+          h3.tag-title #{@products.count}个产品
+          .tag-box style="padding-top: 5px;padding-left:15px;background-image: url(/assets/loc.png);background-repeat: no-repeat;"
+            - %w[merchant continent country city].each do |field|
               - if where.send(:[], "#{field}_id")
-                a.tag-iem href=(p = params.deep_dup; p[:where].delete("#{field}_id"); p.delete(:where) if p[:where].blank?; url_for(p))
-                  = @products.first.try(field).try(:name)
-                  em x
+                -if field == "city"
+                  span >
+                = @products.first.try(field).try(:name)
+          .tag-box style="padding-top: 5px;padding-left:15px;margin-left:20px;background-image: url(/assets/flag.png);background-repeat: no-repeat;"
+            - %w[category1 category2].each do |field|
+              - if where.send(:[], "#{field}_id")
+                -if field == "category2"
+                  span >
+                = @products.first.try(field).try(:name)
             - if where[:language_id]
               a.tag-iem href=(p = params.deep_dup; p[:where].delete(:language_id); p.delete(:where) if p[:where].blank?; url_for(p))
                 = Travel::Language.find_by_id(where[:language_id]).try(:name)
-                em x
-          a.remove-all href=travel_products_path 全部清除
       .search-result
         .result-list
           - @products.joins(:cover, :city, :category2).each do |product|
             .result-cont
               .info
-                h3.title
-                  a href=url_for(product) style="font-size: 20px;" = product.name
-                p.review-block
-                  span.wishlist-btn
-                    a.add-wishlist._add_travel_favorite href="#" data={ product_id: product.id } 添加到收藏
                 .graphic-info
                   a.pic href=url_for(product)
                     = image_tag "#{product.cover.try(:file)}.640x360.jpg", alt: ''
                   .text-block
-                    p.text = product.description[0..99]
-                    a.more href=url_for(product) 查看详情 »
+                    h3.title
+                      a href=url_for(product) style="font-size: 16px;color: #2e2e2e;" = product.name
                     ul.other-info
                       li
-                        strong 城市：
-                        span = product.city.try(:name)
+                        span.loc.blue = product.city.try(:name)
                       li
                         strong 活动：
-                        span = product.category2.try(:name)
+                        span.blue = product.category2.try(:name)
                       li
                         strong 语言：
                         span
                           - product.languages.each do |language|
                             =' language.name
-              .supplier
-                em 商家：
-                span = product.merchant.try(:name)
-              .pre-book
-                .pricing
-                  strong
-                    em 低至
-                    | ￥#{product.lowest_price}.00
-                  span 每人
-                .book-btn
-                  a.button.btn-blue href=url_for(product) 查看详情
+                    p.text #{product.description[0..99]}...
+                    div.line_bot
+                      span 低至
+                      span.price_bot ￥#{product.lowest_price}.00
+                      span 
+                        | /人
+                      span style="margin-top: 5px;"
+                        a._add_travel_favorite href="#" data={ product_id: product.id }
+                          = image_tag "collect.png", alt: ''
+                      span style="margin-top: 10px;"
+                        a.query_btn href=url_for(product) 查看详情
+
+
+
       .pageber
         = will_paginate(@products)
+  script
+    | $(".child_li").hide();
+      $(".country_hover").hover(function() {
+        $(".country_choose").show();
+      }, function(){
+        $(".country_choose").hide();
+      });
+      $(".city_hover").hover(function() {
+        $(".city_choose").show();
+      }, function(){
+        $(".city_choose").hide();
+      });
+      $(".child_li_hover").hover(function() {
+        var hid = $(this).attr("hid");
+        var childs = $(".child_li");
+        for(var i=0;i<childs.length;i++)
+        {
+          var rid = $(childs[i]).attr("hid");
+          if(hid != rid)
+          {
+            $(".img_"+rid).attr("src","/assets/arrow_1.png");
+            $(childs[i]).hide(500);
+          }
+        }
+        $(".child_cate_"+hid).show(500);
+      }, function(){
+        //var hid = $(this).attr("hid");
+        //$(".child_cate_"+hid).hide(500);
+      });
+      $(".cate_hover").hover(function() {
+        var hid = $(this).attr("hid");
+        $(".img_"+hid).attr("src","/assets/arrow_2.png");
+        $(".child_cate_"+hid).show(500);
+      }, function(){
+        //var hid = $(this).attr("hid");
+        //$(".child_cate_"+hid).hide(500);
+      });
