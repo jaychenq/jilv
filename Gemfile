@@ -28,6 +28,8 @@ gem 'spring', group: :development
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
+gem 'ckeditor_rails'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

@@ -1,6 +1,6 @@
 class About::Page < ActiveRecord::Base
-  enum position: %i[home merchant]
-  enum template: %i[home_1 merchant_1]
+  enum position: %i[home merchant cpage]
+  enum template: %i[home_1 merchant_1 cpage_1]
 
   belongs_to :creator, class_name: Admin::User
   belongs_to :updater, class_name: Admin::User
@@ -11,7 +11,7 @@ class About::Page < ActiveRecord::Base
   default_scope { where(active: true) }
 
   cattr_accessor :admin_fields
-  self.admin_fields = %w[name position title keywords description body template data]
+  self.admin_fields = %w[name position title keywords description body desc template data]
   
   def deletable?
     !published?

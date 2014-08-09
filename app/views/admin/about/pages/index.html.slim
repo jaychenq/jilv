@@ -26,12 +26,12 @@ table.widefat
       tr
         td = page.id
         td = link_to_admin page
-        td = model.positions.keys.map { |position| [position, t("activerecord.enums.#{model.name.underscore}.position.#{position}")] }.to_h[page.position]
+        td = Hash[model.positions.keys.map { |position| [position, t("activerecord.enums.#{model.name.underscore}.position.#{position}")] }][page.position]
         td = page.title
         td = number_to_human_size page.keywords.to_s.size if page.keywords.present?
         td = number_to_human_size page.description.to_s.size if page.description.present?
         td = number_to_human_size page.body.to_s.size if page.body.present?
-        td = model.templates.keys.map { |template| [template, t("activerecord.enums.#{model.name.underscore}.template.#{template}")] }.to_h[page.template]
+        td = Hash[model.templates.keys.map { |template| [template, t("activerecord.enums.#{model.name.underscore}.template.#{template}")] }][page.template]
         td = number_to_human_size page.data.to_s.size if page.data.present?
         td = datetime_tag page.created_at
         td = datetime_tag page.updated_at

@@ -31,7 +31,7 @@ h2
         th = f.label :position
         td
           - if show
-            = page.class.positions.keys.map { |position| [position, t("activerecord.enums.#{model.name.underscore}.position.#{position}")] }.to_h[page.position]
+            = Hash[page.class.positions.keys.map { |position| [position, t("activerecord.enums.#{model.name.underscore}.position.#{position}")] }][page.position]
           - else
             = render 'shared/enum_radio', form: f, field: 'position'
             = f.error_message_on :position
@@ -68,10 +68,18 @@ h2
             = f.text_area :body, class: '_not_editor'
             = f.error_message_on :body
       tr
+        th = f.label :desc
+        td
+          - if show
+            = text_format page.desc
+          - else
+            = f.text_area :desc, class: 'ckeditor'
+            = f.error_message_on :desc
+      tr
         th = f.label :template
         td
           - if show
-            = page.class.templates.keys.map { |template| [template, t("activerecord.enums.#{model.name.underscore}.template.#{template}")] }.to_h[page.template]
+            = Hash[page.class.templates.keys.map { |template| [template, t("activerecord.enums.#{model.name.underscore}.template.#{template}")] }][page.template]
           - else
             = render 'shared/enum_radio', form: f, field: 'template'
             = f.error_message_on :template
@@ -98,3 +106,9 @@ h2
           td = link_to_admin page.updater
   - unless show
     .submit = f.submit
+script
+  |  $(document).ready(function(){
+        $('.ckeditor').ckeditor({
+          // optional config
+        });
+      });

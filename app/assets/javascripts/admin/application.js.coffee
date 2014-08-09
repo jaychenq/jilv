@@ -5,3 +5,4 @@
 #= require facebox/facebox
 #= require shared/analytics
 #= require_tree ./application
+#= require ckeditor-jquery
