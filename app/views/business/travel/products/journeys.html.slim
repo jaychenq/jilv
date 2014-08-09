@@ -30,7 +30,8 @@
             td = journey.market_price
             td = journey.lowest_price
             td
-              =' link_to '修改', [:edit, :business, journey]
+              span = link_to '修改', [:edit, :business, journey]
+              span style="margin-left: 10px;" = link_to '删除', [:business,journey], method: 'delete'
         tr
           td colspan="999" = link_to '+ 增加价格类型', new_business_travel_journey_path('travel_journey[product_id]' => @product.id), style: 'display: inline-block; border-radius: 3px; background-color: #00AEEF; color: white; padding: 7px 12px; text-decoration: none;'
       form action=complete_business_travel_product_path(@product) method="get"

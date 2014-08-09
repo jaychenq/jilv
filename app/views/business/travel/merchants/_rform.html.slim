@@ -110,7 +110,7 @@
                   .newtextfield
                     = f.text_field :website
                     = f.error_message_on :website
-              li.item
+              li.item.factory_part
                 .item_control
                   label.control_label
                     | 执照上传
@@ -156,10 +156,12 @@
               $("input[name='travel_merchant[entity]']").on('click', -> true).on 'mousedown', ->
                  if $(this).val()=="individual"
                     $(".factory_part").hide()
+                    $(".travel_merchant_lisense").removeClass("validate[required]")
                     $("#travel_merchant_company").removeClass("validate[required]")
                  else
                     $(".factory_part").show()
                     $("#travel_merchant_company").addClass("validate[required]")
+                    $(".travel_merchant_lisense").addClass("validate[required]")
           fieldset.fms_block
             ul
               li.item

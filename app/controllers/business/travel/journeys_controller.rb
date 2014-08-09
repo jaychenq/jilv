@@ -37,6 +37,16 @@ class Business::Travel::JourneysController < Business::Travel::ApplicationContro
     redirect_to [:journeys, :business, @journey.product]
   end
 
+  def destroy
+    @journey = model.f(id) if id
+    product = @journey.product
+    @journey.inventories.each do |invent|
+      invent.destroy
+    end
+    @journey.destroy
+    redirect_to [:journeys, :business, product]
+  end
+
 private
 
   def journey

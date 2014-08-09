@@ -85,7 +85,7 @@ class Account::UsersController < ApplicationController
         params.delete(:redirect)
       end
 
-      if params[:redirect] == "http://www.jilvtrip.com/account/sessions/new"
+      if params[:redirect] == "http://www.jilvtrip.com/account/users/new"
         params.delete(:redirect)
       end 
 
