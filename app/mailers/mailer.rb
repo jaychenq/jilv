@@ -1,5 +1,5 @@
 class Mailer < ActionMailer::Base
-  default from: %{"极旅" <#{Rails.application.config.action_mailer.smtp_settings[:from]}>}, content_type: 'text/html'
+  default from: %{"环旅" <#{Rails.application.config.action_mailer.smtp_settings[:from]}>}, content_type: 'text/html'
 
   def standard_mail(options = {})
     mail(options) do |format|

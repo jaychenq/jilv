@@ -23,7 +23,7 @@ class Travel::BookingsController < Travel::ApplicationController
     if ok
       @booking.inventory.preserved_number += @booking.adult_number.to_i + @booking.child_number.to_i
       @booking.inventory.save
-      # Mailer.mail(to: @booking.merchant.user.email, subject: "[极旅]用户向你预订了#{@booking.product.name}，请及时确认", body: %{<a href="#{url_for([:business, Travel::Booking])}">#{url_for([:business, Travel::Booking])}</a>})
+      # Mailer.mail(to: @booking.merchant.user.email, subject: "[环旅]用户向你预订了#{@booking.product.name}，请及时确认", body: %{<a href="#{url_for([:business, Travel::Booking])}">#{url_for([:business, Travel::Booking])}</a>})
       redirect_to @booking
     else
       render :new

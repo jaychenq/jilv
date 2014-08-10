@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: %{"极旅" <#{Rails.application.config.action_mailer.smtp_settings[:from]}>}, content_type: 'text/html'
+  default from: %{"环旅" <#{Rails.application.config.action_mailer.smtp_settings[:from]}>}, content_type: 'text/html'
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

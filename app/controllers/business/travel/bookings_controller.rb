@@ -8,7 +8,7 @@ class Business::Travel::BookingsController < Business::Travel::ApplicationContro
   def accept
     @booking.confirmation = true
     @booking.save
-    Mailer.mail(to: @booking.user.email, subject: "[极旅]你的预订#{@booking.product.try(:name)}已确认，请及时支付", body: %{<a href="#{url_for(@booking)}">#{url_for(@booking)}</a>})
+    Mailer.mail(to: @booking.user.email, subject: "[环旅]你的预订#{@booking.product.try(:name)}已确认，请及时支付", body: %{<a href="#{url_for(@booking)}">#{url_for(@booking)}</a>})
     redirect_to :back
     
   end
@@ -16,7 +16,7 @@ class Business::Travel::BookingsController < Business::Travel::ApplicationContro
   def reject
     @booking.confirmation = false
     @booking.save
-    Mailer.mail(to: @booking.user.email, subject: "[极旅]很抱歉，你的预订#{@booking.product.try(:name)}已售完", body: %{<a href="#{url_for(@booking)}">#{url_for(@booking)}</a>})
+    Mailer.mail(to: @booking.user.email, subject: "[环旅]很抱歉，你的预订#{@booking.product.try(:name)}已售完", body: %{<a href="#{url_for(@booking)}">#{url_for(@booking)}</a>})
     redirect_to :back
   end
 
