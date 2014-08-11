@@ -71,10 +71,11 @@
                       tr
                         td colspan="3"
                           div.cal_show jid="#{journey.id}"
-                      tr
-                        td style="width: 65px;" 开始时间：
-                        td = select_tag 'travel_booking[start_time]',!inventory ? nil : options_for_select((journey.start_time.split(",")).map { |i| [i, i] }), id: "_travel_booking_start_time_#{journey.id}"
-                        td
+                      -if !journey.start_time.blank?
+                        tr
+                          td style="width: 65px;" 开始时间：
+                          td = select_tag 'travel_booking[start_time]',!inventory ? nil : options_for_select((journey.start_time.split(",")).map { |i| [i, i] }), id: "_travel_booking_start_time_#{journey.id}"
+                          td
                       tr
                         td 成人：
                         td = text_field_tag 'travel_booking[adult_number]',"",placeholder: "数量",:class=>"short_num price"
@@ -120,6 +121,26 @@
                     inline: true,
                     dateFormat: "yy-mm-dd",
                     showOtherMonths: true,
+                    beforeShowDay:function(date){
+                      var year = date.getFullYear();
+                      var month = date.getMonth() + 1;
+                      if(month<10)
+                      {
+                        month = "0"+month;
+                      }
+                      var day = date.getDate();
+                      var date_str = year + "-" + month + "-" + day;
+                      var id = $(this).attr("jid");
+                      var scores = $("._inventories_"+id).data("inventories");
+                      for(var i=0;i<scores.length;i++)
+                      {
+                        if(scores[i]["started_on"] == date_str)
+                        {
+                          return [true,""];
+                        }
+                      }
+                      return [false,"ui-state-disabled"];
+                    },
                     onSelect: function(text,inst){
                       $(".tipsy").remove();
                       var id = $(this).attr("jid");
