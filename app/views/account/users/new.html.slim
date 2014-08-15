@@ -12,6 +12,14 @@
           = f.text_field :name, class: 'text validate[required,account_user[name],custom[email],ajax[ajaxNameCall]]',placeholder: '请输入电子邮件'
           = f.error_message_on :name
         .field
+          label.login-label
+            = f.radio_button :account_type, '0',:class=>"validate[required] radio"
+            label 供应商
+          label.login-label
+            = f.radio_button :account_type, '1',:class=>"validate[required] radio"
+            label 分销商
+          = f.error_message_on :name
+        .field
           = f.label :password, '密码', class: 'login-label'
           = f.password_field :password, class: 'text validate[required,account_user[password],minSize[6]]',placeholder: '请输入6-18位密码',id: 'password'
           = f.error_message_on :password

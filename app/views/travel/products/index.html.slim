@@ -21,13 +21,13 @@
                 ul.sf-menu
                   li.country_hover style="padding-top: 5px;border-bottom: 1px solid #ccc"
                       a
-                        span.name style="margin-left:20px;" 国家
+                        span.name style="margin-left:20px;" 国家/地区
                       a style="color:#009cef;margin-left:15px;"
                         span.current_country_name = Travel::Country.find(params[:where][:country_id]).name if params[:where]&&params[:where][:country_id]
                       span
                         =image_tag "arrow_1.png", alt: '',:style=>"float:right"
                       div class="country_choose" style="z-index:9999;border:2px solid #009cef;position:absolute;left:200px;top:30px;background: #fff;display:none;"
-                        div style="margin-top:20px;border-bottom: 1px solid #ccc;margin-left: 20px;margin-right: 20px;padding-bottom:5px;" 国家
+                        div style="margin-top:20px;border-bottom: 1px solid #ccc;margin-left: 20px;margin-right: 20px;padding-bottom:5px;" 国家/地区
                         div 
                           table
                             tr

@@ -1,5 +1,8 @@
 .row-960.profile-form
-      h3.title_h 注册成为供应商
+      -if @current_user.account_type == 0
+        h3.title_h 注册成为供应商
+      -else
+        h3.title_h 注册成为分销商
       .formbody
         = form_for @merchant, url: [:business, @merchant], method: 'post', html: { multipart: true } do |f|
           h4.page-h4 1、商家名称

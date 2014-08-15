@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'about/pages#show', id: 'home'
-
+  # root 'about/pages#show', id: 'home'
+  root 'account/sessions#new'
   concern :deletable do
     member do
       get :delete

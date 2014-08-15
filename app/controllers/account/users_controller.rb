@@ -72,7 +72,7 @@ class Account::UsersController < ApplicationController
 
   def create
     @user = Account::User.new
-    @user.attributes = params[:account_user].permit(*%w[name gender avatar password terms_of_service])
+    @user.attributes = params[:account_user].permit(*%w[name account_type gender avatar password terms_of_service])
     @user.save
 
     if @user.valid?
@@ -80,21 +80,7 @@ class Account::UsersController < ApplicationController
       session[:session_id] = account_session.id
       Mailer.mail(to: @user.email, subject: '欢迎成为环旅用户！', body: "欢迎欢迎<br />from环旅团队")
 
-
-      if params[:redirect] == "http://www.jilvtrip.com/account/sessions/new"
-        params.delete(:redirect)
-      end
-
-      if params[:redirect] == "http://www.jilvtrip.com/account/users/new"
-        params.delete(:redirect)
-      end 
-
-      if params[:redirect] == "http://www.jilvtrip.com/about/pages/merchant"
-        redirect_to "http://www.jilvtrip.com/business/travel/merchants/new"
-        return
-      end 
-
-      redirect_to params[:redirect].presence || :root
+      redirect_to new_business_travel_merchant_path
     else
       render :new
     end

@@ -20,12 +20,8 @@ class Account::SessionsController < ApplicationController
       @session.attributes = { user_id: @user.id, ip_address: request.remote_ip, user_agent: request.env['HTTP_USER_AGENT'], referrer: request.referrer }
       @session.save
       session[:session_id] = @session.id
-
-      if params[:redirect].index("/account/users/new") != -1
-         params.delete(:redirect)
-      end
       
-      redirect_to params[:redirect].presence || :root
+      redirect_to new_business_travel_merchant_path
     else
       @msg = "登录失败，请确认账号和密码是正确的"
       render 'new',:collection => @msg

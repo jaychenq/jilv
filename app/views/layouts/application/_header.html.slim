@@ -2,6 +2,9 @@
   .fixed_header.fixed-border
     .container
       ul.top_bar
+        li
+          a href="/travel/products"
+            span 产品列表
         - if @current_user
           - if !@current_user.try(:merchant)
             li
@@ -96,3 +99,4 @@
       .mheader
         a.logo-gyg href="/"
           h1 环旅°
+        span style="margin-top:25px;margin-left:20px;float:left;" 境外个性化旅游分销平台
