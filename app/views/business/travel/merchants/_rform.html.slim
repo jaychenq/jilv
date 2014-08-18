@@ -76,7 +76,7 @@
                     | 城市
                 .control_input
                   .new_selectfield
-                    = f.collection_select :continent_id, Travel::Continent.order('sequence ASC, name ASC'), :id, :name,{include_blank: true},{:class=>"validate[required]"}
+                    = f.collection_select :continent_id, Travel::Continent.where(published: true).order('sequence ASC, name ASC'), :id, :name,{include_blank: true},{:class=>"validate[required]"}
                   .new_selectfield
                     = f.collection_select :country_id, @merchant.country ? @merchant.country.continent.countries.order('sequence ASC, name ASC') : [], :id, :name, {include_blank: true},{:class=>"validate[required]"}
                   .new_selectfield
