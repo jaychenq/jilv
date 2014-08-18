@@ -103,7 +103,7 @@
                   - else
                     .control_input
                         .newtextfield
-                          = f.collection_select :continent_id, Travel::Continent.order('sequence ASC, name ASC'), :id, :name,{include_blank: true},{:class=>"validate[required]"}
+                          = f.collection_select :continent_id, Travel::Continent.where(published: true).order('sequence ASC, name ASC'), :id, :name,{include_blank: true},{:class=>"validate[required]"}
                         .newtextfield
                           = f.collection_select :country_id, Travel::Country.order('sequence ASC, name ASC'), :id, :name,{include_blank: true},{:class=>"validate[required]"}
                         .newtextfield
