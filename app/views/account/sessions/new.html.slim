@@ -1,32 +1,35 @@
+style
+  |  .container_login{background:url("/assets/slider-bg.png");filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')"; -moz-background-size:100% 100%;background-size:100% 100%; height:450px;}
 - @page_title = '登录'
 - @page_breadcrumb = { 登录: nil }
 
-.container
+.container_login
   .new-user
     .user-content.login-box
-      h2 请输入账号和密码，开启您的尊享之旅。
-      - if @msg
-        .err_text = @msg
-      = form_for @session, method: 'post', html: { class: 'user-form' } do |f|
-        = hidden_field_tag :redirect, params[:redirect] || request.referrer
-        .field
-          = f.label :name, '账号', class: 'login-label'
-          = f.text_field :name, class: 'text validate[required,account_session[name]]',placeholder: '请输入您的邮箱'
-          = f.error_message_on :name
-        .field
-          = f.label :password, '密码', class: 'login-label'
-          a.forgot-password href="/account/users/forget" 忘记密码？
-          = f.password_field :password, class: 'text validate[required,account_session[password]]',placeholder: '请输入您的密码'
-          = f.error_message_on :password
-        .field.field-checkbox
-          label
-            input.checkbox type="checkbox" name="" value="1" checked="checked"
-            | 记住账号
-        .field-button
-          input type="submit" value=" 登 录 "
-      .back-login
-        .back-link
-          span 没有账号?
-          a href="/account/users/new" 现在注册
-      script
-        | $("#new_account_session").validationEngine()
+      div.login_content
+        h2 请输入账号和密码，开启您的尊享之旅。
+        - if @msg
+          .err_text = @msg
+        = form_for @session, method: 'post', html: { class: 'user-form' } do |f|
+          = hidden_field_tag :redirect, params[:redirect] || request.referrer
+          .field
+            = f.label :name, '账号', class: 'login-label'
+            = f.text_field :name, class: 'text validate[required,account_session[name]]',placeholder: '请输入您的邮箱'
+            = f.error_message_on :name
+          .field
+            = f.label :password, '密码', class: 'login-label'
+            a.forgot-password href="/account/users/forget" 忘记密码？
+            = f.password_field :password, class: 'text validate[required,account_session[password]]',placeholder: '请输入您的密码'
+            = f.error_message_on :password
+          .field.field-checkbox
+            label
+              input.checkbox type="checkbox" name="" value="1" checked="checked"
+              | 记住账号
+          .field-button
+            input type="submit" value=" 登 录 "
+        .back-login
+          .back-link
+            span 没有账号?
+            a href="/account/users/new" 现在注册
+        script
+          | $("#new_account_session").validationEngine()

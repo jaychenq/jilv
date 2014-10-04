@@ -3,7 +3,7 @@
 
 .container
   .new-user
-    .user-content
+    .user-content style="margin-left:0px"
       h2 注册成功后，将为您开启尊享之旅。
       = form_for @user, method: 'post', html: { class: 'user-form' } do |f|
         = hidden_field_tag :redirect, params[:redirect] || request.referrer
