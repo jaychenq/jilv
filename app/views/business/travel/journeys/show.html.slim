@@ -193,10 +193,15 @@
                                 margin-top: 2px
                                 font-size: 13px
                         div.model_part style="background-color: #fff6c3; padding: 20px; font-size: 14px;"                          
-                          | &nbsp;&nbsp;成人价：
+                          | &nbsp;&nbsp;成人价(结算)：
                           = text_field_tag 'adult_price', nil, placeholder: '', size: 6, style: "width:70px; border: 1px solid silver;"
-                          | &nbsp;&nbsp;儿童价：
+                          | &nbsp;&nbsp;(市场)：
+                          = text_field_tag 'adult_mkt_price', nil, placeholder: '', size: 6, style: "width:70px; border: 1px solid silver;"
+                          | <br>
+                          | &nbsp;&nbsp;儿童价(结算)：
                           = text_field_tag 'child_price', nil, placeholder: '', size: 6, style: "width:70px;border: 1px solid silver;"
+                          | &nbsp;&nbsp;(市场)：
+                          = text_field_tag 'child_mkt_price', nil, placeholder: '', size: 6, style: "width:70px;border: 1px solid silver;"
                           = f.select "child_level", options_for_select([['8岁以下','8'],['9岁以下','9'],['10岁以下','10'],['11岁以下','11'],['12岁以下','12'],['13岁以下','13']], journey.child_level)
                           | &nbsp;&nbsp;库存:
                           = text_field_tag 'total_number', nil, size: 6, style: "width:70px;border: 1px solid silver;"
@@ -214,7 +219,9 @@
                                     $(".model_part").show()
                                     $(".price").show()
                                     $(".c_adult_p").hide();
+                                    $(".c_adult_mkt_p").hide();
                                     $(".c_child_p").hide();
+                                    $(".c_child_mkt_p").hide();
                                     $(".c_total_n").hide();
                                   if($(this).attr("tab")=="2")
                                     $(".check_list").hide()
@@ -224,7 +231,9 @@
                                     $(".model_part").show()
                                     $(".price").show()
                                     $(".c_adult_p").hide();
+                                    $(".c_adult_mkt_p").hide();
                                     $(".c_child_p").hide();
+                                    $(".c_child_mkt_p").hide();
                                     $(".c_total_n").hide();
                                   if($(this).attr("tab")=="3")
                                     $(".check_list").hide()
@@ -232,7 +241,9 @@
                                     $(".start_end_list").hide()
                                     $(".price").hide()
                                     $(".c_adult_p").show();
+                                    $(".c_adult_mkt_p").show();
                                     $(".c_child_p").show();
+                                    $(".c_child_mkt_p").show();
                                     $(".c_total_n").show();
                                   $(".tab_list li").each ->
                                     $(this).removeClass("com_t")
@@ -241,7 +252,9 @@
                                   $(this).removeClass("com_t")
                                   $(this).addClass("current_t")
                               $(".c_adult_p").hide();
+                              $(".c_adult_mkt_p").hide();
                               $(".c_child_p").hide();
+                              $(".c_child_mkt_p").hide();
                               $(".c_total_n").hide();
                               $(".c_adult_p").on 'keyup', ->
                                 new_value = $(this).val()
@@ -268,13 +281,17 @@
                                 $(this).hide()
                                 $(this).parent().parent().find(".comfirn_btn").show()
                                 $(this).parent().parent().find(".c_adult_p").show()
+                                $(this).parent().parent().find(".c_adult_mkt_p").show()
                                 $(this).parent().parent().find(".c_child_p").show()
+                                $(this).parent().parent().find(".c_child_mkt_p").show()
                                 $(this).parent().parent().find(".c_total_n").show()
                               $(".comfirn_btn").on('click', -> false).on 'mousedown', ->
                                 $(this).hide()
                                 price = $(this).parent().find(".c_adult_p").val()
                                 $(this).parent().find(".c_adult_p").hide()
+                                $(this).parent().find(".c_adult_mkt_p").hide()
                                 $(this).parent().find(".c_child_p").hide()
+                                $(this).parent().find(".c_child_mkt_p").hide()
                                 $(this).parent().find(".c_total_n").hide()
                                 $(this).parent().find(".price").text("￥"+price)
                                 $(this).parent().find(".price").show()
@@ -282,7 +299,9 @@
                                 $(this).hide()
                                 $(this).parent().parent().find(".comfirn_btn").show()
                                 $(this).parent().parent().find(".c_adult_p").show()
+                                $(this).parent().parent().find(".c_adult_mkt_p").show()
                                 $(this).parent().parent().find(".c_child_p").show()
+                                $(this).parent().parent().find(".c_child_mkt_p").show()
                                 $(this).parent().parent().find(".c_total_n").show()
                               $(".week").on 'click', ->
                                 $(".everyday").attr("checked",false)
@@ -318,7 +337,9 @@
                                 $("#total_number").val("")
                               $('#batch_button').on('click', -> false).on 'mousedown', ->
                                 price = $("#adult_price").val()
+                                mkt_price = $("#adult_mkt_price").val()
                                 c_price = $("#child_price").val()
+                                c_mkt_price = $("#child_mkt_price").val()
                                 t_num = $("#total_number").val()
                                 if(price == "")
                                   alert("请输入成人价")
@@ -336,10 +357,14 @@
                                         $(".day_"+day).text("￥"+price)
                                         $(".day_"+day).each ->
                                             $(this).parent().parent().find('input:eq(1)').val(price)
-                                            $(this).parent().parent().find('input:eq(2)').val(c_price)
-                                            $(this).parent().parent().find('input:eq(3)').val(t_num)
+                                            $(this).parent().parent().find('input:eq(2)').val(mkt_price)
+                                            $(this).parent().parent().find('input:eq(3)').val(c_price)
+                                            $(this).parent().parent().find('input:eq(4)').val(c_mkt_price)
+                                            $(this).parent().parent().find('input:eq(5)').val(t_num)
                                         $("#adult_price").val("")
+                                        $("#adult_mkt_price").val("")
                                         $("#child_price").val("")
+                                        $("#child_mkt_price").val("")
                                         $("#total_number").val("")
                         - inventories = journey.inventories.where('started_on > ?', Date.today).to_a
                         div
@@ -375,8 +400,10 @@
                                         - else
                                           p class="day_#{day.wday} price"
                                         p class="add_price #{days.first.month}-#{day.day}" 添加价格
-                                      div = text_field_tag "travel_inventory[][adult_price]", inventory.try(:adult_price), placeholder: '成人价', size: 5,:class=>"c_adult_p"
-                                      div = text_field_tag "travel_inventory[][child_price]", inventory.try(:child_price), placeholder: '儿童价', size: 5,:class=>"c_child_p"
+                                      div = text_field_tag "travel_inventory[][adult_price]", inventory.try(:adult_price), placeholder: '成人结算价', size: 5,:class=>"c_adult_p"
+                                      div = text_field_tag "travel_inventory[][adult_mkt_price]", inventory.try(:adult_mkt_price), placeholder: '成人市场价', size: 5,:class=>"c_adult_mkt_p"
+                                      div = text_field_tag "travel_inventory[][child_price]", inventory.try(:child_price), placeholder: '儿童结算价', size: 5,:class=>"c_child_p"
+                                      div = text_field_tag "travel_inventory[][child_mkt_price]", inventory.try(:child_mkt_price), placeholder: '儿童市场价', size: 5,:class=>"c_child_mkt_p"
                                       div = text_field_tag "travel_inventory[][total_number]", inventory.try(:total_number), placeholder: '库存', size: 5,:class=>"c_total_n"
                                       div.comfirn_btn 确定
                                   - (7 - _days.last.cwday).times do

@@ -63,7 +63,7 @@
                   = hidden_field_tag 'travel_booking[journey_id]', journey.id
                   = hidden_field_tag 'travel_booking[started_on]'
                   = hidden_field_tag 'step', 1
-                  div class="_inventories_#{journey.id}" data-inventories=inventories.to_json(only: [:started_on, :adult_price, :child_price, :remained_number])
+                  div class="_inventories_#{journey.id}" data-inventories=inventories.to_json(only: [:started_on, :adult_price,:adult_mkt_price, :child_price,:child_mkt_price, :remained_number])
                   div class="_show_#{journey.id if inventory} show_order"
                     table
                       tr
@@ -153,8 +153,10 @@
                             score_num = scores[i]["remained_number"];
                             $(".adult_price").attr("price",scores[i]["adult_price"]);
                             $(".child_price").attr("price",scores[i]["child_price"]);
-                            $(".adult_price").text("¥"+scores[i]["adult_price"]+"/人");
-                            $(".child_price").text("¥"+scores[i]["child_price"]+"/人");
+                            var a_price = "<span class='mkt_price_style'>¥"+scores[i]["adult_mkt_price"]+"</span>"+"¥"+scores[i]["adult_price"];
+                            var c_price = "<span class='mkt_price_style'>¥"+scores[i]["child_mkt_price"]+"</span>"+"¥"+scores[i]["child_price"];
+                            $(".adult_price").html(a_price);
+                            $(".child_price").html(c_price);
                             $(".total_price").attr("score_num",score_num);
                         }
                       }

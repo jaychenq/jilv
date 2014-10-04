@@ -62,7 +62,7 @@ private
     new_inventories = (params[:travel_inventory]||[]).each do |i|
       started_on = Date.parse(i.permit(:started_on)[:started_on])
       inventory = old_inventories.find { |inventory| inventory.started_on == started_on } || @journey.inventories.new(started_on: started_on)
-      inventory.attributes = i.permit(:adult_price, :child_price, :total_number)
+      inventory.attributes = i.permit(:adult_price,:adult_mkt_price, :child_price,:child_mkt_price, :total_number)
       next if inventory.new_record? && !inventory.adult_price && !inventory.child_price && !inventory.total_number
       inventory.save
     end

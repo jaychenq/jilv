@@ -8,8 +8,10 @@ zh-CN:
         product_id: 产品
         journey_id: 行程
         started_on: 开始日期
-        adult_price: 成人价
-        child_price: 儿童价
+        adult_price: 成人价（结算价）
+        adult_mkt_price: 成人价(市场价)
+        child_price: 儿童价（结算价）
+        child_mkt_price: 儿童价(市场价)
         total_number: 总数量
         preserved_number: 预定数量
         remained_number: 剩余数量

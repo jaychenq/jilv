@@ -11,7 +11,7 @@ class Travel::Inventory < ActiveRecord::Base
   validates :adult_price, :child_price, :total_number, :preserved_number, :remained_number, numericality: { only_integer: true }, allow_blank: true
 
   cattr_accessor :admin_fields, :business_fields
-  self.business_fields = %w[ journey_id started_on adult_price child_price total_number ]
+  self.business_fields = %w[ journey_id started_on adult_price child_price adult_mkt_price child_mkt_price total_number ]
   self.admin_fields = self.business_fields + %w[]
   
   before_validation do
