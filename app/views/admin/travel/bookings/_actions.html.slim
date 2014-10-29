@@ -1,1 +1,2 @@
 = link_to t('show'), [:admin, booking] if can?(:show, booking)
+= link_to t('confirm_order'), [:confirm, :admin, booking] if can?(:update, booking)

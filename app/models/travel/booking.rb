@@ -12,7 +12,7 @@ class Travel::Booking < ActiveRecord::Base
   default_scope { where(active: true) }
   
   cattr_accessor :admin_fields
-  self.admin_fields = %w[]
+  self.admin_fields = %w[ confirm_text]
   
   before_validation do
     self.product_id = self.journey.product.id

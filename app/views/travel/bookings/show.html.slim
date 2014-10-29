@@ -18,8 +18,16 @@
           strong
             i.icons-lock-gray-s-disabled
             | 安全支付
-        li.step-4.current
-          span 4
+        -if @booking.do_confirm == "do"
+          li.step-4.step-past
+            span 4
+            strong 供应商确认
+        -else
+          li.step-4
+            span 4
+            strong 供应商确认
+        li.step-5
+          span 5
           strong 交易完成
     .cart-box
       .main.lfloat
@@ -48,6 +56,9 @@
                       li
                         strong 儿童：
                         span #{booking.child_number} 位
+                    div.tickets
+                      span 票务信息：
+                      = @booking.confirm_text
               a.button.btn-s.btn-blue href=url_for(booking.product) 查看详情
       .side.rfloat
         .row-290.rfloat.product-side

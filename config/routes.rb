@@ -91,7 +91,15 @@ Rails.application.routes.draw do
       resources :complaints
       resources :continents, concerns: :deletable
       resources :countries, concerns: :deletable
-      resources :bookings, concerns: :deletable
+      resources :bookings do
+        member do
+          get :delete
+          get :confirm
+          post :confirm_data
+          put :publish
+          put :withdraw
+        end
+      end
       resources :favorites, concerns: :deletable
       resources :inventories, concerns: [:deletable, :batch]
       resources :journeys, concerns: :deletable

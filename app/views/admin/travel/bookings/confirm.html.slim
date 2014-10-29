@@ -1,0 +1,21 @@
+.row-600.profile-form
+  .formbody
+    = form_for @booking, url: [:confirm_data,:admin, @booking], method: 'post', html: { multipart: true } do |f|
+      h4.page-h4 订单确认
+      fieldset.fms_block
+      ul
+        li.item
+          .itm_media
+            label.title_label
+              | 订单号
+          .itm_body
+            = f.text_field :id
+            = f.error_message_on :entity
+        li.item
+          .itm_media
+            label.title_label
+              | 门票信息
+          .itm_body
+            = f.text_area :confirm_text,:cols=>25,:rows=>20
+            = f.error_message_on :entity
+      button.button.btn-blue 提交
