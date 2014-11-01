@@ -38,6 +38,14 @@ h2
             = f.text_field :started_on
             = f.error_message_on :started_on
       tr
+        th = f.label :adult_mkt_price
+        td
+          - if show
+            = inventory.adult_mkt_price
+          - else
+            = f.text_field :adult_mkt_price
+            = f.error_message_on :adult_mkt_price
+      tr
         th = f.label :adult_price
         td
           - if show
@@ -53,6 +61,14 @@ h2
           - else
             = f.text_field :child_price
             = f.error_message_on :child_price
+      tr
+        th = f.label :child_mkt_price
+        td
+          - if show
+            = inventory.child_mkt_price
+          - else
+            = f.text_field :child_mkt_price
+            = f.error_message_on :child_mkt_price
       tr
         th = f.label :total_number
         td

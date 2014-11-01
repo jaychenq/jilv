@@ -73,9 +73,6 @@
                 em 总计：
                 span RMB￥ #{total_price}.00
               a.book-button href=url_for(params.merge(step: 2)) 立即预订
-            .help-phone
-              i.icons-phone-blue
-              span +86 020-53664444
 - else
   .container
     = render 'layouts/application/breadcrumb'
@@ -234,18 +231,16 @@
               h3 需要帮助？
               .help-phone
                 i.icon32x32-cart-phone
-                span +86 020-53664444
+                span 在线QQ|SKYPE
             .cs-block
               h3 数据安全
               .text-mod
                 span.icon32x32-cart-lock
-                p Your info's safe with us. All data is encrypted and transmitted securely with an SSL protocol.
+                p 您的信息是安全的。
                 p
-                  | G respects your privacy. We do not sell your personal information to anyone. 
+                  | 我们尊重您的隐私，不会将您的个人信息出卖个任何人。 
             .cs-block
               h3 最低价格
               .text-mod
                 span.icon32x32-tick-green
-                p Your info's safe with us. All data is encrypted and transmitted securely with an SSL protocol.
-                p
-                  | G respects your privacy. We do not sell your personal information to anyone. 
+                p 供应商已经承诺底价。 
