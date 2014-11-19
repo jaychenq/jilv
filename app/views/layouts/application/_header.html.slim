@@ -8,8 +8,8 @@
         - if @current_user
           - if !@current_user.try(:merchant)
             li
-              a href=url_for([:business, @current_user.merchant])
-                span 商家中心
+              a href="/business/travel/merchants/new"
+                span 商家入驻
           - else
             li
               a href=url_for([:business, @current_user.merchant])
